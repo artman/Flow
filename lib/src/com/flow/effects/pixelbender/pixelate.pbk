@@ -1,0 +1,25 @@
+
+<languageVersion: 1.0;>
+ 
+kernel Pixelate
+<   namespace : "AIF";
+    vendor : "Artman.fi";
+    version : 1;
+    description : "Pixelates an image"; >
+{
+    parameter int dimension
+    <minValue: 1;
+     maxValue: 1000;
+     defaultValue: 1;>;
+
+    input image4 inputImage;
+    output pixel4 outputPixel;
+
+    void
+    evaluatePixel() {
+        float dimAsFloat = float(dimension);
+        float2 sc = floor(outCoord() / float2(dimAsFloat, dimAsFloat));
+        sc *= dimAsFloat;
+        outputPixel = sampleNearest(inputImage, sc);
+    }
+}
