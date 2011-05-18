@@ -28,16 +28,9 @@ package com.flow.net {
 	import flash.net.NetConnection;
 	import flash.net.ObjectEncoding;
 	
-	/**
-	 * Dispatched, when there is a response from the gateway, no matter which service or which reponder. 
-	 */  
 	[Event(name="result", type="com.flow.events.AMFGatewayEvent")]
-	
-	/**
-	 * Dispatched, when there is an error from the gateway, no matter which service or which reponder. 
-	 * @eventType fi.valve.events.GatewayResponderEvent.ERROR
-	 */  
 	[Event(name="error", type="com.flow.events.AMFGatewayEvent")]
+	
 	public class AMFGateway extends NetConnection {
 		
 		private var _url:String;
@@ -55,21 +48,23 @@ package com.flow.net {
 			return _url
 		}
 		public function set url(value:String):void {
-			_url = value;
-			if(_url.length) {
-				connect(_url);
+			if(value != _url) {
+				_url = value;
+				if(_url.length) {
+					connect(_url);
+				}
 			}
 		}
 		
 		public function rp(remoteProcedure:String, ...rest):AMFGatewayResponder {
 			var resp:AMFGatewayResponder = new AMFGatewayResponder();
-			resp.addEventListener(AMFGatewayEvent.ERROR, fault);
+			resp.addEventListener(AMFGatewayEvent.ERROR, error);
 			call(remoteProcedure, resp, rest[0], rest[1], rest[2], rest[3]);
 			return resp;
 		}
 
 		
-		private function fault(e:AMFGatewayEvent):void{
+		private function error(e:AMFGatewayEvent):void{
 			var evt:AMFGatewayEvent = new AMFGatewayEvent(AMFGatewayEvent.ERROR);
 			evt.result = e.result;
 			dispatchEvent(evt);

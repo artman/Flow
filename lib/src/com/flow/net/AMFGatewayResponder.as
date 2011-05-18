@@ -29,22 +29,12 @@ package com.flow.net {
 	import flash.events.IEventDispatcher;
 	import flash.net.Responder;
 	
-	/**
-	 * Dispatched when the server responds to the request.
-	 * @eventType fi.artman.events.AMFGatewayEvent.COMPLETE
-	 */  
 	[Event(name="complete", type="com.flow.events.AMFGatewayEvent")]
-	
-	/**
-	 * Dispatched, when the server responded with an error.
-	 * @eventType fi.artman.events.AMFGatewayEvent.ERROR
-	 */  
 	[Event(name="error", type="com.flow.events.AMFGatewayEvent")]
 	
-
 	public class AMFGatewayResponder extends Responder implements IEventDispatcher {
 		
-		private var ed:EventDispatcher;
+		private var eventDispatcher:EventDispatcher;
 		private var remoteProcedure:String;
 		
 		private var resultHandler:Function = null;
@@ -52,7 +42,7 @@ package com.flow.net {
 		
 		public function AMFGatewayResponder(){
 			super(result, error);
-			ed = new EventDispatcher(this);
+			eventDispatcher = new EventDispatcher(this);
 		}
 		
 		private function result(resp:Object):void{
@@ -74,23 +64,23 @@ package com.flow.net {
 		}
 		
 		public function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void {
-			ed.addEventListener(type, listener, useCapture, priority, useWeakReference);
+			eventDispatcher.addEventListener(type, listener, useCapture, priority, useWeakReference);
 		}
 		
 		public function dispatchEvent(event:Event):Boolean {
-			return ed.dispatchEvent(event);
+			return eventDispatcher.dispatchEvent(event);
 		}
 		
 		public function hasEventListener(type:String):Boolean{
-			return ed.hasEventListener(type)
+			return eventDispatcher.hasEventListener(type)
 		}
 		
 		public function removeEventListener(type:String, listener:Function, useCapture:Boolean = false):void {
-			ed.removeEventListener(type, listener, useCapture);
+			eventDispatcher.removeEventListener(type, listener, useCapture);
 		}
 		
 		public function willTrigger(type:String):Boolean {
-			return ed.willTrigger(type);
+			return eventDispatcher.willTrigger(type);
 		}
 		
 		public function addHandlers(resultHandler:Function, errorHandler:Function = null):void {
