@@ -20,7 +20,7 @@
  * THE SOFTWARE.
  */
 
-package com.flow.components.layout {
+package com.flow.containers.layout {
 	public class AlignType {
 		
 		public static const ALIGN_TOP:String = "top";

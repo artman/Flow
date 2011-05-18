@@ -22,7 +22,7 @@
 
 package com.flow.log {
 	
-	import com.flow.components.Application;
+	import com.flow.containers.Application;
 	
 	import flash.external.ExternalInterface;
 	

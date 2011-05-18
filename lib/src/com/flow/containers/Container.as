@@ -20,12 +20,12 @@
  * THE SOFTWARE.
  */
 
-package com.flow.components {
+package com.flow.containers {
 
 	import com.flow.collections.DisplayObjectCollection;
 	import com.flow.collections.IList;
-	import com.flow.components.layout.AbsoluteLayout;
-	import com.flow.components.layout.LayoutBase;
+	import com.flow.containers.layout.AbsoluteLayout;
+	import com.flow.containers.layout.LayoutBase;
 	import com.flow.events.CollectionEvent;
 	import com.flow.events.CollectionEventKind;
 	import com.flow.events.StateEvent;
@@ -33,6 +33,8 @@ package com.flow.components {
 	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.utils.getTimer;
+	import com.flow.components.Component;
+	import com.flow.components.LayoutManager;
 	
 	[DefaultProperty("children")]
 	[Event(name="creationComplete", type="com.flow.events.ComponentEvent")]
@@ -45,8 +47,12 @@ package com.flow.components {
 		public function Container() {
 			super();
 			children = new DisplayObjectCollection();
-			layout = new AbsoluteLayout();
+			layout = getDefaultLayout();
 			addEventListener(Event.ADDED_TO_STAGE, added);
+		}
+		
+		protected function getDefaultLayout():LayoutBase {
+			return new AbsoluteLayout();
 		}
 		
 		private function added(e:Event):void {

@@ -29,6 +29,7 @@ package com.flow.components {
 	import flash.events.Event;
 	import flash.events.ProgressEvent;
 	import flash.utils.getDefinitionByName;
+	import com.flow.containers.Application;
 
 	public class Preloader extends MovieClip {
 		 
