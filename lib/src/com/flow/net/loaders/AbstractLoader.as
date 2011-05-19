@@ -53,7 +53,6 @@ package com.flow.net.loaders {
 	 * @eventType flash.events.HTTPStatusEvent
 	 */  
 	[Event(name="httpStatus", type="flash.events.HTTPStatusEvent")]
-
 	
 	/**
 	 * Abstract class for loading data. This class is used as a super-class to all other laoding classes
@@ -66,6 +65,7 @@ package com.flow.net.loaders {
 		private var statusHandler:Function;
 		private var _progress:Number = 0;
 		public var loaded:Boolean = false;
+		public var userData:*;
 		
 		/**
 		 * Constrcutor.
