@@ -25,8 +25,8 @@ package mx.states {
 				for (var i:int = 0; i < overrides.length; i++) {
 					IOverride(overrides[i]).initialize();
 				}
-			}
-		}
+			} 
+		} 
 		
 		public function apply(target:Object):void {
 			for (var i:int = 0; i < overrides.length; i++) {

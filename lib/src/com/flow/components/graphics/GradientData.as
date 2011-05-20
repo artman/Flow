@@ -21,16 +21,54 @@
  */
 
 package com.flow.components.graphics {
-	public class GradientData {
+	import com.flow.events.InvalidationEvent;
+	
+	import flash.events.EventDispatcher;
+
+	public class GradientData extends EventDispatcher {
 		
-		public var color:int;
-		public var alpha:Number;
-		public var ratio:Number;
+		private var _color:int;
+		private var _alpha:Number;
+		private var _ratio:Number;
 		
 		public function GradientData(color:int = 0, alpha:Number = 1, ratio:Number = 0){
 			this.color = color;
 			this.alpha = alpha;
 			this.ratio = ratio;
+		}
+
+		public function get color():int {
+			return _color;
+		}
+		public function set color(value:int):void {
+			if(value != _color){
+				_color = value;
+				invalidate();
+			}
+		}
+
+		public function get alpha():Number {
+			return _alpha;
+		}
+		public function set alpha(value:Number):void {
+			if(value != _alpha){
+				_alpha = value;
+				invalidate();
+			}
+		}
+
+		public function get ratio():Number {
+			return _ratio;
+		}
+		public function set ratio(value:Number):void {
+			if(value != _ratio) {
+				_ratio = value;
+				invalidate();
+			}
+		}
+		
+		private function invalidate():void {
+			dispatchEvent(new InvalidationEvent(InvalidationEvent.INVALIDATE));
 		}
 	}
 }

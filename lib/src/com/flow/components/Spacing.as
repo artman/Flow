@@ -47,9 +47,5 @@ package com.flow.components {
 		override public function set height(value:Number):void {
 			_height = value;
 		}
-		
-		
-		
-		
 	}
 }

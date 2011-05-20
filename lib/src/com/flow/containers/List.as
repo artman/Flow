@@ -5,12 +5,17 @@ package com.flow.containers {
 	import com.flow.containers.layout.VBoxLayout;
 	import com.flow.events.ListEvent;
 	
+	import flash.events.MouseEvent;
+	
 	[DefaultProperty("renderer")]
 	[Event(name="rendererCreated", type="com.flow.events.ListEvent")]
+	[Event(name="selectionChanged", type="com.flow.events.ListEvent")]
 	public class List extends Container {
 		
 		private var _dataProvider:*;
 		private var _renderer:Class;
+		private var _selectedIndex:int = -1;
+		private var _selectedItem:Object;
 		
 		public function List() {
 			super();
@@ -32,9 +37,14 @@ package com.flow.containers {
 		
 		override public function validateProperties():void {
 			if(_dataProvider && _renderer) {
+				if(children && children.length) {
+					for(var i:int = 0; i<children.length; i++) {
+						(children.getItemAt(i) as Component).removeEventListener(MouseEvent.CLICK, rendererClicked);
+					}
+				}
 				children.removeAll();
 				if(_dataProvider is Array || _dataProvider is Vector.<*>) {
-					for(var i:int = 0; i<_dataProvider.length; i++) {
+					for(i = 0; i<_dataProvider.length; i++) {
 						var renderer:Component = new _renderer();
 						renderer.data = _dataProvider[i];
 						
@@ -42,6 +52,8 @@ package com.flow.containers {
 						evt.renderer = renderer;
 						dispatchEvent(evt);
 						
+						renderer.interactive = true;
+						renderer.addEventListener(MouseEvent.CLICK, rendererClicked);
 						children.addItem(renderer);
 					}
 				}
@@ -49,16 +61,45 @@ package com.flow.containers {
 				children.removeAll();
 			}
 		}
-
+		
+		protected function rendererClicked(event:MouseEvent):void {
+			selectedIndex = children.getItemIndex(event.currentTarget);
+		}
+		
 		public function get renderer():Class {
 			return _renderer;
 		}
-
 		public function set renderer(value:Class):void {
 			if(value != _renderer) {
 				_renderer = value;
+				invalidateProperties();
 			}
 		}
 
+		[Bindable]
+		public function get selectedIndex():int {
+			return _selectedIndex;
+		}
+		public function set selectedIndex(value:int):void {
+			if(value != _selectedIndex) {
+				if(_selectedIndex != -1) {
+					(children.getItemAt(_selectedIndex) as Component).removeState("selected");
+				}
+				_selectedIndex = value;
+				if(_dataProvider is Array || _dataProvider is Vector.<*>) {
+					selectedItem = _dataProvider[_selectedIndex];
+				}
+				(children.getItemAt(_selectedIndex) as Component).addState("selected");
+				dispatchEvent(new ListEvent(ListEvent.SELECTION_CHANGED));
+			}
+		}
+		
+		[Bindable]
+		public function get selectedItem():Object {
+			return _selectedItem;
+		}
+		public function set selectedItem(value:Object):void {
+			_selectedItem = value;
+		}
 	}
 }
