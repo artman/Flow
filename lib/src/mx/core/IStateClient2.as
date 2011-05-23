@@ -1,4 +1,4 @@
-package mx.states {
+package mx.core {
 	
 	import flash.events.IEventDispatcher;
 	

@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <flexLibProperties includeAllClasses="false" useMultiPlatformConfig="false" version="3">
   <includeClasses>
-    <classEntry path="com.adobe.serialization.json.JSONParsing"/>
     <classEntry path="com.adobe.serialization.json.JSONDecoder"/>
     <classEntry path="com.adobe.serialization.json.JSONEncoder"/>
     <classEntry path="com.adobe.serialization.json.JSONParseError"/>
+    <classEntry path="com.adobe.serialization.json.JSONParsing"/>
     <classEntry path="com.adobe.serialization.json.JSONToken"/>
     <classEntry path="com.adobe.serialization.json.JSONTokenType"/>
     <classEntry path="com.adobe.serialization.json.JSONTokenizer"/>
@@ -56,7 +56,6 @@
     <classEntry path="com.flow.effects.DropShadowEffect"/>
     <classEntry path="com.flow.effects.Effect"/>
     <classEntry path="com.flow.effects.EffectComposition"/>
-    <classEntry path="com.flow.effects.EffectTransition"/>
     <classEntry path="com.flow.effects.FlipEffect"/>
     <classEntry path="com.flow.effects.FullBevelEffect"/>
     <classEntry path="com.flow.effects.GlowEffect"/>
@@ -69,8 +68,9 @@
     <classEntry path="com.flow.effects.RippleEffect"/>
     <classEntry path="com.flow.effects.TintEffect"/>
     <classEntry path="com.flow.effects.Transform3DEffect"/>
-    <classEntry path="com.flow.effects.Transition"/>
     <classEntry path="com.flow.effects.WipeEffect"/>
+    <classEntry path="com.flow.effects.transitions.EffectTransition"/>
+    <classEntry path="com.flow.effects.transitions.FadeTransition"/>
     <classEntry path="com.flow.effects.utils.ColorMatrix"/>
     <classEntry path="com.flow.effects.utils.ColorRGB"/>
     <classEntry path="com.flow.effects.utils.CopyEffect"/>
@@ -109,16 +109,18 @@
     <classEntry path="com.flow.utils.MultiBinder"/>
     <classEntry path="com.flow.utils.callLater"/>
     <classEntry path="com.flow.utils.callLaterTimed"/>
+    <classEntry path="com.flow.utils.hasPlayerVersion"/>
+    <classEntry path="mx.core.IStateClient"/>
+    <classEntry path="mx.core.IStateClient2"/>
     <classEntry path="mx.states.AddItems"/>
     <classEntry path="mx.states.IOverride"/>
-    <classEntry path="mx.states.IStateClient2"/>
     <classEntry path="mx.states.OverrideBase"/>
     <classEntry path="mx.states.SetProperty"/>
     <classEntry path="mx.states.State"/>
-    <classEntry path="com.flow.utils.hasPlayerVersion"/>
+    <classEntry path="mx.states.Transition"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests>
-    <namespaceManifestEntry manifest="main-manifest.xml" namespace="http://artman.fi/flow"/>
+    <namespaceManifestEntry manifest="manifest.xml" namespace="http://artman.fi/flow"/>
   </namespaceManifests>
 </flexLibProperties>
