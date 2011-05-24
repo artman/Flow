@@ -20,7 +20,7 @@
  * THE SOFTWARE.
  */
 
-package com.flow.components {
+package com.flow.containers {
 	
 	import com.flow.containers.layout.VBoxLayout;
 	import com.flow.motion.Tween;
@@ -28,7 +28,6 @@ package com.flow.components {
 	
 	import flash.display.DisplayObject;
 	import flash.geom.Rectangle;
-	import com.flow.containers.Container;
 
 	public class ScrollArea extends Container {
 		

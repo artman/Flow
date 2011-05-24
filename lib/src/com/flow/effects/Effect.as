@@ -22,7 +22,7 @@
 
 package com.flow.effects {
 	
-	import com.flow.components.LayoutManager;
+	import com.flow.managers.LayoutManager;
 	import com.flow.motion.Tween;
 	
 	import flash.display.DisplayObject;
