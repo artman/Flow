@@ -30,6 +30,8 @@ package com.flow.components {
 	import com.flow.events.InvalidationEvent;
 	import com.flow.events.StateEvent;
 	
+	import flash.display.DisplayObject;
+	import flash.display.InteractiveObject;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -113,6 +115,8 @@ package com.flow.components {
 		protected var _border:IStroke;
 		
 		private var _tooltip:String;
+		protected var _focusElement:InteractiveObject;
+		private var _tabIndex:int = -1;
 		
 		[Bindable] public var data:*;
 		
@@ -131,6 +135,7 @@ package com.flow.components {
 			preInitialize();
 			manager.invalidateInit(this);
 			invalidateProperties();
+			focusRect = null;
 		}
 		
 		public final function init():void {
@@ -631,6 +636,30 @@ package com.flow.components {
 				}
 			}
 		}
+		
+		override public function get tabIndex():int {
+			return _tabIndex;
+		}
+		override public function set tabIndex(value:int):void {
+			_tabIndex = value;
+			if(focusElement) {
+				super.tabIndex = -1;
+				focusElement.tabIndex = value;
+			} else {
+				super.tabIndex = value;
+			}
+		}
+		
+		public function get focusElement():InteractiveObject {
+			return _focusElement;
+		}
+		
+		public function set focusElement(value:InteractiveObject):void {
+			if(value != _focusElement) {
+				_focusElement = value;
+				tabIndex = _tabIndex;
+			}
+		}
 
 		
 		// ----------------- states ---------------------
@@ -676,6 +705,9 @@ package com.flow.components {
 		
 		private function focusIn(e:FocusEvent):void {
 			if(focusable) {
+				if(_focusElement) {
+					stage.focus = _focusElement;
+				}
 				addState(STATE_FOCUS);
 			}
 		}
