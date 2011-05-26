@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<flow:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+				  xmlns:flow="http://artman.fi/flow">
+	
+	
+	
+	<flow:Container width="300" verticalCenter="0" horizontalCenter="0">
+		<flow:states>
+		</flow:states>
+		
+		<flow:background>
+			<flow:SolidFill color="0xDDDDDD" />
+		</flow:background>
+	</flow:Container>
+</flow:Application>
