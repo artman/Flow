@@ -24,11 +24,15 @@ package com.flow.components {
 	
 	import com.flow.components.graphics.fills.IFill;
 	import com.flow.components.graphics.strokes.IStroke;
+	import com.flow.components.measuring.MeasureUnit;
+	import com.flow.components.measuring.MeasureUnits;
 	import com.flow.containers.Container;
 	import com.flow.effects.transitions.FadeTransition;
 	import com.flow.events.ComponentEvent;
 	import com.flow.events.InvalidationEvent;
 	import com.flow.events.StateEvent;
+	import com.flow.managers.LayoutManager;
+	import com.flow.managers.TooltipManager;
 	
 	import flash.display.DisplayObject;
 	import flash.display.InteractiveObject;
@@ -38,17 +42,16 @@ package com.flow.components {
 	import flash.events.FocusEvent;
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
+	import flash.utils.getDefinitionByName;
+	import flash.utils.getQualifiedClassName;
 	
+	import mx.core.IFactory;
 	import mx.core.IStateClient2;
 	import mx.states.State;
-	import com.flow.managers.LayoutManager;
-	import com.flow.managers.TooltipManager;
-	import com.flow.components.measuring.MeasureUnit;
-	import com.flow.components.measuring.MeasureUnits;
 	
 	[DefaultProperty("background")]
 	[Event(name="stateChange", type="com.flow.events.StateEvent")]
-	public class Component extends Sprite implements IStateClient2 {
+	public class Component extends Sprite implements IStateClient2, IFactory {
 		
 		public static const STATE_NORMAL:String = "normal";
 		public static const STATE_HOVER:String = "hover";
@@ -544,8 +547,10 @@ package com.flow.components {
 			return _x;
 		}
 		override public function set x(value:Number):void {
-			_x = value;
-			super.x = Math.round(value);
+			if(value != _x) {
+				_x = value;
+				super.x = Math.round(value);
+			}
 		}
 		
 		[Bindable]
@@ -553,8 +558,10 @@ package com.flow.components {
 			return _y;
 		}
 		override public function set y (value:Number):void {
-			_y = value;
-			super.y = Math.round(value);
+			if(value != _y) {
+				_y = value;
+				super.y = Math.round(value);
+			}
 		}
 		
 		public function get measureUnits():MeasureUnits {
@@ -903,6 +910,11 @@ package com.flow.components {
 			return [];
 		}
 		public function set transitions(value:Array):void {
+		}
+		
+		public function newInstance():* {
+			var klass:Class = getDefinitionByName(getQualifiedClassName(this)) as Class;
+			return new klass();
 		}
 	}
 	Component.manager = LayoutManager.instance;

@@ -70,10 +70,10 @@ package com.flow.containers {
 			invalidateLayout();
 		}
 
+		[ArrayElementType("DisplayObject")]
 		public function get children():IList {
 			return _children;
 		}
-
 		public function set children( value:* ):void {
 			if ( _children != value ) {
 				if(_children) {

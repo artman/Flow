@@ -25,6 +25,7 @@
 	<component id="BitmapFill" class="com.flow.components.graphics.fills.BitmapFill"/>
 	<component id="BlurEffect" class="com.flow.effects.BlurEffect"/>
 	<component id="Bounce" class="com.flow.motion.easing.Bounce"/>
+	<component id="Button" class="com.flow.components.Button"/>
 	<component id="CSBEffect" class="com.flow.effects.CSBEffect"/>
 	<component id="ChihulyEffect" class="com.flow.effects.ChihulyEffect"/>
 	<component id="Circular" class="com.flow.motion.easing.Circular"/>
@@ -62,6 +63,7 @@
 	<component id="GraphicUtils" class="com.flow.utils.GraphicUtils"/>
 	<component id="GreyscaleEffect" class="com.flow.effects.GreyscaleEffect"/>
 	<component id="HBoxLayout" class="com.flow.containers.layout.HBoxLayout"/>
+	<component id="IFactory" class="mx.core.IFactory"/>
 	<component id="IFill" class="com.flow.components.graphics.fills.IFill"/>
 	<component id="IList" class="com.flow.collections.IList"/>
 	<component id="IOverride" class="mx.states.IOverride"/>
@@ -81,6 +83,8 @@
 	<component id="JSONTokenType" class="com.adobe.serialization.json.JSONTokenType"/>
 	<component id="JSONTokenizer" class="com.adobe.serialization.json.JSONTokenizer"/>
 	<component id="KeyboardManager" class="com.flow.ui.KeyboardManager"/>
+	<component id="Label" class="com.flow.components.Label"/>
+	<component id="LabelSkin" class="com.flow.skins.LabelSkin"/>
 	<component id="LayoutBase" class="com.flow.containers.layout.LayoutBase"/>
 	<component id="LayoutManager" class="com.flow.managers.LayoutManager"/>
 	<component id="Line" class="com.flow.components.graphics.Line"/>
@@ -108,11 +112,14 @@
 	<component id="SetProperty" class="mx.states.SetProperty"/>
 	<component id="Shape" class="com.flow.components.graphics.Shape"/>
 	<component id="Sine" class="com.flow.motion.easing.Sine"/>
+	<component id="Skin" class="com.flow.components.Skin"/>
+	<component id="SkinnableComponent" class="com.flow.components.SkinnableComponent"/>
 	<component id="SolidFill" class="com.flow.components.graphics.fills.SolidFill"/>
 	<component id="SolidStroke" class="com.flow.components.graphics.strokes.SolidStroke"/>
 	<component id="Spacing" class="com.flow.components.Spacing"/>
 	<component id="State" class="mx.states.State"/>
 	<component id="StateEvent" class="com.flow.events.StateEvent"/>
+	<component id="TextFormatManager" class="com.flow.managers.TextFormatManager"/>
 	<component id="TextLoader" class="com.flow.net.loaders.TextLoader"/>
 	<component id="TintEffect" class="com.flow.effects.TintEffect"/>
 	<component id="TooltipManager" class="com.flow.managers.TooltipManager"/>
