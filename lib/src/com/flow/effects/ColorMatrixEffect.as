@@ -32,16 +32,6 @@ package com.flow.effects {
 		private var changedMatrix:Array;
 		private var filter:ColorMatrixFilter;
 		
-		public function get matrix():Array {
-			return _matrix;
-		};
-		
-		public function set matrix(value:Array):void{
-			if(value != _matrix) {
-				_matrix = value;
-				invalidate();
-			}
-		}
 
 		public function ColorMatrixEffect(target:DisplayObject = null, matrix:Array = null){
 			this.matrix = matrix;
@@ -53,10 +43,21 @@ package com.flow.effects {
 			filter = new ColorMatrixFilter(_matrix);
 		}
 		
+		public function get matrix():Array {
+			return _matrix;
+		};
+		
+		public function set matrix(value:Array):void{
+			if(value != _matrix) {
+				_matrix = value;
+				invalidate();
+			}
+		}
+		
 		override protected function render(val:Number):Array{
-			changedMatrix = filter.matrix;
+			changedMatrix = _matrix.concat();
 			for(var i:int = 0; i<20; i++) {
-				changedMatrix[i] = defaultMatrix[i] + (matrix[i] - defaultMatrix[i]) * val;
+				changedMatrix[i] = defaultMatrix[i] + (changedMatrix[i] - defaultMatrix[i]) * val;
 			}
 			filter.matrix = changedMatrix;
 			if(val) {

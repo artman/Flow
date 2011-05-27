@@ -73,7 +73,7 @@ package com.flow.components.graphics {
 			return true;
 		}
 		
-		override protected function draw(w:int, h:int):void {	
+		override public function draw(w:int, h:int):void {	
 			graphics.clear();
 			graphics.lineStyle(undefined);
 			if (_stroke) {

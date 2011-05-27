@@ -29,7 +29,7 @@ package com.flow.components.graphics {
 			stroke = new SolidStroke();
 		}
 		
-		override protected function draw(width:int, height:int):void {
+		override public function draw(width:int, height:int):void {
 			super.draw(width, height);
 			graphics.moveTo(0,0);
 			graphics.lineTo(width,height);

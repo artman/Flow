@@ -26,6 +26,7 @@
 	<component id="BlurEffect" class="com.flow.effects.BlurEffect"/>
 	<component id="Bounce" class="com.flow.motion.easing.Bounce"/>
 	<component id="Button" class="com.flow.components.Button"/>
+	<component id="ButtonSkin" class="com.flow.skins.ButtonSkin"/>
 	<component id="CSBEffect" class="com.flow.effects.CSBEffect"/>
 	<component id="ChihulyEffect" class="com.flow.effects.ChihulyEffect"/>
 	<component id="Circular" class="com.flow.motion.easing.Circular"/>
@@ -84,7 +85,6 @@
 	<component id="JSONTokenizer" class="com.adobe.serialization.json.JSONTokenizer"/>
 	<component id="KeyboardManager" class="com.flow.ui.KeyboardManager"/>
 	<component id="Label" class="com.flow.components.Label"/>
-	<component id="LabelSkin" class="com.flow.skins.LabelSkin"/>
 	<component id="LayoutBase" class="com.flow.containers.layout.LayoutBase"/>
 	<component id="LayoutManager" class="com.flow.managers.LayoutManager"/>
 	<component id="Line" class="com.flow.components.graphics.Line"/>

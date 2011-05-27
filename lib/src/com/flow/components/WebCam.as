@@ -102,7 +102,7 @@ package com.flow.components {
 			camera = null;
 		}
 		
-		override protected function draw(width:int, height:int):void {
+		override public function draw(width:int, height:int):void {
 			super.draw(width, height);
 			graphics.clear();
 			graphics.beginFill(0);

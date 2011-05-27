@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fw:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:fw="http://artman.fi/flow">	
+	
+	<fx:Metadata>
+		[HostComponent("com.flow.components.Button")]
+	</fx:Metadata>
+	
+	<fw:states>
+		<s:State name="normal" />
+		<s:State name="hover" />
+		<s:State name="down" />
+		<s:State name="disabled" />
+	</fw:states>
+		
+	<fw:Rect width="100%" height="100%" radius="3" >
+		<fw:fill>
+			<fw:GradientFill rotation="90">
+				<fw:GradientData color="0xFFFFFF" ratio="0" />
+				<fw:GradientData color="0xDDDDDD" ratio="1" />
+			</fw:GradientFill>
+		</fw:fill>
+		<fw:border>
+			<fw:SolidStroke color="0xCCCCCC" />
+		</fw:border>
+	</fw:Rect>
+	
+	<fw:Label horizontalPadding="10" text="Kiva" verticalPadding="3" id="labelDisplay" align="center" horizontalCenter="0" verticalCenter="0" />
+	
+	<fw:Rect width="20" height="20">
+		<fw:SolidFill color="0xFFFF00" />
+	</fw:Rect>
+	
+</fw:Skin>

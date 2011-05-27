@@ -36,19 +36,18 @@ package com.flow.effects {
 			_contrast = contrast;
 			_saturation = saturation;
 			_brightness = brightness;
-			
+			validateProperties();
 			super(target, this.matrix);
 		}
 		
 		override protected function validateProperties():void {
 			var colConv:ColorMatrix = new ColorMatrix();
-			colConv.adjustSaturation(1+saturation);
+			colConv.adjustSaturation(saturation);
 			colConv.adjustBrightness(brightness);
 			colConv.adjustContrast(contrast);
-			matrix = colConv.matrix;
+			matrix = colConv.toArray();
 		}
 		
-
 		public function get contrast():Number {
 			return _contrast;
 		}

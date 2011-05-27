@@ -260,7 +260,7 @@ package com.flow.components {
 			// Override	
 		}
 		
-		protected function draw(width:int, height:int):void {
+		public function draw(width:int, height:int):void {
 			graphics.clear();
 			if(_background) {
 				_background.beginDraw(graphics, width, height);
@@ -871,8 +871,10 @@ package com.flow.components {
 					if(states[i].name == _currentState) {
 						(states[i] as State).apply(this);
 					}
-				}				
-				dispatchEvent(evt);
+				}
+				if(evt.fromState != "") {
+					dispatchEvent(evt);
+				}
 			}
 		}
 		
@@ -915,6 +917,10 @@ package com.flow.components {
 		public function newInstance():* {
 			var klass:Class = getDefinitionByName(getQualifiedClassName(this)) as Class;
 			return new klass();
+		}
+		
+		public function get visualRepresentation():Component {
+			return this;
 		}
 	}
 	Component.manager = LayoutManager.instance;
