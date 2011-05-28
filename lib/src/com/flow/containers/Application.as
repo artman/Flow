@@ -32,7 +32,7 @@ package com.flow.containers {
 	import flash.text.TextField;
 	import com.flow.components.Component;
 	import com.flow.components.Preloader;
-	import com.flow.components.TooltipManager;
+	import com.flow.managers.TooltipManager;
 	
 	public class Application extends Container {
 		

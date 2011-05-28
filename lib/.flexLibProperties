@@ -15,8 +15,6 @@
     <classEntry path="com.flow.components.Component"/>
     <classEntry path="com.flow.components.DefaultTooltip"/>
     <classEntry path="com.flow.components.ITooltip"/>
-    <classEntry path="com.flow.components.LayoutManager"/>
-    <classEntry path="com.flow.components.MeasureUnit"/>
     <classEntry path="com.flow.components.MeasureUnits"/>
     <classEntry path="com.flow.components.PaddableComponent"/>
     <classEntry path="com.flow.components.Preloader"/>

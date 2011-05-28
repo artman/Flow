@@ -20,7 +20,7 @@
  * THE SOFTWARE.
  */
 
-package com.flow.components {
+package com.flow.managers {
 	
 	import com.flow.collections.DisplayObjectCollection;
 	import com.flow.effects.AnimationProps;
@@ -35,6 +35,7 @@ package com.flow.components {
 	import flash.utils.getTimer;
 	import com.flow.containers.Application;
 	import com.flow.containers.Container;
+	import com.flow.components.Component;
 
 	public class LayoutManager {
 		
