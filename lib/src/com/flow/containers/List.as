@@ -9,15 +9,14 @@ package com.flow.containers {
 	
 	import mx.core.IFactory;
 	
-	
-	
-	[DefaultProperty("renderer")]
+
+	[DefaultProperty("itemRenderer")]
 	[Event(name="rendererCreated", type="com.flow.events.ListEvent")]
 	[Event(name="selectionChanged", type="com.flow.events.ListEvent")]
 	public class List extends Container {
 		
 		private var _dataProvider:*;
-		private var _renderer:IFactory;
+		private var _itemRenderer:IFactory;
 		private var _selectedIndex:int = -1;
 		private var _selectedItem:Object;
 		
@@ -40,7 +39,7 @@ package com.flow.containers {
 		}
 		
 		override public function validateProperties():void {
-			if(_dataProvider && _renderer) {
+			if(_dataProvider && _itemRenderer) {
 				if(children && children.length) {
 					for(var i:int = 0; i<children.length; i++) {
 						(children.getItemAt(i) as Component).removeEventListener(MouseEvent.CLICK, rendererClicked);
@@ -49,7 +48,7 @@ package com.flow.containers {
 				children.removeAll();
 				if(_dataProvider is Array || _dataProvider is Vector.<*>) {
 					for(i = 0; i<_dataProvider.length; i++) {
-						var renderer:Component = _renderer.newInstance();
+						var renderer:Component = _itemRenderer.newInstance();
 						renderer.data = _dataProvider[i];
 						
 						var evt:ListEvent = new ListEvent(ListEvent.RENDERER_CREATED);
@@ -70,14 +69,13 @@ package com.flow.containers {
 			selectedIndex = children.getItemIndex(event.currentTarget);
 		}
 		
-		
 
 		public function get itemRenderer():IFactory {
-			return _renderer;
+			return _itemRenderer;
 		}
 		public function set itemRenderer(value:IFactory):void {
-			if(value != _renderer) {
-				_renderer = value;
+			if(value != _itemRenderer) {
+				_itemRenderer = value;
 				invalidateProperties();
 			}
 		}
@@ -99,11 +97,7 @@ package com.flow.containers {
 				dispatchEvent(new ListEvent(ListEvent.SELECTION_CHANGED));
 			}
 		}
-		
-		
-		
-		
-		
+
 		[Bindable]
 		public function get selectedItem():Object {
 			return _selectedItem;
