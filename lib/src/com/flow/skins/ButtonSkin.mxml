@@ -7,6 +7,14 @@
 		[HostComponent("com.flow.components.Button")]
 	</fx:Metadata>
 	
+	<fx:Script>
+		<![CDATA[
+			override public function draw(width:int, height:int):void {
+				super.draw(width, height);
+			}
+		]]>
+	</fx:Script>
+	
 	<fw:states>
 		<s:State name="normal" />
 		<s:State name="hover" />

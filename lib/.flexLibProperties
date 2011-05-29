@@ -16,11 +16,7 @@
     <classEntry path="com.flow.components.Component"/>
     <classEntry path="com.flow.components.DefaultTooltip"/>
     <classEntry path="com.flow.components.ITooltip"/>
-<<<<<<< HEAD
-    <classEntry path="com.flow.components.MeasureUnits"/>
-=======
     <classEntry path="com.flow.components.Label"/>
->>>>>>> 27bfff1e18c39bb28d53f42738408c9f11a84cdc
     <classEntry path="com.flow.components.PaddableComponent"/>
     <classEntry path="com.flow.components.Preloader"/>
     <classEntry path="com.flow.components.Skin"/>
@@ -129,7 +125,6 @@
     <classEntry path="mx.states.SetProperty"/>
     <classEntry path="mx.states.State"/>
     <classEntry path="mx.states.Transition"/>
-    <classEntry path="mx.core.IFactory"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests>
