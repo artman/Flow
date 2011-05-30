@@ -850,10 +850,10 @@ package com.flow.components {
 			}
 		}
 		
+		[Bindable]
 		public function get currentState():String {
 			return _currentState;
 		}
-		
 		public function set currentState(value:String):void {
 			if(value != _currentState) {
 				for(var i:int = 0; i<states.length; i++) {
