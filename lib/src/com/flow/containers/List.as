@@ -9,6 +9,7 @@ package com.flow.containers {
 	
 	import mx.core.IFactory;
 	
+
 	[DefaultProperty("itemRenderer")]
 	[Event(name="rendererCreated", type="com.flow.events.ListEvent")]
 	[Event(name="selectionChanged", type="com.flow.events.ListEvent")]
@@ -68,6 +69,7 @@ package com.flow.containers {
 			selectedIndex = children.getItemIndex(event.currentTarget);
 		}
 		
+
 		public function get itemRenderer():IFactory {
 			return _itemRenderer;
 		}
@@ -95,7 +97,7 @@ package com.flow.containers {
 				dispatchEvent(new ListEvent(ListEvent.SELECTION_CHANGED));
 			}
 		}
-		
+
 		[Bindable]
 		public function get selectedItem():Object {
 			return _selectedItem;
