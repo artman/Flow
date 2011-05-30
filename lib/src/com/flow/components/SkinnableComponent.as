@@ -37,11 +37,8 @@ package com.flow.components {
 				skinChanged = true;
 				if(_skinClass) {
 					skin = new _skinClass();
-					
-					
 					skin.hostComponent = this;
-					skin.left = left;
-					skin.top = top;
+					children = skin.children;
 					
 					for (partName in _skinParts) {
 						skinPart = skin[partName];
@@ -54,6 +51,16 @@ package com.flow.components {
 				}
 				invalidateLayout();
 			}
+		}
+		
+		override public function set children(value:*):void {
+			if(skin) {
+				super.children = skin.children;
+			}
+		}
+		
+		override public function validateChildren():void {
+			super.validateChildren();
 		}
 		
 		
@@ -82,32 +89,5 @@ package com.flow.components {
 		protected function partRemoved(partName:String, skinPart:InteractiveObject):void {
 			// Override
 		}
-		
-		override public function get visualRepresentation():Component {
-			return skin;
-		}
-		
-		override public function invalidate(e:Event=null):void {
-			if(skin) {
-				skin.invalidate();
-			}
-		}
-		
-		override public function invalidateLayout(fromChild:Boolean=false):void {
-			if(skin) {
-				skin.invalidateLayout(fromChild);
-			}
-		}
-		
-		
-		/*
-		override public function validate():void {
-			super.validate();
-			if(skin) {
-				skin.validate();
-			}
-		}
-		*/
-		
 	}
 }
