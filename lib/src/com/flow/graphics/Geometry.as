@@ -20,14 +20,39 @@
  * THE SOFTWARE.
  */
 
-package com.flow.components.graphics.fills {
+package com.flow.graphics {
 	
-	import flash.display.Graphics;
-	import flash.events.IEventDispatcher;
+	import com.flow.components.Component;
 	
-	[Event(name="invalidate", type="com.flow.events.InvalidateEvent")]
-	public interface IFill extends IEventDispatcher {
-		function beginDraw(graphics:Graphics, width:int, height:int):void ;
-		function endDraw(graphics:Graphics):void;
+	[DefaultProperty("stroke")]
+	public class Geometry extends Component {
+		
+		public function Geometry() {
+			super();
+		}
+
+		override protected function checkVisibility():Boolean {
+			return true;
+		}
+		
+		override public function draw(w:int, h:int):void {	
+			graphics.clear();
+			graphics.lineStyle(undefined);
+			if (_stroke) {
+				_stroke.beginDraw(graphics, w, h);
+			}
+			if (_fill) {
+				_fill.beginDraw(graphics, w, h);
+			}
+		}
+		
+		public function endDraw():void  {
+			if (_stroke) {
+				_stroke.endDraw(graphics);
+			}
+			if (_fill) {
+				_fill.endDraw(graphics);
+			}
+		}
 	}
 }

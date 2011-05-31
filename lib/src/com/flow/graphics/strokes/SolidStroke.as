@@ -20,54 +20,61 @@
  * THE SOFTWARE.
  */
 
-package com.flow.components.graphics {
+package com.flow.graphics.strokes {
+	
 	import com.flow.events.InvalidationEvent;
 	
+	import flash.display.Graphics;
 	import flash.events.EventDispatcher;
-
-	public class GradientData extends EventDispatcher {
+	
+	[Event(name="invalidate", type="com.flow.events.InvalidationEvent")]
+	public class SolidStroke extends EventDispatcher implements IStroke {
 		
-		private var _color:int;
-		private var _alpha:Number;
-		private var _ratio:Number;
+		private var _color:int = 0;
+		private var _alpha:Number = 1;
+		private var _thickness:Number = 1;
 		
-		public function GradientData(color:int = 0, alpha:Number = 1, ratio:Number = 0){
-			this.color = color;
-			this.alpha = alpha;
-			this.ratio = ratio;
-		}
-
-		public function get color():int {
-			return _color;
-		}
-		public function set color(value:int):void {
-			if(value != _color){
-				_color = value;
-				invalidate();
-			}
+		public function SolidStroke() {
 		}
 
 		public function get alpha():Number {
 			return _alpha;
 		}
 		public function set alpha(value:Number):void {
-			if(value != _alpha){
+			if(value != _alpha) {
 				_alpha = value;
 				invalidate();
 			}
 		}
-
-		public function get ratio():Number {
-			return _ratio;
+		
+		public function get color():int {
+			return _color;
 		}
-		public function set ratio(value:Number):void {
-			if(value != _ratio) {
-				_ratio = value;
+		public function set color(value:int):void {
+			if(value != _color) {
+				_color = value;
 				invalidate();
 			}
 		}
 		
-		private function invalidate():void {
+		public function get thickness():Number {
+			return _thickness;
+		}
+		public function set thickness(value:Number):void {
+			if(value != _thickness) {
+				_thickness = value;
+				invalidate();
+			}
+		}
+
+		public function beginDraw(graphics:Graphics, width:int, height:int):void  {
+			graphics.lineStyle(thickness, color, alpha, true);
+		}
+		
+		public function endDraw(graphics:Graphics):void {
+		}
+		
+		public function invalidate():void {
 			dispatchEvent(new InvalidationEvent(InvalidationEvent.INVALIDATE));
 		}
 	}

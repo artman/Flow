@@ -20,9 +20,9 @@
  * THE SOFTWARE.
  */
 
-package com.flow.components.graphics.strokes {
+package com.flow.graphics.strokes {
 	
-	import com.flow.components.graphics.GradientData;
+	import com.flow.graphics.GradientData;
 	import com.flow.events.InvalidationEvent;
 	
 	import flash.display.GradientType;
