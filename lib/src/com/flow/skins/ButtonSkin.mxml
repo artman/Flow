@@ -14,25 +14,23 @@
 		<s:State name="disabled" />
 	</fw:states>
 	
-	<fw:background>
+	<fw:fill>
 		<fw:GradientFill rotation="90">
 			<fw:GradientData color="0xFFFFFF" ratio="0" />
 			<fw:GradientData color="0xDDDDDD" ratio="1" />
 		</fw:GradientFill>
-	</fw:background>
+	</fw:fill>
 	
-	
-		
-	<fw:Rect width="100%" height="100%" >
+	<fw:Rect width="100%" height="100%" radius="5" >
 		<fw:fill>
 			<fw:GradientFill rotation="90">
-				<fw:GradientData color="0xFFFFFF" ratio="0" />
-				<fw:GradientData color="0xDDDDDD" ratio="1" color.hover="0xAAAA00" />
+				<fw:GradientData color="0xF9F9F9" color.hover="0xF7F7F7" color.down="0xEEEEEE" ratio="0" />
+				<fw:GradientData color="0xDDDDDD" color.hover="0xCCCCCC" color.down="0xBBBBBB" ratio="1" />
 			</fw:GradientFill>
 		</fw:fill>
-		<fw:border>
-			<fw:SolidStroke color="0xCCCCCC" />
-		</fw:border>
+		<fw:stroke>
+			<fw:SolidStroke color="0xBBBBBB" color.hover="0xAAAAAA" color.down="0x888888" />
+		</fw:stroke>
 	</fw:Rect>
 	
 	<fw:Label horizontalPadding="10" text="Kiva juttu tässä!" verticalPadding="3" id="labelDisplay" align="center" horizontalCenter="0" verticalCenter="0" />

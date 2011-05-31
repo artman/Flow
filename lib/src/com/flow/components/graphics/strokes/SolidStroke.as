@@ -68,7 +68,7 @@ package com.flow.components.graphics.strokes {
 		}
 
 		public function beginDraw(graphics:Graphics, width:int, height:int):void  {
-			graphics.lineStyle(thickness, color, alpha);
+			graphics.lineStyle(thickness, color, alpha, true);
 		}
 		
 		public function endDraw(graphics:Graphics):void {

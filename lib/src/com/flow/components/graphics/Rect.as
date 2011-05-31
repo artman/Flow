@@ -26,13 +26,11 @@ package com.flow.components.graphics {
 	public class Rect extends Geometry {
 		
 		private var _radius:Number = 0;
-		private var _radiusX:Number = 0;
-		private var _radiusY:Number = 0;
 		
-		private var _bottomLeftRadius:Number = 0;
-		private var _bottomRightRadius:Number = 0;
 		private var _topLeftRadius:Number = 0;
 		private var _topRightRadius:Number = 0;
+		private var _bottomLeftRadius:Number = 0;
+		private var _bottomRightRadius:Number = 0;
 
 		public function Rect() {
 			super();
@@ -49,33 +47,55 @@ package com.flow.components.graphics {
 			}
 		}
 		
-		public function get radiusX():Number {
-			return _radiusX;
+		public function get topLeftRadius():Number {
+			return _topLeftRadius;
 		}
-		public function set radiusX(value:Number):void {
-			if(value != _radiusX) {
-				_radiusX = value;
+		public function set topLeftRadius(value:Number):void {
+			if(value != _topLeftRadius) {
+				_topLeftRadius = value;
 				invalidate();
 			}
 		}
 		
-		public function get radiusY():Number {
-			return _radiusY;
+		public function get topRightRadius():Number {
+			return _topRightRadius;
 		}
-		public function set radiusY(value:Number):void {
-			if(value != _radiusY) {
-				_radiusY = value;
+		public function set topRightRadius(value:Number):void {
+			if(value != _topRightRadius) {
+				_topRightRadius = value;
 				invalidate();
 			}
 		}
+		
+		public function get bottomLeftRadius():Number {
+			return _bottomLeftRadius;
+		}
+		public function set bottomLeftRadius(value:Number):void {
+			if(value != _bottomLeftRadius) {
+				_bottomLeftRadius = value;
+				invalidate();
+			}
+		}
+		
+		public function get bottomRightRadius():Number {
+			return _bottomRightRadius;
+		}
+		public function set bottomRightRadius(value:Number):void {
+			if(value != _bottomRightRadius) {
+				_bottomRightRadius = value;
+				invalidate();
+			}
+		}
+		
+		
 		
 		override public function draw(width:int, height:int):void {
 			super.draw(width, height);
 			
-			if (_radiusX || _radiusY) {
-				graphics.drawRoundRect(0, 0, width, height, _radiusX, _radiusY);
+			if (_topLeftRadius || _topRightRadius || _bottomRightRadius, _bottomLeftRadius) {
+				graphics.drawRoundRectComplex(0, 0, width, height, _topLeftRadius, _topRightRadius, _bottomLeftRadius, _bottomRightRadius);
 			} else if(_radius) {
-				graphics.drawRoundRect(0, 0, width, height, _radius, _radius);
+				graphics.drawRoundRectComplex(0, 0, width, height, _radius, _radius, _radius, _radius);
 			} else {
 				graphics.drawRect(0,0, width, height);
 			}
