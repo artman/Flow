@@ -1,14 +1,18 @@
 
 package com.flow.components {
 	
-	import com.flow.graphics.Image;
+	import com.flow.components.supportClasses.SkinnableComponent;
 	
 	import flash.display.InteractiveObject;
 	import flash.events.MouseEvent;
 	
 	import mx.binding.utils.BindingUtils;
 	import mx.states.State;
-	import com.flow.components.supportClasses.SkinnableComponent;
+	
+	[SkinState("up")]
+	[SkinState("over")]
+	[SkinState("down")]
+	[SkinState("disabled")]
 	
 	public class Button extends SkinnableComponent {
 		
@@ -19,8 +23,8 @@ package com.flow.components {
 		public function Button() {
 			super();
 			states = [
-				new State("normal"),
-				new State("hover"),
+				new State("up"),
+				new State("over"),
 				new State("down"),
 				new State("disabled")
 			];
@@ -29,8 +33,7 @@ package com.flow.components {
 			buttonMode = useHandCursor = true;
 		}
 		
-		
-		[SkinPart(required="true")]
+		[SkinPart(required="false")]
 		public function set labelDisplay(value:Label):void {
 			_labelDisplay = value;
 			_labelDisplay.text = _label;
@@ -38,16 +41,6 @@ package com.flow.components {
 		}
 		public function get labelDisplay():Label {
 			return _labelDisplay;
-		}
-		
-		
-		
-		
-		override protected function skinAttached():void {
-			skin.buttonMode = true;
-			skin.mouseChildren = false;
-			skin.useHandCursor = true;
-			skin.interactive = true;
 		}
 
 		private function disableClick(e:MouseEvent):void {
@@ -72,11 +65,6 @@ package com.flow.components {
 				removeEventListener(MouseEvent.CLICK, disableClick);
 				useHandCursor = true;
 			}
-		}
-		
-		
-		override protected function partAdded(partName:String, skinPart:InteractiveObject):void {
-			trace(partName + "xxxx");
 		}
 	}
 }
