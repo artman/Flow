@@ -1,11 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <fw:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:fw="http://artman.fi/flow" xmlns:strokes="com.flow.graphics.strokes.*" xmlns:fills="com.flow.graphics.fills.*">	
+		 xmlns:fw="http://artman.fi/flow" xmlns:strokes="com.flow.graphics.strokes.*" xmlns:fills="com.flow.graphics.fills.*" height="24">	
 	
 	<fx:Metadata>
 		[HostComponent("com.flow.components.Button")]
 	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			override public function set currentState(value:String):void {
+				super.currentState = value;
+			}
+		]]>
+	</fx:Script>
 	
 	<fw:states>
 		<s:State name="up" />
@@ -14,25 +22,18 @@
 		<s:State name="disabled" />
 	</fw:states>
 	
-	<fw:fill>
-		<fills:GradientFill rotation="90">
-			<fw:GradientData color="0xFFFFFF" ratio="0" />
-			<fw:GradientData color="0xDDDDDD" ratio="1" />
-		</fills:GradientFill>
-	</fw:fill>
-	
 	<fw:Rect width="100%" height="100%" radius="5" >
 		<fw:fill>
 			<fills:GradientFill rotation="90">
 				<fw:GradientData color="0xF9F9F9" color.over="0xF7F7F7" color.down="0xEEEEEE" ratio="0" />
-				<fw:GradientData color="0xDDDDDD" color.over="0xCCCCCC" color.down="0xBBBBBB" ratio="1" />
+				<fw:GradientData color="0xDDDDDD" color.over="0xCCCCCC" color.down="0xBBBBBB" color.disabled="0xFFFFFF" ratio="1" />
 			</fills:GradientFill>
 		</fw:fill>
 		<fw:stroke>
-			<strokes:SolidStroke color="0xBBBBBB" color.over="0xAAAAAA" color.down="0x888888" />
+			<strokes:SolidStroke color="0xBBBBBB" color.over="0xAAAAAA" color.down="0x888888" color.disabled="0xDDDDDD" />
 		</fw:stroke>
 	</fw:Rect>
 	
-	<fw:Label horizontalPadding="10" text="Kiva juttu tässä!" verticalPadding="3" id="labelDisplay" align="center" horizontalCenter="0" verticalCenter="0" />
+	<fw:Label horizontalPadding="10" text="Kiva juttu tässä!" verticalPadding="3" id="labelDisplay" align="center" horizontalCenter="0" verticalCenter="0" color="0" color.disabled="0xAAAAAA" />
 	
 </fw:Skin>

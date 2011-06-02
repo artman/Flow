@@ -52,6 +52,15 @@ package com.flow.components.supportClasses {
 							partAdded(partName,  skinPart);
 						}
 					}
+					
+					if(!hasExplicitWidth && skin.hasExplicitWidth) {
+						width = skin.width;
+					}
+					if(!hasExplicitHeight && skin.hasExplicitHeight) {
+						height = skin.height;
+					}
+					
+					
 					skinAttached();
 				}
 				invalidateLayout();

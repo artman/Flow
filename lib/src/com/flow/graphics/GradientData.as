@@ -21,6 +21,7 @@
  */
 
 package com.flow.graphics {
+	
 	import com.flow.events.InvalidationEvent;
 	
 	import flash.events.EventDispatcher;

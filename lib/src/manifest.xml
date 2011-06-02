@@ -20,6 +20,7 @@
 	<component id="AlignType" class="com.flow.containers.layout.AlignType"/>
 	<component id="AnimationProps" class="com.flow.effects.AnimationProps"/>
 	<component id="Application" class="com.flow.containers.Application"/>
+	<component id="ArrayCollection" class="com.flow.collections.ArrayCollection"/>
 	<component id="Back" class="com.flow.motion.easing.Back"/>
 	<component id="BevelEffect" class="com.flow.effects.BevelEffect"/>
 	<component id="BitmapFill" class="com.flow.graphics.fills.BitmapFill"/>
@@ -28,6 +29,7 @@
 	<component id="Button" class="com.flow.components.Button"/>
 	<component id="ButtonSkin" class="com.flow.skins.ButtonSkin"/>
 	<component id="CSBEffect" class="com.flow.effects.CSBEffect"/>
+	<component id="Checkbox" class="com.flow.components.Checkbox"/>
 	<component id="ChihulyEffect" class="com.flow.effects.ChihulyEffect"/>
 	<component id="Circular" class="com.flow.motion.easing.Circular"/>
 	<component id="CollectionEvent" class="com.flow.events.CollectionEvent"/>

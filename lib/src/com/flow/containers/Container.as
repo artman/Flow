@@ -73,10 +73,10 @@ package com.flow.containers {
 		}
 
 		[ElementType("DisplayObject")]
-		public function get children():IList {
+		public function get children():* {
 			return _children;
 		}
-		public function set children( value:* ):void {
+		public function set children(value:*):void {
 			if ( _children != value ) {
 				if(_children) {
 					_children.removeEventListener(CollectionEvent.COLLECTION_CHANGE, invalidateChildren);
