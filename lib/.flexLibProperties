@@ -78,6 +78,7 @@
     <classEntry path="com.flow.graphics.GradientData"/>
     <classEntry path="com.flow.graphics.Image"/>
     <classEntry path="com.flow.graphics.Line"/>
+    <classEntry path="com.flow.graphics.Path"/>
     <classEntry path="com.flow.graphics.Rect"/>
     <classEntry path="com.flow.graphics.Shape"/>
     <classEntry path="com.flow.graphics.fills.BitmapFill"/>
@@ -112,6 +113,7 @@
     <classEntry path="com.flow.net.loaders.TextLoader"/>
     <classEntry path="com.flow.net.loaders.XMLLoader"/>
     <classEntry path="com.flow.skins.ButtonSkin"/>
+    <classEntry path="com.flow.skins.CheckboxSkin"/>
     <classEntry path="com.flow.ui.KeyboardManager"/>
     <classEntry path="com.flow.utils.GraphicUtils"/>
     <classEntry path="com.flow.utils.MultiBinder"/>

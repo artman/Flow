@@ -1,21 +1,12 @@
 
 package com.flow.components {
 	
-	import com.flow.components.Component;
 	import com.flow.components.supportClasses.PaddableComponent;
 	import com.flow.managers.TextFormatManager;
 	
-	import flash.display.DisplayObjectContainer;
-	import flash.events.Event;
-	import flash.geom.Rectangle;
 	import flash.text.AntiAliasType;
-	import flash.text.GridFitType;
 	import flash.text.TextField;
-	import flash.text.TextFieldAutoSize;
-	import flash.text.TextFieldType;
 	import flash.text.TextFormat;
-	import flash.text.TextFormatAlign;
-	import flash.text.TextLineMetrics;
 	
 	[DefaultProperty("htmlText")]
 	public class Label extends PaddableComponent {
@@ -179,6 +170,12 @@ package com.flow.components {
 				_textField.htmlText = transformedText;
 			} else {
 				_textField.text = transformedText;
+			}
+			
+			if(TextFormatManager.hasEmbeddedFont(def.font)) {
+				_textField.embedFonts = true;
+			} else {
+				_textField.embedFonts = false;
 			}
 		}
 		

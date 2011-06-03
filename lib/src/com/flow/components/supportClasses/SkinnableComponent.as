@@ -1,4 +1,5 @@
 package com.flow.components.supportClasses {
+	import com.flow.components.Checkbox;
 	import com.flow.containers.Container;
 	import com.flow.events.InvalidationEvent;
 	
@@ -37,6 +38,9 @@ package com.flow.components.supportClasses {
 					}
 				}
 				
+				if(this is Checkbox) {
+					trace(1);
+				}
 				_skinClass = value;
 				skinChanged = true;
 				if(_skinClass) {

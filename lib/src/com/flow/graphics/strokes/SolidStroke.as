@@ -24,7 +24,9 @@ package com.flow.graphics.strokes {
 	
 	import com.flow.events.InvalidationEvent;
 	
+	import flash.display.CapsStyle;
 	import flash.display.Graphics;
+	import flash.display.JointStyle;
 	import flash.events.EventDispatcher;
 	
 	[Event(name="invalidate", type="com.flow.events.InvalidationEvent")]
@@ -33,8 +35,14 @@ package com.flow.graphics.strokes {
 		private var _color:int = 0;
 		private var _alpha:Number = 1;
 		private var _thickness:Number = 1;
+		private var _caps:String = CapsStyle.ROUND;
+		private var _joints:String = JointStyle.ROUND;
+		private var _miterLimit:Number = 3;
 		
 		public function SolidStroke() {
+			
+			
+			
 		}
 
 		public function get alpha():Number {
@@ -57,6 +65,38 @@ package com.flow.graphics.strokes {
 			}
 		}
 		
+		[Inspectable(enumeration="none,round,square", defaultValue="round")]
+		public function get caps():String {
+			return _caps;
+		}
+		public function set caps(value:String):void {
+			if(value != _caps) {
+				_caps = value;
+				invalidate();
+			}
+		}
+		
+		[Inspectable(enumeration="bevel,miter,round", defaultValue="round")]
+		public function get joints():String {
+			return _joints;
+		}
+		public function set joints(value:String):void {
+			if(value != _joints) {
+				_joints = value;
+				invalidate();
+			}
+		}
+		
+		public function get miterLimit():Number {
+			return _miterLimit;
+		}
+		public function set miterLimit(value:Number):void {
+			if(value != _miterLimit) {
+				_miterLimit = value;
+				invalidate();
+			}
+		}
+		
 		public function get thickness():Number {
 			return _thickness;
 		}
@@ -68,7 +108,7 @@ package com.flow.graphics.strokes {
 		}
 
 		public function beginDraw(graphics:Graphics, width:int, height:int):void  {
-			graphics.lineStyle(thickness, color, alpha, true);
+			graphics.lineStyle(thickness, color, alpha, true, "normal", _caps, _joints, _miterLimit);
 		}
 		
 		public function endDraw(graphics:Graphics):void {
