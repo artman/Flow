@@ -24,10 +24,10 @@
 <fw:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
 		 xmlns:fw="http://artman.fi/flow" 
-		 height="24">	
+		 height="24" width="100">	
 	
 	<fx:Metadata>
-		[HostComponent("com.flow.components.Button")]
+		[HostComponent("com.flow.components.TextInput")]
 	</fx:Metadata>
 	
 	<fw:states>
@@ -35,20 +35,21 @@
 		<s:State name="over" />
 		<s:State name="down" />
 		<s:State name="disabled" />
+		<s:State name="focus" />
 	</fw:states>
 	
-	<fw:Rect width="100%" height="100%" radius="5" >
+	<fw:Rect width="100%" height="100%" radius="3" >
 		<fw:fill>
 			<fw:GradientFill rotation="90">
-				<fw:GradientData color="0xF9F9F9" color.over="0xF7F7F7" color.down="0xEEEEEE" ratio="0" />
-				<fw:GradientData color="0xDDDDDD" color.over="0xCCCCCC" color.down="0xBBBBBB" color.disabled="0xFFFFFF" ratio="1" />
+				<fw:GradientData color="0xDDDDDD" color.focus="0xFFFFFF" ratio="0" />
+				<fw:GradientData color="0xFFFFFF" ratio="0.3" />
 			</fw:GradientFill>
 		</fw:fill>
 		<fw:stroke>
-			<fw:SolidStroke thickness="1" caps="none" joints="round" color="0xBBBBBB" color.over="0xAAAAAA" color.down="0x888888" color.disabled="0xDDDDDD" />
+			<fw:SolidStroke thickness="2" caps="none" joints="miter" color="0xBBBBBB" color.over="0xAAAAAA" color.focus="0xDD0000" color.disabled="0xDDDDDD" />
 		</fw:stroke>
 	</fw:Rect>
 	
-	<fw:Label horizontalPadding="10" verticalPadding="3" id="labelDisplay" align="center" horizontalCenter="0" verticalCenter="0" color="0" color.disabled="0xAAAAAA" />
+	<fw:Label horizontalPadding="5" id="labelDisplay" align="left" width="100%" height="100%" color="0" color.disabled="0xAAAAAA" />
 	
 </fw:Skin>
