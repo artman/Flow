@@ -30,37 +30,68 @@ package com.flow.graphics.strokes {
 	import flash.events.EventDispatcher;
 	
 	[Event(name="invalidate", type="com.flow.events.InvalidationEvent")]
-	public class SolidStroke extends StrokeBase {
+	public class StrokeBase extends EventDispatcher implements IStroke {
 		
-		private var _color:int = 0;
-		private var _alpha:Number = 1;
+		protected var _thickness:Number = 1;
+		protected var _caps:String = CapsStyle.ROUND;
+		protected var _joints:String = JointStyle.ROUND;
+		protected var _miterLimit:Number = 3;
 		
-		public function SolidStroke() {
-			super();
+		public function StrokeBase() {
 		}
-
-		public function get alpha():Number {
-			return _alpha;
+		
+		[Inspectable(enumeration="none,round,square", defaultValue="round")]
+		public function get caps():String {
+			return _caps;
 		}
-		public function set alpha(value:Number):void {
-			if(value != _alpha) {
-				_alpha = value;
+		public function set caps(value:String):void {
+			if(value != _caps) {
+				_caps = value;
 				invalidate();
 			}
 		}
 		
-		public function get color():int {
-			return _color;
+		[Inspectable(enumeration="bevel,miter,round", defaultValue="round")]
+		public function get joints():String {
+			return _joints;
 		}
-		public function set color(value:int):void {
-			if(value != _color) {
-				_color = value;
+		public function set joints(value:String):void {
+			if(value != _joints) {
+				_joints = value;
 				invalidate();
 			}
 		}
-
-		override public function beginDraw(graphics:Graphics, width:int, height:int):void  {
-			graphics.lineStyle(_thickness, color, alpha, true, "normal", _caps, _joints, _miterLimit);
+		
+		public function get miterLimit():Number {
+			return _miterLimit;
+		}
+		public function set miterLimit(value:Number):void {
+			if(value != _miterLimit) {
+				_miterLimit = value;
+				invalidate();
+			}
+		}
+		
+		public function get thickness():Number {
+			return _thickness;
+		}
+		public function set thickness(value:Number):void {
+			if(value != _thickness) {
+				_thickness = value;
+				invalidate();
+			}
+		}
+		
+		public function beginDraw(graphics:Graphics, width:int, height:int):void  {
+			// Override
+		}
+		
+		public function endDraw(graphics:Graphics):void {
+			// Override
+		}
+		
+		public function invalidate():void {
+			dispatchEvent(new InvalidationEvent(InvalidationEvent.INVALIDATE));
 		}
 	}
 }
