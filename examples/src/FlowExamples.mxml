@@ -1,4 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!--
+* Copyright (c) 2011 Tuomas Artman, http://artman.fi
+* 
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+* 
+* The above copyright notice and this permission notice shall be included in
+* all copies or substantial portions of the Software.
+* 
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+* THE SOFTWARE.
+-->
+
 <fw:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:s="library://ns.adobe.com/flex/spark" 
 				xmlns:fw="http://artman.fi/flow"
@@ -28,11 +50,11 @@
 			<fx:String>Absolute layout</fx:String>
 			<fx:String>Box layout</fx:String>
 			<fx:String>Components</fx:String>
-			<fx:String>Data Binding</fx:String>
+			<fx:String>Remote procedures</fx:String>
 		</fx:Array>
 	</fx:Declarations>
 	
-	
+
 	
 	<fw:Container horizontalCenter="0" verticalCenter="0">
 		
@@ -40,8 +62,10 @@
 		<fw:Label textFormat="heading" x="10" y="2" text="{sectionCounter.selectedItem}" filters="{[new DropShadowFilter(1, 90, 0, 0.2, 2, 2)]}" />
 		
 		<fw:ScrollArea id="section" top="37" bottom="38" selectedIndex="{sectionCounter.selectedIndex}">
+		
 			<view:BasicLayoutView />			
 			<view:BoxLayout />
+			<view:ControlsView />
 
 			<fw:Container width="400" height="300" verticalCenter="0" horizontalCenter="0">
 				<fw:fill>

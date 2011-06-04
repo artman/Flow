@@ -1,4 +1,5 @@
 package com.flow.components.supportClasses {
+	import com.flow.components.Checkbox;
 	import com.flow.containers.Container;
 	import com.flow.events.InvalidationEvent;
 	
@@ -26,8 +27,17 @@ package com.flow.components.supportClasses {
 	
 		public function set skinClass(value:IFactory):void {
 			if(value != _skinClass) {
+				_skinClass = value;
+				skinChanged = true;
+				invalidateProperties();
+			}
+		}
+		
+		override public function validateProperties():void {
+			if(skinChanged) {
+				skinChanged = false;
 				var parts:Object = skinParts;
-				if(_skinClass) {
+				if(skin) {
 					for (var partName:String in skinParts) {
 						var skinPart:InteractiveObject = this[partName];
 						if (skinPart) {
@@ -36,9 +46,6 @@ package com.flow.components.supportClasses {
 						}
 					}
 				}
-				
-				_skinClass = value;
-				skinChanged = true;
 				if(_skinClass) {
 					skin = _skinClass.newInstance();
 					BindingUtils.bindProperty(skin, "currentState", this, "currentState", false, true);
@@ -59,11 +66,8 @@ package com.flow.components.supportClasses {
 					if(!hasExplicitHeight && skin.hasExplicitHeight) {
 						height = skin.height;
 					}
-					
-					
 					skinAttached();
 				}
-				invalidateLayout();
 			}
 		}
 		

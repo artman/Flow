@@ -1,21 +1,13 @@
 
 package com.flow.components {
 	
-	import com.flow.components.Component;
 	import com.flow.components.supportClasses.PaddableComponent;
 	import com.flow.managers.TextFormatManager;
 	
-	import flash.display.DisplayObjectContainer;
-	import flash.events.Event;
-	import flash.geom.Rectangle;
 	import flash.text.AntiAliasType;
-	import flash.text.GridFitType;
 	import flash.text.TextField;
-	import flash.text.TextFieldAutoSize;
 	import flash.text.TextFieldType;
 	import flash.text.TextFormat;
-	import flash.text.TextFormatAlign;
-	import flash.text.TextLineMetrics;
 	
 	[DefaultProperty("htmlText")]
 	public class Label extends PaddableComponent {
@@ -31,6 +23,7 @@ package com.flow.components {
 		private var _textTransform:String = "";
 		private var _multiline:Boolean = false;
 		private var _textFormat:String = "normal";
+		private var _editable:Boolean;
 		
 		private var isHTML:Boolean = false;		
 		
@@ -65,6 +58,21 @@ package com.flow.components {
 				isHTML = false;
 				_text = value ? value : "";
 				invalidateProperties(true);
+			}
+		}
+		
+		public function get editable():Boolean {
+			return _editable;
+		}
+		public function set editable(value:Boolean):void {
+			if(value != _editable) {
+				_editable = value;
+				if(_editable) {
+					_textField.type = TextFieldType.INPUT;
+				} else {
+					_textField.type = TextFieldType.DYNAMIC;
+				}
+				mouseEnabled = mouseChildren = _textField.selectable = editable;
 			}
 		}
 		
@@ -179,6 +187,12 @@ package com.flow.components {
 				_textField.htmlText = transformedText;
 			} else {
 				_textField.text = transformedText;
+			}
+			
+			if(TextFormatManager.hasEmbeddedFont(def.font)) {
+				_textField.embedFonts = true;
+			} else {
+				_textField.embedFonts = false;
 			}
 		}
 		

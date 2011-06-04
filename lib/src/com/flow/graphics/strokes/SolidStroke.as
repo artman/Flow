@@ -24,17 +24,19 @@ package com.flow.graphics.strokes {
 	
 	import com.flow.events.InvalidationEvent;
 	
+	import flash.display.CapsStyle;
 	import flash.display.Graphics;
+	import flash.display.JointStyle;
 	import flash.events.EventDispatcher;
 	
 	[Event(name="invalidate", type="com.flow.events.InvalidationEvent")]
-	public class SolidStroke extends EventDispatcher implements IStroke {
+	public class SolidStroke extends StrokeBase {
 		
 		private var _color:int = 0;
 		private var _alpha:Number = 1;
-		private var _thickness:Number = 1;
 		
 		public function SolidStroke() {
+			super();
 		}
 
 		public function get alpha():Number {
@@ -56,26 +58,9 @@ package com.flow.graphics.strokes {
 				invalidate();
 			}
 		}
-		
-		public function get thickness():Number {
-			return _thickness;
-		}
-		public function set thickness(value:Number):void {
-			if(value != _thickness) {
-				_thickness = value;
-				invalidate();
-			}
-		}
 
-		public function beginDraw(graphics:Graphics, width:int, height:int):void  {
-			graphics.lineStyle(thickness, color, alpha, true);
-		}
-		
-		public function endDraw(graphics:Graphics):void {
-		}
-		
-		public function invalidate():void {
-			dispatchEvent(new InvalidationEvent(InvalidationEvent.INVALIDATE));
+		override public function beginDraw(graphics:Graphics, width:int, height:int):void  {
+			graphics.lineStyle(_thickness, color, alpha, true, "normal", _caps, _joints, _miterLimit);
 		}
 	}
 }
