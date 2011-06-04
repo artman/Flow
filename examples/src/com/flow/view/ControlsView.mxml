@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* Copyright (c) 2011 Tuomas Artman, http://artman.fi
+* 
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+* 
+* The above copyright notice and this permission notice shall be included in
+* all copies or substantial portions of the Software.
+* 
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+* THE SOFTWARE.
+-->
+
+<fw:Container xmlns:fx="http://ns.adobe.com/mxml/2009"
+			  xmlns:s="library://ns.adobe.com/flex/spark" 
+			  xmlns:fw="http://artman.fi/flow" xmlns:assets="assets.*"
+			  width="500" height="240">
+	<fx:Script>
+		<![CDATA[
+			import com.flow.skins.ButtonSkin;
+			import com.flow.skins.CheckboxSkin;
+			import com.flow.skins.TextInputSkin;
+		]]>
+	</fx:Script>
+	
+	<fx:Declarations>
+		<fw:GradientFill id="itemFill" rotation="90">
+			<fw:GradientData color="0xDD0000" ratio="0" />
+			<fw:GradientData color="0xBB0000" ratio="1" />
+		</fw:GradientFill>
+		<fw:SolidStroke id="itemStroke" color="0x990000" />
+	</fx:Declarations>
+	
+	
+	<fw:Container>
+		<fw:layout>
+			<fw:VBoxLayout spacing="10" horizontalAlign="left" padding="10" />
+		</fw:layout>
+		
+		<fw:Label width="480" text="Sorry, there are not that many controls available in flow yet. More are comming, and you can always create your own!" left="10" right="10" multiline="true" />
+		<fw:Button label="Yep, I'm a button" skinClass="{new ButtonSkin}" verticalCenter="0" left="8" />
+		<fw:Checkbox id="checkbox" label="{checkbox.selected ? 'I\'m a selected checkbox' : 'I\'m an unselected checkbox'}" skinClass="{new CheckboxSkin}" verticalCenter="0" left="8" />
+		<fw:TextInput id="textInput" width="200" value="Text input" skinClass="{new TextInputSkin}" />
+		<fw:Label text="This label is bound to the input abvoe: {textInput.value}" multiline="true" width="480" />
+
+	</fw:Container>
+	
+	
+</fw:Container>
