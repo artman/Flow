@@ -33,6 +33,7 @@
 			import com.flow.commands.InitApplicationCommand;
 			import com.flow.managers.TextFormatManager;
 			import com.flow.skins.ButtonSkin;
+			import com.flow.skins.TextInputSkin;
 			
 			import flash.filters.DropShadowFilter;
 			
@@ -51,6 +52,7 @@
 			<fx:String>Box layout</fx:String>
 			<fx:String>Components</fx:String>
 			<fx:String>Remote procedures</fx:String>
+
 		</fx:Array>
 	</fx:Declarations>
 	
