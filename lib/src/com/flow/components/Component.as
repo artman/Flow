@@ -81,8 +81,8 @@ package com.flow.components {
 		protected var _x:Number = 0;
 		protected var _y:Number = 0;
 		
-		protected var _measuredWidth:Number;
-		protected var _measuredHeight:Number;
+		protected var _measuredWidth:Number = 0;
+		protected var _measuredHeight:Number = 0;
 		
 		protected var _absoluteWidth:Number;
 		protected var _absoluteHeight:Number;
@@ -222,8 +222,8 @@ package com.flow.components {
 					if(!super.visible) {
 						super.visible = true;
 					}
-					var w:int = sanitizeWidth(!isNaN(_absoluteWidth) ? _absoluteWidth : _measuredWidth);
-					var h:int = sanitizeHeight(!isNaN(_absoluteHeight) ? _absoluteHeight : _measuredHeight);
+					var w:Number = sanitizeWidth(!isNaN(_absoluteWidth) ? _absoluteWidth : _measuredWidth);
+					var h:Number = sanitizeHeight(!isNaN(_absoluteHeight) ? _absoluteHeight : _measuredHeight);
 					draw(w, h);
 				} else {
 					if(super.visible) {
@@ -262,7 +262,7 @@ package com.flow.components {
 			// Override	
 		}
 		
-		public function draw(width:int, height:int):void {
+		public function draw(width:Number, height:Number):void {
 			graphics.clear();
 			if(_fill) {
 				_fill.beginDraw(graphics, width, height);
@@ -307,7 +307,7 @@ package com.flow.components {
 			return (isNaN(_minHeight) || value > _minHeight) ? ((isNaN(_maxHeight) || value < _maxHeight) ? value : _maxHeight) : _minHeight;
 		}
 		
-		
+		[Bindable]
 		public function get top():* {
 			return _top.unit;
 		}
@@ -319,6 +319,7 @@ package com.flow.components {
 			invalidateLayout();
 		}
 		
+		[Bindable]
 		public function get bottom():* {
 			return _bottom.unit;
 		}
@@ -330,6 +331,7 @@ package com.flow.components {
 			invalidateLayout();
 		}
 		
+		[Bindable]
 		public function get left():* {
 			return _left.unit;
 		}
@@ -341,6 +343,7 @@ package com.flow.components {
 			invalidateLayout();
 		}
 		
+		[Bindable]
 		public function get right():* {
 			return _right.unit;
 		}
@@ -360,7 +363,7 @@ package com.flow.components {
 			return sanitizeWidth(absoluteWidth ? absoluteWidth : measuredWidth ? measuredWidth : 0);
 		}
 		override public function set width(value:Number):void {
-			value = Math.round(value);
+			value = pixelSnapping ? Math.round(value): value;
 			if(value != width) {
 				invalidateLayout();
 			}
@@ -394,7 +397,7 @@ package com.flow.components {
 			return sanitizeHeight(absoluteHeight ? absoluteHeight : measuredHeight ? measuredHeight : 0);
 		}
 		override public function set height(value:Number):void {
-			value = Math.round(value);
+			value = pixelSnapping ? Math.round(value): value;
 			if(value != height) {
 				invalidateLayout();
 			}
@@ -420,24 +423,22 @@ package com.flow.components {
 			invalidateLayout();
 		}
 		
+		[Bindable]
 		public function get minWidth():Number {
 			return _minWidth;
 		}
 		public function set minWidth(value:Number):void {
-			if(value != _minWidth) {
-				_minWidth = value;
-				invalidateLayout();
-			}
+			_minWidth = value;
+			invalidateLayout();
 		}
 		
+		[Bindable]
 		public function get minHeight():Number {
 			return _minHeight;
 		}
 		public function set minHeight(value:Number):void {
-			if(value != _minHeight) {
-				_minHeight = value;
-				invalidateLayout();
-			}
+			_minHeight = value;
+			invalidateLayout();
 		}
 		
 		public function get maxWidth():Number {
@@ -460,38 +461,37 @@ package com.flow.components {
 			}
 		}
 		
+		[Bindable]
 		public function get measuredWidth():Number {
 			return _measuredWidth;
 		}
 		public function set measuredWidth(value:Number):void {
-			if(value != _measuredWidth) {
-				var oldWidth:int = width;
-				_measuredWidth = value;
-				if(width != oldWidth) {
-					invalidate();
-				}
-				if(hasEventListener("widthChange")) {
-					dispatchEvent(new Event("widthChange"));
-				}
+			var oldWidth:int = width;
+			_measuredWidth = value;
+			if(width != oldWidth) {
+				invalidate();
+			}
+			if(hasEventListener("widthChange")) {
+				dispatchEvent(new Event("widthChange"));
 			}
 		}
 		
+		[Bindable]
 		public function get measuredHeight():Number {
 			return _measuredHeight;
 		}
 		public function set measuredHeight(value:Number):void {
-			if(value != _measuredHeight) {
-				var oldHeight:int = height;
-				_measuredHeight = value;
-				if(height != oldHeight) {
-					invalidate();
-				}
-				if(hasEventListener("heightChange")) {
-					dispatchEvent(new Event("heightChange"));
-				}
+			var oldHeight:int = height;
+			_measuredHeight = value;
+			if(height != oldHeight) {
+				invalidate();
+			}
+			if(hasEventListener("heightChange")) {
+				dispatchEvent(new Event("heightChange"));
 			}
 		}
 
+		[Bindable]
 		public function get verticalCenter():* {
 			return _verticalCenter.unit;
 		}
@@ -504,6 +504,7 @@ package com.flow.components {
 			invalidateLayout();
 		}
 		
+		[Bindable]
 		public function get horizontalCenter():* {
 			return _horizontalCenter.unit;
 		}
@@ -517,10 +518,10 @@ package com.flow.components {
 		}
 		
 		[Exclude(name="absoluteWidth", kind="property")]
-		public function get absoluteWidth():int {
+		public function get absoluteWidth():Number {
 			return _absoluteWidth;
 		}
-		public function set absoluteWidth(value:int):void {
+		public function set absoluteWidth(value:Number):void {
 			if(_absoluteWidth != value) {
 				_absoluteWidth = value;
 				invalidate();
@@ -531,10 +532,10 @@ package com.flow.components {
 		}
 		
 		[Exclude(name="absoluteHeight", kind="property")]
-		public function get absoluteHeight():int {
+		public function get absoluteHeight():Number {
 			return _absoluteHeight;
 		}
-		public function set absoluteHeight(value:int):void {
+		public function set absoluteHeight(value:Number):void {
 			if(_absoluteHeight != value) {
 				_absoluteHeight = value;
 				invalidate();
@@ -688,17 +689,16 @@ package com.flow.components {
 		
 		// ----------------- states ---------------------
 		
+		[Bindable]
 		public function get disabled():Boolean {
 			return _disabled;
 		}
 		public function set disabled(value:Boolean):void {
-			if(_disabled != value) {
-				_disabled = value;
-				if(_disabled) {
-					addState(STATE_DISABLED);
-				} else {
-					removeState(STATE_DISABLED);
-				}
+			_disabled = value;
+			if(_disabled) {
+				addState(STATE_DISABLED);
+			} else {
+				removeState(STATE_DISABLED);
 			}
 		}
 		
@@ -749,22 +749,21 @@ package com.flow.components {
 			return false;
 		}
 
+		[Bindable]
 		public function get active():Boolean {
 			return _active;
 		}
 		public function set active(value:Boolean):void {
-			if(_active != value) {
-				_active = value;
-				if(_transition) {
-					if(!_active) {
-						_transition.hide();
-					} else {
-						_transition.show();
-						reportActivityChange();
-					}
+			_active = value;
+			if(_transition) {
+				if(!_active) {
+					_transition.hide();
 				} else {
+					_transition.show();
 					reportActivityChange();
 				}
+			} else {
+				reportActivityChange();
 			}
 		}
 		

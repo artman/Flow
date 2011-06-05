@@ -108,7 +108,9 @@ package com.flow.effects {
 		}
 		public function set targetAlpha(val:Number):void {
 			_alpha = val;
-			_target.alpha = val;
+			if(_target) {
+				_target.alpha = val;
+			}
 			value = 1-val;
 		}
 		

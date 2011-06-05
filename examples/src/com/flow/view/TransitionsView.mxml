@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* Copyright (c) 2011 Tuomas Artman, http://artman.fi
+* 
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+* 
+* The above copyright notice and this permission notice shall be included in
+* all copies or substantial portions of the Software.
+* 
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+* THE SOFTWARE.
+-->
+
+<fw:Container xmlns:fx="http://ns.adobe.com/mxml/2009"
+			  xmlns:s="library://ns.adobe.com/flex/spark" 
+			  xmlns:fw="http://artman.fi/flow" xmlns:assets="assets.*"
+			  width="500" height="320">
+	<fx:Script>
+		<![CDATA[
+			import assets.Postcard;
+			
+			import com.flow.skins.ButtonSkin;
+			import com.flow.skins.CheckboxSkin;
+			import com.flow.skins.TextInputSkin;
+		]]>
+	</fx:Script>
+	
+	<fw:Container>
+		<fw:layout>
+			<fw:VBoxLayout spacing="10" horizontalAlign="left" padding="10" />
+		</fw:layout>
+		
+		<fw:Label width="480" text="Flow supports easy setup of transitions to tween components into view" left="10" right="10" multiline="true" />
+		
+		<fw:HBox spacing="5">
+			
+			<fw:VBox spacing="10" horizontalAlign="center" width="220">
+				<fw:Button click="postcard.active = !postcard.active" label="Toggle postcard" skinClass="{new ButtonSkin}" verticalCenter="0" left="8" />
+				<fw:Image id="postcard" active="false" source="{Postcard}">
+					<fw:transition>
+						<fw:EffectTransition speed="2">
+							<fw:ChihulyEffect />
+						</fw:EffectTransition>
+					</fw:transition>
+				</fw:Image>
+			</fw:VBox>
+			
+			<fw:VBox spacing="10" horizontalAlign="center" width="220">
+				<fw:Button click="postcard2.active = !postcard2.active" label="Toggle postcard" skinClass="{new ButtonSkin}" verticalCenter="0" left="8" />
+				<fw:Image id="postcard2" active="false" source="{Postcard}">
+					<fw:transition>
+						<fw:EffectTransition speed="2">
+							<fw:BlurEffect blurX="30" blurY="30" blurQuality="2" />
+						</fw:EffectTransition>
+					</fw:transition>
+				</fw:Image>
+			</fw:VBox>
+		</fw:HBox>
+	</fw:Container>
+
+</fw:Container>

@@ -86,7 +86,7 @@ package com.flow.components.supportClasses {
 			}
 		}
 		
-		public function draw(width:int, height:int):void {
+		public function draw(width:Number, height:Number):void {
 			// Nothing
 		}
 		

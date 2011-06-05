@@ -31,23 +31,23 @@ package com.flow.containers.layout {
 		public function VBoxLayout() {
 		}
 		
-		private var _spacing:int = 0;
-		private var _horizontalAlign:String = "center";
+		private var _spacing:Number = 0;
+		private var _horizontalAlign:String = "left";
 		private var _verticalAlign:String = "top";
 		private var _zSort:String = "normal";
 		private var _inverted:Boolean = false;
 		
-		public function get spacing():int {
+		public function get spacing():Number {
 			return _spacing;
 		}
-		public function set spacing(value:int):void {
+		public function set spacing(value:Number):void {
 			if(value != _spacing) {
 				_spacing = value;
 				invalidate();
 			}
 		}
 		
-		[Inspectable(enumeration="left,center,right", defaultValue="center")]
+		[Inspectable(enumeration="left,center,right,none", defaultValue="center")]
 		public function get horizontalAlign():String {
 			return _horizontalAlign;
 		}
@@ -62,7 +62,7 @@ package com.flow.containers.layout {
 		public function get verticalAlign():String {
 			return _verticalAlign;
 		}
-		public function set veritcalAlign(value:String):void {
+		public function set verticalAlign(value:String):void {
 			if(value != _verticalAlign) {
 				_verticalAlign = value;
 				invalidate();
@@ -91,18 +91,18 @@ package com.flow.containers.layout {
 			}
 		}
 		
-		override public function layoutChildren(offsetX:int, offsetY:int, w:int, h:int):void {
+		override public function layoutChildren(offsetX:Number, offsetY:Number, w:Number, h:Number):void {
 			
 			super.layoutChildren(offsetX, offsetY, w, h);
-			var maxH:int = 0;
+			var maxH:Number = 0;
 			if(_verticalAlign != AlignType.ALIGN_TOP) {
 				for(var i:int = 0; i<_target.numChildren; i++) {
 					var displayObject:DisplayObject = _target.getChildAt(i) 
-					maxH += Math.round(displayObject.height) + (i==0 ? 0 : spacing);	
+					maxH += displayObject.height + (i==0 ? 0 : spacing);	
 				}
 			}
 			
-			var y:int = _verticalAlign == AlignType.ALIGN_TOP ? 0 : _verticalAlign == AlignType.ALIGN_BOTTOM ? h - maxH : Math.round((h - maxH) / 2);
+			var y:Number = _verticalAlign == AlignType.ALIGN_TOP ? 0 : _verticalAlign == AlignType.ALIGN_BOTTOM ? h - maxH : (h - maxH) / 2;
 		
 			for(i = 0; i<_target.numChildren; i++) {
 				var invert:Boolean = _inverted;
@@ -121,9 +121,9 @@ package com.flow.containers.layout {
 				if(_horizontalAlign == AlignType.ALIGN_LEFT) {
 					displayObject.x = 0;
 				} else if(_horizontalAlign == AlignType.ALIGN_CENTER) {
-					displayObject.x = Math.round((w - displayObject.width) / 2);
+					displayObject.x = (w - displayObject.width) / 2;
 				} else if(_horizontalAlign == AlignType.ALIGN_RIGHT) {
-					displayObject.x = Math.round(w - displayObject.width);
+					displayObject.x = w - displayObject.width;
 				}
 				displayObject.x += offsetX;
 				displayObject.y += offsetY;
@@ -131,12 +131,12 @@ package com.flow.containers.layout {
 		}
 		
 		override public function measureChildren():void {
-			var maxW:int = 0;
-			var maxH:int = 0;
+			var maxW:Number = 0;
+			var maxH:Number = 0;
 			for(var i:int = 0; i<_target.numChildren; i++) {
 				var displayObject:DisplayObject = _target.getChildAt(i) 
-				var w:int = displayObject.width;
-				var h:int = displayObject.height;
+				var w:Number = displayObject.width;
+				var h:Number = displayObject.height;
 				if(displayObject is Component) {
 					if(!(displayObject as Component).hasExplicitWidth) {
 						w = (displayObject as Component).sanitizeWidth((displayObject as Component).measuredWidth);

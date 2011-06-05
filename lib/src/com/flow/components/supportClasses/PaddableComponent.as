@@ -101,7 +101,7 @@ package com.flow.components.supportClasses {
 			}
 		}
 		
-		override public function draw(width:int, height:int):void {
+		override public function draw(width:Number, height:Number):void {
 			super.draw(width, height);
 			width -= (_paddingLeft + _paddingRight);
 			if(width < 0) {

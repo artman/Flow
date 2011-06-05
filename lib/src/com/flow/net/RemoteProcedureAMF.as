@@ -20,39 +20,51 @@
  * THE SOFTWARE.
  */
 
-package com.flow.graphics {
-	
-	import com.flow.components.Component;
-	
-	[DefaultProperty("stroke")]
-	public class Geometry extends Component {
+package com.flow.net {
+	public class RemoteProcedureAMF {
 		
-		public function Geometry() {
-			super();
+		[Bindable] public var lastResult:* = null;
+		[Bindable] public var lastError:* = null;
+		
+		[Inspectable(category="Data")]
+		public var gateway:AMFGateway;
+		
+		public var procedure:String;
+		private var _parameters:Array;
+		public var autoSend:Boolean = false;
+		private var lastResponder:AMFGatewayResponder;
+
+		public function RemoteProcedureAMF() {
+		}
+		
+		public function get parameters():Array {
+			return _parameters;
 		}
 
-		override protected function checkVisibility():Boolean {
-			return true;
-		}
-		
-		override public function draw(w:Number, h:Number):void {	
-			graphics.clear();
-			graphics.lineStyle(undefined);
-			if (_stroke) {
-				_stroke.beginDraw(graphics, w, h);
-			}
-			if (_fill) {
-				_fill.beginDraw(graphics, w, h);
+		public function set parameters(value:Array):void {
+			if(_parameters != value) {
+				_parameters = value;
+				if(autoSend) {
+					send();
+				}
 			}
 		}
+
+		public function send():void {
+			var params:Array = [procedure].concat(parameters);
+			if(lastResponder) {
+				lastResponder.addHandlers(null, null);
+			}
+			lastResponder = gateway.rp.apply(this, params);
+			lastResponder.addHandlers(result, error);
+		}
 		
-		public function endDraw():void  {
-			if (_stroke) {
-				_stroke.endDraw(graphics);
-			}
-			if (_fill) {
-				_fill.endDraw(graphics);
-			}
+		private function result(result:*):void {
+			lastResult = result;
+		}
+		
+		private function error(error:*):void {
+			lastError = error;
 		}
 	}
 }
