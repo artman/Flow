@@ -34,6 +34,8 @@ package com.flow.containers.layout {
 		}
 		
 		override public function layoutChildren(offsetX:Number, offsetY:Number, w:Number, h:Number):void {
+			w = Math.round(w/2)*2;
+			
 			for(var i:int = 0; i<_target.numChildren; i++) {
 				
 				if(_target.getChildAt(i) is Component) {

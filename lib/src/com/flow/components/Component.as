@@ -124,7 +124,7 @@ package com.flow.components {
 		protected var _focusElement:InteractiveObject;
 		private var _tabIndex:int = -1;
 		
-		private var _pixelSnapping:Boolean = true;
+		protected var _pixelSnapping:Boolean = true;
 		
 		[Bindable] public var data:*;
 		[Bindable] public var rendererIndex:int;

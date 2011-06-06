@@ -50,8 +50,6 @@
 		<fw:Label y="180" left="25%" right="25%" text="left=25% right=25%" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
 	</fw:Container>
 	
-	
-	
 	<fw:Container bottom="10" left="5%" width="90%" height="150" >
 		<fw:fill>
 			<fw:SolidFill color="0xE8E8E8" />
@@ -62,9 +60,6 @@
 		<fw:Label horizontalPadding="10" bottom="10" height="50%" text="height=50% bottom=10" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
 		<fw:Label x="200" horizontalPadding="20" top="20" bottom="20" text="top=20 bottom=20" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
 		<fw:Label right="0" horizontalPadding="10" verticalCenter="0" height="100" text="height=50 verticalCenter=0" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
-		
-		
+	
 	</fw:Container>
-	
-	
 </fw:Container>
