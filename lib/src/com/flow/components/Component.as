@@ -653,7 +653,7 @@ package com.flow.components {
 			if(_tooltip != value) {
 				TooltipManager.instance.hideTooltip(this);
 				_tooltip = value;
-				if(_tooltip && _tooltip.length) {
+				if(_tooltip && _tooltip.length && !disabled) {
 					interactive = true;
 					if(isStateActive(STATE_OVER)) {
 						TooltipManager.instance.showTooltip(this);
@@ -704,7 +704,7 @@ package com.flow.components {
 		
 		private function mouseOver(e:MouseEvent):void {
 			addState(STATE_OVER);
-			if(_tooltip) {
+			if(_tooltip && !disabled) {
 				TooltipManager.instance.showTooltip(this);
 			}
 		}
