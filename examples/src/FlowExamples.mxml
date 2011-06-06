@@ -36,13 +36,27 @@
 			import com.flow.skins.TextInputSkin;
 			
 			import flash.filters.DropShadowFilter;
+			import flash.net.navigateToURL;
 			
 			import mx.utils.ObjectProxy;
 			
 			override protected function preInitialize():void {
 				new InitApplicationCommand();
+				
+				var contextMenu:ContextMenu = new ContextMenu();
+				
+				var viewSource:ContextMenuItem = new ContextMenuItem("View Source", true);
+				viewSource.addEventListener(ContextMenuEvent.MENU_ITEM_SELECT, openViewSource);
+				contextMenu.customItems.push(viewSource);
+				contextMenu.hideBuiltInItems();
+				this.contextMenu = contextMenu;
+				
 			}
 
+			protected function openViewSource(event:ContextMenuEvent):void {
+				navigateToURL(new URLRequest("https://github.com/artman/Flow/tree/master/examples/src"), "_blank");
+			}
+			
 		]]>
 	</fx:Script>
 	
@@ -56,6 +70,9 @@
 		</fx:Array>
 	</fx:Declarations>
 	
+	<fw:fill>
+		<fw:BitmapFill source="@Embed(source='/assets/app_bkg.png')" />
+	</fw:fill>
 
 	
 	<fw:Container horizontalCenter="0" verticalCenter="0">
