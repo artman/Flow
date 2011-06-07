@@ -6,9 +6,6 @@
 		</exec>
 	</target>
 	
-	
-	
-	
 	<property name="FLEX_HOME" location="/Applications/Adobe Flash Builder 4.5/sdks/4.5.0/"/>
 	<property name="APP_CLASSPATH" location="${basedir}/../src/"/>
 	<property name="OUTPUT_DIR" location="${basedir}/../../documentation" />
