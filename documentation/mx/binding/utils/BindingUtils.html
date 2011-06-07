@@ -1,0 +1,111 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../../override.css" type="text/css"><meta name="keywords" content="BindingUtils,mx.binding.utils.BindingUtils,bindProperty,bindSetter,canWatch,getEvents,getValue,isWatching,reset,setHandler,unwatch,watch"><title>mx.binding.utils.BindingUtils</title></head><body><script language="javascript" type="text/javascript" src="../../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../../help.js"></script><script language="javascript" type="text/javascript" src="../../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'BindingUtils - API Documentation';
+				var baseRef = '../../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">Flow Framework</td><td class="titleTableTopNav" align="right"><a href="../../../package-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../../class-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../../all-index-A.html" onclick="loadClassListFrame('../../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../../index.html?mx/binding/utils/BindingUtils.html&amp;mx/binding/utils/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../../images/logo.jpg" class="logoImage" alt=" Adobe Logo " title=" Adobe Logo "></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">BindingUtils</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#methodSummary">Methods</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("BindingUtils"); titleBar_setSubNav(false,false,false,false,false,false,false,false,true,false,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">mx.binding.utils</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  BindingUtils</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">BindingUtils  <img src="../../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> Object</td></tr></table><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p></p>
+  The BindingUtils class defines utility methods
+  for performing data binding from ActionScript.
+  You can use the methods defined in this class to configure data bindings.
+  
+  <p></p><br/><hr></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#bindProperty()" class="signatureLink">bindProperty</a>(site:Object, prop:String, host:Object, chain:Object, commitOnly:Boolean = false, useWeakReference:Boolean = false):<a href="../../../mx/binding/utils/ChangeWatcher.html">ChangeWatcher</a></div><div class="summaryTableDescription">[static] 
+      Binds a public property, prop on the site
+      Object, to a bindable property or property chain.</div></td><td class="summaryTableOwnerCol">BindingUtils</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#bindSetter()" class="signatureLink">bindSetter</a>(setter:Function, host:Object, chain:Object, commitOnly:Boolean = false, useWeakReference:Boolean = false):<a href="../../../mx/binding/utils/ChangeWatcher.html">ChangeWatcher</a></div><div class="summaryTableDescription">[static] 
+      Binds a setter function, setter, to a bindable property 
+      or property chain.</div></td><td class="summaryTableOwnerCol">BindingUtils</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="bindProperty()"></a><a name="bindProperty(Object,String,Object,Object,Boolean,Boolean)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">bindProperty</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> public static function bindProperty(site:Object, prop:String, host:Object, chain:Object, commitOnly:Boolean = false, useWeakReference:Boolean = false):<a href="../../../mx/binding/utils/ChangeWatcher.html">ChangeWatcher</a></code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      Binds a public property, <code>prop</code> on the <code>site</code>
+      Object, to a bindable property or property chain. 
+      If a ChangeWatcher instance is successfully created, <code>prop</code>
+      is initialized to the current value of <code>chain</code>.
+     
+      </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">site</span>:Object</code> &mdash; The Object defining the property to be bound
+      to <code>chain</code>.
+     
+      </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">prop</span>:String</code> &mdash; The name of the public property defined in the
+      <code>site</code> Object to be bound. 
+      The property will receive the current value of <code>chain</code>, 
+      when the value of <code>chain</code> changes. 
+           </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">host</span>:Object</code> &mdash; The object that hosts the property or property chain
+      to be watched. 
+           </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">chain</span>:Object</code> &mdash; A value specifying the property or chain to be watched.
+      Legal values are:
+      <ul>
+        <li>String containing the name of a public bindable property
+        of the host object.</li>
+     
+        <li>An Object in the form: 
+        <code>{ name: <i>property name</i>, getter: function(host) { return host[<i>property name</i>] } }</code>. 
+        This Object must contain the name of, and a getter function for, 
+        a public bindable property of the host object.</li>
+     
+        <li>A non-empty Array containing a combination of the first two
+        options that represents a chain of bindable properties accessible
+        from the host. 
+        For example, to bind the property <code>host.a.b.c</code>, 
+        call the method as:
+        <code>bindProperty(site, prop, host, ["a","b","c"])</code>.</li>
+      </ul>
+           <p>Note: The property or properties named in the <code>chain</code> argument
+      must be public, because the <code>describeType()</code> method suppresses all information
+      about non-public properties, including the bindability metadata
+      that ChangeWatcher scans to find the change events that are exposed
+      for a given property.
+      However, the getter function supplied when using the <code>{ name, getter }</code>
+      argument form described above can be used to associate an arbitrary
+      computed value with the named (public) property.</p>
+           </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">commitOnly</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; Set to <code>true</code> if the handler
+      should be called only on committing change events;
+      set to <code>false</code> if the handler should be called
+      on both committing and non-committing change events. 
+      Note: the presence of non-committing change events for a property
+      is indicated by the <code>[NonCommittingChangeEvent(&lt;event-name&gt;)]</code>
+      metadata tag. 
+      Typically these tags are used to indicate fine-grained value changes, 
+      such as modifications in a text field prior to confirmation.
+           </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">useWeakReference</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; Determines whether
+      the reference to the host is strong or weak. A strong
+      reference (the default) prevents the host from being
+      garbage-collected. A weak reference does not.
+      Added for Flex 4.
+           </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../mx/binding/utils/ChangeWatcher.html">ChangeWatcher</a></code> &mdash; A ChangeWatcher instance, if at least one property name has
+      been specified to the <code>chain</code> argument; null otherwise. 
+      
+      </td></tr></table></div><a name="bindSetter()"></a><a name="bindSetter(Function,Object,Object,Boolean,Boolean)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">bindSetter</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function bindSetter(setter:Function, host:Object, chain:Object, commitOnly:Boolean = false, useWeakReference:Boolean = false):<a href="../../../mx/binding/utils/ChangeWatcher.html">ChangeWatcher</a></code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      Binds a setter function, <code>setter</code>, to a bindable property 
+      or property chain.
+      If a ChangeWatcher instance is successfully created, 
+      the setter function is invoked. 
+      The setter must have the following function signature:
+           <pre>
+      function mySetterFunction(object:Object):void {
+          //Do whatever you want with the value of the bound property.
+      }</pre> 
+           <p>where <code>object</code> contains the
+      current value of <code>chain</code>.</p>
+           </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">setter</span>:Function</code> &mdash; Setter method to invoke with an argument of the current
+      value of <code>chain</code> when that value changes.
+           </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">host</span>:Object</code> &mdash; The host of the property. 
+      See the <code>bindProperty()</code> method for more information.
+           </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">chain</span>:Object</code> &mdash; The name of the property, or property chain. 
+      See the <code>bindProperty()</code> method for more information.
+           </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">commitOnly</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; Set to <code>true</code> if the handler should be
+      called only on committing change events.
+      See the <code>bindProperty()</code> method for more information.
+           </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">useWeakReference</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; Determines whether
+      the reference to the host is strong or weak. A strong
+      reference (the default) prevents the host from being
+      garbage-collected. A weak reference does not.
+      Added for Flex 4.
+           </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../mx/binding/utils/ChangeWatcher.html">ChangeWatcher</a></code> &mdash; A ChangeWatcher instance, if at least one property name
+      has been  specified to the <code>chain</code> argument; null otherwise. 
+      
+      </td></tr></table></div><br/><br/><hr><br/><p></p><center class="copyright"><footer>Copyright 2011 Tuomas Artman</footer><br/>Tue Jun 7 2011, 10:32 AM +03:00  </center></div></body></html><!--Copyright 2011 Tuomas Artman<br/>Tue Jun 7 2011, 10:32 AM +03:00  -->

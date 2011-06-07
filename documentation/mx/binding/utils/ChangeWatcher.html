@@ -1,0 +1,177 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../../override.css" type="text/css"><meta name="keywords" content="ChangeWatcher,mx.binding.utils.ChangeWatcher,useWeakReference,bindProperty,bindSetter,canWatch,getEvents,getValue,isWatching,reset,setHandler,unwatch,watch"><title>mx.binding.utils.ChangeWatcher</title></head><body><script language="javascript" type="text/javascript" src="../../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../../help.js"></script><script language="javascript" type="text/javascript" src="../../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'ChangeWatcher - API Documentation';
+				var baseRef = '../../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">Flow Framework</td><td class="titleTableTopNav" align="right"><a href="../../../package-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../../class-summary.html" onclick="loadClassListFrame('../../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../../all-index-A.html" onclick="loadClassListFrame('../../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../../index.html?mx/binding/utils/ChangeWatcher.html&amp;mx/binding/utils/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../../images/logo.jpg" class="logoImage" alt=" Adobe Logo " title=" Adobe Logo "></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">ChangeWatcher</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#propertySummary">Properties</a>&nbsp;| <a href="#methodSummary">Methods</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("ChangeWatcher"); titleBar_setSubNav(false,true,false,false,false,false,false,false,true,false,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">mx.binding.utils</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public  class  ChangeWatcher</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">ChangeWatcher  <img src="../../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> Object</td></tr></table><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p></p>
+  The ChangeWatcher class defines utility methods
+  that you can use with bindable Flex properties.
+  These methods let you define an event handler that is executed
+  whenever a bindable property is updated.
+  
+  <p></p><br/><hr></div><a name="propertySummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Properties</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableProperty"><tr><th>&nbsp;</th><th colspan="2">Property</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#useWeakReference" class="signatureLink">useWeakReference</a> : Boolean<div class="summaryTableDescription">
+      (default = false) Determines whether the reference to the host
+      is strong or weak.</div></td><td class="summaryTableOwnerCol">ChangeWatcher</td></tr></table></div><a name="methodSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Methods </div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableMethod"><tr><th>&nbsp;</th><th colspan="2">Method</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#ChangeWatcher()" class="signatureLink">ChangeWatcher</a>(access:Object, handler:Function, commitOnly:Boolean = false, next:<a href="../../../mx/binding/utils/ChangeWatcher.html">ChangeWatcher</a> = null)</div><div class="summaryTableDescription">
+      Constructor.</div></td><td class="summaryTableOwnerCol">ChangeWatcher</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#canWatch()" class="signatureLink">canWatch</a>(host:Object, name:String, commitOnly:Boolean = false):Boolean</div><div class="summaryTableDescription">[static] 
+      Lets you determine if the host exposes a data-binding event
+      on the property.</div></td><td class="summaryTableOwnerCol">ChangeWatcher</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getEvents()" class="signatureLink">getEvents</a>(host:Object, name:String, commitOnly:Boolean = false):Object</div><div class="summaryTableDescription">[static] 
+      Returns all binding events for a bindable property in the host object.</div></td><td class="summaryTableOwnerCol">ChangeWatcher</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#getValue()" class="signatureLink">getValue</a>():Object</div><div class="summaryTableDescription">
+      Retrieves the current value of the watched property or property chain,
+      or null if the host object is null.</div></td><td class="summaryTableOwnerCol">ChangeWatcher</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#isWatching()" class="signatureLink">isWatching</a>():Boolean</div><div class="summaryTableDescription">
+      Returns true if each watcher in the chain is attached
+      to at least one change event.</div></td><td class="summaryTableOwnerCol">ChangeWatcher</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#reset()" class="signatureLink">reset</a>(newHost:Object):void</div><div class="summaryTableDescription">
+      Resets this ChangeWatcher instance to use a new host object.</div></td><td class="summaryTableOwnerCol">ChangeWatcher</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#setHandler()" class="signatureLink">setHandler</a>(handler:Function):void</div><div class="summaryTableDescription">
+      Sets the handler function.</div></td><td class="summaryTableOwnerCol">ChangeWatcher</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#unwatch()" class="signatureLink">unwatch</a>():void</div><div class="summaryTableDescription">
+      Detaches this ChangeWatcher instance, and its handler function,
+      from the current host.</div></td><td class="summaryTableOwnerCol">ChangeWatcher</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><div class="summarySignature"><a href="#watch()" class="signatureLink">watch</a>(host:Object, chain:Object, handler:Function, commitOnly:Boolean = false, useWeakReference:Boolean = false):<a href="../../../mx/binding/utils/ChangeWatcher.html">ChangeWatcher</a></div><div class="summaryTableDescription">[static] 
+      Creates and starts a ChangeWatcher instance.</div></td><td class="summaryTableOwnerCol">ChangeWatcher</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><div class="detailSectionHeader">Property Detail</div><a name="propertyDetail"></a><a name="useWeakReference"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">useWeakReference</td><td class="detailHeaderType">property</td></tr></table><div class="detailBody"><code>public var useWeakReference:Boolean</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      (default = false) Determines whether the reference to the host
+      is strong or weak. A strong reference (the default) prevents
+      the host from being garbage-collected. A weak reference does
+      not.
+      
+      </p></div><a name="constructorDetail"></a><div class="detailSectionHeader">Constructor Detail</div><a name="ChangeWatcher()"></a><a name="ChangeWatcher(Object,Function,Boolean,mx.binding.utils.ChangeWatcher)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">ChangeWatcher</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">Constructor</td></tr></table><div class="detailBody"><code>public function ChangeWatcher(access:Object, handler:Function, commitOnly:Boolean = false, next:<a href="../../../mx/binding/utils/ChangeWatcher.html">ChangeWatcher</a> = null)</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p>
+      Constructor.
+      Not for public use. This method is called only from the <code>watch()</code> method.
+      See the <code>watch()</code> method for parameter usage.
+      
+      </p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">access</span>:Object</code></td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">handler</span>:Function</code></td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">commitOnly</span>:Boolean</code> (default = <code>false</code>)<code></code></td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">next</span>:<a href="../../../mx/binding/utils/ChangeWatcher.html">ChangeWatcher</a></code> (default = <code>null</code>)<code></code></td></tr></table></div><a name="methodDetail"></a><div class="detailSectionHeader">Method Detail</div><a name="canWatch()"></a><a name="canWatch(Object,String,Boolean)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">canWatch</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td></tr></table><div class="detailBody"><code> public static function canWatch(host:Object, name:String, commitOnly:Boolean = false):Boolean</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      Lets you determine if the host exposes a data-binding event
+      on the property. 
+     
+      <p>NOTE: Property chains are not supported by the <code>canWatch()</code> method.
+     They are supported by the <code>watch()</code> method.</p>
+           </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">host</span>:Object</code> &mdash; The host of the property.
+      See the <code>watch()</code> method for more information.
+           </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">name</span>:String</code> &mdash; The name of the property.
+      See the <code>watch()</code> method for more information.
+           </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">commitOnly</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; Set to <code>true</code> if the handler
+      should be called only on committing change events.
+      See the <code>watch()</code> method for more information.
+           </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if <code>host</code> exposes
+      any change events on <code>name</code>.
+      
+      </td></tr></table></div><a name="getEvents()"></a><a name="getEvents(Object,String,Boolean)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getEvents</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function getEvents(host:Object, name:String, commitOnly:Boolean = false):Object</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      Returns all binding events for a bindable property in the host object.
+           </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">host</span>:Object</code> &mdash; The host of the property.
+      See the <code>watch()</code> method for more information.
+           </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">name</span>:String</code> &mdash; The name of the property, or property chain.
+      See the <code>watch()</code> method for more information.
+           </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">commitOnly</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; Controls inclusion of non-committing
+      change events in the returned value.
+           </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Object</code> &mdash; Object of the form <code>{ eventName: isCommitting, ... }</code>
+      containing all change events for the property.
+      
+      </td></tr></table></div><a name="getValue()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">getValue</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function getValue():Object</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      Retrieves the current value of the watched property or property chain,
+      or null if the host object is null.
+      For example:
+      <pre>
+      watch(obj, ["a","b","c"], ...).getValue() === obj.a.b.c
+      </pre>
+           </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Object</code> &mdash; The current value of the watched property or property chain.
+      
+      </td></tr></table></div><a name="isWatching()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">isWatching</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function isWatching():Boolean</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      Returns <code>true</code> if each watcher in the chain is attached
+      to at least one change event.
+      Note that the <code>isWatching()</code> method
+      varies with host, since different hosts may expose different change
+      events for the watcher's chosen property.
+           </p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code>Boolean</code> &mdash; <code>true</code> if each watcher in the chain is attached
+      to at least one change event.
+      
+      </td></tr></table></div><a name="reset()"></a><a name="reset(Object)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">reset</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function reset(newHost:Object):void</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      Resets this ChangeWatcher instance to use a new host object.
+      You can call this method to reuse a watcher instance
+      on a different host.
+           </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">newHost</span>:Object</code> &mdash; The new host of the property.
+      See the <code>watch()</code> method for more information.
+      
+      </td></tr></table></p></div><a name="setHandler()"></a><a name="setHandler(Function)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">setHandler</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function setHandler(handler:Function):void</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      Sets the handler function.
+           </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">handler</span>:Function</code> &mdash; The handler function. This argument must not be null.
+      
+      </td></tr></table></p></div><a name="unwatch()"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">unwatch</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public function unwatch():void</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      Detaches this ChangeWatcher instance, and its handler function,
+      from the current host.
+      You can use the <code>reset()</code> method to reattach
+      the ChangeWatcher instance, or watch the same property
+      or chain on a different host object.
+      
+      </p></div><a name="watch()"></a><a name="watch(Object,Object,Function,Boolean,Boolean)"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">watch</td><td class="detailHeaderParens">()</td><td class="detailHeaderType">method</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code> public static function watch(host:Object, chain:Object, handler:Function, commitOnly:Boolean = false, useWeakReference:Boolean = false):<a href="../../../mx/binding/utils/ChangeWatcher.html">ChangeWatcher</a></code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+      Creates and starts a ChangeWatcher instance.
+      A single ChangeWatcher instance can watch one property,
+      or a property chain.
+      A property chain is a sequence of properties accessible from
+      a host object.
+      For example, the expression
+      <code>obj.a.b.c</code> contains the property chain (a, b, c).
+           </p><p><span class="label"> Parameters </span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20px"></td><td><code><span class="label">host</span>:Object</code> &mdash; The object that hosts the property or property chain
+      to be watched.
+      You can use the use the <code>reset()</code> method to change
+      the value of the <code>host</code> argument after creating
+      the ChangeWatcher instance.
+           </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">chain</span>:Object</code> &mdash; A value specifying the property or chain to be watched.
+      Legal values are:
+      <ul>
+        <li>A String containing the name of a public bindable property
+        of the host object.</li>
+             <li>An Object in the form:
+        <code>{ name: <i>property name</i>, getter: function(host) { return host[name] } }</code>.
+        The Object contains the name of a public bindable property,
+        and a function which serves as a getter for that property.</li>
+             <li>A non-empty Array containing any combination
+        of the first two options.
+        This represents a chain of bindable properties
+        accessible from the host.
+        For example, to watch the property <code>host.a.b.c</code>,
+        call the method as: <code>watch(host, ["a","b","c"], ...)</code>.</li>
+      </ul>
+           <p>Note: The property or properties named in the <code>chain</code> argument
+      must be public, because the <code>describeType()</code> method suppresses all information
+      about non-public properties, including the bindability metadata
+      that ChangeWatcher scans to find the change events that are exposed
+      for a given property.
+      However, the getter function supplied when using the <code>{ name, getter }</code>
+      argument form described above can be used to associate an arbitrary
+      computed value with the named (public) property.</p>
+           </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">handler</span>:Function</code> &mdash; An event handler function called when the value of the
+      watched property (or any property in a watched chain) is modified.
+      The modification is signaled when any host object in the watcher
+      chain dispatches the event that has been specified in that host object's
+      <code>[Bindable]</code> metadata tag for the corresponding watched property.
+      The default event is named <code>propertyChange</code>.
+           <p>The event object dispatched by the bindable property is passed
+      to this handler function without modification.
+      By default, Flex dispatches an event object of type PropertyChangeEvent.
+      However, you can define your own event type when you use the
+      <code>[Bindable]</code> metadata tag to define a bindable property.</p>
+           </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">commitOnly</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; Set to <code>true</code> if the handler should be
+      called only on committing change events;
+      set to <code>false</code> if the handler should be called on both
+      committing and non-committing change events.
+      Note: the presence of non-committing change events for a property is
+      indicated by the <code>[NonCommittingChangeEvent(&lt;event-name&gt;)]</code> metadata tag.
+      Typically these tags are used to indicate fine-grained value changes,
+      such as modifications in a text field prior to confirmation.
+           </td></tr><tr><td class="paramSpacer">&nbsp;</td></tr><tr><td width="20px"></td><td><code><span class="label">useWeakReference</span>:Boolean</code> (default = <code>false</code>)<code></code> &mdash; (default = false) Determines whether
+      the reference to the host is strong or weak. A strong
+      reference (the default) prevents the host from being
+      garbage-collected. A weak reference does not.
+           </td></tr></table></p><p></p><span class="label">Returns</span><table cellpadding="0" cellspacing="0" border="0"><tr><td width="20"></td><td><code><a href="../../../mx/binding/utils/ChangeWatcher.html">ChangeWatcher</a></code> &mdash; The ChangeWatcher instance, if at least one property name has
+      been specified to the <code>chain</code> argument; null otherwise.
+      Note that the returned watcher is not guaranteed to have successfully
+      discovered and attached itself to change events, since none may have
+      been exposed on the given property or chain by the host.
+      You can use the <code>isWatching()</code> method to determine the
+      watcher's state.
+           </td></tr></table><p><span class="label">See also</span></p><div class="seeAlso"><a href="../../../mx/events/PropertyChangeEvent.html" target="">mx.events.PropertyChangeEvent</a></div></div><br/><br/><hr><br/><p></p><center class="copyright"><footer>Copyright 2011 Tuomas Artman</footer><br/>Tue Jun 7 2011, 10:32 AM +03:00  </center></div></body></html><!--Copyright 2011 Tuomas Artman<br/>Tue Jun 7 2011, 10:32 AM +03:00  -->
