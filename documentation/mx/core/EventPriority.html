@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd"><!-- saved from url=(0014)about:internet --><html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" href="../../style.css" type="text/css" media="screen"><link rel="stylesheet" href="../../print.css" type="text/css" media="print"><link rel="stylesheet" href="../../override.css" type="text/css"><meta name="keywords" content="EventPriority,mx.core.EventPriority,BINDING,CURSOR_MANAGEMENT,DEFAULT,DEFAULT_HANDLER,EFFECT,currentState,states,transitions"><title>mx.core.EventPriority</title></head><body><script language="javascript" type="text/javascript" src="../../asdoc.js"></script><script language="javascript" type="text/javascript" src="../../help.js"></script><script language="javascript" type="text/javascript" src="../../cookies.js"></script><script language="javascript" type="text/javascript"><!--
+				asdocTitle = 'EventPriority - API Documentation';
+				var baseRef = '../../';
+				window.onload = configPage;
+			--></script>
+<script type="text/javascript">
+			scrollToNameAnchor();
+		</script><table class="titleTable" cellpadding="0" cellspacing="0" id="titleTable" style="display:none"><tr><td class="titleTableTitle" align="left">Flow Framework</td><td class="titleTableTopNav" align="right"><a href="../../package-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Packages</a>&nbsp;|&nbsp;<a href="../../class-summary.html" onclick="loadClassListFrame('../../all-classes.html')">All Classes</a>&nbsp;|&nbsp;<a href="../../all-index-A.html" onclick="loadClassListFrame('../../index-list.html')">Index</a>&nbsp;|&nbsp;<a id="framesLink1" href="../../index.html?mx/core/EventPriority.html&amp;mx/core/class-list.html">Frames</a><a id="noFramesLink1" style="display:none" href="" onclick="parent.location=document.location"> No Frames </a></td><td class="titleTableLogo" align="right" rowspan="3"><img src="../../images/logo.jpg" class="logoImage" alt=" Adobe Logo " title=" Adobe Logo "></td></tr><tr class="titleTableRow2"><td class="titleTableSubTitle" id="subTitle" align="left">EventPriority</td><td class="titleTableSubNav" id="subNav" align="right"><a href="#constantSummary">Constants</a></td></tr><tr class="titleTableRow3"><td colspan="3">&nbsp;</td></tr></table><script language="javascript" type="text/javascript" xml:space="preserve">
+				<!--
+				
+					if (!isEclipse() || window.name != ECLIPSE_FRAME_NAME) {titleBar_setSubTitle("EventPriority"); titleBar_setSubNav(true,false,false,false,false,false,false,false,false,false,false	,false,false,false,false,false);}	
+				-->
+			</script><div xmlns:fn="http://www.w3.org/2005/xpath-functions" class="MainContent"><table class="classHeaderTable" cellpadding="0" cellspacing="0"><tr><td class="classHeaderTableLabel">Package</td><td><a href="package-detail.html" onclick="javascript:loadClassListFrame('class-list.html')">mx.core</a></td></tr><tr><td class="classHeaderTableLabel">Class</td><td class="classSignature">public final   class  EventPriority</td></tr><tr><td class="classHeaderTableLabel">Inheritance</td><td class="inheritanceList">EventPriority  <img src="../../images/inherit-arrow.gif" title="Inheritance" alt="Inheritance" class="inheritArrow"> Object</td></tr></table><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p></p>
+  The EventPriority class defines constant values
+  for the <code>priority</code> argument of the
+  <code>addEventListener()</code> method of EventDispatcher.
+ 
+  <p>The higher the number, the higher the priority of the event listener.
+  All listeners with priority <code>N</code> will be processed
+  before listeners of priority <code>N - 1</code>.
+  If two or more listeners share the same priority,
+  they are processed in the order in which they were added.</p>
+ 
+               <p>Priorities can be positive, 0, or negative.
+  The default priority is 0.</p>
+ 
+               <p>You should not write code that depends on the numeric values
+  of these constants.
+  They are subject to change in future versions of Flex.</p>
+  
+            <p></p><br/><hr></div><a name="constantSummary"></a><div class="summarySection"><div class="summaryTableTitle">Public Constants</div><table cellspacing="0" cellpadding="3" class="summaryTable " id="summaryTableConstant"><tr><th>&nbsp;</th><th colspan="2">Constant</th><th class="summaryTableOwnerCol">Defined By</th></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#BINDING" class="signatureLink">BINDING</a> : int = 100<div class="summaryTableDescription">[static] 
+	  Autogenerated event handlers that evaluate data-binding expressions
+	  need to be executed before any others, so they have a higher priority
+	  than the default.</div></td><td class="summaryTableOwnerCol">EventPriority</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#CURSOR_MANAGEMENT" class="signatureLink">CURSOR_MANAGEMENT</a> : int = 200<div class="summaryTableDescription">[static] 
+	  The CursorManager has handlers for mouse events
+	  which must be executed before other mouse event handlers,
+	  so they have a high priority.</div></td><td class="summaryTableOwnerCol">EventPriority</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#DEFAULT" class="signatureLink">DEFAULT</a> : int = 0<div class="summaryTableDescription">[static] 
+	  Event handlers on component instances are executed with the default
+	  priority, 0.</div></td><td class="summaryTableOwnerCol">EventPriority</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#DEFAULT_HANDLER" class="signatureLink">DEFAULT_HANDLER</a> : int = -50<div class="summaryTableDescription">[static] 
+	  Some components listen to events that they dispatch on themselves
+	  and let other listeners call the preventDefault()
+	  method to tell the component not to perform a default action.</div></td><td class="summaryTableOwnerCol">EventPriority</td></tr><tr class=""><td class="summaryTablePaddingCol">&nbsp;</td><td class="summaryTableInheritanceCol">&nbsp;</td><td class="summaryTableSignatureCol"><a href="#EFFECT" class="signatureLink">EFFECT</a> : int = -100<div class="summaryTableDescription">[static] 
+	  Autogenerated event handlers that trigger effects are executed
+	  after other event handlers on component instances, so they have
+	  a lower priority than the default.</div></td><td class="summaryTableOwnerCol">EventPriority</td></tr></table></div><script language="javascript" type="text/javascript"><!--
+										showHideInherited();
+										--></script><div class="MainContent"><div class="detailSectionHeader">Constant Detail</div><a name="constantDetail"></a><a name="BINDING"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">BINDING</td><td class="detailHeaderType">Constant</td></tr></table><div class="detailBody"><code>public static const BINDING:int = 100</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+	  Autogenerated event handlers that evaluate data-binding expressions
+	  need to be executed before any others, so they have a higher priority
+	  than the default.
+	  
+	  </p></div><a name="constantDetail"></a><a name="CURSOR_MANAGEMENT"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">CURSOR_MANAGEMENT</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const CURSOR_MANAGEMENT:int = 200</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+	  The CursorManager has handlers for mouse events
+	  which must be executed before other mouse event handlers,
+	  so they have a high priority.
+	  
+	  </p></div><a name="constantDetail"></a><a name="DEFAULT"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">DEFAULT</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const DEFAULT:int = 0</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+	  Event handlers on component instances are executed with the default
+	  priority, <code>0</code>.
+	  
+	  </p></div><a name="constantDetail"></a><a name="DEFAULT_HANDLER"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">DEFAULT_HANDLER</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const DEFAULT_HANDLER:int = -50</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+	  Some components listen to events that they dispatch on themselves
+	  and let other listeners call the <code>preventDefault()</code>
+	  method to tell the component not to perform a default action.
+	  Those components must listen with a lower priority than the default
+	  priority, so that the other handlers are executed first and have
+	  a chance to call <code>preventDefault()</code>.
+	  
+	  </p></div><a name="constantDetail"></a><a name="EFFECT"></a><table class="detailHeader" cellpadding="0" cellspacing="0"><tr><td class="detailHeaderName">EFFECT</td><td class="detailHeaderType">Constant</td><td class="detailHeaderRule">&nbsp;</td></tr></table><div class="detailBody"><code>public static const EFFECT:int = -100</code><p></p><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Language Version :&nbsp;</b></td><td>ActionScript 3.0</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Product Version :&nbsp;</b></td><td>Flex 3</td></tr></table><table cellpadding="0" cellspacing="0" border="0"><tr><td style="white-space:nowrap" valign="top"><b> Runtime Versions :&nbsp;</b></td><td>Flash Player  9, AIR 1.1</td></tr></table><p></p><p></p><p>
+	  Autogenerated event handlers that trigger effects are executed
+	  after other event handlers on component instances, so they have
+	  a lower priority than the default.
+	  
+	  </p></div><br/><br/><hr><br/><p></p><center class="copyright"><footer>Copyright 2011 Tuomas Artman</footer><br/>Tue Jun 7 2011, 10:32 AM +03:00  </center></div></body></html><!--Copyright 2011 Tuomas Artman<br/>Tue Jun 7 2011, 10:32 AM +03:00  -->
