@@ -11,7 +11,7 @@
 	
 	<property name="FLEX_HOME" location="/Applications/Adobe Flash Builder 4.5/sdks/4.5.0/"/>
 	<property name="APP_CLASSPATH" location="${basedir}/../src/"/>
-	<property name="OUTPUT_DIR" location="/../documentation" />
+	<property name="OUTPUT_DIR" location="${basedir}/../../documentation" />
 	<taskdef resource="flexTasks.tasks" classpath="${FLEX_HOME}/ant/lib/flexTasks.jar" />
 	
 	
@@ -24,39 +24,21 @@
 	
 	<target name="Build doc">
 	
-		<asdoc output="${OUTPUT_DIR}" lenient="true" failonerror="true">
+		<asdoc output="${OUTPUT_DIR}" lenient="true" failonerror="true" footer="Copyright 2011 Tuomas Artman" main-title="Flow Framework">
 			<load-config filename='${FLEX_HOME}/frameworks/flex-config.xml'/>
-			<compiler.source-path path-element="${FLEX_HOME}/frameworks/projects/spark/src" />
-			<compiler.source-path path-element="${FLEX_HOME}/frameworks/projects/mx/src" />
+
 			<compiler.source-path path-element="${basedir}/../src/" />
-			<doc-namespaces uri="http://artman.fi/flow" />
+			<compiler.source-path path-element="${FLEX_HOME}/frameworks/projects/framework/src/" />
 			
 			<namespace uri="http://artman.fi/flow" manifest="${basedir}/../src/manifest.xml" />
+			<namespace uri="library://ns.adobe.com/flex/mx" manifest="${FLEX_HOME}/frameworks/projects/framework/manifest.xml" />
 			
-			<external-library-path dir="${FLEX_HOME}/frameworks/libs">
-				<include name="*.swc" />
-			</external-library-path>
-			<external-library-path dir="${FLEX_HOME}/frameworks/libs/player/10.2/">
-							<include name="*.swc" />
-						</external-library-path>
+			<doc-sources path-element="${basedir}/../src/" />
+			<exclude-sources path-element="${basedir}/../src/com/flow/skins/" />
 			
-		</asdoc>
-		
-		
-		<!--exec executable="${AsDocs.dir}" failonerror="true">
-			<arg line="-source-path '${AppClasses.dir}'"/>
-			<arg line="-doc-sources '${AppClasses.dir}'"/>
-			<arg line='-window-title "Flow Framework"'/>
-			<arg line="-namespace http://artman.fi/flow '${basedir}/../src/manifest.xml'"/>
-			<arg line="-external-library-path '${Flex.dir}/frameworks/libs/'" />
-			<arg line="-external-library-path '${Flex.dir}/frameworks/libs/mx'" />
-			<arg line="-external-library-path '${Flex.dir}/frameworks/libs/player/10.2/'" />
-			
-			<arg line="library://ns.adobe.com/flex/spark" manifest="${FLEX_HOME}/frameworks/projects/spark/manifest.xml" />
-			
-			<arg line='-output ${Output.dir}'/>
-	
-		</exec-->
-	</target>
+			<library-path dir="${FLEX_HOME}/frameworks/libs/" />
+			<library-path dir="${basedir}/../bin/" />
 
+		</asdoc>
+	</target>
 </project>
