@@ -100,7 +100,7 @@
 	<component id="MaskFilterEffect" class="com.flow.effects.MaskFilterEffect"/>
 	<component id="MeasureUnit" class="com.flow.components.measuring.MeasureUnit"/>
 	<component id="MeasureUnits" class="com.flow.components.measuring.MeasureUnits"/>
-	<component id="MultiBinder" class="com.flow.utils.MultiBinder"/>
+	<component id="MultiChangeWatcher" class="com.flow.utils.MultiChangeWatcher"/>
 	<component id="OuterBevelEffect" class="com.flow.effects.OuterBevelEffect"/>
 	<component id="OverrideBase" class="mx.states.OverrideBase"/>
 	<component id="PaddableComponent" class="com.flow.components.supportClasses.PaddableComponent"/>

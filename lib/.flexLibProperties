@@ -124,7 +124,7 @@
     <classEntry path="com.flow.skins.TextInputSkin"/>
     <classEntry path="com.flow.ui.KeyboardManager"/>
     <classEntry path="com.flow.utils.GraphicUtils"/>
-    <classEntry path="com.flow.utils.MultiBinder"/>
+    <classEntry path="com.flow.utils.MultiChangeWatcher"/>
     <classEntry path="com.flow.utils.callLater"/>
     <classEntry path="com.flow.utils.callLaterTimed"/>
     <classEntry path="com.flow.utils.hasPlayerVersion"/>

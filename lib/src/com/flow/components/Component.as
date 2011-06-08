@@ -912,7 +912,9 @@ package com.flow.components {
 		protected function stateChanged(e:StateEvent):void {
 			for(var i:int = 0; i<stateMovieClips.length; i++) {
 				if(stateMovieClips[i].currentLabels.indexOf(e.toState)) {
-					stateMovieClips[i].gotoAndPlay(e.toState);
+					try {
+						stateMovieClips[i].gotoAndPlay(e.toState);
+					} catch (e:Error) {}
 				}
 			}
 		}
