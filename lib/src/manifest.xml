@@ -67,6 +67,8 @@
 	<component id="GreyscaleEffect" class="com.flow.effects.GreyscaleEffect"/>
 	<component id="HBox" class="com.flow.containers.HBox"/>
 	<component id="HBoxLayout" class="com.flow.containers.layout.HBoxLayout"/>
+	<component id="HScrollBar" class="com.flow.components.HScrollBar"/>
+	<component id="HScrollBarSkin" class="com.flow.skins.HScrollBarSkin"/>
 	<component id="IFactory" class="mx.core.IFactory"/>
 	<component id="IFill" class="com.flow.graphics.fills.IFill"/>
 	<component id="IList" class="com.flow.collections.IList"/>
@@ -117,10 +119,12 @@
 	<component id="RemoteProcedureTypes" class="com.flow.net.RemoteProcedureTypes"/>
 	<component id="RippleEffect" class="com.flow.effects.RippleEffect"/>
 	<component id="ScrollArea" class="com.flow.containers.ScrollArea"/>
+	<component id="Scroller" class="com.flow.containers.Scroller"/>
 	<component id="SetProperty" class="mx.states.SetProperty"/>
 	<component id="Shape" class="com.flow.graphics.Shape"/>
 	<component id="Sine" class="com.flow.motion.easing.Sine"/>
 	<component id="Skin" class="com.flow.components.supportClasses.Skin"/>
+	<component id="SkinManager" class="com.flow.managers.SkinManager"/>
 	<component id="SkinnableComponent" class="com.flow.components.supportClasses.SkinnableComponent"/>
 	<component id="SolidFill" class="com.flow.graphics.fills.SolidFill"/>
 	<component id="SolidStroke" class="com.flow.graphics.strokes.SolidStroke"/>
@@ -139,6 +143,8 @@
 	<component id="Tween" class="com.flow.motion.Tween"/>
 	<component id="VBox" class="com.flow.containers.VBox"/>
 	<component id="VBoxLayout" class="com.flow.containers.layout.VBoxLayout"/>
+	<component id="VScrollBar" class="com.flow.components.VScrollBar"/>
+	<component id="VScrollBarSkin" class="com.flow.skins.VScrollBarSkin"/>
 	<component id="ViewStack" class="com.flow.containers.layout.ViewStack"/>
 	<component id="WebCam" class="com.flow.components.WebCam"/>
 	<component id="WebCamEvent" class="com.flow.events.WebCamEvent"/>

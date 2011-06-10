@@ -41,6 +41,7 @@ package com.flow.components {
 	import flash.events.FocusEvent;
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
+	import flash.system.System;
 	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
 	
@@ -126,6 +127,13 @@ package com.flow.components {
 		
 		protected var _pixelSnapping:Boolean = true;
 		
+		public var parentContainer:Container;
+		
+		private var pressed:Boolean = false;
+		
+		public var snapWidthToEven:Boolean = false;
+		public var snapHeightToEven:Boolean = false;
+		
 		[Bindable] public var data:*;
 		[Bindable] public var rendererIndex:int;
 		
@@ -197,8 +205,8 @@ package com.flow.components {
 		}
 		
 		public function invalidateLayout(fromChild:Boolean = false):void {
-			if(parent is Container) {
-				(parent as Container).invalidateLayout();
+			if(parentContainer) {
+				parentContainer.invalidateLayout();
 			}
 		}
 		
@@ -286,13 +294,13 @@ package com.flow.components {
 			applyMask(width, height);
 		}
 		
-		protected function applyMask(width:int, height:int):void {
+		protected function applyMask(width:Number, height:Number):void {
 			if(clip) {
 				var inset:int = 0;
 				if(_stroke) {
 					inset = Math.ceil(_stroke.thickness/2);
 				}
-				scrollRect = new Rectangle(0, 0, width+inset, height+inset);
+				scrollRect = new Rectangle(0, 0, pixelSnapping ? Math.round(width) : width + inset, pixelSnapping ? Math.round(height) : height + inset);
 			}
 		}
 		
@@ -364,6 +372,8 @@ package com.flow.components {
 		}
 		override public function set width(value:Number):void {
 			value = pixelSnapping ? Math.round(value): value;
+			value = snapWidthToEven ? Math.round(value/2)*2 : value;
+			
 			if(value != width) {
 				invalidateLayout();
 			}
@@ -398,6 +408,7 @@ package com.flow.components {
 		}
 		override public function set height(value:Number):void {
 			value = pixelSnapping ? Math.round(value): value;
+			value = snapHeightToEven ? Math.round(value/2)*2 : value;
 			if(value != height) {
 				invalidateLayout();
 			}
@@ -704,6 +715,9 @@ package com.flow.components {
 		
 		private function mouseOver(e:MouseEvent):void {
 			addState(STATE_OVER);
+			if(pressed) {
+				addState(STATE_DOWN);
+			}
 			if(_tooltip && !disabled) {
 				TooltipManager.instance.showTooltip(this);
 			}
@@ -719,7 +733,15 @@ package com.flow.components {
 		
 		private function mouseDown(e:MouseEvent):void {
 			addState(STATE_DOWN);
+			pressed = true;
+			stage.addEventListener(MouseEvent.MOUSE_UP, mouseUpAfterPress);
 			TooltipManager.instance.hideTooltip(this);
+		}
+		
+		protected function mouseUpAfterPress(event:MouseEvent):void {
+			pressed = false;
+			removeState(STATE_DOWN);
+			stage.removeEventListener(MouseEvent.MOUSE_UP, mouseUpAfterPress);
 		}
 		
 		private function mouseUp(e:MouseEvent):void {
@@ -800,19 +822,19 @@ package com.flow.components {
 		
 		public function set states(value:Array):void {
 			_states = value;
+			_currentState = "";
+			statesActive = new Vector.<State>();
 			if(_states && _states.length) {
-				addState(_states[0].name, false);
+				addState(_states[0].name);
 			}
 		}
 		
-		public function addState(stateName:String, updateCurrentState:Boolean = true):void {
+		public function addState(stateName:String):void {
 			var state:State = getState(stateName);
 			if(state) {
 				if(statesActive.indexOf(state) == -1) {
 					statesActive.push(state);
-					if(updateCurrentState) {
-						checkState();
-					}
+					checkState();
 				}
 			}
 		}
@@ -868,10 +890,21 @@ package com.flow.components {
 		}
 		public function set currentState(value:String):void {
 			if(value != _currentState) {
-				for(var i:int = 0; i<_states.length; i++) {
-					if(_states[i].name == _currentState) {
-						(_states[i] as State).remove(this);
+				for(var i:int = 0; i<states.length; i++) {
+					if(states[i].name == _currentState) {
+						var fromState:State = states[i];
 					}
+					if(states[i].name == value) {
+						var toState:State = states[i];
+					}
+				}
+				
+				if(fromState && toState && toState.transitionSpeed) {
+					manager.beginAnimation(this);	
+				}
+			
+				if(fromState) {
+					fromState.remove(stateTarget);
 				}
 				
 				var evt:StateEvent = new StateEvent(StateEvent.STATE_CHANGE);
@@ -879,15 +912,21 @@ package com.flow.components {
 				evt.toState = value;
 				_currentState = value;
 				
-				for(i = 0; i<states.length; i++) {
-					if(states[i].name == _currentState) {
-						(states[i] as State).apply(this);
+				if(toState) {
+					toState.apply(stateTarget);
+				
+					if(fromState && toState.transitionSpeed) {
+						manager.commitAnimation(toState.transitionSpeed);
 					}
 				}
 				if(evt.fromState != "") {
 					dispatchEvent(evt);
 				}
 			}
+		}
+		
+		protected function get stateTarget():Component {
+			return this;
 		}
 		
 		public function addStateClip(clip:MovieClip):void {

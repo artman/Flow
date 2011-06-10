@@ -25,6 +25,7 @@ package com.flow.containers {
 	import com.flow.collections.DisplayObjectCollection;
 	import com.flow.collections.IList;
 	import com.flow.components.Component;
+	import com.flow.components.HScrollBar;
 	import com.flow.containers.layout.AbsoluteLayout;
 	import com.flow.containers.layout.LayoutBase;
 	import com.flow.events.CollectionEvent;
@@ -34,6 +35,7 @@ package com.flow.containers {
 	import com.flow.managers.LayoutManager;
 	
 	import flash.display.DisplayObject;
+	import flash.display.DisplayObjectContainer;
 	import flash.events.Event;
 	import flash.utils.getTimer;
 	
@@ -46,11 +48,11 @@ package com.flow.containers {
 		protected var childrenInvalidated:Boolean = false;
 		protected var _layout:LayoutBase;
 		
-		public var snapWidthToEven:Boolean = false;
-		public var snapHeightToEven:Boolean = false;
+		public var childContainer:DisplayObjectContainer;
 
 		public function Container() {
 			super();
+			childContainer = this;
 			_layout = getDefaultLayout();
 			_layout.assignToComponent(this);
 			children = new DisplayObjectCollection();
@@ -139,7 +141,6 @@ package com.flow.containers {
 		}
 		
 		public function invalidateChildren(e:Event = null):void {
-			//trace("INVALIDATE " + this);
 			if(!childrenInvalidated) {
 				childrenInvalidated = true;
 				if(manager.layoutPhase != LayoutManager.LAYOUT_PHASE_VALIDATING) {
@@ -151,14 +152,6 @@ package com.flow.containers {
 					validateLayout();
 				}
 			}
-		}
-		
-		override public function set width(value:Number):void {
-			super.width = snapWidthToEven ? Math.round(value/2)*2 : value;
-		}
-		
-		override public function set height(value:Number):void {
-			super.height = snapHeightToEven ? Math.round(value/2)*2 : value;
 		}
 		
 		public function get layout():LayoutBase {
@@ -200,6 +193,7 @@ package com.flow.containers {
 			return child;
 		}
 		
+
 		override public function removeChildAt(index:int):DisplayObject {
 			return removeChild(_children.getItemAt(index) as DisplayObject);
 		}
@@ -213,7 +207,6 @@ package com.flow.containers {
 		}
 		
 		protected function rawRemoveChild(child:DisplayObject):DisplayObject {
-	
 			return super.removeChild(child);
 		}
 		
@@ -237,7 +230,7 @@ package com.flow.containers {
 				dispatchEvent(new InvalidationEvent(InvalidationEvent.INVALIDATE_LAYOUT));
 				if(manager.layoutPhase != LayoutManager.LAYOUT_PHASE_VALIDATING) {
 					var delegate:Boolean = true;
-					if(!(parent is Container)) {
+					if(!(parentContainer)) {
 						delegate = false;
 					} else if(fromChild == true && hasExplicitWidth && hasExplicitHeight) {
 						if(_right.isNull && _bottom.isNull) {
@@ -245,7 +238,7 @@ package com.flow.containers {
 						}
 					}
 					if(delegate) { 
-						(parent as Container).invalidateLayout(true);
+						parentContainer.invalidateLayout(true);
 					} else {
 						manager.invalidateLayout(this);
 					}
@@ -264,8 +257,8 @@ package com.flow.containers {
 		public function validateLayout(e:Event = null):void {
 			layoutInvalidated = false;
 			_layout.layout(width, height);
-			for(var i:int=0; i<numChildren; i++) {
-				var displayObject:DisplayObject = getChildAt(i);
+			for(var i:int=0; i<childContainer.numChildren; i++) {
+				var displayObject:DisplayObject = childContainer.getChildAt(i);
 				if(displayObject is Container) {
 					(displayObject as Container).validateLayout();
 				}
@@ -290,24 +283,38 @@ package com.flow.containers {
 						sanitizedChildren[i] = (sanitizedChildren[i] as Component).visualRepresentation;
 					}
 				}
-				for(i = numChildren-1; i>=0; i--) {
+				for(i = childContainer.numChildren-1; i>=0; i--) {
 					if(sanitizedChildren.indexOf(getChildAt(i)) == -1) {
-						rawRemoveChild(getChildAt(i));
+						if(childContainer is Container) {
+							var child:DisplayObject = (childContainer as Container).rawRemoveChildAt(i);
+						} else {
+							child = childContainer.removeChildAt(i);
+						}
+						if(child is Component) {
+							(child as Component).parentContainer = null;
+						}
 					}
 				}
 				for(i = 0; i<sanitizedChildren.length; i++) {
 					if(sanitizedChildren[i].parent != this) {
-						rawAddChild(sanitizedChildren[i]);
+						if(childContainer is Container) {
+							child = (childContainer as Container).rawAddChild(sanitizedChildren[i])
+						} else {
+							child = childContainer.addChild(sanitizedChildren[i])
+						}
+						if(child is Component) {
+							(child as Component).parentContainer = this;
+						}
 					}
-					setChildIndex(sanitizedChildren[i],i);
+					childContainer.setChildIndex(sanitizedChildren[i],i);
 				}			
 				_layout.childrenChanged();
 			}
 		}
 		
 		public function measureChildren():void {
-			for(var i:int=0; i<numChildren; i++) {
-				var comp:Component = getChildAt(i) as Component;
+			for(var i:int=0; i<childContainer.numChildren; i++) {
+				var comp:Component = childContainer.getChildAt(i) as Component;
 				if(comp) {
 					if(comp.propertiesInvalidated) {
 						comp.validateProperties();

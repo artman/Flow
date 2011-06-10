@@ -74,13 +74,14 @@
 		<fw:BitmapFill source="@Embed(source='/assets/app_bkg.png')" />
 	</fw:fill>
 
-	
 	<fw:Container horizontalCenter="0" verticalCenter="0">
 		
 		<fw:Image filters="{[new DropShadowFilter(6, 90, 0, 0.3, 20, 20, 1, 2)]}" left="-1" right="-2" height="100%" source="{WindowBkg}" />
 		<fw:Label textFormat="heading" x="10" y="2" text="{sectionCounter.selectedItem}" filters="{[new DropShadowFilter(1, 90, 0, 0.2, 2, 2)]}" />
 		
 		<fw:ScrollArea scrollSpeed="0.5" snapWidthToEven="true" snapHeightToEven="true" id="section" top="37" bottom="38" selectedIndex="{sectionCounter.selectedIndex}">
+			<!--view:StatesView />
+			<view:ScrollingView /-->
 			<view:BasicLayoutView />			
 			<view:BoxLayout />
 			<view:ControlsView />
@@ -116,8 +117,8 @@
 					</fx:Component>
 				</fw:itemRenderer>
 			</fw:List>
-			<fw:Button id="prev" disabled="{sectionCounter.selectedIndex==0}" label="Prev" skinClass="{new ButtonSkin}" verticalCenter="0" left="8" click="sectionCounter.selectedIndex--" />
-			<fw:Button id="next" disabled="{sectionCounter.selectedIndex == sectionCounter.dataProvider.length-1}" label="Next" skinClass="{new ButtonSkin}" verticalCenter="0" right="8" click="sectionCounter.selectedIndex++" />
+			<fw:Button id="prev" disabled="{sectionCounter.selectedIndex==0}" label="Prev" verticalCenter="0" left="8" click="sectionCounter.selectedIndex--" />
+			<fw:Button id="next" disabled="{sectionCounter.selectedIndex == sectionCounter.dataProvider.length-1}" label="Next" verticalCenter="0" right="8" click="sectionCounter.selectedIndex++" />
 		</fw:Container>
 	
 	</fw:Container>

@@ -130,12 +130,16 @@ package com.flow.containers {
 			height = content.height;
 		}
 		
-		override protected function applyMask(width:int, height:int):void {
+		override protected function applyMask(width:Number, height:Number):void {
 			var inset:int = 0;
 			if(_stroke) {
 				inset = Math.ceil(_stroke.thickness/2);
 			}
-			scrollRect = new Rectangle(_scrollX, _scrollY, width+inset, height+inset);
+			if(pixelSnapping) {
+				scrollRect = new Rectangle(Math.round(_scrollX), Math.round(_scrollY), Math.round(width+inset), Math.round(height+inset));
+			} else {
+				scrollRect = new Rectangle(_scrollX, _scrollY, width+inset, height+inset);
+			}
 		}
 	}
 }

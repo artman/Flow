@@ -27,6 +27,7 @@ package com.flow.containers.layout {
 	import com.flow.components.measuring.MeasureUnits;
 	
 	import flash.display.DisplayObject;
+	import flash.display.DisplayObjectContainer;
 	
 	public class AbsoluteLayout extends LayoutBase {
 		
@@ -34,12 +35,12 @@ package com.flow.containers.layout {
 		}
 		
 		override public function layoutChildren(offsetX:Number, offsetY:Number, w:Number, h:Number):void {
-			w = Math.round(w/2)*2;
+			var container:DisplayObjectContainer = _target.childContainer;
 			
-			for(var i:int = 0; i<_target.numChildren; i++) {
+			for(var i:int = 0; i<_target.childContainer.numChildren; i++) {
 				
-				if(_target.getChildAt(i) is Component) {
-					var group:Component = _target.getChildAt(i) as Component;
+				if(container.getChildAt(i) is Component) {
+					var group:Component = container.getChildAt(i) as Component;
 					var m:MeasureUnits = group.measureUnits;
 					
 					if(m.left.isNull || m.right.isNull) {
@@ -95,11 +96,12 @@ package com.flow.containers.layout {
 		}
 		
 		override public function measureChildren():void {
+			var container:DisplayObjectContainer = _target.childContainer;
 			var maxW:Number = 0;
 			var maxH:Number = 0;
 			
-			for(var i:int = 0; i<_target.numChildren; i++) {
-				var child:DisplayObject = _target.getChildAt(i);
+			for(var i:int = 0; i<container.numChildren; i++) {
+				var child:DisplayObject = container.getChildAt(i);
 				w = child.x + child.width;
 				h = child.y + child.height;
 				if(child is Component) {			
