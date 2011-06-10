@@ -49,4 +49,6 @@
 		<fw:Button id="jepa" label="Kivaaaa" width="300" height="1500" />
 	</fw:Scroller>
 	
+	<fw:VScrollBar height="200" x = "400" /> 
+	
 </fw:Container>
