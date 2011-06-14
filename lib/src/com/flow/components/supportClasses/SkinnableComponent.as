@@ -38,6 +38,7 @@ package com.flow.components.supportClasses {
 		}
 		
 		override public function validateProperties():void {
+			super.validateProperties();
 			if(skinChanged) {
 				skinChanged = false;
 				var parts:Object = skinParts;

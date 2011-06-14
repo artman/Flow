@@ -144,6 +144,7 @@ package com.flow.graphics {
 		}
 		
 		override public function validateProperties():void {
+			super.validateProperties();
 			while(numChildren > 0) {
 				removeChildAt(0);
 			}

@@ -66,7 +66,7 @@ package com.flow.components {
 		public static const STATE_FOCUS:String = "focus";
 		public static const STATE_DISABLED:String = "disabled";
 		
-		/** A static reference to the LayoutManager */
+		/** A static reference to the LayoutManager. */
 		public static var manager:LayoutManager;
 		
 		/** @private */ 
@@ -98,7 +98,7 @@ package com.flow.components {
 		protected var _maxWidth:Number;
 		/** @private */ 
 		protected var _absoluteWidth:Number;
-		/** Whether the component has been assigned a implicit width */
+		/** Whether the component has been assigned a implicit width. */
 		public var hasExplicitWidth:Boolean = false;		
 
 		/** @private */
@@ -109,7 +109,7 @@ package com.flow.components {
 		protected var _maxHeight:Number;
 		/** @private */ 
 		protected var _absoluteHeight:Number;
-		/** Whether the component has been assigned a implicit height */
+		/** Whether the component has been assigned a implicit height. */
 		public var hasExplicitHeight:Boolean = false;
 		
 		/** @private */
@@ -140,8 +140,6 @@ package com.flow.components {
 		private var _tabIndex:int = -1;
 		/** @private */ 
 		protected var _focusElement:InteractiveObject;
-		/** @private */ 
-		protected var _pixelSnapping:Boolean = true;
 		
 		private var pressed:Boolean = false;
 		/** @private */ 
@@ -154,20 +152,25 @@ package com.flow.components {
 		/** @private */
 		public var invalidated:Boolean = false;
 		
-		/** The depth of the component inside the displayList */
+		/** The depth of the component inside the displayList. */
 		public var depth:int = 0;
 		
-		/** The parent container if the component has been added as a child of a container */
+		/** The parent container if the component has been added as a child of a container. */
 		public var parentContainer:Container;
 		
-		/** If set to true, forces the component to snap to a even width */
-		public var snapWidthToEven:Boolean = false;
-		/** If set to true, forces the component to snap to a even height */
-		public var snapHeightToEven:Boolean = false;
+		/** @private */ 
+		protected var _snapToPixels:Boolean = true;
+		/** 
+		 * If set to true, forces the component to snap to an even width. You might want to do this on containers who's widths are changing
+		 * and that has horizontally centered content. */
+		public var snapToEventWidth:Boolean = false;
+		/** If set to true, forces the component to snap to an even height. You might want to set this to true on containers who's heights are
+		 * changing and who have vertically centered content. */
+		public var snapToEventHeight:Boolean = false;
 		
-		/** The data that is assigned to the component if it's used as a item renderer */
+		/** The data that is assigned to the component if it's used as a item renderer. */
 		[Bindable] public var data:*;
-		/** The index of the component in a list if the component is used as a item renderer */
+		/** The index of the component in a list if the component is used as a item renderer. */
 		[Bindable] public var rendererIndex:int;
 		
 		[Event(name="creationComplete", type="com.flow.events.ComponentEvent")]
@@ -197,7 +200,7 @@ package com.flow.components {
 		/**
 		 * Sets whether the component automatically tries to assign itself states based on user interaction.
 		 * The states that are assigned (if supported by the subclass) are up, over, down, focused and disabled. 
-		 * @return Whether the component is interactive
+		 * @return Whether the component is interactive.
 		 */		
 		public function get interactive():Boolean {
 			return _interactive
@@ -360,8 +363,8 @@ package com.flow.components {
 		 * into the component's graphics context. Note that the component implementation clears the graphics context and renders
 		 * in any fills or strokes defined by the user.
 		 * 
-		 * @param width The absolute, non-scaled width of the component
-		 * @param height The absolute, non-scaled height of the component
+		 * @param width The absolute, non-scaled width of the component.
+		 * @param height The absolute, non-scaled height of the component.
 		 */		
 		public function draw(width:Number, height:Number):void {
 			graphics.clear();
@@ -390,8 +393,8 @@ package com.flow.components {
 		/**
 		 * Applies a mask after rendering the component. Override this to implement your own masking or scrolling behaviour. The default implementation
 		 * will apply a mask to the full area of the component if it's clip-property is set to true.
-		 * @param width The absolute, non-scaled width of the component
-		 * @param height The absolute, non-scaled height of the component
+		 * @param width The absolute, non-scaled width of the component.
+		 * @param height The absolute, non-scaled height of the component.
 		 */		
 		protected function applyMask(width:Number, height:Number):void {
 			if(clip) {
@@ -399,7 +402,7 @@ package com.flow.components {
 				if(_stroke) {
 					inset = Math.ceil(_stroke.thickness/2);
 				}
-				scrollRect = new Rectangle(0, 0, pixelSnapping ? Math.round(width) : width + inset, pixelSnapping ? Math.round(height) : height + inset);
+				scrollRect = new Rectangle(0, 0, snapToPixels ? Math.round(width) : width + inset, snapToPixels ? Math.round(height) : height + inset);
 			}
 		}
 		
@@ -476,8 +479,8 @@ package com.flow.components {
 			return sanitizeWidth(absoluteWidth ? absoluteWidth : measuredWidth ? measuredWidth : 0);
 		}
 		override public function set width(value:Number):void {
-			value = pixelSnapping ? Math.round(value): value;
-			value = snapWidthToEven ? Math.round(value/2)*2 : value;
+			value = snapToPixels ? Math.round(value): value;
+			value = snapToEventWidth ? Math.round(value/2)*2 : value;
 			
 			if(value != width) {
 				invalidateLayout();
@@ -515,8 +518,8 @@ package com.flow.components {
 			return sanitizeHeight(absoluteHeight ? absoluteHeight : measuredHeight ? measuredHeight : 0);
 		}
 		override public function set height(value:Number):void {
-			value = pixelSnapping ? Math.round(value): value;
-			value = snapHeightToEven ? Math.round(value/2)*2 : value;
+			value = snapToPixels ? Math.round(value): value;
+			value = snapToEventHeight ? Math.round(value/2)*2 : value;
 			if(value != height) {
 				invalidateLayout();
 			}
@@ -685,7 +688,7 @@ package com.flow.components {
 		override public function set x(value:Number):void {
 			if(value != _x) {
 				_x = value;
-				super.x = _pixelSnapping ? Math.round(value) : value;
+				super.x = _snapToPixels ? Math.round(value) : value;
 			}
 		}
 		
@@ -697,17 +700,17 @@ package com.flow.components {
 		override public function set y (value:Number):void {
 			if(value != _y) {
 				_y = value;
-				super.y = _pixelSnapping ? Math.round(value) : value;
+				super.y = _snapToPixels ? Math.round(value) : value;
 			}
 		}
 		
-		/** Whether to snap the position and dimensions to full pixels (default true) */
-		public function get pixelSnapping():Boolean {
-			return _pixelSnapping;
+		/** Whether to snap the position and dimensions to full pixels (default true). */
+		public function get snapToPixels():Boolean {
+			return _snapToPixels;
 		}
-		public function set pixelSnapping(value:Boolean):void {
-			if(value != _pixelSnapping) {
-				_pixelSnapping = value;
+		public function set snapToPixels(value:Boolean):void {
+			if(value != _snapToPixels) {
+				_snapToPixels = value;
 				x = (--_x) + 1; // force update
 				y = (--_y) + 1;
 			}
@@ -792,7 +795,7 @@ package com.flow.components {
 			}
 		}
 		
-		/** The tooltip string of the component. The tooltip is shown when the user rolls over the component */
+		/** The tooltip string of the component. The tooltip is shown when the mouse cursor hovers over the component. */
 		public function get tooltip():String {
 			return _tooltip;
 		}
@@ -913,7 +916,7 @@ package com.flow.components {
 
 		/** 
 		 * Whether the component is active (included in rendering) or inactive (excluded from rendering). The default value
-		 * is true
+		 * is true.
 		 */
 		[Bindable]
 		public function get active():Boolean {
@@ -956,12 +959,12 @@ package com.flow.components {
 			} 
 		}
 		
-		/** Override this to validate your components properties */
+		/** Override this to validate your components properties. */
 		public function validateProperties():void {
-			// Override
+			if(!_currentState && _states.length) {
+				addState(_states[0].name);
+			}
 		}
-		
-		
 		
 		/*--------------- States support ---------------*/
 		
@@ -975,7 +978,7 @@ package com.flow.components {
 			_currentState = "";
 			statesActive = new Vector.<State>();
 			if(_states && _states.length) {
-				addState(_states[0].name);
+				invalidateProperties(true);
 			}
 		}
 		
@@ -1076,9 +1079,7 @@ package com.flow.components {
 			}
 		}
 		
-		/**
-		 * The current state of the component. Set this property to change the state of the component and apply all overrides.
-		 */		
+		/** The current state of the component. Set this property to change the state of the component and apply all overrides. */		
 		[Bindable]
 		public function get currentState():String {
 			return _currentState;

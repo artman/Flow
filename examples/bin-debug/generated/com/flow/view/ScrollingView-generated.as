@@ -6,7 +6,7 @@
  *  Class:      ScrollingView
  *  Source:     /Users/artman/Documents/Flow/examples/src/com/flow/view/ScrollingView.mxml
  *  Template:   flex2/compiler/mxml/gen/ClassDef.vm
- *  Time:       2011.06.13 16:48:27 EEST
+ *  Time:       2011.06.14 11:20:55 EEST
  */
 
 package com.flow.view

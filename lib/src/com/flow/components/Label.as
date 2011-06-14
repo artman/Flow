@@ -161,6 +161,7 @@ package com.flow.components {
 		}
 		
 		override public function validateProperties():void {
+			super.validateProperties();
 			var def:TextFormat = TextFormatManager.getTextFormat(_textFormat);
 			if(!def) {
 				_textField.embedFonts = false;

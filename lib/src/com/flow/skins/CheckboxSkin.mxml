@@ -38,7 +38,7 @@
 		<s:State name="disabled" />
 	</fw:states>
 	
-	<fw:Rect pixelSnapping="false" x="1" width="16" height="16" radius="3" verticalCenter="0" >
+	<fw:Rect snapToPixels="false" x="1" width="16" height="16" radius="3" verticalCenter="0" >
 		<fw:fill>
 			<fw:GradientFill rotation="90">
 				<fw:GradientData color="0xF8F8F8" color.over="0xDDDDDD" color.down="0xCCCCCC" ratio="0" />
