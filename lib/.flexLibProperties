@@ -128,7 +128,7 @@
     <classEntry path="com.flow.skins.HScrollBarSkin"/>
     <classEntry path="com.flow.skins.TextInputSkin"/>
     <classEntry path="com.flow.skins.VScrollBarSkin"/>
-    <classEntry path="com.flow.ui.KeyboardManager"/>
+    <classEntry path="com.flow.managers.KeyboardManager"/>
     <classEntry path="com.flow.utils.GraphicUtils"/>
     <classEntry path="com.flow.utils.MultiChangeWatcher"/>
     <classEntry path="com.flow.utils.callLater"/>

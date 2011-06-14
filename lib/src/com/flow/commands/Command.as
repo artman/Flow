@@ -29,6 +29,7 @@ package com.flow.commands {
 	
 	[Event(name="complete", type="com.flow.events.CommandEvent")]
 	[Event(name="error", type="com.flow.events.CommandEvent")]
+	/** @private */
 	public class Command extends EventDispatcher {
 		
 		private var completeHandler:Function = null;

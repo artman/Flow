@@ -26,6 +26,7 @@ package com.flow.log {
 	
 	import flash.external.ExternalInterface;
 	
+	/** @private */
 	public class Log {
 		
 		public function Log() {
@@ -36,12 +37,6 @@ package com.flow.log {
 				ExternalInterface.call("console.log", rest.join(" "));
 			} else {
 				trace(rest.join(" "));
-			}
-		}
-		
-		public static function debug(...rest):void  {
-			if(Application.application) {
-				Application.application.debug(rest.join(" "));
 			}
 		}
 	}

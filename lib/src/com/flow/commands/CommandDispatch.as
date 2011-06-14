@@ -27,6 +27,7 @@ package com.flow.commands {
 	import flash.events.EventDispatcher;
 	import flash.utils.getQualifiedClassName;
 
+	/** @private */
 	public class CommandDispatch extends EventDispatcher {
 		
 		public static var instance:CommandDispatch = new CommandDispatch();

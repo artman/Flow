@@ -1,6 +1,6 @@
 package com.flow.utils {
 	import flash.system.Capabilities;
-		
+
 	public function hasPlayerVersion(major:int, minor:int = 0, build:int = 0):Boolean {
 		var ver:Array = Capabilities.version.split(" ")[1].split(",");
 		var playerMajor:int = parseInt(ver[0]);

@@ -88,7 +88,7 @@
 	<component id="JSONToken" class="com.adobe.serialization.json.JSONToken"/>
 	<component id="JSONTokenType" class="com.adobe.serialization.json.JSONTokenType"/>
 	<component id="JSONTokenizer" class="com.adobe.serialization.json.JSONTokenizer"/>
-	<component id="KeyboardManager" class="com.flow.ui.KeyboardManager"/>
+	<component id="KeyboardManager" class="com.flow.managers.KeyboardManager"/>
 	<component id="Label" class="com.flow.components.Label"/>
 	<component id="LayoutBase" class="com.flow.containers.layout.LayoutBase"/>
 	<component id="LayoutManager" class="com.flow.managers.LayoutManager"/>

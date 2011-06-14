@@ -27,11 +27,23 @@ package com.flow.utils {
 	
 	import mx.binding.utils.ChangeWatcher;
 	
+	/**
+	 * MultiChangeWatcher is a Binding util that lets you listen to multiple properties on one target. A change to
+	 * any of the properties will call the handler function.
+	 */	
 	public class MultiChangeWatcher {
 		private var properties:Array;
 		private var handler:Function;
 		private var watchers:Vector.<ChangeWatcher>;
 		
+		/**
+		 * Constructor. Starts listening to property changes on a target object. 
+		 * @param The target object to listen to
+		 * @param The properties to listen to. Properties can be chained just like with BindingUtils.
+		 * @param The handler that should be called when any of the target properties change.
+		 * @example new MultiChangeWatcher(myObj, ["x", "content.value"], myHandler);
+		 * 
+		 */		
 		public function MultiChangeWatcher(target:Object, properties:Array, handler:Function) {
 			watchers = new Vector.<ChangeWatcher>();
 			this.properties = properties;
@@ -47,6 +59,9 @@ package com.flow.utils {
 			}
 		}
 		
+		/**
+		 * Unwatches all watched properties. 
+		 */		
 		public function unwatch():void {
 			for(var i:int = 0; i<watchers.length; i++) {
 				watchers[i].unwatch();
