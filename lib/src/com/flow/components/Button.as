@@ -62,7 +62,7 @@ package com.flow.components {
 				useHandCursor = true;
 			}
 		}
-		
+	
 		private function disableClick(e:MouseEvent):void {
 			e.stopImmediatePropagation();
 		}

@@ -22,11 +22,13 @@
 
 package com.flow.graphics.fills {
 	
+	import com.flow.motion.IAnimateable;
+	
 	import flash.display.Graphics;
 	import flash.events.IEventDispatcher;
 	
 	[Event(name="invalidate", type="com.flow.events.InvalidateEvent")]
-	public interface IFill extends IEventDispatcher {
+	public interface IFill extends IEventDispatcher, IAnimateable {
 		function beginDraw(graphics:Graphics, width:int, height:int):void ;
 		function endDraw(graphics:Graphics):void;
 	}

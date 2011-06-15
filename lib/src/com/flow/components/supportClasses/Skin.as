@@ -35,6 +35,10 @@ package com.flow.components.supportClasses {
 				_hostComponent.layout = layout
 			}
 		}
+		
+		override protected function checkState():void {
+			// Don't do anything
+		}
 
 	}
 }

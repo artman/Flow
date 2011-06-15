@@ -31,16 +31,16 @@
 	</fx:Metadata>
 	
 	<fw:states>
-		<s:State name="up" transitionSpeed="1" />
-		<s:State name="over" transitionSpeed="1" />
-		<s:State name="down" />
+		<s:State name="up" transitionSpeed="0.5" />
+		<s:State name="over" transitionSpeed="0.1" />
+		<s:State name="down" transitionSpeed="0.1" />
 		<s:State name="disabled" />
 	</fw:states>
 	
 	<fw:Rect width="100%" height="100%" radius="5">
 		<fw:fill>
 			<fw:GradientFill rotation="90">
-				<fw:GradientData color="0xF9F9F9" color.over="0xF7F7F7" color.down="0xEEEEEE" ratio="0" />
+				<fw:GradientData color="0xF9F9F9" color.down="0xEEEEEE" ratio="0" />
 				<fw:GradientData color="0xDDDDDD" color.over="0xCCCCCC" color.down="0xBBBBBB" color.disabled="0xFFFFFF" ratio="1" />
 			</fw:GradientFill>
 		</fw:fill>

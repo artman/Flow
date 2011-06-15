@@ -29,7 +29,6 @@ package com.flow.components {
 		
 		public function Label() {
 			super();
-			mouseEnabled = false;
 			mouseChildren = false;
 			_textField = new TextField();
 			_textField.selectable = false;
@@ -129,6 +128,7 @@ package com.flow.components {
 			}
 		}
 		
+		[Animateable(type='color')]
 		public function get color():int {
 			return _color;
 		}
@@ -138,6 +138,7 @@ package com.flow.components {
 			invalidateProperties();
 		}
 		
+		[Animateable]
 		public function get size():int {
 			return _size;
 		}

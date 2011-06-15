@@ -43,7 +43,7 @@
     <classEntry path="com.flow.containers.layout.LayoutBase"/>
     <classEntry path="com.flow.containers.layout.VBoxLayout"/>
     <classEntry path="com.flow.containers.layout.ViewStack"/>
-    <classEntry path="com.flow.effects.AnimationProps"/>
+    <classEntry path="com.flow.motion.AnimationProperties"/>
     <classEntry path="com.flow.effects.BevelEffect"/>
     <classEntry path="com.flow.effects.BlurEffect"/>
     <classEntry path="com.flow.effects.CSBEffect"/>
@@ -143,6 +143,9 @@
     <classEntry path="mx.states.SetProperty"/>
     <classEntry path="mx.states.State"/>
     <classEntry path="mx.states.Transition"/>
+    <classEntry path="com.flow.motion.AnimationProperty"/>
+    <classEntry path="com.flow.managers.IntrospectionManager"/>
+    <classEntry path="com.flow.motion.IAnimateable"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests>

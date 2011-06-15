@@ -33,6 +33,7 @@ package com.flow.components {
 	import com.flow.graphics.strokes.IStroke;
 	import com.flow.managers.LayoutManager;
 	import com.flow.managers.TooltipManager;
+	import com.flow.motion.IAnimateable;
 	
 	import flash.display.InteractiveObject;
 	import flash.display.MovieClip;
@@ -41,7 +42,6 @@ package com.flow.components {
 	import flash.events.FocusEvent;
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
-	import flash.system.System;
 	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
 	
@@ -58,7 +58,7 @@ package com.flow.components {
 	 */	
 	[DefaultProperty("fill")]
 	[Event(name="stateChange", type="com.flow.events.StateEvent")]
-	public class Component extends Sprite implements IStateClient2, IFactory {
+	public class Component extends Sprite implements IStateClient2, IFactory, IAnimateable {
 		
 		public static const STATE_UP:String = "up";
 		public static const STATE_OVER:String = "over";
@@ -201,7 +201,7 @@ package com.flow.components {
 		 * Sets whether the component automatically tries to assign itself states based on user interaction.
 		 * The states that are assigned (if supported by the subclass) are up, over, down, focused and disabled. 
 		 * @return Whether the component is interactive.
-		 */		
+		 */	
 		public function get interactive():Boolean {
 			return _interactive
 		}
@@ -223,6 +223,7 @@ package com.flow.components {
 					removeEventListener(FocusEvent.FOCUS_IN, focusIn);
 					removeEventListener(FocusEvent.FOCUS_OUT, focusOut);
 				}
+				useHandCursor = buttonMode = _interactive;
 			}
 		}
 		
@@ -419,7 +420,7 @@ package com.flow.components {
 		}
 		
 		/** The vertical distance in pixels or percent from the top edge of the component to the parent's top edge. */
-		[Bindable]
+		[Bindable] [Animateable]
 		public function get top():* {
 			return _top.unit;
 		}
@@ -432,7 +433,7 @@ package com.flow.components {
 		}
 		
 		/** The vertical distance in pixels or percent from the bottom edge of the component to the parent's bottom edge. */
-		[Bindable]
+		[Bindable] [Animateable]
 		public function get bottom():* {
 			return _bottom.unit;
 		}
@@ -445,7 +446,7 @@ package com.flow.components {
 		}
 		
 		/** The horizontal distance in pixels or percent from the left edge of the component to the parent's left edge. */
-		[Bindable]
+		[Bindable] [Animateable]
 		public function get left():* {
 			return _left.unit;
 		}
@@ -458,7 +459,7 @@ package com.flow.components {
 		}
 		
 		/** The horizontal distance in pixels or percent from the right edge of the component to the parent's right edge. */
-		[Bindable]
+		[Bindable] [Animateable]
 		public function get right():* {
 			return _right.unit;
 		}
@@ -649,7 +650,6 @@ package com.flow.components {
 		}
 		
 		/** @private */
-		[Exclude(name="absoluteWidth", kind="property")]
 		public function get absoluteWidth():Number {
 			return _absoluteWidth;
 		}
@@ -665,7 +665,6 @@ package com.flow.components {
 		}
 		
 		/** @private */
-		[Exclude(name="absoluteHeight", kind="property")]
 		public function get absoluteHeight():Number {
 			return _absoluteHeight;
 		}
@@ -736,6 +735,7 @@ package com.flow.components {
 		 * The fill of the component. If assigned, the fill is applied to the full width and height of the component
 		 * during rendering.
 		 */
+		[AnimateableChild]
 		public function get fill():IFill {
 			return _fill;
 		}
@@ -756,6 +756,7 @@ package com.flow.components {
 		 * The border stroke of the component. If assigned, the border stroke is applied to the full width and height of the component
 		 * during rendering.
 		 */
+		[AnimateableChild]
 		public function get stroke():IStroke {
 			return _stroke;
 		}
@@ -1000,6 +1001,10 @@ package com.flow.components {
 		 * @see #currentState
 		 */
 		public function addState(stateName:String):void {
+			if(!statesActive.length && states && states.length) {
+				statesActive.push(states[0]);
+				checkState();
+			}
 			var state:State = getState(stateName);
 			if(state) {
 				if(statesActive.indexOf(state) == -1) {

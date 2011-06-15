@@ -42,15 +42,10 @@ package com.flow.motion {
 		protected static var activeTweens:Vector.<Tween>;
 	
 		private var _delay:Number=0;
-		private var _values:Object;
+		private var _values:Vector.<AnimationProperty>;
 		private var _position:Number;
 		/** @private */
 		protected var inited:Boolean;
-		/** @private */
-		protected var startValues:Object;
-		/** @private */
-		protected var deltaValues:Object;
-		
 		/** @private */
 		public var duration:Number;
 		/** @private */
@@ -96,9 +91,9 @@ package com.flow.motion {
 		 * @param The duration of the tween in seconds.
 		 * @param An object containing the properties and their values to tween to.
 		 * @param An object containing additional properties for the tween. The properties are: <ul>
-		 * <li>delay (Number) - How many seconds to wait before starting the tween.
-		 * <li>ease (Function) - The easing equation to use
-		 * <li>dontOverride (Boolean) - Whether remove any tweened property from other tweens currently operating on the object.
+		 * <li>delay (Number) - How many seconds to wait before starting the tween.</li>
+		 * <li>ease (Function) - The easing equation to use</li>
+		 * <li>dontOverride (Boolean) - Whether remove any tweened property from other tweens currently operating on the object.</li>
 		 * </ul>
 		 * 
 		 */		
@@ -106,7 +101,14 @@ package com.flow.motion {
 			this.ease = defaultEase;
 			this.target = target;
 			this.duration = duration;
-			this._values = values;
+			if(values is Vector.<AnimationProperty>) {
+				_values = values as Vector.<AnimationProperty>;
+			} else {
+				_values = new Vector.<AnimationProperty>();
+				for(var prop:String in values) {
+					_values.push(new AnimationProperty(prop, values[prop], ""));
+				}	
+			}
 			this._position = 0;
 			var dontOverride:Boolean = false;
 			if (props) {
@@ -122,10 +124,10 @@ package com.flow.motion {
 				}
 			}
 			if(!dontOverride) {
-				for(var value:String in values) {
-					for(var i:int = activeTweens.length-1; i>=0; i--) {
-						if(activeTweens[i].target == this.target) {
-							activeTweens[i].deleteValue(value);
+				for(var i:int = 0; i<_values.length; i++) {
+					for(var j:int = activeTweens.length-1; j>=0; j--) {
+						if(activeTweens[j].target == this.target) {
+							activeTweens[j].deleteValue(_values[i].name);
 						}
 					}
 				}
@@ -152,8 +154,13 @@ package com.flow.motion {
 				if (!inited) { 
 					init();
 				}
-				for (var prop:String in _values) {
-					target[prop] = startValues[prop] + deltaValues[prop] * ratio;
+				for(var i:int = 0; i<_values.length; i++) {
+					var prop:AnimationProperty = _values[i];
+					if(!prop.type) {
+						target[prop.name] = prop.startValue + prop.deltaValue * ratio;
+					} else {
+						target[prop.name] = prop.currentValue(ratio);
+					}
 				}
 			}
 			if (changeHandler != null) { 
@@ -180,18 +187,14 @@ package com.flow.motion {
 		
 		/** @private */
 		public function deleteValue(name:String):Boolean {
-			if(deltaValues) {
-				delete(deltaValues[name]);
-				delete(startValues[name]);
-			}
 			if(_values) {
-				delete(_values[name]);
+				for(var i:int = _values.length-1; i>=0; i--) {
+					if(_values[i].name == name) {
+						_values.splice(i,1);
+					}
+				}
 			}
-			var cnt:int = 0;
-			for(var val:String in _values) {
-				cnt ++;
-			}
-			if(!cnt) {
+			if(!_values.length) {
 				tweenCompleted(this);
 				return true;
 			}
@@ -201,10 +204,8 @@ package com.flow.motion {
 		/** @private */
 		public function init():void {
 			inited = true;
-			startValues = {};
-			deltaValues = {};
-			for (var prop:String in _values) {
-				deltaValues[prop] = _values[prop] - (startValues[prop] = target[prop]);
+			for (var i:int=0; i<_values.length; i++) {
+				_values[i].deltaValue = _values[i].value - (_values[i].startValue = target[_values[i].name]);
 			}
 		}
 		

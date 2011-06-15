@@ -20,49 +20,11 @@
  * THE SOFTWARE.
  */
 
-package com.flow.graphics.strokes {
-	
-	import com.flow.events.InvalidationEvent;
-	
-	import flash.display.CapsStyle;
-	import flash.display.Graphics;
-	import flash.display.JointStyle;
-	import flash.events.EventDispatcher;
-	
-	[Event(name="invalidate", type="com.flow.events.InvalidationEvent")]
-	public class SolidStroke extends StrokeBase {
-		
-		private var _color:int = 0;
-		private var _alpha:Number = 1;
-		
-		public function SolidStroke() {
-			super();
-		}
-		
-		[Animateable]
-		public function get alpha():Number {
-			return _alpha;
-		}
-		public function set alpha(value:Number):void {
-			if(value != _alpha) {
-				_alpha = value;
-				invalidate();
-			}
-		}
-		
-		[Animateable(type="color")]
-		public function get color():int {
-			return _color;
-		}
-		public function set color(value:int):void {
-			if(value != _color) {
-				_color = value;
-				invalidate();
-			}
-		}
-
-		override public function beginDraw(graphics:Graphics, width:int, height:int):void  {
-			graphics.lineStyle(_thickness, color, alpha, true, "normal", _caps, _joints, _miterLimit);
-		}
+package com.flow.motion {
+	/**
+	 * Tags a class as animateable. Animateable instances can use the [Animateable] and [AnimateableChild]-metadata
+	 * on their properties.
+	 */	
+	public interface IAnimateable {
 	}
 }

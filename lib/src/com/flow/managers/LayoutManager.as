@@ -22,15 +22,17 @@
 
 package com.flow.managers {
 	
-	import com.flow.collections.DisplayObjectCollection;
+	import com.flow.collections.IList;
 	import com.flow.components.Component;
 	import com.flow.containers.Application;
 	import com.flow.containers.Container;
-	import com.flow.effects.AnimationProps;
+	import com.flow.motion.AnimationProperties;
 	import com.flow.effects.Effect;
+	import com.flow.graphics.GradientData;
+	import com.flow.motion.AnimationProperty;
+	import com.flow.motion.IAnimateable;
 	import com.flow.motion.Tween;
 	
-	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Stage;
 	import flash.events.Event;
@@ -45,6 +47,8 @@ package com.flow.managers {
 		
 		public static const LAYOUT_PHASE_NONE:int = 0;
 		public static const LAYOUT_PHASE_VALIDATING:int = 1;
+		
+		private static var animateableChildrenLookup:Dictionary = new Dictionary();
 		
 		/** The Singleton instance created upon startup */
 		public static var instance:LayoutManager = new LayoutManager();
@@ -180,6 +184,7 @@ package com.flow.managers {
 			layoutPhase = LAYOUT_PHASE_NONE;
 			
 			if(invalidChildrenList.length || invalidLayoutList.length) {
+				// Reloop
 				validate();
 			}
 		}
@@ -237,11 +242,10 @@ package com.flow.managers {
 			var newAnimationProperties:Dictionary = new Dictionary();
 			collectProps(animationRoot, newAnimationProperties);
 	
-			for (var o:Object in animationProperties) {
-				var component:DisplayObject = o as DisplayObject;
-				var changedProps:Object = (animationProperties[component] as AnimationProps).parseChanges(newAnimationProperties[component]);
+			for (var component:Object in animationProperties) {
+				var changedProps:Vector.<AnimationProperty> = (animationProperties[component] as AnimationProperties).parseChanges(newAnimationProperties[component]);
 				if(changedProps) {
-					(animationProperties[component] as AnimationProps).applyToDisplayObject(component);
+					(animationProperties[component] as AnimationProperties).applyToObject(component);
 					new Tween(component, speed, changedProps, tweenProps);
 				}
 			}
@@ -249,14 +253,38 @@ package com.flow.managers {
 			animationProperties = null;
 		}
 		
-		private function collectProps(target:DisplayObject, dictionary:Dictionary):void {
-			var props:AnimationProps = new AnimationProps();
+		private function collectProps(target:Object, dictionary:Dictionary):void {
+			var props:AnimationProperties = new AnimationProperties();
 			props.gatherProps(target);
 			dictionary[target] = props;
-			if(target is Container) {
-				var list:DisplayObjectCollection = (target as Container).children as DisplayObjectCollection;
-				for(var i:int = 0; i<list.length; i++) {
-					collectProps(list.getItemAt(i) as DisplayObject, dictionary)
+			if(target is IAnimateable) {
+				var name:String = IntrospectionManager.getClassName(target);
+				if(!animateableChildrenLookup[name]) {
+					var desc:XML = IntrospectionManager.getDescriptor(target);
+					var childrenNames:Vector.<String> = new Vector.<String>();
+					var lst:XMLList = desc..metadata.(@name == "AnimateableChild");
+					for(var i:int = 0; i<lst.length(); i++) {
+						childrenNames.push(lst[i].parent().@name);
+					}
+					animateableChildrenLookup[name] = childrenNames;
+				}
+				childrenNames = animateableChildrenLookup[name];
+			
+				for(i = 0; i<childrenNames.length; i++) {
+					var child:* = target[childrenNames[i]];
+					if(child) {
+						if(child is Vector.<*> || child is Array) {
+							for(var j:int = 0; j<child.length; j++) {
+								collectProps(child[j], dictionary);
+							}
+						} else if(child is IList) {
+							for(j = 0; j<child.length; j++) {
+								collectProps((child as IList).getItemAt(j), dictionary);
+							}
+						} else {
+							collectProps(child, dictionary)
+						}
+					}
 				}
 			} else if(target is DisplayObjectContainer) {
 				var cnt:int = (target as DisplayObjectContainer).numChildren;
