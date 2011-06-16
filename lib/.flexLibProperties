@@ -18,6 +18,7 @@
     <classEntry path="com.flow.components.Component"/>
     <classEntry path="com.flow.components.HScrollBar"/>
     <classEntry path="com.flow.components.Label"/>
+    <classEntry path="com.flow.components.LabelButton"/>
     <classEntry path="com.flow.components.Spacing"/>
     <classEntry path="com.flow.components.TextInput"/>
     <classEntry path="com.flow.components.VScrollBar"/>
@@ -43,7 +44,6 @@
     <classEntry path="com.flow.containers.layout.LayoutBase"/>
     <classEntry path="com.flow.containers.layout.VBoxLayout"/>
     <classEntry path="com.flow.containers.layout.ViewStack"/>
-    <classEntry path="com.flow.motion.AnimationProperties"/>
     <classEntry path="com.flow.effects.BevelEffect"/>
     <classEntry path="com.flow.effects.BlurEffect"/>
     <classEntry path="com.flow.effects.CSBEffect"/>
@@ -96,10 +96,15 @@
     <classEntry path="com.flow.graphics.strokes.SolidStroke"/>
     <classEntry path="com.flow.graphics.strokes.StrokeBase"/>
     <classEntry path="com.flow.log.Log"/>
+    <classEntry path="com.flow.managers.IntrospectionManager"/>
+    <classEntry path="com.flow.managers.KeyboardManager"/>
     <classEntry path="com.flow.managers.LayoutManager"/>
     <classEntry path="com.flow.managers.SkinManager"/>
     <classEntry path="com.flow.managers.TextFormatManager"/>
     <classEntry path="com.flow.managers.TooltipManager"/>
+    <classEntry path="com.flow.motion.AnimationProperties"/>
+    <classEntry path="com.flow.motion.AnimationProperty"/>
+    <classEntry path="com.flow.motion.IAnimateable"/>
     <classEntry path="com.flow.motion.Tween"/>
     <classEntry path="com.flow.motion.easing.Back"/>
     <classEntry path="com.flow.motion.easing.Bounce"/>
@@ -128,11 +133,11 @@
     <classEntry path="com.flow.skins.HScrollBarSkin"/>
     <classEntry path="com.flow.skins.TextInputSkin"/>
     <classEntry path="com.flow.skins.VScrollBarSkin"/>
-    <classEntry path="com.flow.managers.KeyboardManager"/>
     <classEntry path="com.flow.utils.GraphicUtils"/>
     <classEntry path="com.flow.utils.MultiChangeWatcher"/>
     <classEntry path="com.flow.utils.callLater"/>
     <classEntry path="com.flow.utils.callLaterTimed"/>
+    <classEntry path="com.flow.utils.cloneObject"/>
     <classEntry path="com.flow.utils.hasPlayerVersion"/>
     <classEntry path="mx.core.IFactory"/>
     <classEntry path="mx.core.IStateClient"/>
@@ -143,9 +148,6 @@
     <classEntry path="mx.states.SetProperty"/>
     <classEntry path="mx.states.State"/>
     <classEntry path="mx.states.Transition"/>
-    <classEntry path="com.flow.motion.AnimationProperty"/>
-    <classEntry path="com.flow.managers.IntrospectionManager"/>
-    <classEntry path="com.flow.motion.IAnimateable"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests>
