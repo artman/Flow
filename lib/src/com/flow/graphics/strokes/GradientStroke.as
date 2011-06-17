@@ -29,28 +29,45 @@ package com.flow.graphics.strokes {
 	import flash.display.Graphics;
 	import flash.events.EventDispatcher;
 	import flash.geom.Matrix;
-
+	
+	/**
+	 * A gradient stroke. 
+	 */	
 	[DefaultProperty("colors")]
 	[Event(name="invalidate", type="com.flow.events.InvalidationEvent")]
 	public class GradientStroke extends StrokeBase {
 		
+		/** @private */
 		protected var _colors:Vector.<GradientData>;
+		/** @private */
 		protected var _data:String;
+		/** @private */
 		protected var _matrix:Matrix;
+		/** @private */
 		protected var _rotation:Number = 0;
+		/** @private */
 		protected var _width:Number;
-		protected var _height:Number;
-		
-		private var _type:String = GradientType.LINEAR;
-
+		/** @private */
+		protected var _height:Number;		
+		/** @private */
 		protected var gradientColors:Array;
+		/** @private */
 		protected var gradientAlphas:Array;
+		/** @private */
 		protected var gradientRatios:Array;
+		/** @private */
+		protected var _type:String = GradientType.LINEAR;
 		
+		/**
+		 * Constructor 
+		 */		
 		public function GradientStroke() {
 			super();
 		}
 		
+		/**
+		 * A Vector of GradientData defining the colors, alphas and ratios for the gradient 
+		 */		
 		[AnimateableChild]
 		public function get colors():Vector.<GradientData> {
 			return _colors;
@@ -59,35 +76,32 @@ package com.flow.graphics.strokes {
 			if(value != _colors) {
 				if(_colors) {
 					for each (var item:GradientData in colors) {
-						item.removeEventListener(InvalidationEvent.INVALIDATE, invalidate);
+						item.removeEventListener(InvalidationEvent.INVALIDATE, invalidateColors);
 					}
 				}
 				_colors = value;
-				
-				gradientColors = new Array();
-				gradientAlphas = new Array();
-				gradientRatios = new Array();
-		
-				for each (item in colors) {
-					item.addEventListener(InvalidationEvent.INVALIDATE, invalidate);
-					gradientColors.push(item.color);
-					gradientAlphas.push(item.alpha);
-					gradientRatios.push(item.ratio * 255);
-				}
-				invalidate();
+				invalidateColors();
 			}
 		}
 		
-		public function get matrix():Matrix  {
-			return _matrix;
-		}
-		public function set matrix(value:Matrix):void  {
-			if(value != _matrix) {
-				_matrix = value;
-				invalidate();
+		/** @private */
+		protected function invalidateColors(event:InvalidationEvent = null):void {
+			gradientColors = new Array();
+			gradientAlphas = new Array();
+			gradientRatios = new Array();
+			
+			for each (var item:GradientData in colors) {
+				item.addEventListener(InvalidationEvent.INVALIDATE, invalidateColors);
+				gradientColors.push(item.color);
+				gradientAlphas.push(item.alpha);
+				gradientRatios.push(item.ratio * 255);
 			}
+			invalidate();
 		}
 		
+		/**
+		 * The rotation of the gradient. 
+		 */		
 		[Animateable]
 		public function get rotation():Number {
 			return _rotation
@@ -99,6 +113,9 @@ package com.flow.graphics.strokes {
 			}
 		}
 		
+		/**
+		 * The type of the gradient (default linear). 
+		 */		
 		[Inspectable(enumeration="linear,radial", defaultValue="linear")]
 		public function get type():String {
 			return _type;
@@ -110,6 +127,7 @@ package com.flow.graphics.strokes {
 			}
 		}
 		
+		/** @private */
 		override public function beginDraw(graphics:Graphics, width:int, height:int):void {
 			if (!_matrix) {
 				_matrix = new Matrix();

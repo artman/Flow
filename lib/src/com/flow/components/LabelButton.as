@@ -21,16 +21,24 @@
  */
 
 package com.flow.components {
+	import flash.display.Shape;
+	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	import flash.text.TextFormat;
 
 	public class LabelButton extends Label {
 		
 		private var _underline:Boolean = false;
+		private var hitSprite:Sprite;
+		
 		
 		public function LabelButton() {
 			super();
 			interactive = true;
+			hitSprite = new Sprite();
+			addChild(hitSprite);
+			hitArea = hitSprite;
+			hitSprite.visible = false;
 		}
 		
 		/**
@@ -78,6 +86,15 @@ package com.flow.components {
 
 		private function disableClick(e:MouseEvent):void {
 			e.stopImmediatePropagation();
+		}
+		
+		
+		override public function draw(width:Number, height:Number):void {
+			super.draw(width, height);
+			hitSprite.graphics.clear();
+			hitSprite.graphics.beginFill(0);
+			hitSprite.graphics.drawRect(0, 0, width, height);
+			hitSprite.graphics.endFill();
 		}
 	}
 }

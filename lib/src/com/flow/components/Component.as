@@ -388,9 +388,6 @@ package com.flow.components {
 			if(_fill) {
 				_fill.endDraw(graphics);
 			}
-			if(_stroke) {
-				_stroke.endDraw(graphics);
-			}
 			applyMask(width, height);
 		}
 		
