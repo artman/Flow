@@ -5,7 +5,7 @@ package com.flow.managers {
 		
 		private static var defaultSkins:Object;
 		public static function init():void {
-			var components:Array = ["Button", "CheckBox", "HScrollBar", "VScrollBar", "TextInput"]
+			var components:Array = ["Button", "CheckBox", "HScrollBar", "VScrollBar", "TextInput", "TextArea"]
 			defaultSkins = {};
 			for each(var component:String in components) {
 				defaultSkins["com.flow.components." + component] = "com.flow.skins." + component + "Skin";
@@ -13,19 +13,20 @@ package com.flow.managers {
 		}
 		init();
 		
-		public static function registerDefaultSkin(component:String, skinClass:String):void {
+		public static function registerDefaultSkin(component:*, skinClass:*):void {
+			if(!(component is String)) {
+				component = IntrospectionManager.getClassName(component);
+			}
+			if (skinClass is String) {
+				skinClass = getDefinitionByName(defaultSkins[component]) as Class;	
+			}
 			defaultSkins[component] = skinClass;
 		}
 		
 		public static function getDefaultSkin(component:String):Class {
 			component = component.replace("::", ".");
 			if(defaultSkins[component]) {
-				try {
-					var skin:String = defaultSkins[component];
-					return getDefinitionByName(defaultSkins[component]) as Class;
-				} catch(e:Error) {
-					return null;
-				}
+				return defaultSkins[component];
 			}
 			return null;
 		}

@@ -29,17 +29,33 @@ package com.flow.graphics.strokes {
 	import flash.display.JointStyle;
 	import flash.events.EventDispatcher;
 	
+	/**
+	 * The base class for all strokes that can be used to draw borders around components. This class should not
+	 * be used directly. Instead, use one of it's subclasses.
+	 */	
 	[Event(name="invalidate", type="com.flow.events.InvalidationEvent")]
 	public class StrokeBase extends EventDispatcher implements IStroke {
 		
+		/** @private */
 		protected var _thickness:Number = 1;
+		/** @private */
 		protected var _caps:String = CapsStyle.ROUND;
+		/** @private */
 		protected var _joints:String = JointStyle.ROUND;
+		/** @private */
 		protected var _miterLimit:Number = 3;
+		/** @private */
+		protected var _pixelHinting:Boolean = true;
 		
+		/**
+		 * Constructor. 
+		 */		
 		public function StrokeBase() {
 		}
 		
+		/**
+		 * The caps style of the stroke (default round).
+		 */		
 		[Inspectable(enumeration="none,round,square", defaultValue="round")]
 		public function get caps():String {
 			return _caps;
@@ -51,6 +67,9 @@ package com.flow.graphics.strokes {
 			}
 		}
 		
+		/**
+		 * The joints style of the stroke (default round).
+		 */		
 		[Inspectable(enumeration="bevel,miter,round", defaultValue="round")]
 		public function get joints():String {
 			return _joints;
@@ -62,6 +81,9 @@ package com.flow.graphics.strokes {
 			}
 		}
 		
+		/**
+		 * The meter limit of the stroke (default 3).
+		 */		
 		public function get miterLimit():Number {
 			return _miterLimit;
 		}
@@ -72,6 +94,9 @@ package com.flow.graphics.strokes {
 			}
 		}
 		
+		/**
+		 * The thickness of the stroke (default 1).
+		 */		
 		[Animateable]
 		public function get thickness():Number {
 			return _thickness;
@@ -83,14 +108,34 @@ package com.flow.graphics.strokes {
 			}
 		}
 		
+		/**
+		 * Whether to draw the stroke with pixel hinting (default true). 
+		 */		
+		public function get pixelHinting():Boolean {
+			return _pixelHinting;
+		}
+		public function set pixelHinting(value:Boolean):void {
+			if(value != _pixelHinting) {
+				_pixelHinting = value;
+				invalidate();
+			}
+		}
+		
+		/**
+		 * Subclasses override this method to set the lineStyle on the give graphics context. 
+		 * @param graphics
+		 * @param width
+		 * @param height
+		 * 
+		 */		
 		public function beginDraw(graphics:Graphics, width:int, height:int):void  {
 			// Override
 		}
 		
-		public function endDraw(graphics:Graphics):void {
-			// Override
-		}
-		
+		/**
+		 * Subclasses call invalidate whenever properties, that affect the visual representation of the stroke change.
+		 * This will force a re-render of the component to which the stroke is assigned to.
+		 */		
 		public function invalidate():void {
 			dispatchEvent(new InvalidationEvent(InvalidationEvent.INVALIDATE));
 		}

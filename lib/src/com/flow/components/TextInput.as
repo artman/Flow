@@ -3,57 +3,91 @@ package com.flow.components {
 	
 	import com.flow.components.supportClasses.SkinnableComponent;
 	
-	import flash.display.InteractiveObject;
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
-	import flash.text.TextFieldType;
+	import flash.ui.Keyboard;
 	
 	import mx.binding.utils.BindingUtils;
-	import mx.states.State;
 	
 	[SkinState("up")]
 	[SkinState("over")]
 	[SkinState("down")]
+	[SkinState("focus")]
 	[SkinState("disabled")]
 	
+	/**
+	 * Dispatched, when the user presses enter while the TextInput has focus. 
+	 */	
+	[Event(name="complete", type="flash.events.Event")]
+	/**
+	 * A text input component that lets the user input one line of text. 
+	 */	
 	public class TextInput extends SkinnableComponent {
 		
-		private var _labelDisplay:Label;
-		private var _value:String = "";
-		private var _restrict:String;
-		private var _maxChars:int;
-		private var _password:Boolean;
+		/** @private */
+		protected var _labelDisplay:Label;
+		/** @private */
+		protected var _hintDisplay:Label;
+		/** @private */
+		protected var _value:String = "";
+		/** @private */
+		protected var _restrict:String;
+		/** @private */
+		protected var _maxChars:int;
+		/** @private */
+		protected var _password:Boolean;
+		/** @private */
+		protected var _hint:String;
 		
+		/**
+		 * Constructor 
+		 */		
 		public function TextInput() {
 			super();
-			states = [
-				new State("up"),
-				new State("over"),
-				new State("down"),
-				new State("focus"),
-				new State("disabled")
-			];
 			interactive = true;
 			focusable = true;
 			addEventListener(MouseEvent.CLICK, click);
 		}
 		
+		/**
+		 * A required skin part that is used for user input. 
+		 */		
 		[SkinPart(required="true")]
 		public function set labelDisplay(val:Label):void {
 			_labelDisplay = val;
 			_labelDisplay.text = _value;
 			_labelDisplay.editable = true;
 			_labelDisplay.textField.addEventListener(Event.CHANGE, textChanged);
+			_labelDisplay.textField.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
 			_labelDisplay.textField.displayAsPassword = _password;
 			_labelDisplay.textField.restrict = _restrict;
 			_labelDisplay.textField.maxChars = _maxChars;
+			focusElement = _labelDisplay.textField;
 			BindingUtils.bindProperty(_labelDisplay, "text", this, "value", false, true);
 		}
 		public function get labelDisplay():Label {
 			return _labelDisplay;
 		}
 		
+		/**
+		 * A optional skin part that is used for displaying the TextInput hint.
+		 */		
+		[SkinPart(required="false")]
+		public function set hintDisplay(val:Label):void {
+			_hintDisplay = val;
+			if(_hintDisplay) {
+				_hintDisplay.mouseEnabled = _hintDisplay.mouseChildren = false
+				checkHint();
+			}
+		}
+		public function get hintDisplay():Label {
+			return _hintDisplay;
+		}
+		
+		/**
+		 * Defines the text formatting to use in for the label 
+		 */		
 		public function get textFormat():String {
 			return _labelDisplay.textFormat;
 		}
@@ -61,6 +95,9 @@ package com.flow.components {
 			_labelDisplay.textFormat = value;
 		}
 		
+		/**
+		 * The color of the input text 
+		 */		
 		public function get color():int {
 			return _labelDisplay.color;
 		}
@@ -68,6 +105,9 @@ package com.flow.components {
 			_labelDisplay.color = value;
 		}
 		
+		/**
+		 * The value of the input component. 
+		 */		
 		[Bindable]		
 		public function get value():String {
 			return _value;
@@ -77,8 +117,12 @@ package com.flow.components {
 			if(_labelDisplay) {
 				_labelDisplay.text = val;
 			}
+			checkHint();
 		}
 		
+		/**
+		 * Defines which characters are allowed for input. Use the same format as you would for a Flash TextField.
+		 */		
 		public function get restrict():String {
 			return _restrict
 		}
@@ -91,6 +135,9 @@ package com.flow.components {
 			}
 		}
 		
+		/**
+		 * The maximum characters allowed for input. 
+		 */		
 		public function get maxChars():int {
 			return _maxChars;
 		}
@@ -103,7 +150,23 @@ package com.flow.components {
 				}
 			}
 		}
-
+		
+		/**
+		 * The hint to be shown when the TextInput does not have any text. 
+		 */		
+		public function get hint():String {
+			return _hint;
+		}
+		public function set hint(value:String):void {
+			if(value != _hint) {
+				_hint = value;
+				checkHint();
+			}
+		}
+		
+		/**
+		 * Defines whether the input should be obfuscated.
+		 */		
 		public function set password(value:Boolean):void {
 			if(value != _password) {
 				_password = value
@@ -123,6 +186,38 @@ package com.flow.components {
 		
 		private function textChanged(e:Event):void {
 			value = _labelDisplay.textField.text;
+		}
+		
+		private function keyDown(e:KeyboardEvent):void {
+			if(e.charCode == Keyboard.ENTER) {
+				dispatchEvent(new Event(Event.COMPLETE));
+			}
+		}
+		
+		/**
+		 * Selects text in the text input 
+		 * @param The character num to start selection from
+		 * @param The character num to end the selection
+		 * 
+		 */		
+		public function setSelection(beginIndex:int, endIndex:int):void {
+			_labelDisplay.textField.setSelection(beginIndex, endIndex);
+		}
+		
+		override public function set currentState(value:String):void {
+			super.currentState = value;
+			checkHint();
+		}
+		
+		private function checkHint():void {
+			if(_hintDisplay) {
+				if(currentState != "focus" && value == "" && hint != "") {
+					hintDisplay.text = hint;
+					hintDisplay.active = true;
+				} else {
+					hintDisplay.active = false;
+				}
+			}
 		}
 	}
 }

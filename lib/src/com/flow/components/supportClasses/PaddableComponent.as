@@ -25,76 +25,76 @@ package com.flow.components.supportClasses {
 	
 	public class PaddableComponent extends Component {
 		
-		private var _paddingTop:int;
-		private var _paddingRight:int;
-		private var _paddingLeft:int;
-		private var _paddingBottom:int;
+		private var _paddingTop:Number = 0;
+		private var _paddingRight:Number = 0;
+		private var _paddingLeft:Number = 0;
+		private var _paddingBottom:Number = 0;
 		
 		public function PaddableComponent() {
 			super();
 		}
 		
-		public function get padding():int {
+		public function get padding():Number {
 			if(_paddingTop == _paddingBottom && _paddingBottom == _paddingLeft && _paddingLeft == _paddingRight) {
 				return _paddingTop
 			}
 			return 0;
 		}
-		public function set padding(value:int):void {
+		public function set padding(value:Number):void {
 			paddingTop = paddingBottom = paddingLeft = paddingRight = value;
 		}
 		
-		public function get verticalPadding():int {
+		public function get verticalPadding():Number {
 			if(_paddingTop == _paddingBottom) {
 				return _paddingTop;
 			}
 			return 0;
 		}
-		public function set verticalPadding(value:int):void {
+		public function set verticalPadding(value:Number):void {
 			paddingTop = paddingBottom = value;
 		}
 		
-		public function get horizontalPadding():int {
+		public function get horizontalPadding():Number {
 			if(_paddingLeft == _paddingRight) {
 				return _paddingLeft;
 			}
 			return 0;
 		}
-		public function set horizontalPadding(value:int):void {
+		public function set horizontalPadding(value:Number):void {
 			paddingLeft = paddingRight = value;
 		}
 		
-		public function get paddingTop():int {
+		public function get paddingTop():Number {
 			return _paddingTop;
 		}
-		public function set paddingTop(value:int):void {
+		public function set paddingTop(value:Number):void {
 			if(value != _paddingTop) {
 				_paddingTop = value;
 				invalidateLayout();
 			}
 		}
-		public function get paddingRight():int {
+		public function get paddingRight():Number {
 			return _paddingRight;
 		}
-		public function set paddingRight(value:int):void {
+		public function set paddingRight(value:Number):void {
 			if(value != _paddingRight) {
 				_paddingRight = value;
 				invalidateLayout();
 			}
 		}
-		public function get paddingBottom():int {
+		public function get paddingBottom():Number {
 			return _paddingBottom;
 		}
-		public function set paddingBottom(value:int):void {
+		public function set paddingBottom(value:Number):void {
 			if(value != _paddingBottom) {
 				_paddingBottom = value;
 				invalidateLayout();
 			}
 		}
-		public function get paddingLeft():int {
+		public function get paddingLeft():Number {
 			return _paddingLeft;
 		}
-		public function set paddingLeft(value:int):void {
+		public function set paddingLeft(value:Number):void {
 			if(value != _paddingLeft) {
 				_paddingLeft = value;
 				invalidateLayout();
@@ -114,7 +114,7 @@ package com.flow.components.supportClasses {
 			drawWithPadding(_paddingLeft, _paddingTop, width, height);
 		}
 		
-		protected function drawWithPadding(offsetX:int, offsetY:int, width:int, height:int):void {
+		protected function drawWithPadding(offsetX:Number, offsetY:Number, width:Number, height:Number):void {
 			// Override
 		}
 		
@@ -122,7 +122,7 @@ package com.flow.components.supportClasses {
 			measureWithPadding(_paddingLeft + _paddingRight, _paddingTop + _paddingBottom);
 		}
 		
-		protected function measureWithPadding(horizontal:int, vertical:int):void {
+		protected function measureWithPadding(horizontal:Number, vertical:Number):void {
 			
 		}
 	}

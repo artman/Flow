@@ -22,12 +22,16 @@
 
 package com.flow.containers.layout {
 	
+	import avmplus.getQualifiedClassName;
+	
 	import com.flow.components.Component;
 	import com.flow.components.measuring.MeasureUnit;
 	import com.flow.components.measuring.MeasureUnits;
 	
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
+	import flash.net.getClassByAlias;
+	import flash.utils.getDefinitionByName;
 	
 	public class AbsoluteLayout extends LayoutBase {
 		

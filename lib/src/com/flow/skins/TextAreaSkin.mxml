@@ -23,45 +23,33 @@
 
 <fw:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:fw="http://artman.fi/flow"
-		 xmlns:mx="library://ns.adobe.com/flex/mx"
-		 height="30">	
+		 xmlns:fw="http://artman.fi/flow" 
+		 height="24" width="100">	
 	
 	<fx:Metadata>
-		[HostComponent("com.flow.components.Checkbox")]
+		[HostComponent("com.flow.components.TextInput")]
 	</fx:Metadata>
 	
 	<fw:states>
 		<s:State name="up" />
 		<s:State name="over" />
 		<s:State name="down" />
+		<s:State name="focus" />
 		<s:State name="disabled" />
 	</fw:states>
 	
-	<fw:Rect snapToPixels="false" x="1" width="16" height="16" radius="3" verticalCenter="0" >
+	<fw:Rect width="100%" height="100%" radius="3" >
 		<fw:fill>
 			<fw:GradientFill rotation="90">
-				<fw:GradientData color="0xF8F8F8" color.over="0xDDDDDD" color.down="0xCCCCCC" ratio="0" />
-				<fw:GradientData color="0xFFFFFF" color.over="0xF0F0F0" color.down="0xF0F0F0" color.disabled="0xFFFFFF" ratio="0.4" />
+				<fw:GradientData color="0xDDDDDD" color.focus="0xFFFFFF" ratio="0" />
+				<fw:GradientData color="0xFFFFFF" ratio="0.3" />
 			</fw:GradientFill>
 		</fw:fill>
 		<fw:stroke>
-			<fw:SolidStroke thickness="2" caps="none" color="0xBBBBBB" color.over="0xA5A5A5" color.down="0x888888" color.disabled="0xDDDDDD" />
+			<fw:SolidStroke thickness="2" caps="none" joints="miter" color="0xBBBBBB" color.over="0xAAAAAA" color.focus="0xDD0000" color.disabled="0xDDDDDD" />
 		</fw:stroke>
 	</fw:Rect>
 	
-	<fw:Path id="checker" width="8" height="8" verticalCenter="0" x="5">
-		<fw:transition>
-			<fw:FadeTransition speed="0.1" speedOut="0.2" />
-		</fw:transition>
-		<fw:stroke>
-			<fw:SolidStroke color="0" thickness="2" caps="none" joints="miter" />
-		</fw:stroke>
-		<mx:Point x="8" y="0" />
-		<mx:Point x="3" y="8" />
-		<mx:Point x="0" y="5" />
-	</fw:Path>
-	
-	<fw:Label left="22" id="labelDisplay" verticalCenter="0" color="0" color.disabled="0xAAAAAA" />
+	<fw:Label verticalAlign="top" padding="4" id="labelDisplay" align="left" width="100%" height="100%" color="0" color.disabled="0xAAAAAA" />
 	
 </fw:Skin>

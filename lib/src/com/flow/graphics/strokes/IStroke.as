@@ -26,10 +26,18 @@ package com.flow.graphics.strokes {
 	
 	import flash.display.Graphics;
 	import flash.events.IEventDispatcher;
-
+	
+	/**
+	 * A IStroke instance is responsible for setting the lineStyle on the graphics context that is about to be drawn to.
+	 */	
 	public interface IStroke extends IEventDispatcher, IAnimateable {
-		function beginDraw(graphics:Graphics, width:int, height:int):void ;
-		function endDraw(graphics:Graphics):void;
+		/**
+		 * The stroke needs to set the lineStyle on the given graphics context. 
+		 * @param The graphics context whos lineStyle to set.
+		 * @param The width of the rendering that is about to happen.
+		 * @param The height of the rendering that is about to happen.
+		 */		
+		function beginDraw(graphics:Graphics, width:int, height:int):void;
 		function get thickness():Number;
 	}
 }
