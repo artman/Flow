@@ -39,6 +39,7 @@ package com.flow.components {
 		protected var _password:Boolean;
 		/** @private */
 		protected var _hint:String;
+
 		
 		/**
 		 * Constructor 
