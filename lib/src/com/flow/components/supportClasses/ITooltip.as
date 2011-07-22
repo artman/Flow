@@ -21,8 +21,22 @@
  */
 
 package com.flow.components.supportClasses {
+	/**
+	 * A custom tooltip skin needs to implment this interface. 
+	 */	
 	public interface ITooltip {
+		/**
+		 * Sets the text on the tooltip skin. 
+		 * @param The text to show.
+		 */		
 		function set text(value:String):void;
+		/**
+		 * Sets the location of the tooltip. The implementor is responsible for checking that the tooltip fits on screen. 
+		 * @param The x position of the tooltip caret.
+		 * @param The y position of the tooltip caret.
+		 * @param The width of the stage.
+		 * @param The height of the stage.
+		 */		
 		function setLocation(x:int, y:int, stageWidth:int, stageHeight:int):void;
 	}
 }

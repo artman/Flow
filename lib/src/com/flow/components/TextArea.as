@@ -5,8 +5,12 @@ package com.flow.components {
 	import flash.events.KeyboardEvent;
 	import flash.events.TextEvent;
 	
+	/**
+	 * A text area component that displays multiple lines of text and can be used by the user to input text. 
+	 */	
 	public class TextArea extends TextInput {
 		
+		/** Whether to allow the entry of a carriage return  */		
 		public var allowEnter:Boolean = true;
 		
 		public function TextArea() {
@@ -26,6 +30,7 @@ package com.flow.components {
 			return _labelDisplay;
 		}
 		
+		/** @private */
 		protected function textInput(e:TextEvent):void {
 			if(!allowEnter && e.text.charCodeAt() == 10) {
 				e.preventDefault();
