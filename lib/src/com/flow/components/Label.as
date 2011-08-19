@@ -333,9 +333,9 @@ package com.flow.components {
 				var parentW:Number = firstExplicitWidth;
 				if(parentW != -1) {
 					_textField.width = parentW;
+				} else {
+					_textField.width = 1000;
 				}
-			} else {
-				_textField.width = 10000;
 			}
 			measuredWidth = Math.ceil(_textField.textWidth + horizontal + 4 + (_icon ? _icon.width + _iconPadding : 0));
 			measuredHeight = Math.ceil(Math.max(_icon ? _icon.height : 0, _textField.textHeight + vertical + 4));

@@ -47,6 +47,12 @@ package com.flow.containers {
 			super();
 		}
 		
+		override protected function getDefaultLayout():LayoutBase {
+			var ret:VBoxLayout = new VBoxLayout();
+			ret.horizontalAlign = "center";
+			return ret;
+		}
+		
 		public function get scrollX():Number {
 			return _scrollX;
 		}
