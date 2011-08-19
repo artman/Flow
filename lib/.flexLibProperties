@@ -39,6 +39,7 @@
     <classEntry path="com.flow.containers.ScrollArea"/>
     <classEntry path="com.flow.containers.Scroller"/>
     <classEntry path="com.flow.containers.VBox"/>
+    <classEntry path="com.flow.containers.ViewSwapper"/>
     <classEntry path="com.flow.containers.layout.AbsoluteLayout"/>
     <classEntry path="com.flow.containers.layout.AlignType"/>
     <classEntry path="com.flow.containers.layout.HBoxLayout"/>
@@ -141,6 +142,7 @@
     <classEntry path="com.flow.utils.callLaterTimed"/>
     <classEntry path="com.flow.utils.cloneObject"/>
     <classEntry path="com.flow.utils.hasPlayerVersion"/>
+    <classEntry path="mx.core.ClassFactory"/>
     <classEntry path="mx.core.IFactory"/>
     <classEntry path="mx.core.IStateClient"/>
     <classEntry path="mx.core.IStateClient2"/>

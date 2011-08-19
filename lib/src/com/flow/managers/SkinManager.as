@@ -5,7 +5,7 @@ package com.flow.managers {
 		
 		private static var defaultSkins:Object;
 		public static function init():void {
-			var components:Array = ["Button", "CheckBox", "HScrollBar", "VScrollBar", "TextInput", "TextArea"]
+			var components:Array = ["Button", "Checkbox", "HScrollBar", "VScrollBar", "TextInput", "TextArea"]
 			defaultSkins = {};
 			for each(var component:String in components) {
 				defaultSkins["com.flow.components." + component] = "com.flow.skins." + component + "Skin";
@@ -26,7 +26,11 @@ package com.flow.managers {
 		public static function getDefaultSkin(component:String):Class {
 			component = component.replace("::", ".");
 			if(defaultSkins[component]) {
-				return defaultSkins[component];
+				var cmp:* = defaultSkins[component];
+				if(cmp is String) {
+					cmp = getDefinitionByName(cmp);
+				}
+				return cmp;
 			}
 			return null;
 		}

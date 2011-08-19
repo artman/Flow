@@ -322,13 +322,20 @@ package com.flow.components {
 		
 		/** @private */
 		override protected function measureWithPadding(horizontal:Number, vertical:Number):void {
-			if(hasExplicitWidth) {
-				_textField.width = _w.value - horizontal;
-			}
 			if(isHTML) {
 				_textField.htmlText = transformedText;
 			} else {
 				_textField.text = transformedText;
+			}
+			if(hasExplicitWidth) {
+				_textField.width = _w.value - horizontal;
+			} else if(multiline) {
+				var parentW:Number = firstExplicitWidth;
+				if(parentW != -1) {
+					_textField.width = parentW;
+				}
+			} else {
+				_textField.width = 10000;
 			}
 			measuredWidth = Math.ceil(_textField.textWidth + horizontal + 4 + (_icon ? _icon.width + _iconPadding : 0));
 			measuredHeight = Math.ceil(Math.max(_icon ? _icon.height : 0, _textField.textHeight + vertical + 4));

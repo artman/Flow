@@ -731,6 +731,24 @@ package com.flow.components {
 			return _measureUnits;
 		}
 		
+		/**
+		 * Traverses up the display list and fetches the width for the first component that has a explicit width .
+		 * Returns -1 if none had an explicit width.
+		 */		
+		public function get firstExplicitWidth():int {
+			if(hasExplicitWidth) {
+				return width;
+			}
+			var component:Component = this;
+			while(component.parentContainer) {
+				component = component.parentContainer;
+				if(component.hasExplicitWidth) {
+					return component.width;
+				}
+			}
+			return -1
+		}
+		
 		/** 
 		 * The fill of the component. If assigned, the fill is applied to the full width and height of the component
 		 * during rendering.

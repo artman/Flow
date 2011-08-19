@@ -22,6 +22,9 @@
 
 package com.flow.containers {
 	
+	import com.flow.components.Component;
+	import com.flow.components.supportClasses.Preloader;
+	import com.flow.managers.TooltipManager;
 	import com.flow.motion.Tween;
 	
 	import flash.display.Sprite;
@@ -29,10 +32,9 @@ package com.flow.containers {
 	import flash.display.StageQuality;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
+	import flash.net.SharedObject;
+	import flash.net.SharedObjectFlushStatus;
 	import flash.text.TextField;
-	import com.flow.components.Component;
-	import com.flow.components.supportClasses.Preloader;
-	import com.flow.managers.TooltipManager;
 	
 	/**
 	 * The base container for any Flow application. This needs to be at the root of your Flow-based application.
@@ -43,11 +45,13 @@ package com.flow.containers {
 		public var preloader:Preloader;
 		public var tooltipRoot:Sprite;
 		private var debugLog:TextField;
+		private var applicationStoredParams:SharedObject;
 		
 		/** Constructor */		
 		public function Application(){
 			super()
 			application = this;
+			applicationStoredParams = SharedObject.getLocal("ApplicationParams");
 			if(stage) {
 				initApplication();
 			} else {
@@ -87,15 +91,66 @@ package com.flow.containers {
 		 * @param A default value that will be returned if the parameter hasn't been passed to your application via HTML.
 		 * @return The value of the parameter.
 		 */		
-		public function getParameter(key:String, defaultValue:* = null):* {
-			if(stage.loaderInfo.parameters[key] != undefined) {
-				var val:* = stage.loaderInfo.parameters[key];
+		public function getParameter(name:String, defaultValue:* = null):* {
+			if(stage.loaderInfo.parameters[name] != undefined) {
+				var val:* = stage.loaderInfo.parameters[name];
 				if(defaultValue is Boolean) {
 					val = val == "true" ? true : false;
 				}
 				return val;
 			}
 			return defaultValue;
+		}
+		
+		/**
+		 * Stores a value for later access across sessions on the same domain. 
+		 * @param The name of the parameter
+		 * @param The value of the parameter
+		 * @return A string containing one of the values of SharedObjectFlushStatus or "error", if the user has disallowed saving.
+		 */		
+		public function storeParameter(name:String, value:*):String {
+			applicationStoredParams.data[name] = value;
+			try {
+				var ret:String = applicationStoredParams.flush();
+				return ret;
+			} catch(e:Error) {}
+			return "Error";			
+		}
+		
+		/**
+		 * Retreives a previously saved parameter. 
+		 * @param The paramater name to retreive
+		 * @param A default value to return if the parameter is not found.
+		 * @return The value of the parameter or the defaultValue.
+		 */		
+		public function getStoredParameter(name:String, defaultValue:* = null):* {
+			if(name in applicationStoredParams.data) {
+				return applicationStoredParams.data[name];
+			}
+			return defaultValue;	
+		}
+		
+		/**
+		 * Deletes a previously stored parameter.
+		 * @param The parameter name to store
+		 */			
+		public function deleteStoredParameter(name:String):void {
+			try {
+				delete applicationStoredParams.data[name];
+				applicationStoredParams.flush();
+			} catch(e:Error) {}
+		}
+			
+		/**
+		 * Checks whether a parameter has been previously saved. 
+		 * @param The name of the parameter to find.
+		 * @return True if the parameter was found, false otherwise.
+		 */		
+		public function hasStoredParameter(name:String):Boolean {
+			if(name in applicationStoredParams.data) {
+				return true;
+			}
+			return false;	
 		}
 		
 		/** @private */

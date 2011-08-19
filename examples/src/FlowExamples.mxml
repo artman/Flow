@@ -21,7 +21,6 @@
 * THE SOFTWARE.
 -->
 
-
 <fw:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:s="library://ns.adobe.com/flex/spark" 
 				xmlns:fw="http://artman.fi/flow"
@@ -41,11 +40,12 @@
 			import flash.net.navigateToURL;
 			import flash.utils.describeType;
 			
+			import mx.core.IStateClient2;
 			import mx.utils.ObjectProxy;
 			
 			override protected function preInitialize():void {
 				new InitApplicationCommand();
-				
+				IStateClient2;
 				var contextMenu:ContextMenu = new ContextMenu();
 				
 				var viewSource:ContextMenuItem = new ContextMenuItem("View Source", true);
@@ -125,6 +125,6 @@
 			<fw:Button id="prev" disabled="{sectionCounter.selectedIndex==0}" label="Prev" verticalCenter="0" left="8" click="sectionCounter.selectedIndex--" />
 			<fw:Button id="next" disabled="{sectionCounter.selectedIndex == sectionCounter.dataProvider.length-1}" label="Next" verticalCenter="0" right="8" click="sectionCounter.selectedIndex++" />
 		</fw:Container>
-	
+		
 	</fw:Container>
 </fw:Application>

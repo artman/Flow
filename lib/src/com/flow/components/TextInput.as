@@ -18,8 +18,13 @@ package com.flow.components {
 	
 	/**
 	 * Dispatched, when the user presses enter while the TextInput has focus. 
-	 */	
+	 */
 	[Event(name="complete", type="flash.events.Event")]
+	
+	/**
+	 * Dispatched, when the value of the input changes. 
+	 */	
+	[Event(name="change", type="flash.events.Event")]
 	/**
 	 * A text input component that lets the user input one line of text. 
 	 */	
@@ -119,6 +124,7 @@ package com.flow.components {
 				_labelDisplay.text = val;
 			}
 			checkHint();
+			dispatchEvent(new Event(Event.CHANGE));
 		}
 		
 		/**
