@@ -24,6 +24,7 @@ package com.flow.containers {
 	
 	import com.flow.components.HScrollBar;
 	import com.flow.components.VScrollBar;
+	import com.flow.motion.Tween;
 	
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -183,5 +184,17 @@ package com.flow.containers {
 			childContainer.x = childContainer.y = inset;
 			childContainer.scrollRect = new Rectangle(_scrollX, _scrollY, contentWidth-inset, contentHeight-inset);
 		}
+		
+		/**
+		 * Scrolls the view.
+		 * @param The number of pixels to scroll the view right.
+		 * @param The number of pixels to scroll the view down
+		 * @param The duation of the scroll in seconds.
+		 * @param Any options applicable for a Tween instance.
+		 */		
+		public function scrollTo(xTo:Number, yTo:Number, speed:Number, options:Object = null):void {
+			new Tween(this, speed, {scrollX:xTo, scrollY:yTo}, options ? options : {});
+		}
+		
 	}
 }
