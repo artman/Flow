@@ -20,26 +20,36 @@
  * THE SOFTWARE.
  */
 
-package com.flow.containers.layout {
+package com.flow.containers {
 	
 	import com.flow.components.Component;
-	import com.flow.containers.Container;
 	import com.flow.effects.Effect;
 	import com.flow.motion.Tween;
 	
+	import flash.display.DisplayObject;
+	
+	/**
+	 * A container with one child visible at a time. 
+	 */	
 	public class ViewStack extends Container {
-		
 		private var _selectedIndex:int = 0;
 		private var _changeEffect:Effect;
 		public var fadeSpeed:Number = 0;
 		private var firstProps:Boolean = true;
 		private var lastIndex:int = 0;
 		
+		/**
+		 * Constructor 
+		 */		
 		public function ViewStack() {
 			super();
 			changeEffect = new Effect();
 		}
 		
+		/**
+		 * The index of the child that is visible within the view stack. Setting this property will change the visible child. 
+		 */	
+		[Bindable]
 		public function get selectedIndex():int {
 			return _selectedIndex;
 		}
@@ -50,6 +60,24 @@ package com.flow.containers.layout {
 			}
 		}
 		
+		/**
+		 * The current visible view.
+		 */		
+		[Bindable]
+		public function get selectedView():DisplayObject {
+			return _children.getItemAt(_selectedIndex) as DisplayObject;
+		}
+		
+		public function set selectedView(value:DisplayObject):void {
+			var index:int = _children.getItemIndex(value);
+			if(index != -1) {
+				selectedIndex = index;
+			}
+		}
+		
+		/**
+		 * The effect to use when swapping children. If null, children are swapped instantaneously.
+		 */		
 		public function get changeEffect():Effect {
 			return _changeEffect;
 		}
@@ -63,6 +91,7 @@ package com.flow.containers.layout {
 			}
 		}
 		
+		/** @private */		
 		override public function validateProperties():void {
 			super.validateProperties();
 			if(children) {
@@ -81,10 +110,10 @@ package com.flow.containers.layout {
 		
 		private function changeView(tween:Tween = null):void {
 			for(var i:int = 0; i<children.length; i++) {
-				if(children[i] is Component) {
-					(children[i] as Component).active = (i == selectedIndex);
+				if(_children.getItemAt(i) is Component) {
+					(_children.getItemAt(i) as Component).active = (i == selectedIndex);
 				} else {
-					children[i].visible = (i == selectedIndex);
+					children.getItemAt(i).visible = (i == selectedIndex);
 				}
 			}
 			if(!firstProps) {

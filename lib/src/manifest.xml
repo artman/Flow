@@ -152,7 +152,7 @@
 	<component id="VBoxLayout" class="com.flow.containers.layout.VBoxLayout"/>
 	<component id="VScrollBar" class="com.flow.components.VScrollBar"/>
 	<component id="VScrollBarSkin" class="com.flow.skins.VScrollBarSkin"/>
-	<component id="ViewStack" class="com.flow.containers.layout.ViewStack"/>
+	<component id="ViewStack" class="com.flow.containers.ViewStack"/>
 	<component id="ViewSwapper" class="com.flow.containers.ViewSwapper"/>
 	<component id="WebCam" class="com.flow.components.WebCam"/>
 	<component id="WebCamEvent" class="com.flow.events.WebCamEvent"/>

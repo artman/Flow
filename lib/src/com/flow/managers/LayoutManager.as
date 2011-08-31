@@ -86,7 +86,6 @@ package com.flow.managers {
 			root.addEventListener(Event.RESIZE, resize);
 			root.addEventListener(Event.FULLSCREEN, resize);
 			root.addEventListener(Event.ENTER_FRAME, enterFrame, false, 1000);
-			resize();
 		}
 		
 		private function resize(e:Event = null):void {

@@ -45,7 +45,7 @@
     <classEntry path="com.flow.containers.layout.HBoxLayout"/>
     <classEntry path="com.flow.containers.layout.LayoutBase"/>
     <classEntry path="com.flow.containers.layout.VBoxLayout"/>
-    <classEntry path="com.flow.containers.layout.ViewStack"/>
+    <classEntry path="com.flow.containers.ViewStack"/>
     <classEntry path="com.flow.effects.BevelEffect"/>
     <classEntry path="com.flow.effects.BlurEffect"/>
     <classEntry path="com.flow.effects.CSBEffect"/>
