@@ -42,7 +42,10 @@ package com.flow.containers {
 	public class Application extends Container {
 		
 		[Bindable] public static var application:Application;
+		
+		/** The preloader that has been assigned to this application  */		
 		public var preloader:Preloader;
+		/** @private */
 		public var tooltipRoot:Sprite;
 		private var debugLog:TextField;
 		private var applicationStoredParams:SharedObject;

@@ -34,7 +34,7 @@ package com.flow.containers {
 	public class ViewStack extends Container {
 		private var _selectedIndex:int = 0;
 		private var _changeEffect:Effect;
-		public var fadeSpeed:Number = 0;
+		private var _fadeSpeed:Number = 0;
 		private var firstProps:Boolean = true;
 		private var lastIndex:int = 0;
 		
@@ -98,9 +98,9 @@ package com.flow.containers {
 				if(fadeSpeed == 0 || firstProps) {
 					changeView();
 				} else {
-					for(var i:int = 0; i<children.length; i++) {
+					for(var i:int = 0; i<_children.length; i++) {
 						if(i == lastIndex) {
-							changeEffect.target = children[i];
+							changeEffect.target = _children.getItemAt(i) as DisplayObject;
 							changeEffect.fadeTargetOut(fadeSpeed).completeHandler = changeView;
 						}
 					}	
@@ -111,14 +111,14 @@ package com.flow.containers {
 		private function changeView(tween:Tween = null):void {
 			for(var i:int = 0; i<children.length; i++) {
 				if(_children.getItemAt(i) is Component) {
-					(_children.getItemAt(i) as Component).active = (i == selectedIndex);
+					(_children.getItemAt(i) as Component).active = (i == _selectedIndex);
 				} else {
-					children.getItemAt(i).visible = (i == selectedIndex);
+					children.getItemAt(i).visible = (i == _selectedIndex);
 				}
 			}
 			if(!firstProps) {
 				if(fadeSpeed != 0) {
-					changeEffect.target = children[selectedIndex];
+					changeEffect.target = _children.getItemAt(_selectedIndex) as DisplayObject;
 					changeEffect.targetAlpha = 0;
 					changeEffect.fadeTargetIn(fadeSpeed);
 				}
@@ -127,5 +127,18 @@ package com.flow.containers {
 			}
 			lastIndex = selectedIndex;
 		}
+
+		/**
+		 * The speed in seconds at which to transition from one view to another. If no effect has been set, new views will be faded in,
+		 * otherwise the effect is beeing played with the given speed.
+		 */		
+		public function get fadeSpeed():Number {
+			return _fadeSpeed;
+		}
+
+		public function set fadeSpeed(value:Number):void {
+			_fadeSpeed = value;
+		}
+
 	}
 }
