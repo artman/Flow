@@ -70,9 +70,15 @@ package com.flow.motion {
 			var lastUpdate:Number = currentTime;
 			currentTime = getTimer() / 1000;
 			var deltaTime:Number = (currentTime-lastUpdate);
-			for(var i:int = activeTweens.length-1; i>=0; i--) {
-				activeTweens[i].position = activeTweens[i]._position + deltaTime;
+			var len:int = activeTweens.length;
+			var tween:Tween;
+			while (--len > -1) {
+				tween = activeTweens[len];
+				tween.position = tween._position + deltaTime;
 			}
+/*			for(var i:int = activeTweens.length-1; i>=0; i--) {
+				activeTweens[i].position = activeTweens[i]._position + deltaTime;
+			}*/
 		}
 		
 		/** @private */
