@@ -26,6 +26,9 @@ package com.flow.utils {
 	import flash.events.Event;
 	import flash.utils.getTimer;
 	
+	/**
+	 * Calls a function n seconds later. 
+	 */	
 	public function callLaterTimed(closure:Function, seconds:Number = 0.5, ...rest):void {
 		var beacon:Sprite = new Sprite();
 		var startTime:Number = getTimer();

@@ -1,6 +1,9 @@
 package com.flow.utils {
 	import flash.system.Capabilities;
-
+	
+	/**
+	 * Checks if the client is running a compatible Flash Player version. 
+	 */	
 	public function hasPlayerVersion(major:int, minor:int = 0, build:int = 0):Boolean {
 		var ver:Array = Capabilities.version.split(" ")[1].split(",");
 		var playerMajor:int = parseInt(ver[0]);

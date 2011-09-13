@@ -25,6 +25,9 @@ package com.flow.utils {
 	import flash.display.Sprite;
 	import flash.events.Event;
 	
+	/**
+	 * Calls a function n frames later 
+	 */	
 	public function callLater(closure:Function, frameCount:int = 1, ...rest):void {
 		var beacon:Sprite = new Sprite();
 		Hooks.callLaterHooks[beacon] = closure; 
