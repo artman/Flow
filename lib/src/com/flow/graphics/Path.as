@@ -26,11 +26,17 @@ package com.flow.graphics {
 	
 	import flash.geom.Point;
 	
+	/**
+	 * Draws a shape with the stroke- and fill-property of the component. 
+	 */	
 	public class Path extends Shape {
 		
 		private var _points:Vector.<Point>;
 		private var _flipHorizontal:Boolean = false;
 		
+		/**
+		 * Constructor 
+		 */		
 		public function Path() {
 			super();
 			fill = null;

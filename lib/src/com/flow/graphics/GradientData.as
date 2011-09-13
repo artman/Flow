@@ -26,19 +26,32 @@ package com.flow.graphics {
 	import com.flow.motion.IAnimateable;
 	
 	import flash.events.EventDispatcher;
-
+	
+	/**
+	 * A Class defining one point of a gradient fill or gradient stroke. 
+	 */	
 	public class GradientData extends EventDispatcher implements IAnimateable {
 		
 		private var _color:int;
 		private var _alpha:Number;
 		private var _ratio:Number;
 		
+		/**
+		 * Constructor.
+		 * @param The color.
+		 * @param The alpha value.
+		 * @param The ratio of the entry (0-1).
+		 * 
+		 */		
 		public function GradientData(color:int = 0, alpha:Number = 1, ratio:Number = 0){
 			this.color = color;
 			this.alpha = alpha;
 			this.ratio = ratio;
 		}
 		
+		/**
+		 * The color of the gradient point .
+		 */		
 		[Animateable(type="color")]
 		public function get color():int {
 			return _color;
@@ -50,6 +63,9 @@ package com.flow.graphics {
 			}
 		}
 		
+		/**
+		 * The alpha value of the gradient point. 
+		 */		
 		[Animateable]
 		public function get alpha():Number {
 			return _alpha;
@@ -60,7 +76,10 @@ package com.flow.graphics {
 				invalidate();
 			}
 		}
-
+		
+		/**
+		 * The ratio of the gradient point from 0 to 1. 
+		 */		
 		[Animateable]
 		public function get ratio():Number {
 			return _ratio;

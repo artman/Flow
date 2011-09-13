@@ -24,12 +24,19 @@ package com.flow.graphics {
 	
 	import com.flow.graphics.strokes.SolidStroke;
 	
+	/**
+	 * Draws a line according to the widht and height with the stroke-property of the component.
+	 */	
 	public class Line extends Geometry {
 		
+		/**
+		 * Constructor 
+		 */		
 		public function Line() {
 			stroke = new SolidStroke();
 		}
 		
+		/** @private */
 		override public function draw(width:Number, height:Number):void {
 			super.draw(width, height);
 			graphics.moveTo(0,0);
