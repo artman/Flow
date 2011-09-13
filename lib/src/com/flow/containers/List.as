@@ -36,12 +36,14 @@ package com.flow.containers {
 		}
 		public function set dataProvider(value:*):void {
 			if(_dataProvider && _dataProvider is IList) {
-				(_dataProvider as IList).removeEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChanged)
+				(_dataProvider as IList).removeEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChanged);
 			}
 			_dataProvider = value;
+			_selectedIndex = -1;
+			_selectedItem = null;
 			invalidateProperties();
 			if(_dataProvider && _dataProvider is IList) {
-				(_dataProvider as IList).addEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChanged)
+				(_dataProvider as IList).addEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChanged);
 			}
 		}
 		
@@ -49,23 +51,33 @@ package com.flow.containers {
 			invalidateProperties();
 		}
 		
-		override public function validateProperties():void {
-			super.validateProperties();
-			if(_dataProvider && _itemRenderer) {
-				if(children && children.length) {
-					for(var i:int = 0; i<children.length; i++) {
-						(children.getItemAt(i) as Component).removeEventListener(MouseEvent.CLICK, rendererClicked);
-					}
+		private function removeItemRenderers():void {
+			if(children && children.length) {
+				var n:int = children.length;
+				while(--n > -1) {
+					(children.getItemAt(n) as Component).removeEventListener(MouseEvent.CLICK, rendererClicked);
 				}
 				children.removeAll();
+			}
+		}
+		
+		override public function validateProperties():void {
+			super.validateProperties();
+			
+			if(_dataProvider && _itemRenderer) {
+				removeItemRenderers();
+				
 				var data:* = _dataProvider;
 				if(data is IList) {
 					data = (data as IList).toArray();
 				}
 
 				if(data is Array || data is Vector.<*>) {
-					for(i = 0; i<data.length; i++) {
-						var renderer:Component = _itemRenderer.newInstance();
+					var i:int = 0;
+					var n:int = data.length;
+					var renderer:Component;
+					for(; i<n; ++i) {
+						renderer = _itemRenderer.newInstance();
 						renderer.data = data[i];
 						renderer.rendererIndex = i;
 						
@@ -78,7 +90,10 @@ package com.flow.containers {
 						children.addItem(renderer);
 					}
 					if(_selectedIndex != -1) {
-						(children.getItemAt(_selectedIndex) as Component).addState("selected");
+						renderer = children.getItemAt(_selectedIndex) as Component;
+						if(renderer) {
+							renderer.addState("selected");
+						}
 						if(_dataProvider is IList) {
 							selectedItem = (_dataProvider as IList).getItemAt(_selectedIndex);
 						} else {
@@ -87,7 +102,7 @@ package com.flow.containers {
 					}
 				}
 			} else {
-				children.removeAll();
+				removeItemRenderers();
 			}
 			dispatchEvent(new ListEvent(ListEvent.ITEMS_CREATED));
 		}
@@ -117,13 +132,17 @@ package com.flow.containers {
 					(children.getItemAt(_selectedIndex) as Component).removeState("selected");
 				}
 				_selectedIndex = value;
-				if(_dataProvider is Array || _dataProvider is Vector.<*>) {
-					selectedItem = _dataProvider[_selectedIndex];
-				} else if(_dataProvider is IList) {
-					selectedItem = (_dataProvider as IList).getItemAt(_selectedIndex);
-				}
-				if(!propertiesInvalidated) {
-					(children.getItemAt(_selectedIndex) as Component).addState("selected");
+				if(_selectedIndex != -1) {
+					if(_dataProvider is Array || _dataProvider is Vector.<*>) {
+						selectedItem = _dataProvider[_selectedIndex];
+					} else if(_dataProvider is IList) {
+						selectedItem = (_dataProvider as IList).getItemAt(_selectedIndex);
+					}
+					if(!propertiesInvalidated) {
+						(children.getItemAt(_selectedIndex) as Component).addState("selected");
+					}
+				} else {
+					selectedItem = null;
 				}
 				dispatchEvent(new ListEvent(ListEvent.SELECTION_CHANGED));
 			}
