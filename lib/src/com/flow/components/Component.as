@@ -128,7 +128,7 @@ package com.flow.components {
 		/** @private */ 
 		protected var _stroke:IStroke;
 		
-		private var _states:Array = [];
+		private var _states:Array;
 		private var _currentState:String = "";
 		/** @private */ 
 		protected var statesActive:Vector.<State>;
@@ -176,9 +176,13 @@ package com.flow.components {
 		
 		private var _effect:Effect;
 		
+		private var addedStatesBeforeInit:Array;
+		
 		[Event(name="creationComplete", type="com.flow.events.ComponentEvent")]
 		public function Component() {
 			super();
+			_states = [];
+			addedStatesBeforeInit = [];
 			statesActive = new Vector.<State>();
 			_top = new MeasureUnit(null);
 			_bottom = new MeasureUnit(null);
@@ -999,6 +1003,10 @@ package com.flow.components {
 			_currentState = "";
 			statesActive = new Vector.<State>();
 			if(_states && _states.length) {
+				for(var i:int = 0; i<addedStatesBeforeInit.length; i++) {
+					addState(addedStatesBeforeInit[i]);
+				}
+				addedStatesBeforeInit = [];
 				invalidateProperties(true);
 			}
 		}
@@ -1021,16 +1029,21 @@ package com.flow.components {
 		 * @see #currentState
 		 */
 		public function addState(stateName:String):void {
-			if(!statesActive.length && states && states.length) {
-				statesActive.push(states[0]);
-				checkState();
-			}
-			var state:State = getState(stateName);
-			if(state) {
-				if(statesActive.indexOf(state) == -1) {
-					statesActive.push(state);
+			if(states.length) {
+				if(!statesActive.length && states.length) {
+					
+					statesActive.push(states[0]);
 					checkState();
 				}
+				var state:State = getState(stateName);
+				if(state) {
+					if(statesActive.indexOf(state) == -1) {
+						statesActive.push(state);
+						checkState();
+					}
+				}
+			} else {
+				addedStatesBeforeInit.push(stateName);
 			}
 		}
 		
@@ -1043,10 +1056,17 @@ package com.flow.components {
 		 * @see #currentState
 		 */		
 		public function removeState(stateName:String):void {
-			var state:State = getState(stateName);
-			if(state && statesActive.indexOf(state) != -1) {
-				statesActive.splice(statesActive.indexOf(state), 1);
-				checkState();
+			if(states) {
+				var state:State = getState(stateName);
+				if(state && statesActive.indexOf(state) != -1) {
+					statesActive.splice(statesActive.indexOf(state), 1);
+					checkState();
+				}
+			} else {
+				var index:int = addedStatesBeforeInit.indexOf(stateName);
+				if(index != -1) {
+					addedStatesBeforeInit.splice(index,1);
+				}
 			}
 		}
 		

@@ -109,6 +109,7 @@ package com.flow.components.supportClasses {
 							skinHeightChange();
 						}
 					}
+					trace("Setting skin state " + currentState);
 					skin.currentState = currentState;
 					skinAttached();
 				} else {
