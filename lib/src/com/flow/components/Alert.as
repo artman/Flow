@@ -42,12 +42,13 @@ package com.flow.components {
 		private var defaultButton:Button;
 		
 		
-		public static function show(title:String, text:String, buttonsToShow:Array):void {
+		public static function show(title:String, text:String, buttonsToShow:Array):Alert {
 			var alert:Alert = new Alert();
 			alert.title = title;
 			alert.text = text;
 			alert.buttons = buttonsToShow;
 			PopupManager.addPopup(alert);
+			return alert;
 		}
 		
 		public function Alert() {
