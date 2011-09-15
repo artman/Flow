@@ -51,7 +51,6 @@ THE SOFTWARE.
 				</fw:fill>
 			</fw:Label>
 			
-			
 			<fw:Label id="contentLabel" textFormat="normal" padding="4" multiline="true" width="100%" maxWidth="400" />
 			
 			<fw:HBox horizontalAlign="right" id="buttonContainer" spacing="5" padding="5" width="100%">
