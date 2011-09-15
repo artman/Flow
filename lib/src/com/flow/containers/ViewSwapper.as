@@ -22,16 +22,7 @@
 
 package com.flow.containers {
 	
-	import com.flow.containers.layout.LayoutBase;
-	import com.flow.containers.layout.VBoxLayout;
-	import com.flow.motion.Tween;
-	import com.flow.motion.easing.Quadratic;
-	import com.flow.utils.MultiChangeWatcher;
-	
 	import flash.display.DisplayObject;
-	import flash.events.Event;
-	
-	import mx.binding.utils.ChangeWatcher;
 	
 	[DefaultProperty("view")]
 	public class ViewSwapper extends Container {

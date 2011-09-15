@@ -21,18 +21,15 @@
  */
 
 package com.flow.components.supportClasses {
-	import com.flow.components.Checkbox;
+	
 	import com.flow.components.Component;
 	import com.flow.containers.Container;
-	import com.flow.events.InvalidationEvent;
 	import com.flow.managers.IntrospectionManager;
 	import com.flow.managers.SkinManager;
 	
 	import flash.display.InteractiveObject;
 	import flash.events.Event;
-	import flash.utils.getQualifiedClassName;
 	
-	import mx.binding.utils.BindingUtils;
 	import mx.binding.utils.ChangeWatcher;
 	import mx.core.IFactory;
 

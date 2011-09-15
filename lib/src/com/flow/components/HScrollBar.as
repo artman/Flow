@@ -25,14 +25,12 @@ package com.flow.components {
 	import com.flow.components.supportClasses.SkinnableComponent;
 	
 	import flash.display.DisplayObject;
-	import flash.display.InteractiveObject;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.events.TimerEvent;
 	import flash.geom.Point;
 	import flash.utils.Timer;
 	
-	import mx.binding.utils.BindingUtils;
 	import mx.states.State;
 	
 	[SkinState("up")]

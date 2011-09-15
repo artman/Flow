@@ -28,7 +28,6 @@ package com.flow.components {
 	import flash.events.MouseEvent;
 	
 	import mx.binding.utils.BindingUtils;
-	import mx.states.State;
 	
 	[SkinState("up")]
 	[SkinState("over")]

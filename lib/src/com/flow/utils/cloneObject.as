@@ -21,6 +21,7 @@
  */
 
 package com.flow.utils {
+	
 	import flash.utils.ByteArray;
 	
 	/**

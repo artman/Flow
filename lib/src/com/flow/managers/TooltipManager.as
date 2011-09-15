@@ -22,12 +22,13 @@
 
 package com.flow.managers {
 	
-	import flash.display.DisplayObject;
-	import flash.display.DisplayObjectContainer;
-	import flash.events.MouseEvent;
 	import com.flow.components.Component;
 	import com.flow.components.supportClasses.DefaultTooltip;
 	import com.flow.components.supportClasses.ITooltip;
+	
+	import flash.display.DisplayObject;
+	import flash.display.DisplayObjectContainer;
+	import flash.events.MouseEvent;
 
 	public class TooltipManager {
 		

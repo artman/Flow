@@ -27,7 +27,6 @@ package com.flow.managers {
 	import com.flow.containers.Application;
 	import com.flow.containers.Container;
 	import com.flow.effects.Effect;
-	import com.flow.graphics.GradientData;
 	import com.flow.motion.AnimationProperties;
 	import com.flow.motion.AnimationProperty;
 	import com.flow.motion.IAnimateable;

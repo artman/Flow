@@ -23,7 +23,6 @@
 package com.flow.components {
 	
 	import com.flow.components.supportClasses.PaddableComponent;
-	import com.flow.graphics.Line;
 	import com.flow.managers.TextFormatManager;
 	
 	import flash.display.DisplayObject;
