@@ -16,6 +16,9 @@
 	<component id="AMFGatewayResponder" class="com.flow.net.AMFGatewayResponder"/>
 	<component id="AbsoluteLayout" class="com.flow.containers.layout.AbsoluteLayout"/>
 	<component id="AddItems" class="mx.states.AddItems"/>
+	<component id="Alert" class="com.flow.components.Alert"/>
+	<component id="AlertEvent" class="com.flow.events.AlertEvent"/>
+	<component id="AlertSkin" class="com.flow.skins.AlertSkin"/>
 	<component id="AlignType" class="com.flow.containers.layout.AlignType"/>
 	<component id="AnimationProperties" class="com.flow.motion.AnimationProperties"/>
 	<component id="AnimationProperty" class="com.flow.motion.AnimationProperty"/>
@@ -113,6 +116,7 @@
 	<component id="PaddableComponent" class="com.flow.components.supportClasses.PaddableComponent"/>
 	<component id="Path" class="com.flow.graphics.Path"/>
 	<component id="PixelateEffect" class="com.flow.effects.PixelateEffect"/>
+	<component id="PopupManager" class="com.flow.managers.PopupManager"/>
 	<component id="Preloader" class="com.flow.components.supportClasses.Preloader"/>
 	<component id="Quadratic" class="com.flow.motion.easing.Quadratic"/>
 	<component id="Quartic" class="com.flow.motion.easing.Quartic"/>
@@ -156,6 +160,7 @@
 	<component id="ViewSwapper" class="com.flow.containers.ViewSwapper"/>
 	<component id="WebCam" class="com.flow.components.WebCam"/>
 	<component id="WebCamEvent" class="com.flow.events.WebCamEvent"/>
+	<component id="Window" class="com.flow.containers.Window"/>
 	<component id="WipeEffect" class="com.flow.effects.WipeEffect"/>
 	<component id="XMLLoader" class="com.flow.net.loaders.XMLLoader"/>
 ..com.flow.utils.callLater

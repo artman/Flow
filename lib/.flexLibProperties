@@ -153,6 +153,10 @@
     <classEntry path="mx.states.State"/>
     <classEntry path="mx.states.Transition"/>
     <classEntry path="com.flow.containers.Window"/>
+    <classEntry path="com.flow.managers.PopupManager"/>
+    <classEntry path="com.flow.components.Alert"/>
+    <classEntry path="com.flow.skins.AlertSkin"/>
+    <classEntry path="com.flow.events.AlertEvent"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests>

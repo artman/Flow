@@ -27,7 +27,9 @@ package com.flow.containers {
 		}
 		
 		override protected function getDefaultLayout():LayoutBase {
-			return new VBoxLayout();
+			var layout:VBoxLayout = new VBoxLayout();
+			layout.verticalAlign = "top";
+			return layout;
 		}
 		
 		[Bindable]
