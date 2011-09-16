@@ -3,6 +3,7 @@ package com.flow.components.supportClasses {
 	import com.flow.components.Component;
 	import com.flow.containers.Container;
 	import com.flow.events.InvalidationEvent;
+	import com.flow.managers.IntrospectionManager;
 	import com.flow.managers.SkinManager;
 	
 	import flash.display.InteractiveObject;
@@ -130,7 +131,7 @@ package com.flow.components.supportClasses {
 		}
 		
 		protected function get defaultSkin():Skin {
-			var skinClass:Class = SkinManager.getDefaultSkin(getQualifiedClassName(this));
+			var skinClass:Class = SkinManager.getDefaultSkin(IntrospectionManager.getClassName(this));
 			if(skinClass) {
 				return new skinClass();
 			}

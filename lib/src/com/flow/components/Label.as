@@ -23,6 +23,7 @@
 package com.flow.components {
 	
 	import com.flow.components.supportClasses.PaddableComponent;
+	import com.flow.graphics.Line;
 	import com.flow.managers.TextFormatManager;
 	
 	import flash.display.DisplayObject;
@@ -30,6 +31,7 @@ package com.flow.components {
 	import flash.text.TextField;
 	import flash.text.TextFieldType;
 	import flash.text.TextFormat;
+	import flash.text.TextLineMetrics;
 	
 	[DefaultProperty("htmlText")]
 	public class Label extends PaddableComponent {
@@ -211,6 +213,7 @@ package com.flow.components {
 					addChild(_icon);
 				}	
 				invalidateLayout();
+				invalidate();
 			}
 		}
 		
@@ -221,6 +224,7 @@ package com.flow.components {
 			if(value != _iconPadding) {
 				_iconPadding = value;
 				invalidateLayout();
+				invalidate();
 			}
 		}
 		
@@ -286,7 +290,7 @@ package com.flow.components {
 			return _text;
 		}
 		
-		override protected function measureWithPadding(horizontal:int, vertical:int):void {
+		override protected function measureWithPadding(horizontal:Number, vertical:Number):void {
 			if(hasExplicitWidth) {
 				_textField.width = _w.value - horizontal;
 			}
@@ -295,11 +299,11 @@ package com.flow.components {
 			} else {
 				_textField.text = transformedText;
 			}
-			measuredWidth = Math.ceil(_textField.textWidth + horizontal + 4) + (_icon ? _icon.width + _iconPadding : 0);
-			measuredHeight = Math.ceil(_textField.textHeight + vertical + 4);
+			measuredWidth = Math.ceil(_textField.textWidth + horizontal + 4 + (_icon ? _icon.width + _iconPadding : 0));
+			measuredHeight = Math.ceil(Math.max(_icon ? _icon.height : 0, _textField.textHeight + vertical + 4));
 		}
 		
-		override protected function drawWithPadding(offsetX:int, offsetY:int, width:int, height:int):void {
+		override protected function drawWithPadding(offsetX:Number, offsetY:Number, width:Number, height:Number):void {
 			super.drawWithPadding(offsetX, offsetY, width, height);
 			var iconW:Number = _icon ? _icon.width + _iconPadding : 0;
 			_textField.x = offsetX + (_iconPlacement == "left" ? iconW : 0);
@@ -330,7 +334,8 @@ package com.flow.components {
 				} else {
 					_icon.x = offsetX + width - icon.width;
 				}
-				_icon.y = Math.round(_textField.y + (_textField.textHeight - _icon.height) / 2);
+				var metrics:TextLineMetrics = _textField.getLineMetrics(0);
+				_icon.y = Math.round((height - _icon.height) / 2);
 				_icon.visible = true;
 			}
 		}

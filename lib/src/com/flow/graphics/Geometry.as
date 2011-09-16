@@ -47,9 +47,6 @@ package com.flow.graphics {
 		}
 		
 		public function endDraw():void  {
-			if (_stroke) {
-				_stroke.endDraw(graphics);
-			}
 			if (_fill) {
 				_fill.endDraw(graphics);
 			}

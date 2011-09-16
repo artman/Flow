@@ -25,7 +25,7 @@
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
 		 xmlns:fw="http://artman.fi/flow"
 		 xmlns:mx="library://ns.adobe.com/flex/mx"
-		 width="200" height="30">	
+		 height="30">	
 	
 	<fx:Metadata>
 		[HostComponent("com.flow.components.Checkbox")]
