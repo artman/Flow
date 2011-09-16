@@ -94,7 +94,7 @@ package com.flow.collections {
 		
 		/** @inheritDoc */
 		public function removeAll():void {
-			_source = new Vector.<DisplayObject>();
+			_source = [];
 			var event:CollectionEvent = new CollectionEvent(CollectionEvent.COLLECTION_CHANGE, false, false, CollectionEventKind.RESET, -1, -1, null);
 			dispatchEvent(event);
 		}

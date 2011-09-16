@@ -47,12 +47,13 @@ package com.flow.containers {
 		}
 		
 		public function set view(value:DisplayObject):void {
-			trace("SET VIEW");
 			if(_view) {
 				removeChild(_view);
 			}
 			_view = value;
-			addChild(value);
+			if(_view) {
+				addChild(value);
+			}
 		}
 		
 		public function get view():DisplayObject {
