@@ -47,11 +47,11 @@
 			<fw:VBoxLayout spacing="10" horizontalAlign="left" padding="10" />
 		</fw:layout>
 		
-		<fw:Label width="480" text="Sorry, there are not that many controls available in flow yet. More are comming, and you can always create your own!" left="10" right="10" multiline="true" />
+		<fw:Label width="480" text="There are not that many controls available in flow yet. More are comming, and you can always create your own!" left="10" right="10" multiline="true" />
 		<fw:Button label="Yep, I'm a button" skinClass="{new ButtonSkin}" verticalCenter="0" left="8" />
 		<fw:Checkbox id="checkbox" label="{checkbox.selected ? 'I\'m a selected checkbox' : 'I\'m an unselected checkbox'}" skinClass="{new CheckboxSkin}" verticalCenter="0" left="8" />
 		<fw:TextInput id="textInput" width="200" value="Text input" skinClass="{new TextInputSkin}" />
-		<fw:Label text="This label is bound to the input abvoe: {textInput.value}" multiline="true" width="480" />
+		<fw:Label text="This label is bound to the input above: {textInput.value}" multiline="true" width="480" />
 
 	</fw:Container>
 	
