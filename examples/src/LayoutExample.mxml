@@ -1,74 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
-<flow:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
-				  xmlns:flow="http://artman.fi/flow">
+<fw:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
+				  xmlns:fw="http://artman.fi/flow">
 	<fx:Script>
 		<![CDATA[
 			import com.flow.skins.ButtonSkin;
 		]]>
 	</fx:Script>
 	
-	<!--flow:ScrollArea>
+	<!--fw:ScrollArea>
 		
 	
 	
-	<flow:Container width="300" height="20" verticalCenter="0" horizontalCenter="0">
-		<flow:states>
-		</flow:states>
+	<fw:Container width="300" height="20" verticalCenter="0" horizontalCenter="0">
+		<fw:states>
+		</fw:states>
 		
-		<flow:background>
-			<flow:SolidFill color="0xDDDDDD" />
-		</flow:background>
-	</flow:Container>
-	</flow:ScrollArea>
+		<fw:background>
+			<fw:SolidFill color="0xDDDDDD" />
+		</fw:background>
+	</fw:Container>
+	</fw:ScrollArea>
 	
 	
 	
-	<flow:List width="100%" height="20" bottom="0" dataProvider="{[1,2,3,4]}">
-		<flow:layout>
-			<flow:HBoxLayout spacing="5" />
-		</flow:layout>
-		<flow:background>
-			<flow:SolidFill color="0xDDDDDD" />
-		</flow:background>
-		<flow:itemRenderer>
+	<fw:List width="100%" height="20" bottom="0" dataProvider="{[1,2,3,4]}">
+		<fw:layout>
+			<fw:HBoxLayout spacing="5" />
+		</fw:layout>
+		<fw:background>
+			<fw:SolidFill color="0xDDDDDD" />
+		</fw:background>
+		<fw:itemRenderer>
 			<fx:Component>
-				<flow:Container width="20" height="20">
-					<flow:background>
-						<flow:SolidFill color="0xFF0000" />
-					</flow:background>
-				</flow:Container>
+				<fw:Container width="20" height="20">
+					<fw:background>
+						<fw:SolidFill color="0xFF0000" />
+					</fw:background>
+				</fw:Container>
 			</fx:Component>
-		</flow:itemRenderer>
-	</flow:List>
+		</fw:itemRenderer>
+	</fw:List>
 	
 	
-	<flow:Container width="100%" height="20" bottom="0">
-		<flow:layout>
-			<flow:HBoxLayout spacing="5" />
-		</flow:layout>
+	<fw:Container width="100%" height="20" bottom="0">
+		<fw:layout>
+			<fw:HBoxLayout spacing="5" />
+		</fw:layout>
 		
-		<flow:Component width="10" height="10">
-			<flow:background>
-				<flow:SolidFill color="0xFF0000" />
-			</flow:background>
-		</flow:Component>
+		<fw:Component width="10" height="10">
+			<fw:background>
+				<fw:SolidFill color="0xFF0000" />
+			</fw:background>
+		</fw:Component>
 		
-		<flow:Component width="10" height="10">
-			<flow:background>
-				<flow:SolidFill color="0xFF0000" />
-			</flow:background>
-		</flow:Component>
+		<fw:Component width="10" height="10">
+			<fw:background>
+				<fw:SolidFill color="0xFF0000" />
+			</fw:background>
+		</fw:Component>
 		
-		<flow:Component width="10" height="10">
-			<flow:background>
-				<flow:SolidFill color="0xFF0000" />
-			</flow:background>
-		</flow:Component>
+		<fw:Component width="10" height="10">
+			<fw:background>
+				<fw:SolidFill color="0xFF0000" />
+			</fw:background>
+		</fw:Component>
 		
-	</flow:Container-->
+	</fw:Container-->
 	
 	
-	<flow:Button label="Jepssaaa" left="100" top="100" skinClass="{ButtonSkin}">
-	</flow:Button>
+	<fw:Button label="Jepssaaa" x="10" y="10" skinClass="{ButtonSkin}">
+	</fw:Button>
 	
-</flow:Application>
+	
+	<fw:Container verticalCenter="0" horizontalCenter="0">
+		<fw:Rect width="100%" height="100%" radius="3" >
+			<fw:fill>
+				<fw:GradientFill rotation="90">
+					<fw:GradientData color="0xFFFFFF" ratio="0" />
+					<fw:GradientData color="0xDDDDDD" ratio="1" />
+				</fw:GradientFill>
+			</fw:fill>
+			<fw:border>
+				<fw:SolidStroke color="0xCCCCCC" />
+			</fw:border>
+		</fw:Rect>
+		
+		<fw:Label horizontalPadding="10" text="Kiva juttu tässä!" verticalPadding="3" id="labelDisplay" align="center" horizontalCenter="0" verticalCenter="0" />
+	</fw:Container>
+	
+	
+</fw:Application>
