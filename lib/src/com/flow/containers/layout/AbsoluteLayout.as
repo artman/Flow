@@ -119,12 +119,19 @@ package com.flow.containers.layout {
 					} else {
 						w += m.left.value;
 					}
+					if(!m.right.isNull) {
+						w += m.bottom.value;
+					}
 					
 					if(m.top.isNull && m.bottom.isNull) {
 						h += comp.y;
 					} else {
 						h += m.top.value;
 					}
+					if(!m.bottom.isNull) {
+						h += m.bottom.value;
+					}
+					
 				}
 				maxW = Math.max(maxW, w);
 				maxH = Math.max(maxH, h);

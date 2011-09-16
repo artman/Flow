@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fw:Container xmlns:fx="http://ns.adobe.com/mxml/2009"
+			  xmlns:s="library://ns.adobe.com/flex/spark" 
+			  xmlns:fw="http://artman.fi/flow"
+			  width="600" height="400" >
+	
+	<fx:Declarations>
+		<fw:GradientFill id="itemFill" rotation="90">
+			<fw:GradientData color="0xDD0000" ratio="0" />
+			<fw:GradientData color="0xBB0000" ratio="1" />
+		</fw:GradientFill>
+		<fw:SolidStroke id="itemStroke" color="0x990000" />
+	</fx:Declarations>
+	
+	<fw:Container top="5%" left="5%" width="90%" >
+		<fw:fill>
+			<fw:SolidFill color="0xE8E8E8" />
+		</fw:fill>
+		<fw:stroke>
+			<fw:SolidStroke color="0xCCCCCC" />
+		</fw:stroke>
+		<fw:Label y="0" width="100%" text="width=100%" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
+		<fw:Label y="30" width="50%" text="width=50%" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
+		<fw:Label y="60" width="50%" right="0" text="width=50% right=0" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
+		<fw:Label y="90" width="50%" left="30" right="30" text="left=30 right=30" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
+		<fw:Label y="120" width="200" horizontalCenter="0" text="width=200 horizontalCenter=0" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
+		<fw:Label y="150" width="200" horizontalCenter="100" text="width=200 horizontalCenter=100" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
+		<fw:Label y="180" left="25%" right="25%" text="left=25% right=25%" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
+	</fw:Container>
+	
+	
+	
+	<fw:Container bottom="10" left="5%" width="90%" height="150" >
+		<fw:fill>
+			<fw:SolidFill color="0xE8E8E8" />
+		</fw:fill>
+		<fw:stroke>
+			<fw:SolidStroke color="0xCCCCCC" />
+		</fw:stroke>
+		<fw:Label horizontalPadding="10" bottom="10" height="50%" text="height=50% bottom=10" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
+		<fw:Label x="200" horizontalPadding="20" top="20" bottom="20" text="top=20 bottom=20" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
+		<fw:Label right="0" horizontalPadding="10" verticalCenter="0" height="100" text="height=50 verticalCenter=0" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
+		
+		
+	</fw:Container>
+	
+	
+</fw:Container>

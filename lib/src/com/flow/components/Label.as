@@ -16,7 +16,6 @@ package com.flow.components {
 	import flash.text.TextFormat;
 	import flash.text.TextFormatAlign;
 	import flash.text.TextLineMetrics;
-	import com.flow.components.supportClasses.PaddableComponent;
 	
 	[DefaultProperty("htmlText")]
 	public class Label extends PaddableComponent {
@@ -27,6 +26,7 @@ package com.flow.components {
 		private var _verticalAlign:String = "middle";
 		private var _size:int;
 		private var _color:int;
+		private var hasColor:Boolean = false;
 		private var _ellipsis:Boolean = false;
 		private var _textTransform:String = "";
 		private var _multiline:Boolean = false;
@@ -41,6 +41,7 @@ package com.flow.components {
 			_textField = new TextField();
 			_textField.selectable = false;
 			_textField.embedFonts = true;
+			_textField.antiAliasType = AntiAliasType.ADVANCED;
 			multiline = false;
 			addChild(_textField);
 		}
@@ -125,6 +126,7 @@ package com.flow.components {
 		}
 		public function set color(value:int):void {
 			_color = value;
+			hasColor = true; 
 			invalidateProperties();
 		}
 		
@@ -151,6 +153,9 @@ package com.flow.components {
 		}
 		
 		override public function validateProperties():void {
+			var k:int;
+			
+			
 			var def:TextFormat = TextFormatManager.getTextFormat(_textFormat);
 			if(!def) {
 				_textField.embedFonts = false;
@@ -161,7 +166,7 @@ package com.flow.components {
 			if(_size) {
 				def.size = _size;
 			}
-			if(_color) {
+			if(hasColor) {
 				def.color = _color;
 			}
 			if(_align) {
@@ -189,8 +194,6 @@ package com.flow.components {
 		override protected function measureWithPadding(horizontal:int, vertical:int):void {
 			if(hasExplicitWidth) {
 				_textField.width = _w.value - horizontal;
-			} else {
-				//_textField.autoSize = "left";
 			}
 			if(isHTML) {
 				_textField.htmlText = transformedText;
@@ -206,9 +209,8 @@ package com.flow.components {
 			_textField.x = offsetX;
 			
 			_textField.autoSize = "none";
-			_textField.width = width;
+			_textField.width = width+1;
 			if(align == "center") {
-				// Ensure pixel perfect rendering
 				_textField.width = Math.floor(_textField.width/2)*2;
 			}
 			_textField.height = height-2;

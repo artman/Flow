@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<fw:Container xmlns:fx="http://ns.adobe.com/mxml/2009"
+			  xmlns:s="library://ns.adobe.com/flex/spark" 
+			  xmlns:fw="http://artman.fi/flow" xmlns:assets="assets.*"
+			  >
+	
+	<fx:Declarations>
+		<fw:GradientFill id="itemFill" rotation="90">
+			<fw:GradientData color="0xDD0000" ratio="0" />
+			<fw:GradientData color="0xBB0000" ratio="1" />
+		</fw:GradientFill>
+		<fw:SolidStroke id="itemStroke" color="0x990000" />
+	</fx:Declarations>
+	
+	
+	<fw:Container>
+		
+		<fw:layout>
+			<fw:HBoxLayout spacing="10" padding="10" />
+		</fw:layout>
+		
+		<fw:Container>
+			<fw:stroke>
+				<fw:SolidStroke color="0xDDDDDD" />
+			</fw:stroke>
+			<fw:layout>
+				<fw:VBoxLayout spacing="5" horizontalAlign="center" />
+			</fw:layout>
+			
+			<fw:Label text="A Number" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
+			<fw:Label text="of labels" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
+			<fw:Label text="in a vbox layout" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
+			<fw:Label text="with horizontalAlign" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
+			<fw:Label text="=center" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
+		</fw:Container>
+		
+		<fw:Container>
+			<fw:stroke>
+				<fw:SolidStroke color="0xDDDDDD" />
+			</fw:stroke>
+			<fw:layout>
+				<fw:VBoxLayout spacing="10" horizontalAlign="right" />
+			</fw:layout>
+			
+			<fw:Label text="more" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
+			<fw:Label text="labels in a vbox" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
+			<fw:Label text="with horizontalAlign" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
+			<fw:Label text="=right" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
+			<fw:Label text="with spacing 10" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
+		</fw:Container>
+		
+		<fw:Container>
+			<fw:stroke>
+				<fw:SolidStroke color="0xDDDDDD" />
+			</fw:stroke>
+			<fw:layout>
+				<fw:VBoxLayout spacing="5" horizontalAlign="center" paddingBottom="1" />
+			</fw:layout>
+			
+			<fw:Label text="You also can" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
+			<fw:Label text="mix in any DisplayObject:" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
+			<assets:Postcard />
+			<fw:Label text="A swf in this case" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
+		</fw:Container>
+
+	</fw:Container>
+	
+</fw:Container>
