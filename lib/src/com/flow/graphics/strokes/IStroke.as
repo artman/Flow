@@ -19,21 +19,15 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-package com.flow.components.graphics {
+
+package com.flow.graphics.strokes {
 	
-	import com.flow.components.graphics.strokes.SolidStroke;
-	
-	public class Line extends Geometry {
-		
-		public function Line() {
-			stroke = new SolidStroke();
-		}
-		
-		override public function draw(width:int, height:int):void {
-			super.draw(width, height);
-			graphics.moveTo(0,0);
-			graphics.lineTo(width,height);
-			endDraw();
-		}
+	import flash.display.Graphics;
+	import flash.events.IEventDispatcher;
+
+	public interface IStroke extends IEventDispatcher {
+		function beginDraw(graphics:Graphics, width:int, height:int):void ;
+		function endDraw(graphics:Graphics):void;
+		function get thickness():Number;
 	}
 }

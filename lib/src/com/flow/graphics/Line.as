@@ -19,43 +19,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-
-package com.flow.components.graphics {
+package com.flow.graphics {
 	
-	import com.flow.components.Component;
-	import com.flow.components.graphics.fills.IFill;
-	import com.flow.components.graphics.strokes.IStroke;
-	import com.flow.events.InvalidationEvent;
+	import com.flow.graphics.strokes.SolidStroke;
 	
-	[DefaultProperty("stroke")]
-	public class Geometry extends Component {
+	public class Line extends Geometry {
 		
-		public function Geometry() {
-			super();
-		}
-
-		override protected function checkVisibility():Boolean {
-			return true;
+		public function Line() {
+			stroke = new SolidStroke();
 		}
 		
-		override public function draw(w:int, h:int):void {	
-			graphics.clear();
-			graphics.lineStyle(undefined);
-			if (_stroke) {
-				_stroke.beginDraw(graphics, w, h);
-			}
-			if (_fill) {
-				_fill.beginDraw(graphics, w, h);
-			}
-		}
-		
-		public function endDraw():void  {
-			if (_stroke) {
-				_stroke.endDraw(graphics);
-			}
-			if (_fill) {
-				_fill.endDraw(graphics);
-			}
+		override public function draw(width:int, height:int):void {
+			super.draw(width, height);
+			graphics.moveTo(0,0);
+			graphics.lineTo(width,height);
+			endDraw();
 		}
 	}
 }

@@ -20,14 +20,13 @@
  * THE SOFTWARE.
  */
 
-package com.flow.components.graphics.fills {
+package com.flow.graphics.fills {
 	
-	import com.flow.components.graphics.GradientData;
 	import com.flow.events.InvalidationEvent;
+	import com.flow.graphics.GradientData;
 	
 	import flash.display.GradientType;
 	import flash.display.Graphics;
-	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	import flash.geom.Matrix;
 

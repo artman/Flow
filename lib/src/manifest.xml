@@ -22,7 +22,7 @@
 	<component id="Application" class="com.flow.containers.Application"/>
 	<component id="Back" class="com.flow.motion.easing.Back"/>
 	<component id="BevelEffect" class="com.flow.effects.BevelEffect"/>
-	<component id="BitmapFill" class="com.flow.components.graphics.fills.BitmapFill"/>
+	<component id="BitmapFill" class="com.flow.graphics.fills.BitmapFill"/>
 	<component id="BlurEffect" class="com.flow.effects.BlurEffect"/>
 	<component id="Bounce" class="com.flow.motion.easing.Bounce"/>
 	<component id="Button" class="com.flow.components.Button"/>
@@ -56,23 +56,23 @@
 	<component id="FadeTransition" class="com.flow.effects.transitions.FadeTransition"/>
 	<component id="FlipEffect" class="com.flow.effects.FlipEffect"/>
 	<component id="FullBevelEffect" class="com.flow.effects.FullBevelEffect"/>
-	<component id="Geometry" class="com.flow.components.graphics.Geometry"/>
+	<component id="Geometry" class="com.flow.graphics.Geometry"/>
 	<component id="GlowEffect" class="com.flow.effects.GlowEffect"/>
-	<component id="GradientData" class="com.flow.components.graphics.GradientData"/>
-	<component id="GradientFill" class="com.flow.components.graphics.fills.GradientFill"/>
-	<component id="GradientStroke" class="com.flow.components.graphics.strokes.GradientStroke"/>
+	<component id="GradientData" class="com.flow.graphics.GradientData"/>
+	<component id="GradientFill" class="com.flow.graphics.fills.GradientFill"/>
+	<component id="GradientStroke" class="com.flow.graphics.strokes.GradientStroke"/>
 	<component id="GraphicUtils" class="com.flow.utils.GraphicUtils"/>
 	<component id="GreyscaleEffect" class="com.flow.effects.GreyscaleEffect"/>
 	<component id="HBoxLayout" class="com.flow.containers.layout.HBoxLayout"/>
 	<component id="IFactory" class="mx.core.IFactory"/>
-	<component id="IFill" class="com.flow.components.graphics.fills.IFill"/>
+	<component id="IFill" class="com.flow.graphics.fills.IFill"/>
 	<component id="IList" class="com.flow.collections.IList"/>
 	<component id="IOverride" class="mx.states.IOverride"/>
 	<component id="IStateClient" class="mx.core.IStateClient"/>
 	<component id="IStateClient2" class="mx.core.IStateClient2"/>
-	<component id="IStroke" class="com.flow.components.graphics.strokes.IStroke"/>
+	<component id="IStroke" class="com.flow.graphics.strokes.IStroke"/>
 	<component id="ITooltip" class="com.flow.components.supportClasses.ITooltip"/>
-	<component id="Image" class="com.flow.components.graphics.Image"/>
+	<component id="Image" class="com.flow.graphics.Image"/>
 	<component id="InnerGlowEffect" class="com.flow.effects.InnerGlowEffect"/>
 	<component id="InvalidationEvent" class="com.flow.events.InvalidationEvent"/>
 	<component id="JSONDecoder" class="com.adobe.serialization.json.JSONDecoder"/>
@@ -87,7 +87,7 @@
 	<component id="Label" class="com.flow.components.Label"/>
 	<component id="LayoutBase" class="com.flow.containers.layout.LayoutBase"/>
 	<component id="LayoutManager" class="com.flow.managers.LayoutManager"/>
-	<component id="Line" class="com.flow.components.graphics.Line"/>
+	<component id="Line" class="com.flow.graphics.Line"/>
 	<component id="Linear" class="com.flow.motion.easing.Linear"/>
 	<component id="List" class="com.flow.containers.List"/>
 	<component id="ListEvent" class="com.flow.events.ListEvent"/>
@@ -106,16 +106,16 @@
 	<component id="Quartic" class="com.flow.motion.easing.Quartic"/>
 	<component id="Quintic" class="com.flow.motion.easing.Quintic"/>
 	<component id="RadialWipeEffect" class="com.flow.effects.RadialWipeEffect"/>
-	<component id="Rect" class="com.flow.components.graphics.Rect"/>
+	<component id="Rect" class="com.flow.graphics.Rect"/>
 	<component id="RippleEffect" class="com.flow.effects.RippleEffect"/>
 	<component id="ScrollArea" class="com.flow.containers.ScrollArea"/>
 	<component id="SetProperty" class="mx.states.SetProperty"/>
-	<component id="Shape" class="com.flow.components.graphics.Shape"/>
+	<component id="Shape" class="com.flow.graphics.Shape"/>
 	<component id="Sine" class="com.flow.motion.easing.Sine"/>
 	<component id="Skin" class="com.flow.components.supportClasses.Skin"/>
 	<component id="SkinnableComponent" class="com.flow.components.supportClasses.SkinnableComponent"/>
-	<component id="SolidFill" class="com.flow.components.graphics.fills.SolidFill"/>
-	<component id="SolidStroke" class="com.flow.components.graphics.strokes.SolidStroke"/>
+	<component id="SolidFill" class="com.flow.graphics.fills.SolidFill"/>
+	<component id="SolidStroke" class="com.flow.graphics.strokes.SolidStroke"/>
 	<component id="Spacing" class="com.flow.components.Spacing"/>
 	<component id="State" class="mx.states.State"/>
 	<component id="StateEvent" class="com.flow.events.StateEvent"/>

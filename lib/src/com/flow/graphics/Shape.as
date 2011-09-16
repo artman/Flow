@@ -20,9 +20,9 @@
  * THE SOFTWARE.
  */
 
-package com.flow.components.graphics {
+package com.flow.graphics {
 	
-	import com.flow.components.graphics.fills.SolidFill;
+	import com.flow.graphics.fills.SolidFill;
 	
 	import flash.geom.Point;
 	
