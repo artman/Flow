@@ -51,6 +51,10 @@
 			<fx:String>Absolute layout</fx:String>
 			<fx:String>Box layout</fx:String>
 			<fx:String>Components</fx:String>
+<<<<<<< HEAD
+=======
+			<fx:String>Remote procedures</fx:String>
+>>>>>>> Housekeeping
 		</fx:Array>
 	</fx:Declarations>
 	
