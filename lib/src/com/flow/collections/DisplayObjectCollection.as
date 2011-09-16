@@ -87,7 +87,10 @@ package com.flow.collections {
 		
 		/** @inheritDoc */
 		public function getItemAt(index:int, prefetch:int=0):Object {
-			return _source[index];
+			if(_source.length > index) {
+				return _source[index];
+			}
+			return null;
 		}
 		
 		/** @inheritDoc */

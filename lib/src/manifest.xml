@@ -33,6 +33,7 @@
 	<component id="CheckboxSkin" class="com.flow.skins.CheckboxSkin"/>
 	<component id="ChihulyEffect" class="com.flow.effects.ChihulyEffect"/>
 	<component id="Circular" class="com.flow.motion.easing.Circular"/>
+	<component id="ClassFactory" class="mx.core.ClassFactory"/>
 	<component id="CollectionEvent" class="com.flow.events.CollectionEvent"/>
 	<component id="CollectionEventKind" class="com.flow.events.CollectionEventKind"/>
 	<component id="ColorMatrix" class="com.flow.effects.utils.ColorMatrix"/>
@@ -152,6 +153,7 @@
 	<component id="VScrollBar" class="com.flow.components.VScrollBar"/>
 	<component id="VScrollBarSkin" class="com.flow.skins.VScrollBarSkin"/>
 	<component id="ViewStack" class="com.flow.containers.layout.ViewStack"/>
+	<component id="ViewSwapper" class="com.flow.containers.ViewSwapper"/>
 	<component id="WebCam" class="com.flow.components.WebCam"/>
 	<component id="WebCamEvent" class="com.flow.events.WebCamEvent"/>
 	<component id="WipeEffect" class="com.flow.effects.WipeEffect"/>

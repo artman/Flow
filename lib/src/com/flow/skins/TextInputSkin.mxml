@@ -24,7 +24,7 @@
 <fw:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
 		 xmlns:fw="http://artman.fi/flow" 
-		 height="24" width="100">	
+		 height="24">	
 	
 	<fx:Metadata>
 		[HostComponent("com.flow.components.TextInput")]

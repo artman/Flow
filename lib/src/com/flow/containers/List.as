@@ -3,6 +3,7 @@ package com.flow.containers {
 	import com.flow.components.Component;
 	import com.flow.containers.layout.LayoutBase;
 	import com.flow.containers.layout.VBoxLayout;
+	import com.flow.events.CollectionEvent;
 	import com.flow.events.ListEvent;
 	
 	import flash.events.MouseEvent;
@@ -46,10 +47,18 @@ package com.flow.containers {
 			return _dataProvider;
 		}
 		public function set dataProvider(value:*):void {
-			if(value != _dataProvider) {
-				_dataProvider = value;
-				invalidateProperties();
+			if(_dataProvider && _dataProvider is IList) {
+				(_dataProvider as IList).removeEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChanged)
 			}
+			_dataProvider = value;
+			invalidateProperties();
+			if(_dataProvider && _dataProvider is IList) {
+				(_dataProvider as IList).addEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChanged)
+			}
+		}
+		
+		private function collectionChanged(e:CollectionEvent):void {
+			invalidateProperties();
 		}
 		
 		override public function validateProperties():void {
@@ -93,7 +102,11 @@ package com.flow.containers {
 					}
 					if(_selectedIndex != -1) {
 						(children.getItemAt(_selectedIndex) as Component).addState("selected");
-						selectedItem = _dataProvider[_selectedIndex];
+						if(_dataProvider is IList) {
+							selectedItem = (_dataProvider as IList).getItemAt(_selectedIndex);
+						} else {
+							selectedItem = _dataProvider[_selectedIndex];
+						}
 					}
 				}
 			} else {

@@ -284,9 +284,6 @@ package com.flow.containers {
 		
 		/** @private */
 		public function validateLayoutOnRoot(e:Event = null):void {
-			if(this is Application) {
-				trace("val");
-			}
 			measureChildren();
 			validateLayout();
 		}
