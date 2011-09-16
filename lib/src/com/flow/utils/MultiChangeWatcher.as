@@ -22,7 +22,6 @@
 
 package com.flow.utils {
 	
-	import flash.display.Sprite;
 	import flash.events.Event;
 	
 	import mx.binding.utils.ChangeWatcher;

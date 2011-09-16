@@ -22,6 +22,8 @@
 
 package com.flow.components.supportClasses {
 	 
+	import com.flow.containers.Application;
+	
 	import flash.display.MovieClip;
 	import flash.display.StageAlign;
 	import flash.display.StageQuality;
@@ -29,7 +31,6 @@ package com.flow.components.supportClasses {
 	import flash.events.Event;
 	import flash.events.ProgressEvent;
 	import flash.utils.getDefinitionByName;
-	import com.flow.containers.Application;
 
 	/**
 	 * The base class for preloaders that are displayed as the application is loaded.

@@ -21,7 +21,6 @@
  */
 
 package com.flow.effects.utils {
-	import avmplus.FLASH10_FLAGS;
 	
 	import flash.display.DisplayObject;
 	import flash.geom.ColorTransform;

@@ -27,7 +27,6 @@ package com.flow.graphics.strokes {
 	
 	import flash.display.GradientType;
 	import flash.display.Graphics;
-	import flash.events.EventDispatcher;
 	import flash.geom.Matrix;
 	
 	/**

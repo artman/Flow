@@ -26,8 +26,6 @@ package com.flow.components {
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
-	import mx.binding.utils.BindingUtils;
-	
 	[Event(name="change", type="flash.events.Event")]
 	/**
 	 * A checkbox that can be selected. 

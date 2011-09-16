@@ -33,7 +33,6 @@ package com.flow.containers {
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import flash.net.SharedObject;
-	import flash.net.SharedObjectFlushStatus;
 	import flash.text.TextField;
 	
 	/**

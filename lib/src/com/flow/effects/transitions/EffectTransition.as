@@ -23,8 +23,8 @@
 package com.flow.effects.transitions {
 	
 	import com.flow.components.Component;
-	import com.flow.motion.Tween;
 	import com.flow.effects.Effect;
+	import com.flow.motion.Tween;
 
 	[DefaultProperty("effect")]
 	public class EffectTransition extends FadeTransition {

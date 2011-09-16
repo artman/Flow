@@ -21,6 +21,7 @@
  */
 
 package com.flow.motion {
+	
 	import com.flow.effects.utils.ColorRGB;
 	
 	/**
