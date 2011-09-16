@@ -100,7 +100,7 @@ package com.flow.components {
 			}
 		}
 		
-		override protected function draw(width:int, height:int):void {
+		override public function draw(width:int, height:int):void {
 			super.draw(width, height);
 			width -= (_paddingLeft + _paddingRight);
 			if(width < 0) {

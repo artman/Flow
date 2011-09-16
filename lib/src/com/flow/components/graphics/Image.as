@@ -152,7 +152,7 @@ package com.flow.components.graphics {
 			}
 		}
 
-		override protected function draw(w:int, h:int):void {
+		override public function draw(w:int, h:int):void {
 			super.draw(w, h);
 			if (_image) {
 				_image.scaleX = _image.scaleY = 1;
