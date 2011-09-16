@@ -68,25 +68,7 @@
 	</fw:Container-->
 	
 	
-	<fw:Button label="Jepssaaa" x="10" y="10" skinClass="{ButtonSkin}">
+	<fw:Button id="kiva" label="Jepssaaa!" skinClass="{new ButtonSkin}" x="10" y="10" click="kiva.label='Hoioihoioi'">
 	</fw:Button>
-	
-	
-	<fw:Container verticalCenter="0" horizontalCenter="0">
-		<fw:Rect width="100%" height="100%" radius="3" >
-			<fw:fill>
-				<fw:GradientFill rotation="90">
-					<fw:GradientData color="0xFFFFFF" ratio="0" />
-					<fw:GradientData color="0xDDDDDD" ratio="1" />
-				</fw:GradientFill>
-			</fw:fill>
-			<fw:border>
-				<fw:SolidStroke color="0xCCCCCC" />
-			</fw:border>
-		</fw:Rect>
-		
-		<fw:Label horizontalPadding="10" text="Kiva juttu tässä!" verticalPadding="3" id="labelDisplay" align="center" horizontalCenter="0" verticalCenter="0" />
-	</fw:Container>
-	
 	
 </fw:Application>
