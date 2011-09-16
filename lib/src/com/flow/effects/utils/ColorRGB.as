@@ -21,6 +21,10 @@
  */
 
 package com.flow.effects.utils {
+	import avmplus.FLASH10_FLAGS;
+	
+	import flash.display.DisplayObject;
+	import flash.geom.ColorTransform;
 
 	public class ColorRGB {
 		
@@ -62,6 +66,11 @@ package com.flow.effects.utils {
 
 		public function duplicate():ColorRGB {
 			return new ColorRGB(color);
-		}	
+		}
+		
+		public function colorizeDisplayObject(displayObject:DisplayObject):void {
+			var colorTransform:ColorTransform = new ColorTransform(0, 0, 0, 1, r, g, b);
+			displayObject.transform.colorTransform = colorTransform;
+		}
 	}
 }
