@@ -16,7 +16,11 @@
     <classEntry path="com.flow.components.Component"/>
     <classEntry path="com.flow.components.DefaultTooltip"/>
     <classEntry path="com.flow.components.ITooltip"/>
+<<<<<<< HEAD
     <classEntry path="com.flow.components.Label"/>
+=======
+    <classEntry path="com.flow.components.MeasureUnits"/>
+>>>>>>> Refactoring, added messages
     <classEntry path="com.flow.components.PaddableComponent"/>
     <classEntry path="com.flow.components.Preloader"/>
     <classEntry path="com.flow.components.Skin"/>
