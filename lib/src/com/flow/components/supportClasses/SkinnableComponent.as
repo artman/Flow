@@ -1,12 +1,16 @@
 package com.flow.components.supportClasses {
 	import com.flow.components.Checkbox;
+	import com.flow.components.Component;
 	import com.flow.containers.Container;
 	import com.flow.events.InvalidationEvent;
+	import com.flow.managers.SkinManager;
 	
 	import flash.display.InteractiveObject;
 	import flash.events.Event;
+	import flash.utils.getQualifiedClassName;
 	
 	import mx.binding.utils.BindingUtils;
+	import mx.binding.utils.ChangeWatcher;
 	import mx.core.IFactory;
 
 	[DefaultProperty("skinClass")]
@@ -46,29 +50,62 @@ package com.flow.components.supportClasses {
 						}
 					}
 				}
+				
+				if(!_skinClass) {
+					_skinClass = defaultSkin;
+				}
 				if(_skinClass) {
 					skin = _skinClass.newInstance();
-					BindingUtils.bindProperty(skin, "currentState", this, "currentState", false, true);
 					skin.hostComponent = this;
+
+					states = skin.states;
 					children = skin.children;
 					
 					for (partName in parts) {
-						skinPart = skin[partName];
-						if (skinPart && partName in this) {
+						if (partName in skin) {
+							skinPart = skin[partName];
 							this[partName] = skinPart;
 							partAdded(partName,  skinPart);
 						}
 					}
 					
-					if(!hasExplicitWidth && skin.hasExplicitWidth) {
+					if(!hasExplicitWidth) {
+						ChangeWatcher.watch(skin, "width", skinWidthChange);
+						if(skin.hasExplicitWidth) {
+							skinWidthChange();
+						}
+					}
+					if(!hasExplicitHeight) {
+						ChangeWatcher.watch(skin, "height", skinHeightChange);
+						if(skin.hasExplicitHeight) {
+							skinHeightChange();
+						}
+					}
+					
+					/*if(!hasExplicitWidth && skin.hasExplicitWidth) {
 						width = skin.width;
 					}
 					if(!hasExplicitHeight && skin.hasExplicitHeight) {
 						height = skin.height;
-					}
+					}*/
+					skin.currentState = currentState;
 					skinAttached();
+				} else {
+					throw new Error("No skinClass defined and could not retreive default skin")
 				}
 			}
+		}
+		
+		private function skinWidthChange(e:Event = null):void {
+			width = skin.width;
+		}
+		
+		private function skinHeightChange(e:Event = null):void {
+			height = skin.height;
+		}
+		
+		override protected function get stateTarget():Component {	
+			return skin;
 		}
 		
 		override public function set children(value:*):void {
@@ -96,6 +133,14 @@ package com.flow.components.supportClasses {
 		
 		/** @private  */		
 		protected function get skinParts():Object { 
+			return null;
+		}
+		
+		protected function get defaultSkin():Skin {
+			var skinClass:Class = SkinManager.getDefaultSkin(getQualifiedClassName(this));
+			if(skinClass) {
+				return new skinClass();
+			}
 			return null;
 		}
 	}

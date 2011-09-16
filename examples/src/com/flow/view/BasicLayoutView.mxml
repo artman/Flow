@@ -29,7 +29,6 @@
 			  xmlns:fw="http://artman.fi/flow"
 			  width="600" height="400" >
 
-	
 	<fx:Declarations>
 		<fw:GradientFill id="itemFill" rotation="90">
 			<fw:GradientData color="0xDD0000" ratio="0" />

@@ -28,9 +28,11 @@ package mx.states {
 	public class State extends EventDispatcher {
 		private var initialized:Boolean = false;
 		public var name:String;		
-		public var overrides:Array = [];
+		private var _overrides:Array;
+		public var transitionSpeed:Number = 0;
 		
 		public function State(properties:Object=null) {
+			overrides = [];
 			super();
 			if(properties is String) {
 				name = properties as String;
@@ -39,6 +41,13 @@ package mx.states {
 					this[p] = properties[p];
 				}
 			}
+		}
+		
+		public function get overrides():Array {
+			return _overrides;
+		}
+		public function set overrides(value:Array):void {
+			_overrides = value;
 		}
 		
 		public function initialize():void {

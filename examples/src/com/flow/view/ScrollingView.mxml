@@ -21,34 +21,32 @@
 * THE SOFTWARE.
 -->
 
-<fw:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
-		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:fw="http://artman.fi/flow" 
-		 height="24">	
+<fw:Container xmlns:fx="http://ns.adobe.com/mxml/2009"
+			  xmlns:s="library://ns.adobe.com/flex/spark" 
+			  xmlns:fw="http://artman.fi/flow" xmlns:assets="assets.*" xmlns:view="com.flow.view.*"
+			  width="500" height="300" enterFrame="container1_enterFrameHandler(event)">
+	<fx:Script>
+		<![CDATA[
+			import com.flow.containers.HBox;
+			import com.flow.skins.HScrollBarSkin;
+			import com.flow.skins.TextInputSkin;
+			import com.flow.skins.VScrollBarSkin;
+			
+			import flash.utils.getTimer;
+			
+			protected function container1_enterFrameHandler(event:Event):void {
+				//jepa.height = Math.sin(getTimer()/600) * 150 + 200;
+			}
+			
+		]]>
+	</fx:Script>
 	
-	<fx:Metadata>
-		[HostComponent("com.flow.components.Button")]
-	</fx:Metadata>
 	
-	<fw:states>
-		<s:State name="up" transitionSpeed="1" />
-		<s:State name="over" transitionSpeed="1" />
-		<s:State name="down" />
-		<s:State name="disabled" />
-	</fw:states>
-	
-	<fw:Rect width="100%" height="100%" radius="5">
-		<fw:fill>
-			<fw:GradientFill rotation="90">
-				<fw:GradientData color="0xF9F9F9" color.over="0xF7F7F7" color.down="0xEEEEEE" ratio="0" />
-				<fw:GradientData color="0xDDDDDD" color.over="0xCCCCCC" color.down="0xBBBBBB" color.disabled="0xFFFFFF" ratio="1" />
-			</fw:GradientFill>
-		</fw:fill>
+	<fw:Scroller id="scroller" x="10" y="10" width="300" height="200">
 		<fw:stroke>
-			<fw:SolidStroke thickness="1" caps="none" joints="round" color="0xBBBBBB" color.over="0xAAAAAA" color.down="0x888888" color.disabled="0xDDDDDD" />
+			<fw:SolidStroke color="0" />
 		</fw:stroke>
-	</fw:Rect>
+		<fw:Button id="jepa" label="Kivaaaa" width="300" height="1500" />
+	</fw:Scroller>
 	
-	<fw:Label horizontalPadding="10" verticalPadding="3" id="labelDisplay" align="center" horizontalCenter="0" verticalCenter="0" color="0" color.disabled="0xAAAAAA" />
-	
-</fw:Skin>
+</fw:Container>

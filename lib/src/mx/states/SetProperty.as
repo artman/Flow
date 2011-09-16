@@ -9,6 +9,7 @@ package mx.states {
 		public var value:*;
 		
 		private var oldValue:*;
+		private var initialized:Boolean = false;
 		
 		public function initialize():void {
 		}
@@ -25,7 +26,10 @@ package mx.states {
 			if(item == null) { 
 				return; 
 			}
-			oldValue = item[name];
+			if(!initialized) {
+				initialized = true;
+				oldValue = item[name];
+			}
 			item[name] = value;
 		}
 		
@@ -42,7 +46,7 @@ package mx.states {
 				return;
 			}
 			item[name] = oldValue;
-			oldValue = null;
+			//oldValue = null;
 		}
 	}
 }

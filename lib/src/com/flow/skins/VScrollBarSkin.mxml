@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+* Copyright (c) 2011 Tuomas Artman, http://artman.fi
+* 
+* Permission is hereby granted, free of charge, to any person obtaining a copy
+* of this software and associated documentation files (the "Software"), to deal
+* in the Software without restriction, including without limitation the rights
+* to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+* copies of the Software, and to permit persons to whom the Software is
+* furnished to do so, subject to the following conditions:
+* 
+* The above copyright notice and this permission notice shall be included in
+* all copies or substantial portions of the Software.
+* 
+* THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+* IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+* FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+* AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+* LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+* OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+* THE SOFTWARE.
+-->
+
+<fw:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:fw="http://artman.fi/flow" 
+		 width="16" height="200" xmlns:mx="library://ns.adobe.com/flex/mx">	
+	
+	<fx:Metadata>
+		[HostComponent("com.flow.components.HScrollBar")]
+	</fx:Metadata>
+	
+	<fw:states>
+		<s:State name="up" />
+		<s:State name="disabled" />
+	</fw:states>
+	
+	
+	<fw:Button id="decreaseButton" x="0" y="0" width="100%" height="16" >
+		<fw:skinClass>
+			<fx:Component>
+				<fw:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+						 xmlns:s="library://ns.adobe.com/flex/spark" 
+						 xmlns:fw="http://artman.fi/flow">	
+					
+					<fx:Metadata>
+						[HostComponent("com.flow.components.Button")]
+					</fx:Metadata>
+					
+					<fw:states>
+						<s:State name="up" />
+						<s:State name="over" />
+						<s:State name="down" />
+						<s:State name="disabled" />
+					</fw:states>
+					
+					<fw:Rect width="100%" height="100%" radius="0" >
+						<fw:fill>
+							<fw:GradientFill rotation="0">
+								<fw:GradientData color="0xF9F9F9" color.over="0xF7F7F7" color.down="0xEEEEEE" ratio="0" />
+								<fw:GradientData color="0xDDDDDD" color.over="0xCCCCCC" color.down="0xBBBBBB" color.disabled="0xFFFFFF" ratio="1" />
+							</fw:GradientFill>
+						</fw:fill>
+						<fw:stroke>
+							<fw:SolidStroke thickness="1" caps="none" joints="round" color="0xBBBBBB" color.over="0xAAAAAA" color.down="0x888888" color.disabled="0xDDDDDD" />
+						</fw:stroke>
+					</fw:Rect>
+					
+					
+					<fw:Shape horizontalCenter="0" y="5" width="7" height="6">
+						<mx:Point x="3.5" y="0" /><mx:Point x="7" y="6" /><mx:Point x="0" y="6" />
+						<fw:fill>
+							<fw:SolidFill color="0" />
+						</fw:fill>
+					</fw:Shape>
+					
+				</fw:Skin>
+			</fx:Component>
+		</fw:skinClass>
+	</fw:Button>
+	
+	<fw:Rect id="track" width="100%" height="100%" top="16" bottom="16" >
+		<fw:fill>
+			<fw:GradientFill rotation="0">
+				<fw:GradientData color="0xAAAAAA" ratio="0" />
+				<fw:GradientData color="0xDDDDDD" ratio="0.4" />
+			</fw:GradientFill>
+		</fw:fill>
+		<fw:stroke>
+			<fw:SolidStroke thickness="1" caps="none" joints="round" color="0xBBBBBB" />
+		</fw:stroke>
+	</fw:Rect>
+	
+	<fw:Button id="thumb" x="0" y="0" width="100%" height="30" >
+		<fw:skinClass>
+			<fx:Component>
+				<fw:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+						 xmlns:s="library://ns.adobe.com/flex/spark" 
+						 xmlns:fw="http://artman.fi/flow">	
+					
+					<fx:Metadata>
+						[HostComponent("com.flow.components.Button")]
+					</fx:Metadata>
+					
+					<fw:states>
+						<s:State name="up" />
+						<s:State name="over" />
+						<s:State name="down" />
+						<s:State name="disabled" />
+					</fw:states>
+		
+					<fw:Rect width="100%" height="100%" radius="0" >
+						<fw:fill>
+							<fw:GradientFill rotation="0">
+								<fw:GradientData color="0xF9F9F9" color.over="0xF7F7F7" color.down="0xEEEEEE" ratio="0" />
+								<fw:GradientData color="0xDDDDDD" color.over="0xCCCCCC" color.down="0xBBBBBB" color.disabled="0xFFFFFF" ratio="1" />
+							</fw:GradientFill>
+						</fw:fill>
+						<fw:stroke>
+							<fw:SolidStroke thickness="1" caps="none" joints="round" color="0xBBBBBB" color.over="0xAAAAAA" color.down="0x888888" color.disabled="0xDDDDDD" />
+						</fw:stroke>
+					</fw:Rect>
+				</fw:Skin>
+			</fx:Component>
+		</fw:skinClass>
+	</fw:Button>
+	
+	
+	<fw:Button id="increaseButton" x="0" bottom="0" width="100%" height="16" >
+		<fw:skinClass>
+			<fx:Component>
+				<fw:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+						 xmlns:s="library://ns.adobe.com/flex/spark" 
+						 xmlns:fw="http://artman.fi/flow">	
+					
+					<fx:Metadata>
+						[HostComponent("com.flow.components.Button")]
+					</fx:Metadata>
+					
+					<fw:states>
+						<s:State name="up" />
+						<s:State name="over" />
+						<s:State name="down" />
+						<s:State name="disabled" />
+					</fw:states>
+					
+					<fw:Rect width="100%" height="100%" radius="0" >
+						<fw:fill>
+							<fw:GradientFill rotation="0">
+								<fw:GradientData color="0xF9F9F9" color.over="0xF7F7F7" color.down="0xEEEEEE" ratio="0" />
+								<fw:GradientData color="0xDDDDDD" color.over="0xCCCCCC" color.down="0xBBBBBB" color.disabled="0xFFFFFF" ratio="1" />
+							</fw:GradientFill>
+						</fw:fill>
+						<fw:stroke>
+							<fw:SolidStroke thickness="1" caps="none" joints="round" color="0xBBBBBB" color.over="0xAAAAAA" color.down="0x888888" color.disabled="0xDDDDDD" />
+						</fw:stroke>
+					</fw:Rect>
+					
+					
+					<fw:Shape horizontalCenter="0" y="6" width="7" height="6">
+						<mx:Point x="3.5" y="6" /><mx:Point x="7" y="0" /><mx:Point x="0" y="0" />
+						<fw:fill>
+							<fw:SolidFill color="0" />
+						</fw:fill>
+					</fw:Shape>
+					
+				</fw:Skin>
+			</fx:Component>
+		</fw:skinClass>
+	</fw:Button>
+	
+	
+</fw:Skin>
