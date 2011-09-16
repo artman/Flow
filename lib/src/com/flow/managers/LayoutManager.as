@@ -23,6 +23,9 @@
 package com.flow.managers {
 	
 	import com.flow.collections.DisplayObjectCollection;
+	import com.flow.components.Component;
+	import com.flow.containers.Application;
+	import com.flow.containers.Container;
 	import com.flow.effects.AnimationProps;
 	import com.flow.effects.Effect;
 	import com.flow.motion.Tween;
@@ -33,17 +36,20 @@ package com.flow.managers {
 	import flash.events.Event;
 	import flash.utils.Dictionary;
 	import flash.utils.getTimer;
-	import com.flow.containers.Application;
-	import com.flow.containers.Container;
-	import com.flow.components.Component;
 
+	/**
+	 * The layout manager is a Singleton and takes care of commandeering layout and rendering. Most of it's methods are internal and should
+	 * not be called by the developer.
+	 */	
 	public class LayoutManager {
 		
 		public static const LAYOUT_PHASE_NONE:int = 0;
 		public static const LAYOUT_PHASE_VALIDATING:int = 1;
 		
+		/** The Singleton instance created upon startup */
 		public static var instance:LayoutManager = new LayoutManager();
 		
+		/** @private */
 		public var layoutPhase:int = 0;
 		private var invalidInitList:Vector.<Component>;
 		private var invalidList:Vector.<Component>;
@@ -52,11 +58,13 @@ package com.flow.managers {
 		private var invalidEffectList:Vector.<Effect>;
 		private var root:Stage;
 		private var lastUpdate:Number;
+		/** @private */
 		public var deltaTime:Number;
 		private var invalidated:Boolean = false;
 		private var animationRoot:Component;
 		private var animationProperties:Dictionary;
 		
+		/** Constructor */
 		public function LayoutManager() {
 			invalidInitList = new Vector.<Component>();
 			invalidList = new Vector.<Component>();
@@ -65,6 +73,7 @@ package com.flow.managers {
 			invalidChildrenList = new Vector.<Container>();
 		}
 		
+		/** @private */
 		public function initialize(root:Stage):void {
 			this.root = root;
 			root.addEventListener(Event.RENDER, validate);
@@ -80,6 +89,7 @@ package com.flow.managers {
 			validate();
 		}
 		
+		/** @private */
 		public function invalidateInit(component:Component):void {
 			if(invalidInitList.indexOf(component) == -1) {
 				invalidInitList.push(component);
@@ -89,7 +99,7 @@ package com.flow.managers {
 			}
 		}
 		
-		
+		/** @private */
 		public function invalidateComponent(component:Component):void {
 			if(invalidList.indexOf(component) == -1) {
 				invalidList.push(component);
@@ -99,6 +109,7 @@ package com.flow.managers {
 			}
 		}
 		
+		/** @private */
 		public function invalidateEffect(effect:Effect):void {
 			if(invalidEffectList.indexOf(effect) == -1) {
 				invalidEffectList.push(effect);
@@ -108,6 +119,7 @@ package com.flow.managers {
 			}
 		}
 		
+		/** @private */
 		public function invalidateLayout(container:Container):void {
 			if(invalidLayoutList.indexOf(container) == -1) {
 				invalidLayoutList.push(container);
@@ -117,6 +129,7 @@ package com.flow.managers {
 			}
 		}
 		
+		/** @private */
 		public function invalidateChildren(container:Container):void {
 			if(invalidChildrenList.indexOf(container) == -1) {
 				invalidChildrenList.push(container);
@@ -133,6 +146,7 @@ package com.flow.managers {
 			invalidated = true;
 		}
 		
+		/** @private */
 		public function validate(e:Event = null):void {
 			while(invalidChildrenList.length) {
 				invalidChildrenList.shift().validateChildren();
@@ -188,6 +202,16 @@ package com.flow.managers {
 			lastUpdate = time;	
 		}
 		
+		/**
+		 * The layout manager instance let's you easily create animations from one state to the next. You call beginAnimation, make
+		 * changes to any visual properties of the target or it's sub-display objects and call commitAnimation and Flow will animate
+		 * the changes you've made. 
+		 * 
+		 * You can only open one animation session at a time. Any open animation-sessions will be commited when you call beginAnimation().
+		 * 
+		 * @param The target of the animation. This component and all it's children will be animated once you commit the animation.
+		 * @see #commitAnimation()
+		 */		
 		public function beginAnimation(target:Component):void {
 			var t:Number = getTimer();
 			if(animationRoot) {
@@ -198,23 +222,14 @@ package com.flow.managers {
 			collectProps(animationRoot, animationProperties);
 		}
 		
-		private function collectProps(target:DisplayObject, dictionary:Dictionary):void {
-			var props:AnimationProps = new AnimationProps();
-			props.gatherProps(target);
-			dictionary[target] = props;
-			if(target is Container) {
-				var list:DisplayObjectCollection = (target as Container).children as DisplayObjectCollection;
-				for(var i:int = 0; i<list.length; i++) {
-					collectProps(list.getItemAt(i) as DisplayObject, dictionary)
-				}
-			} else if(target is DisplayObjectContainer) {
-				var cnt:int = (target as DisplayObjectContainer).numChildren;
-				for(i = 0; i<cnt; i++) {
-					collectProps((target as DisplayObjectContainer).getChildAt(i), dictionary)
-				}
-			}
-		}
-		
+		/**
+		 * Commits a previously opened animation. This will walk through the target component and all it's children looking for properties
+		 * that have changed since you called beginAnimation and animate them.
+		 * @param The speed at which to animate
+		 * @param tweenProps Any properties you define will directly be passed the the Tween class as animation properties. This lets you
+		 * for example define a easing function or delay for the animation.
+		 * @see #beginAnimation()
+		 */		
 		public function commitAnimation(speed:Number = 0.5, tweenProps:Object = null):void {
 			if(!tweenProps) {
 				tweenProps = {};
@@ -232,6 +247,23 @@ package com.flow.managers {
 			}
 			animationRoot = null;
 			animationProperties = null;
+		}
+		
+		private function collectProps(target:DisplayObject, dictionary:Dictionary):void {
+			var props:AnimationProps = new AnimationProps();
+			props.gatherProps(target);
+			dictionary[target] = props;
+			if(target is Container) {
+				var list:DisplayObjectCollection = (target as Container).children as DisplayObjectCollection;
+				for(var i:int = 0; i<list.length; i++) {
+					collectProps(list.getItemAt(i) as DisplayObject, dictionary)
+				}
+			} else if(target is DisplayObjectContainer) {
+				var cnt:int = (target as DisplayObjectContainer).numChildren;
+				for(i = 0; i<cnt; i++) {
+					collectProps((target as DisplayObjectContainer).getChildAt(i), dictionary)
+				}
+			}
 		}
 	}
 }

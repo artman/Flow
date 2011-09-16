@@ -21,6 +21,7 @@
  */
 
 package com.flow.components.measuring {
+	/** @private */
 	public class MeasureUnit {
 		
 		public var value:Number = 0;

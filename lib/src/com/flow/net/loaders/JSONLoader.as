@@ -43,6 +43,7 @@ package com.flow.net.loaders {
 			super(url);
 		}
 		
+		/** @private */
 		override protected function complete(e:Event):void {
 			if(e.target.data) {
 				try {
@@ -53,6 +54,7 @@ package com.flow.net.loaders {
 			}
 			super.complete(e);
 		}
+		
 		/** The resulting, decoded JSON data. */
 		override public function get result():* {
 			return data;

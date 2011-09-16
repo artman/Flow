@@ -39,7 +39,8 @@ package com.flow.net.loaders {
 		public function XMLLoader(url:*) {
 			super(url);
 		}
-
+		
+		/** @private */
 		override protected function complete(e:Event):void {
 			xml = new XML(e.target.data);
 			super.complete(e);

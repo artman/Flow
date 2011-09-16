@@ -55,7 +55,7 @@ package com.flow.net.loaders {
 	[Event(name="httpStatus", type="flash.events.HTTPStatusEvent")]
 	
 	/**
-	 * Abstract class for loading data. This class is used as a super-class to all other laoding classes
+	 * Base class for loading data. This class is used as a super-class to all the other laoding classes
 	 */
 	public class LoaderBase extends EventDispatcher {
 
@@ -69,7 +69,6 @@ package com.flow.net.loaders {
 		
 		/**
 		 * Constrcutor.
-		 * 
 		 * @param The URL from which to load data. This can be of type String or URLRequest. If a String is given, a URLRequest is automatically created using GET.
 		 */
 		public function LoaderBase(url:*) {
@@ -94,6 +93,7 @@ package com.flow.net.loaders {
 			this.statusHandler = statusHandler;
 		}
 		
+		/** @private */
 		protected function complete(e:Event):void {
 			loaded = true;
 			removeLoaderEventListeners();
@@ -103,6 +103,7 @@ package com.flow.net.loaders {
 			dispatchEvent(new Event(Event.COMPLETE));
 		}
 		
+		/** @private */
 		protected function fail(e:IOErrorEvent):void {
 			loaded = true;
 			if (errorHandler != null) { 
@@ -116,6 +117,7 @@ package com.flow.net.loaders {
 			removeLoaderEventListeners();
 		}
 		
+		/** @private */
 		protected function securityFail(e:SecurityErrorEvent):void {
 			loaded = true;
 			if (errorHandler != null) { 
@@ -129,6 +131,7 @@ package com.flow.net.loaders {
 			removeLoaderEventListeners();
 		}
 		
+		/** @private */
 		protected function httpStatus(event:HTTPStatusEvent) : void {
 			if (statusHandler != null) {
 				statusHandler(event);
@@ -144,6 +147,7 @@ package com.flow.net.loaders {
 			removeLoaderEventListeners();
 		}
 		
+		/** @private */
 		protected function progressHandler(e:ProgressEvent):void {
 			if(!e.bytesTotal) {
 				_progress = 0;
@@ -156,6 +160,7 @@ package com.flow.net.loaders {
 			dispatchEvent(progressEvt);
 		}
 		
+		/** @private */
 		protected function removeLoaderEventListeners():void {
 			throw new Error("Subclass must override");
 		}

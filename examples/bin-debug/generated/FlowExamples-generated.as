@@ -6,7 +6,7 @@
  *  Class:      FlowExamples
  *  Source:     /Users/artman/Documents/Flow/examples/src/FlowExamples.mxml
  *  Template:   flex2/compiler/mxml/gen/ClassDef.vm
- *  Time:       2011.06.14 11:20:55 EEST
+ *  Time:       2011.06.14 15:02:10 EEST
  */
 
 package 

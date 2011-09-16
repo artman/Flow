@@ -29,31 +29,47 @@ package com.flow.motion {
 	import flash.events.EventDispatcher;
 	import flash.utils.getTimer;
 	
+	/**
+	 * A Tweening class for tweening properties over a period of time.
+	 */	
 	public class Tween extends EventDispatcher {
-
+		
+		/** The default easing equation for all new Tweens. This is Quadratic.easeOut by default */		
 		public static var defaultEase:Function = Quadratic.easeOut
+		/** @private */
 		protected static var currentTime:Number;
+		/** @private */
 		protected static var activeTweens:Vector.<Tween>;
 	
 		private var _delay:Number=0;
 		private var _values:Object;
 		private var _position:Number;
+		/** @private */
 		protected var inited:Boolean;
+		/** @private */
 		protected var startValues:Object;
+		/** @private */
 		protected var deltaValues:Object;
-
+		
+		/** @private */
 		public var duration:Number;
+		/** @private */
 		public var ease:Function;
+		/** @private */
 		public var target:Object;		
+		/** @private */
 		public var completeHandler:Function;
+		/** @private */
 		public var changeHandler:Function;
 		
+		/** @private */
 		public static function staticInit(root:Sprite):void {
 			root.addEventListener(Event.ENTER_FRAME, tick);
 			activeTweens =  new Vector.<Tween>;
 			currentTime = getTimer() / 1000;
 		}
 		
+		/** @private */
 		protected static function tick(evt:Event):void {
 			var lastUpdate:Number = currentTime;
 			currentTime = getTimer() / 1000;
@@ -63,6 +79,7 @@ package com.flow.motion {
 			}
 		}
 		
+		/** @private */
 		protected static function tweenCompleted(tween:Tween):void {
 			var index:int = activeTweens.indexOf(tween);
 			if(index != -1) {
@@ -70,6 +87,21 @@ package com.flow.motion {
 			}
 		}
 		
+		/**
+		 * Constructor, commences a tween for the specified properties. Conflicting properties will be removed from any other
+		 * tweens currently operating on the object. This means that you don't have to keep track which properties you tween
+		 * on an object.
+		 * 
+		 * @param The target who's properties to tween.
+		 * @param The duration of the tween in seconds.
+		 * @param An object containing the properties and their values to tween to.
+		 * @param An object containing additional properties for the tween. The properties are: <ul>
+		 * <li>delay (Number) - How many seconds to wait before starting the tween.
+		 * <li>ease (Function) - The easing equation to use
+		 * <li>dontOverride (Boolean) - Whether remove any tweened property from other tweens currently operating on the object.
+		 * </ul>
+		 * 
+		 */		
 		public function Tween(target:Object=null, duration:Number=1, values:Object=null, props:Object=null) {
 			this.ease = defaultEase;
 			this.target = target;
@@ -104,7 +136,7 @@ package com.flow.motion {
 			}
 		}
 		
-
+		/** @private */		
 		public function get position():Number {
 			return _position;
 		}
@@ -135,6 +167,7 @@ package com.flow.motion {
 			}
 		}
 		
+		/** @private */
 		public function get delay():Number {
 			return _delay;
 		}
@@ -145,6 +178,7 @@ package com.flow.motion {
 			_delay = value;
 		}
 		
+		/** @private */
 		public function deleteValue(name:String):Boolean {
 			if(deltaValues) {
 				delete(deltaValues[name]);
@@ -163,7 +197,8 @@ package com.flow.motion {
 			}
 			return false;
 		}
-	
+		
+		/** @private */
 		public function init():void {
 			inited = true;
 			startValues = {};
@@ -173,6 +208,11 @@ package com.flow.motion {
 			}
 		}
 		
+		/**
+		 * Let's you remove any tweens for a specific target.
+		 * @param The target to remove any tweens from.
+		 * 
+		 */		
 		public static function removeTween(target:Object):void {
 			for(var i:int = activeTweens.length-1; i>=0; i--) {
 				if(activeTweens[i].target == target) {
@@ -181,6 +221,12 @@ package com.flow.motion {
 			}
 		}
 		
+		/**
+		 * Let's you remove certain properties from tweens on a specific target. 
+		 * @param The target from who's tweens you want to remove certain properties
+		 * @param The property or properties you whish to remove from tweens with the specified target. This can either be a strig for a single
+		 * property or an array of strings if you want to remove multiple properties.
+		 */		
 		public static function removeProperties(target:Object, prop:*):void {
 			if(!(prop is Array)) {
 				prop = [prop];

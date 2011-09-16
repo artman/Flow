@@ -34,6 +34,9 @@ package com.flow.containers {
 	import com.flow.components.supportClasses.Preloader;
 	import com.flow.managers.TooltipManager;
 	
+	/**
+	 * The base container for any Flow application. This needs to be at the root of your Flow-based application.
+	 */	
 	public class Application extends Container {
 		
 		public static var application:Application;
@@ -41,6 +44,7 @@ package com.flow.containers {
 		public var tooltipRoot:Sprite;
 		private var debugLog:TextField;
 		
+		/** Constructor */		
 		public function Application(){
 			super()
 			application = this;
@@ -69,6 +73,7 @@ package com.flow.containers {
 			TooltipManager.instance.setRoot(tooltipRoot);
 		}
 		
+		/** The frame-rate of the application. */		
 		public function get frameRate():int {
 			return stage.frameRate;
 		}
@@ -76,6 +81,12 @@ package com.flow.containers {
 			stage.frameRate = value;
 		}
 		
+		/**
+		 * Fetches a parameter that has been passed to your application via HTML. 
+		 * @param The parameter name
+		 * @param A default value that will be returned if the parameter hasn't been passed to your application via HTML.
+		 * @return The value of the parameter.
+		 */		
 		public function getParameter(key:String, defaultValue:* = null):* {
 			if(stage.loaderInfo.parameters[key] != undefined) {
 				var val:* = stage.loaderInfo.parameters[key];
@@ -87,22 +98,10 @@ package com.flow.containers {
 			return defaultValue;
 		}
 		
+		/** @private */
 		override public function validateChildren():void {
 			super.validateChildren();
 			rawAddChild(tooltipRoot);
-		}
-		
-		public function debug(text:String):void {
-			if(!debugLog) {
-				debugLog = new TextField();
-				debugLog.multiline = true;
-				debugLog.wordWrap = true;
-				debugLog.width = 500;
-				debugLog.height = 400;
-				stage.addChild(debugLog);
-			}
-			debugLog.appendText(text + "\n");
-			debugLog.scrollV = debugLog.numLines;
 		}
 	}
 }

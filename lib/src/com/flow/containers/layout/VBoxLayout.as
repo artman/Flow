@@ -80,6 +80,20 @@ package com.flow.containers.layout {
 			}
 		}
 		
+		[Inspectable(enumeration="normal,inverted", defaultValue="normal")]
+		public function get zSort():String {
+			return _zSort;
+		}
+		public function set zSort(value:String):void {
+			if(value != _zSort) {
+				_zSort = value;
+				if(_target) {
+					flipChildIndexes();
+				}
+				invalidate();
+			}
+		}
+		
 		override public function childrenChanged():void {
 			if(_zSort == "inverted") {
 				flipChildIndexes();

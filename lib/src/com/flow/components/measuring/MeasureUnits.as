@@ -21,6 +21,7 @@
  */
 
 package com.flow.components.measuring {
+	/** @private */
 	public class MeasureUnits {
 		public var top:MeasureUnit;
 		public var bottom:MeasureUnit;
