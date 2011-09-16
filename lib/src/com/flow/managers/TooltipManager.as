@@ -20,11 +20,14 @@
  * THE SOFTWARE.
  */
 
-package com.flow.components {
+package com.flow.managers {
 	
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.events.MouseEvent;
+	import com.flow.components.Component;
+	import com.flow.components.DefaultTooltip;
+	import com.flow.components.ITooltip;
 
 	public class TooltipManager {
 		

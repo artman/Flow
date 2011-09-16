@@ -34,7 +34,7 @@ package com.flow.containers {
 	import flash.events.Event;
 	import flash.utils.getTimer;
 	import com.flow.components.Component;
-	import com.flow.components.LayoutManager;
+	import com.flow.managers.LayoutManager;
 	
 	[DefaultProperty("children")]
 	[Event(name="creationComplete", type="com.flow.events.ComponentEvent")]

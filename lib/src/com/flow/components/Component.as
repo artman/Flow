@@ -41,6 +41,10 @@ package com.flow.components {
 	
 	import mx.core.IStateClient2;
 	import mx.states.State;
+	import com.flow.managers.LayoutManager;
+	import com.flow.managers.TooltipManager;
+	import com.flow.components.measuring.MeasureUnit;
+	import com.flow.components.measuring.MeasureUnits;
 	
 	[DefaultProperty("background")]
 	[Event(name="stateChange", type="com.flow.events.StateEvent")]
@@ -663,7 +667,6 @@ package com.flow.components {
 
 		
 		// ----------------- states ---------------------
-		
 		
 		public function get disabled():Boolean {
 			return _disabled;

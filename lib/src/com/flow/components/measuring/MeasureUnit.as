@@ -20,7 +20,7 @@
  * THE SOFTWARE.
  */
 
-package com.flow.components {
+package com.flow.components.measuring {
 	public class MeasureUnit {
 		
 		public var value:Number = 0;
