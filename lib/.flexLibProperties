@@ -1,6 +1,121 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<flexLibProperties includeAllClasses="true" useMultiPlatformConfig="false" version="3">
-  <includeClasses/>
+<flexLibProperties includeAllClasses="false" useMultiPlatformConfig="false" version="3">
+  <includeClasses>
+    <classEntry path="com.adobe.serialization.json.JSON"/>
+    <classEntry path="com.adobe.serialization.json.JSONDecoder"/>
+    <classEntry path="com.adobe.serialization.json.JSONEncoder"/>
+    <classEntry path="com.adobe.serialization.json.JSONParseError"/>
+    <classEntry path="com.adobe.serialization.json.JSONToken"/>
+    <classEntry path="com.adobe.serialization.json.JSONTokenType"/>
+    <classEntry path="com.adobe.serialization.json.JSONTokenizer"/>
+    <classEntry path="com.flow.collections.DisplayObjectCollection"/>
+    <classEntry path="com.flow.collections.IList"/>
+    <classEntry path="com.flow.commands.Command"/>
+    <classEntry path="com.flow.commands.CommandDispatch"/>
+    <classEntry path="com.flow.components.Application"/>
+    <classEntry path="com.flow.components.Component"/>
+    <classEntry path="com.flow.components.Container"/>
+    <classEntry path="com.flow.components.DefaultTooltip"/>
+    <classEntry path="com.flow.components.ITooltip"/>
+    <classEntry path="com.flow.components.LayoutManager"/>
+    <classEntry path="com.flow.components.MeasureUnit"/>
+    <classEntry path="com.flow.components.MeasureUnits"/>
+    <classEntry path="com.flow.components.PaddableComponent"/>
+    <classEntry path="com.flow.components.Preloader"/>
+    <classEntry path="com.flow.components.ScrollArea"/>
+    <classEntry path="com.flow.components.Spacing"/>
+    <classEntry path="com.flow.components.TooltipManager"/>
+    <classEntry path="com.flow.components.WebCam"/>
+    <classEntry path="com.flow.components.graphics.Geometry"/>
+    <classEntry path="com.flow.components.graphics.GradientData"/>
+    <classEntry path="com.flow.components.graphics.Image"/>
+    <classEntry path="com.flow.components.graphics.Line"/>
+    <classEntry path="com.flow.components.graphics.Rect"/>
+    <classEntry path="com.flow.components.graphics.Shape"/>
+    <classEntry path="com.flow.components.graphics.fills.BitmapFill"/>
+    <classEntry path="com.flow.components.graphics.fills.GradientFill"/>
+    <classEntry path="com.flow.components.graphics.fills.IFill"/>
+    <classEntry path="com.flow.components.graphics.fills.SolidFill"/>
+    <classEntry path="com.flow.components.graphics.strokes.GradientStroke"/>
+    <classEntry path="com.flow.components.graphics.strokes.IStroke"/>
+    <classEntry path="com.flow.components.graphics.strokes.SolidStroke"/>
+    <classEntry path="com.flow.components.layout.AbsoluteLayout"/>
+    <classEntry path="com.flow.components.layout.AlignType"/>
+    <classEntry path="com.flow.components.layout.HBoxLayout"/>
+    <classEntry path="com.flow.components.layout.LayoutBase"/>
+    <classEntry path="com.flow.components.layout.VBoxLayout"/>
+    <classEntry path="com.flow.components.layout.ViewStack"/>
+    <classEntry path="com.flow.effects.AnimationProps"/>
+    <classEntry path="com.flow.effects.BevelEffect"/>
+    <classEntry path="com.flow.effects.BlurEffect"/>
+    <classEntry path="com.flow.effects.CSBEffect"/>
+    <classEntry path="com.flow.effects.ChihulyEffect"/>
+    <classEntry path="com.flow.effects.ColorMatrixEffect"/>
+    <classEntry path="com.flow.effects.ColorTransformEffect"/>
+    <classEntry path="com.flow.effects.DropShadowEffect"/>
+    <classEntry path="com.flow.effects.Effect"/>
+    <classEntry path="com.flow.effects.EffectComposition"/>
+    <classEntry path="com.flow.effects.EffectTransition"/>
+    <classEntry path="com.flow.effects.FlipEffect"/>
+    <classEntry path="com.flow.effects.FullBevelEffect"/>
+    <classEntry path="com.flow.effects.GlowEffect"/>
+    <classEntry path="com.flow.effects.GreyscaleEffect"/>
+    <classEntry path="com.flow.effects.InnerGlowEffect"/>
+    <classEntry path="com.flow.effects.MaskFilterEffect"/>
+    <classEntry path="com.flow.effects.OuterBevelEffect"/>
+    <classEntry path="com.flow.effects.PixelateEffect"/>
+    <classEntry path="com.flow.effects.RadialWipeEffect"/>
+    <classEntry path="com.flow.effects.RippleEffect"/>
+    <classEntry path="com.flow.effects.TintEffect"/>
+    <classEntry path="com.flow.effects.Transform3DEffect"/>
+    <classEntry path="com.flow.effects.Transition"/>
+    <classEntry path="com.flow.effects.WipeEffect"/>
+    <classEntry path="com.flow.effects.utils.ColorMatrix"/>
+    <classEntry path="com.flow.effects.utils.ColorRGB"/>
+    <classEntry path="com.flow.effects.utils.CopyEffect"/>
+    <classEntry path="com.flow.events.AMFGatewayEvent"/>
+    <classEntry path="com.flow.events.CollectionEvent"/>
+    <classEntry path="com.flow.events.CollectionEventKind"/>
+    <classEntry path="com.flow.events.CommandEvent"/>
+    <classEntry path="com.flow.events.ComponentEvent"/>
+    <classEntry path="com.flow.events.InvalidationEvent"/>
+    <classEntry path="com.flow.events.StateEvent"/>
+    <classEntry path="com.flow.events.WebCamEvent"/>
+    <classEntry path="com.flow.log.Log"/>
+    <classEntry path="com.flow.motion.Tween"/>
+    <classEntry path="com.flow.motion.easing.Back"/>
+    <classEntry path="com.flow.motion.easing.Bounce"/>
+    <classEntry path="com.flow.motion.easing.Circular"/>
+    <classEntry path="com.flow.motion.easing.Cubic"/>
+    <classEntry path="com.flow.motion.easing.Elastic"/>
+    <classEntry path="com.flow.motion.easing.Exponential"/>
+    <classEntry path="com.flow.motion.easing.Linear"/>
+    <classEntry path="com.flow.motion.easing.Quadratic"/>
+    <classEntry path="com.flow.motion.easing.Quartic"/>
+    <classEntry path="com.flow.motion.easing.Quintic"/>
+    <classEntry path="com.flow.motion.easing.Sine"/>
+    <classEntry path="com.flow.net.AMFGateway"/>
+    <classEntry path="com.flow.net.AMFGatewayResponder"/>
+    <classEntry path="com.flow.net.loaders.AbstractLoader"/>
+    <classEntry path="com.flow.net.loaders.DisplayObjectLoader"/>
+    <classEntry path="com.flow.net.loaders.JSONLoader"/>
+    <classEntry path="com.flow.net.loaders.LoaderBatch"/>
+    <classEntry path="com.flow.net.loaders.TextLoader"/>
+    <classEntry path="com.flow.net.loaders.XMLLoader"/>
+    <classEntry path="com.flow.ui.KeyboardManager"/>
+    <classEntry path="com.flow.utils.GraphicUtils"/>
+    <classEntry path="com.flow.utils.MultiBinder"/>
+    <classEntry path="com.flow.utils.callLater"/>
+    <classEntry path="com.flow.utils.callLaterTimed"/>
+    <classEntry path="mx.states.AddItems"/>
+    <classEntry path="mx.states.IOverride"/>
+    <classEntry path="mx.states.IStateClient2"/>
+    <classEntry path="mx.states.OverrideBase"/>
+    <classEntry path="mx.states.SetProperty"/>
+    <classEntry path="mx.states.State"/>
+  </includeClasses>
   <includeResources/>
-  <namespaceManifests/>
+  <namespaceManifests>
+    <namespaceManifestEntry manifest="main-manifest.xml" namespace="http://artman.fi/flow"/>
+  </namespaceManifests>
 </flexLibProperties>

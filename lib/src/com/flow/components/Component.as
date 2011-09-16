@@ -820,6 +820,7 @@ package com.flow.components {
 			stateMovieClips.push(clip);
 		}
 		
+		
 		public function removeStateClip(clip:MovieClip):void {
 			if(stateMovieClips.indexOf(clip) != -1) {
 				stateMovieClips.splice(stateMovieClips.indexOf(clip), 1);
@@ -827,7 +828,7 @@ package com.flow.components {
 			if(!stateMovieClips.length) {
 				stateMovieClips = null;
 				removeEventListener(StateEvent.STATE_CHANGE, stateChanged);
-			}
+			} 
 		}
 		
 		protected function stateChanged(e:StateEvent):void {
@@ -838,7 +839,7 @@ package com.flow.components {
 		
 		/**
 		 * @private 
-		 */		
+		 */
 		public function get transitions():Array {
 			return [];
 		}
