@@ -25,7 +25,6 @@ package com.flow.collections {
 	import com.flow.events.CollectionEvent;
 	import com.flow.events.CollectionEventKind;
 	
-	import flash.display.DisplayObject;
 	import flash.events.EventDispatcher;
 	
 	[DefaultProperty("source")]
@@ -118,7 +117,9 @@ package com.flow.collections {
 		/** @inheritDoc */
 		public function toArray():Array {
 			var arr:Array = [];
-			for(var i:int = 0; i<_source.length; i++) {
+			var i:int = 0;
+			var len:uint = _source.length;
+			for(; i < len; ++i) {
 				arr.push(_source[i]);
 			}
 			return arr;

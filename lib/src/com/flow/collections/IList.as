@@ -24,7 +24,7 @@ package com.flow.collections  {
 	
 	import flash.events.IEventDispatcher;
 	
-	[Event(name="collectionChange", type="fi.artman.eventns.CollectionEvent")]
+	[Event(name="collectionChange", type="com.flow.events.CollectionEvent")]
 	/**
 	 * A list of elements that can be manipulated with the given methods.
 	 */	
