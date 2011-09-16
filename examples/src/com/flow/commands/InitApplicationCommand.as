@@ -36,9 +36,9 @@ package com.flow.commands {
 		
 		public function InitApplicationCommand() {
 			super();
-			TextFormatManager.registerTextFormat("normal", new TextFormat("Universal", 10, 0, false, false, false, null, null, null, 0, 0, null, 4));
-			TextFormatManager.registerTextFormat("heading", new TextFormat("Universal", 18, 0, true, false, false, null, null, null, 0, 0, null, 4));
-			TextFormatManager.registerTextFormat("bold", new TextFormat("Universal", 10, 0, true, false, false, null, null, null, 0, 0, null, 4));
+			TextFormatManager.registerTextFormat("normal", new TextFormat("Universal", 11, 0, false, false, false, null, null, null, 0, 0, null, 2));
+			TextFormatManager.registerTextFormat("heading", new TextFormat("Universal", 18, 0, true, false, false, null, null, null, 0, 0, null, 2));
+			TextFormatManager.registerTextFormat("bold", new TextFormat("Universal", 11, 0, true, false, false, null, null, null, 0, 0, null, 2));
 		}
 	}
 }

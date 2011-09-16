@@ -33,6 +33,7 @@
 			import com.flow.commands.InitApplicationCommand;
 			import com.flow.managers.TextFormatManager;
 			import com.flow.skins.ButtonSkin;
+			import com.flow.skins.TextInputSkin;
 			
 			import flash.filters.DropShadowFilter;
 			
@@ -50,10 +51,10 @@
 			<fx:String>Absolute layout</fx:String>
 			<fx:String>Box layout</fx:String>
 			<fx:String>Components</fx:String>
-			<fx:String>Data Binding</fx:String>
 		</fx:Array>
 	</fx:Declarations>
 	
+
 	
 	<fw:Container horizontalCenter="0" verticalCenter="0">
 		
@@ -62,9 +63,9 @@
 		
 		<fw:ScrollArea id="section" top="37" bottom="38" selectedIndex="{sectionCounter.selectedIndex}">
 		
-			<view:ControlsView />
 			<view:BasicLayoutView />			
 			<view:BoxLayout />
+			<view:ControlsView />
 
 			<fw:Container width="400" height="300" verticalCenter="0" horizontalCenter="0">
 				<fw:fill>

@@ -123,7 +123,10 @@
 	<component id="Spacing" class="com.flow.components.Spacing"/>
 	<component id="State" class="mx.states.State"/>
 	<component id="StateEvent" class="com.flow.events.StateEvent"/>
+	<component id="StrokeBase" class="com.flow.graphics.strokes.StrokeBase"/>
 	<component id="TextFormatManager" class="com.flow.managers.TextFormatManager"/>
+	<component id="TextInput" class="com.flow.components.TextInput"/>
+	<component id="TextInputSkin" class="com.flow.skins.TextInputSkin"/>
 	<component id="TextLoader" class="com.flow.net.loaders.TextLoader"/>
 	<component id="TintEffect" class="com.flow.effects.TintEffect"/>
 	<component id="TooltipManager" class="com.flow.managers.TooltipManager"/>

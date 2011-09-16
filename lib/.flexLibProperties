@@ -171,6 +171,8 @@
     <classEntry path="mx.states.State"/>
     <classEntry path="mx.states.Transition"/>
     <classEntry path="com.flow.graphics.strokes.StrokeBase"/>
+    <classEntry path="com.flow.components.TextInput"/>
+    <classEntry path="com.flow.skins.TextInputSkin"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests>
