@@ -44,7 +44,7 @@
 	<component id="Container" class="com.flow.containers.Container"/>
 	<component id="CopyEffect" class="com.flow.effects.utils.CopyEffect"/>
 	<component id="Cubic" class="com.flow.motion.easing.Cubic"/>
-	<component id="DefaultTooltip" class="com.flow.components.DefaultTooltip"/>
+	<component id="DefaultTooltip" class="com.flow.components.supportClasses.DefaultTooltip"/>
 	<component id="DisplayObjectCollection" class="com.flow.collections.DisplayObjectCollection"/>
 	<component id="DisplayObjectLoader" class="com.flow.net.loaders.DisplayObjectLoader"/>
 	<component id="DropShadowEffect" class="com.flow.effects.DropShadowEffect"/>
@@ -71,7 +71,7 @@
 	<component id="IStateClient" class="mx.core.IStateClient"/>
 	<component id="IStateClient2" class="mx.core.IStateClient2"/>
 	<component id="IStroke" class="com.flow.components.graphics.strokes.IStroke"/>
-	<component id="ITooltip" class="com.flow.components.ITooltip"/>
+	<component id="ITooltip" class="com.flow.components.supportClasses.ITooltip"/>
 	<component id="Image" class="com.flow.components.graphics.Image"/>
 	<component id="InnerGlowEffect" class="com.flow.effects.InnerGlowEffect"/>
 	<component id="InvalidationEvent" class="com.flow.events.InvalidationEvent"/>
@@ -99,9 +99,9 @@
 	<component id="MultiBinder" class="com.flow.utils.MultiBinder"/>
 	<component id="OuterBevelEffect" class="com.flow.effects.OuterBevelEffect"/>
 	<component id="OverrideBase" class="mx.states.OverrideBase"/>
-	<component id="PaddableComponent" class="com.flow.components.PaddableComponent"/>
+	<component id="PaddableComponent" class="com.flow.components.supportClasses.PaddableComponent"/>
 	<component id="PixelateEffect" class="com.flow.effects.PixelateEffect"/>
-	<component id="Preloader" class="com.flow.components.Preloader"/>
+	<component id="Preloader" class="com.flow.components.supportClasses.Preloader"/>
 	<component id="Quadratic" class="com.flow.motion.easing.Quadratic"/>
 	<component id="Quartic" class="com.flow.motion.easing.Quartic"/>
 	<component id="Quintic" class="com.flow.motion.easing.Quintic"/>
@@ -112,8 +112,8 @@
 	<component id="SetProperty" class="mx.states.SetProperty"/>
 	<component id="Shape" class="com.flow.components.graphics.Shape"/>
 	<component id="Sine" class="com.flow.motion.easing.Sine"/>
-	<component id="Skin" class="com.flow.components.Skin"/>
-	<component id="SkinnableComponent" class="com.flow.components.SkinnableComponent"/>
+	<component id="Skin" class="com.flow.components.supportClasses.Skin"/>
+	<component id="SkinnableComponent" class="com.flow.components.supportClasses.SkinnableComponent"/>
 	<component id="SolidFill" class="com.flow.components.graphics.fills.SolidFill"/>
 	<component id="SolidStroke" class="com.flow.components.graphics.strokes.SolidStroke"/>
 	<component id="Spacing" class="com.flow.components.Spacing"/>

@@ -2,7 +2,7 @@
 package com.flow.components {
 	
 	import com.flow.components.Component;
-	import com.flow.components.PaddableComponent;
+	import com.flow.components.supportClasses.PaddableComponent;
 	import com.flow.managers.TextFormatManager;
 	
 	import flash.display.DisplayObjectContainer;
@@ -16,6 +16,7 @@ package com.flow.components {
 	import flash.text.TextFormat;
 	import flash.text.TextFormatAlign;
 	import flash.text.TextLineMetrics;
+	import com.flow.components.supportClasses.PaddableComponent;
 	
 	[DefaultProperty("htmlText")]
 	public class Label extends PaddableComponent {

@@ -14,6 +14,7 @@
     <classEntry path="com.flow.commands.CommandDispatch"/>
     <classEntry path="com.flow.components.Button"/>
     <classEntry path="com.flow.components.Component"/>
+<<<<<<< HEAD
     <classEntry path="com.flow.components.DefaultTooltip"/>
     <classEntry path="com.flow.components.ITooltip"/>
 <<<<<<< HEAD
@@ -29,6 +30,15 @@
     <classEntry path="com.flow.components.Preloader"/>
     <classEntry path="com.flow.components.Skin"/>
     <classEntry path="com.flow.components.SkinnableComponent"/>
+=======
+    <classEntry path="com.flow.components.supportClasses.DefaultTooltip"/>
+    <classEntry path="com.flow.components.supportClasses.ITooltip"/>
+    <classEntry path="com.flow.components.Label"/>
+    <classEntry path="com.flow.components.supportClasses.PaddableComponent"/>
+    <classEntry path="com.flow.components.supportClasses.Preloader"/>
+    <classEntry path="com.flow.components.supportClasses.Skin"/>
+    <classEntry path="com.flow.components.supportClasses.SkinnableComponent"/>
+>>>>>>> Refactored components into supportClasses package, renamed background
     <classEntry path="com.flow.components.Spacing"/>
     <classEntry path="com.flow.components.WebCam"/>
     <classEntry path="com.flow.components.graphics.Geometry"/>

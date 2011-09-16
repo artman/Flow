@@ -49,7 +49,7 @@ package com.flow.components {
 	import mx.core.IStateClient2;
 	import mx.states.State;
 	
-	[DefaultProperty("background")]
+	[DefaultProperty("fill")]
 	[Event(name="stateChange", type="com.flow.events.StateEvent")]
 	public class Component extends Sprite implements IStateClient2, IFactory {
 		
@@ -118,8 +118,8 @@ package com.flow.components {
 		
 		private var _states:Array = [];
 		
-		protected var _background:IFill;
-		protected var _border:IStroke;
+		protected var _fill:IFill;
+		protected var _stroke:IStroke;
 		
 		private var _tooltip:String;
 		protected var _focusElement:InteractiveObject;
@@ -262,24 +262,24 @@ package com.flow.components {
 		
 		public function draw(width:int, height:int):void {
 			graphics.clear();
-			if(_background) {
-				_background.beginDraw(graphics, width, height);
+			if(_fill) {
+				_fill.beginDraw(graphics, width, height);
 			}
-			if(_border) {
-				_border.beginDraw(graphics, width, height);
+			if(_stroke) {
+				_stroke.beginDraw(graphics, width, height);
 			}
-			if(_background || _border) {
+			if(_fill || _stroke) {
 				var widthExt:int = 0;
 				if(_borderExpand) {
 					widthExt = _borderExpand * 2 - 1;
 				}
 				graphics.drawRect(-borderExpand,-borderExpand, width + widthExt, height + widthExt);
 			}
-			if(_background) {
-				_background.endDraw(graphics);
+			if(_fill) {
+				_fill.endDraw(graphics);
 			}
-			if(_border) {
-				_border.endDraw(graphics);
+			if(_stroke) {
+				_stroke.endDraw(graphics);
 			}
 			applyMask(width, height);
 		}
@@ -287,8 +287,8 @@ package com.flow.components {
 		protected function applyMask(width:int, height:int):void {
 			if(clip) {
 				var inset:int = 0;
-				if(_border) {
-					inset = Math.ceil(_border.thickness/2);
+				if(_stroke) {
+					inset = Math.ceil(_stroke.thickness/2);
 				}
 				scrollRect = new Rectangle(0, 0, width+inset, height+inset);
 			}
@@ -579,33 +579,33 @@ package com.flow.components {
 			return _measureUnits;
 		}
 		
-		public function get background():IFill {
-			return _background;
+		public function get fill():IFill {
+			return _fill;
 		}
-		public function set background(value:IFill):void {
-			if(_background != value) {
-				if(_background) {
-					_background.removeEventListener(InvalidationEvent.INVALIDATE, invalidate);
+		public function set fill(value:IFill):void {
+			if(_fill != value) {
+				if(_fill) {
+					_fill.removeEventListener(InvalidationEvent.INVALIDATE, invalidate);
 				}
-				_background = value;
-				if(_background) {
-					_background.addEventListener(InvalidationEvent.INVALIDATE, invalidate);
+				_fill = value;
+				if(_fill) {
+					_fill.addEventListener(InvalidationEvent.INVALIDATE, invalidate);
 				}
 				invalidate();
 			}
 		}
 		
-		public function get border():IStroke {
-			return _border;
+		public function get stroke():IStroke {
+			return _stroke;
 		}
-		public function set border(value:IStroke):void {
-			if(_border != value) {
-				if(_border) {
-					_border.removeEventListener(InvalidationEvent.INVALIDATE, invalidate);
+		public function set stroke(value:IStroke):void {
+			if(_stroke != value) {
+				if(_stroke) {
+					_stroke.removeEventListener(InvalidationEvent.INVALIDATE, invalidate);
 				}
-				_border = value;
-				if(_border) {
-					_border.addEventListener(InvalidationEvent.INVALIDATE, invalidate);
+				_stroke = value;
+				if(_stroke) {
+					_stroke.addEventListener(InvalidationEvent.INVALIDATE, invalidate);
 				}
 				invalidate();
 			}

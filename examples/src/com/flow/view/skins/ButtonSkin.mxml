@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<flow:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
-				  xmlns:flow="http://artman.fi/flow">
+<supportClasses:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+				  xmlns:flow="http://artman.fi/flow" xmlns:supportClasses="com.flow.components.supportClasses.*">
 	
 
 	
-</flow:Skin>
+</supportClasses:Skin>
