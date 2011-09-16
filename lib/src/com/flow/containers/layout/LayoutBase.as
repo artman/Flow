@@ -58,7 +58,9 @@ package com.flow.containers.layout {
 		}
 		
 		final public function layout(w:int, h:int):void {
-			layoutChildren(_paddingLeft, _paddingTop, w-_paddingLeft - _paddingRight, h-_paddingTop-_paddingBottom);
+			if(_target) {
+				layoutChildren(_paddingLeft, _paddingTop, w-_paddingLeft - _paddingRight, h-_paddingTop-_paddingBottom);
+			}
 		}
 		
 		public function layoutChildren(offsetX:int, offsetY:int, w:int, h:int):void {
@@ -133,11 +135,12 @@ package com.flow.containers.layout {
 			}
 		}
 		
-		
 		final public function measure():void {
-			measureChildren();
-			_target.measuredWidth += _paddingLeft + _paddingRight;
-			_target.measuredHeight += _paddingTop + _paddingBottom;
+			if(_target) {
+				measureChildren();
+				_target.measuredWidth += _paddingLeft + _paddingRight;
+				_target.measuredHeight += _paddingTop + _paddingBottom;
+			}
 		}
 		
 		public function measureChildren():void {

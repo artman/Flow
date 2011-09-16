@@ -30,6 +30,7 @@
 	<component id="ButtonSkin" class="com.flow.skins.ButtonSkin"/>
 	<component id="CSBEffect" class="com.flow.effects.CSBEffect"/>
 	<component id="Checkbox" class="com.flow.components.Checkbox"/>
+	<component id="CheckboxSkin" class="com.flow.skins.CheckboxSkin"/>
 	<component id="ChihulyEffect" class="com.flow.effects.ChihulyEffect"/>
 	<component id="Circular" class="com.flow.motion.easing.Circular"/>
 	<component id="CollectionEvent" class="com.flow.events.CollectionEvent"/>
@@ -102,6 +103,7 @@
 	<component id="OuterBevelEffect" class="com.flow.effects.OuterBevelEffect"/>
 	<component id="OverrideBase" class="mx.states.OverrideBase"/>
 	<component id="PaddableComponent" class="com.flow.components.supportClasses.PaddableComponent"/>
+	<component id="Path" class="com.flow.graphics.Path"/>
 	<component id="PixelateEffect" class="com.flow.effects.PixelateEffect"/>
 	<component id="Preloader" class="com.flow.components.supportClasses.Preloader"/>
 	<component id="Quadratic" class="com.flow.motion.easing.Quadratic"/>
