@@ -21,35 +21,54 @@
 * THE SOFTWARE.
 -->
 
-
 <fw:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
 		 xmlns:fw="http://artman.fi/flow" 
-		 height="24">	
+		 height="24" xmlns:mx="library://ns.adobe.com/flex/mx">	
 	
 	<fx:Metadata>
-		[HostComponent("com.flow.components.Button")]
+		[HostComponent("com.flow.components.Alert")]
 	</fx:Metadata>
 	
-	<fw:states>
-		<s:State name="up" transitionSpeed="0.5" />
-		<s:State name="over" transitionSpeed="0.1" />
-		<s:State name="down" transitionSpeed="0.1" />
-		<s:State name="disabled" />
-	</fw:states>
+	<fw:Container>
+		<fw:Rect width="100%" height="100%">
+			<fw:stroke>
+				<fw:SolidStroke color="0xDDDDDD" />
+			</fw:stroke>
+			<fw:fill>
+				<fw:SolidFill color="0xFFFFFF" />
+			</fw:fill>
+			<fw:filters>
+				<mx:DropShadowFilter quality="3" blurX="30" blurY="30" angle="90" distance="1" color="0" alpha="0.3" />
+			</fw:filters>
+		</fw:Rect>
+		
 	
-	<fw:Rect width="100%" height="100%" radius="5">
-		<fw:fill>
-			<fw:GradientFill rotation="90">
-				<fw:GradientData color="0xF9F9F9" color.down="0xEEEEEE" ratio="0" />
-				<fw:GradientData color="0xDDDDDD" color.over="0xCCCCCC" color.down="0xBBBBBB" color.disabled="0xFFFFFF" ratio="1" />
-			</fw:GradientFill>
-		</fw:fill>
-		<fw:stroke>
-			<fw:SolidStroke thickness="1" caps="none" joints="round" color="0xBBBBBB" color.over="0xAAAAAA" color.down="0x888888" color.disabled="0xDDDDDD" />
-		</fw:stroke>
-	</fw:Rect>
-	
-	<fw:Label horizontalPadding="10" verticalPadding="3" id="labelDisplay" align="center" horizontalCenter="0" verticalCenter="0" color="0" color.disabled="0xAAAAAA" />
-	
+		<fw:VBox spacing="5">
+			<fw:Label id="titleLabel" color="0xFFFFFF" textFormat="bold" padding="4" width="100%">
+				<fw:fill>
+					<fw:SolidFill color="0xDD0000" />
+				</fw:fill>
+			</fw:Label>
+			
+			
+			<fw:Label id="contentLabel" textFormat="normal" padding="4" multiline="true" width="100%" maxWidth="400" />
+			
+			<fw:HBox horizontalAlign="right" id="buttonContainer" spacing="5" padding="5" width="100%">
+				<fw:fill>
+					<fw:SolidFill color="0xFFFFFF" />
+				</fw:fill>
+				<fw:stroke>
+					<fw:SolidStroke color="0xDDDDDD" />
+				</fw:stroke>
+				
+				<fw:Button id="ok" label="OK" />
+				
+			</fw:HBox>
+			
+		</fw:VBox>
+	</fw:Container>
 </fw:Skin>
+
+
+
