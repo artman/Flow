@@ -26,10 +26,13 @@ package com.flow.containers {
 	import com.flow.containers.layout.VBoxLayout;
 	import com.flow.motion.Tween;
 	import com.flow.motion.easing.Quadratic;
+	import com.flow.utils.MultiChangeWatcher;
 	
 	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.geom.Rectangle;
+	
+	import mx.binding.utils.ChangeWatcher;
 
 	public class ScrollArea extends Container {
 		
@@ -38,6 +41,7 @@ package com.flow.containers {
 		private var _selectedIndex:Number = 0;
 		public var scrollSpeed:Number = 0.5;
 		private var firstValidation:Boolean = true;
+		private var sizeWatcher:MultiChangeWatcher;
 		
 		public function ScrollArea() {
 			super();
@@ -110,10 +114,20 @@ package com.flow.containers {
 			validateLayout();
 			_selectedIndex = index;
 			if(numChildren > _selectedIndex) {
+				if(sizeWatcher) {
+					sizeWatcher.unwatch();
+				}
 				var content:DisplayObject = getChildAt(selectedIndex);
+				sizeWatcher = new MultiChangeWatcher(content, ["width", "height"], updateSize);
 				return new Tween(this, speed, {height:content.height, width:content.width, scrollY:content.y}, tweenParams ? tweenParams : {ease:Quadratic.easeInOut});
 			}
 			return null;
+		}
+		
+		private function updateSize():void {
+			var content:DisplayObject = getChildAt(selectedIndex);
+			width = content.width;
+			height = content.height;
 		}
 		
 		override protected function applyMask(width:int, height:int):void {

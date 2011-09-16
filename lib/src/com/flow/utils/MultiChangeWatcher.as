@@ -27,31 +27,34 @@ package com.flow.utils {
 	
 	import mx.binding.utils.ChangeWatcher;
 	
-	public class MultiBinder {
+	public class MultiChangeWatcher {
 		private var properties:Array;
-		private var beacon:Sprite;
 		private var handler:Function;
+		private var watchers:Vector.<ChangeWatcher>;
 		
-		public function MultiBinder(target:Object, properties:Array, handler:Function) {
+		public function MultiChangeWatcher(target:Object, properties:Array, handler:Function) {
+			watchers = new Vector.<ChangeWatcher>();
 			this.properties = properties;
 			this.handler = handler;
-			beacon = new Sprite();
 			for(var i:int = 0; i<properties.length; i++) {
 				var prop:String = properties[i];
 				var mp:Array = prop.split(".");
 				if(mp.length > 1) {
-					ChangeWatcher.watch(target, mp, handleChange);
+					watchers.push(ChangeWatcher.watch(target, mp, handleChange));
 				} else {
-					ChangeWatcher.watch(target, mp[0], handleChange);
+					watchers.push(ChangeWatcher.watch(target, mp[0], handleChange));
 				}
 			}
 		}
 		
-		private function handleChange(e:Event):void {
-			beacon.addEventListener(Event.ENTER_FRAME, validate);
+		public function unwatch():void {
+			for(var i:int = 0; i<watchers.length; i++) {
+				watchers[i].unwatch();
+			}
+			watchers = null;
 		}
 		
-		private function validate(e:Event):void {
+		private function handleChange(e:Event):void {
 			handler();
 		}
 	}

@@ -62,7 +62,7 @@
 				<fw:Image id="postcard2" active="false" source="{Postcard}">
 					<fw:transition>
 						<fw:EffectTransition speed="2">
-							<fw:BlurEffect blurX="30" blurY="30" blurQuality="2" />
+							<fw:BlurEffect blurX="100" blurY="100" blurQuality="2" />
 						</fw:EffectTransition>
 					</fw:transition>
 				</fw:Image>
