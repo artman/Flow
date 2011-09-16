@@ -26,9 +26,9 @@ package com.flow.managers {
 	import com.flow.components.Component;
 	import com.flow.containers.Application;
 	import com.flow.containers.Container;
-	import com.flow.motion.AnimationProperties;
 	import com.flow.effects.Effect;
 	import com.flow.graphics.GradientData;
+	import com.flow.motion.AnimationProperties;
 	import com.flow.motion.AnimationProperty;
 	import com.flow.motion.IAnimateable;
 	import com.flow.motion.Tween;
@@ -67,6 +67,7 @@ package com.flow.managers {
 		private var invalidated:Boolean = false;
 		private var animationRoot:Component;
 		private var animationProperties:Dictionary;
+		private var animatedComponents:Dictionary;
 		
 		/** Constructor */
 		public function LayoutManager() {
@@ -75,6 +76,7 @@ package com.flow.managers {
 			invalidLayoutList = new Vector.<Container>();
 			invalidEffectList = new Vector.<Effect>();
 			invalidChildrenList = new Vector.<Container>();
+			animatedComponents = new Dictionary(true);
 		}
 		
 		/** @private */
@@ -218,13 +220,32 @@ package com.flow.managers {
 		 * @see #commitAnimation()
 		 */		
 		public function beginAnimation(target:Component):void {
-			var t:Number = getTimer();
 			if(animationRoot) {
 				commitAnimation()
 			}
 			animationRoot = target;
 			animationProperties = new Dictionary();
 			collectProps(animationRoot, animationProperties);
+		}
+		
+		
+		/**
+		 * Canceles a previously commited animation on the target, removing all effective tweens.
+
+		 * @param The target to cancel. 
+		 * @see #beginAnimation()
+		 * @see #commitAnimation()
+		 */		
+		public function cancelAnimation(target:Component):void {
+			if(animatedComponents[target]) {
+				var props:Dictionary = new Dictionary();
+				collectProps(target, props);
+				for (var component:Object in props) {
+					// TODO: Shouldn't remove all tweens, only tweens for animateable properties.
+					Tween.removeTween(component);
+				}
+				animationRoot = null;
+			}
 		}
 		
 		/**
@@ -236,6 +257,7 @@ package com.flow.managers {
 		 * @see #beginAnimation()
 		 */		
 		public function commitAnimation(speed:Number = 0.5, tweenProps:Object = null):void {
+			animatedComponents[animationRoot] = true;
 			if(!tweenProps) {
 				tweenProps = {};
 			}

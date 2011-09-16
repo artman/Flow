@@ -25,6 +25,7 @@ package com.flow.components {
 	import com.flow.components.measuring.MeasureUnit;
 	import com.flow.components.measuring.MeasureUnits;
 	import com.flow.containers.Container;
+	import com.flow.effects.Effect;
 	import com.flow.effects.transitions.FadeTransition;
 	import com.flow.events.ComponentEvent;
 	import com.flow.events.InvalidationEvent;
@@ -172,6 +173,8 @@ package com.flow.components {
 		[Bindable] public var data:*;
 		/** The index of the component in a list if the component is used as a item renderer. */
 		[Bindable] public var rendererIndex:int;
+		
+		private var _effect:Effect;
 		
 		[Event(name="creationComplete", type="com.flow.events.ComponentEvent")]
 		public function Component() {
@@ -1099,9 +1102,14 @@ package com.flow.components {
 						var toState:State = states[i];
 					}
 				}
-				
-				if(fromState && toState && toState.transitionSpeed) {
-					manager.beginAnimation(this);	
+				if(fromState && toState) {
+					if( toState.transitionSpeed) {
+						manager.beginAnimation(this);
+					} else {
+						manager.cancelAnimation(this);
+					}
+				} else {
+					manager.cancelAnimation(this);
 				}
 			
 				if(fromState) {
@@ -1179,6 +1187,21 @@ package com.flow.components {
 		/** @private */
 		public function get visualRepresentation():Component {
 			return this;
+		}
+		
+		public function get effect():Effect {
+			return _effect;
+		}
+		public function set effect(value:Effect):void {
+			if(value != _effect) {
+				if(_effect) {
+					_effect.target = null;
+				}
+				_effect = value;
+				if(_effect) {
+					_effect.target = this;
+				}
+			}
 		}
 	}
 	Component.manager = LayoutManager.instance;

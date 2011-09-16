@@ -1,9 +1,31 @@
+/**
+ * Copyright (c) 2011 Tuomas Artman, http://artman.fi
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
 
 package com.flow.components {
 	
 	import com.flow.components.supportClasses.PaddableComponent;
 	import com.flow.managers.TextFormatManager;
 	
+	import flash.display.DisplayObject;
 	import flash.text.AntiAliasType;
 	import flash.text.TextField;
 	import flash.text.TextFieldType;
@@ -12,20 +34,38 @@ package com.flow.components {
 	[DefaultProperty("htmlText")]
 	public class Label extends PaddableComponent {
 		
-		private var _text:String = "";
-		private var _textField:TextField;
-		private var _align:String;
-		private var _verticalAlign:String = "middle";
-		private var _size:int;
-		private var _color:int;
-		private var hasColor:Boolean = false;
-		private var _ellipsis:Boolean = false;
-		private var _textTransform:String = "";
-		private var _multiline:Boolean = false;
-		private var _textFormat:String = "normal";
-		private var _editable:Boolean;
-		
-		private var isHTML:Boolean = false;		
+		/** @private */
+		protected var _text:String = "";
+		/** @private */
+		protected var _textField:TextField;
+		/** @private */
+		protected var _align:String;
+		/** @private */
+		protected var _verticalAlign:String = "middle";
+		/** @private */
+		protected var _size:int;
+		/** @private */
+		protected var _color:int;
+		/** @private */
+		protected var hasColor:Boolean = false;
+		/** @private */
+		protected var _ellipsis:Boolean = false;
+		/** @private */
+		protected var _textTransform:String = "";
+		/** @private */
+		protected var _multiline:Boolean = false;
+		/** @private */
+		protected var _textFormat:String = "normal";
+		/** @private */
+		protected var _editable:Boolean;
+		/** @private */
+		protected var _icon:DisplayObject;
+		/** @private */
+		protected var _iconPadding:Number = 5;
+		/** @private */
+		protected var _iconPlacement:String = "left";
+		/** @private */
+		protected var isHTML:Boolean = false;		
 		
 		public function Label() {
 			super();
@@ -157,6 +197,44 @@ package com.flow.components {
 			}
 		}
 		
+		public function get icon():DisplayObject {
+			return _icon;
+		}
+		public function set icon(value:DisplayObject):void {
+			if(value != _icon) {
+				if(_icon) {
+					removeChild(_icon);
+				}
+				_icon = value;
+				if(_icon) {
+					_icon.visible = false; // Fixme: For some reason layout is deffered by one frame when setting this in a state change.
+					addChild(_icon);
+				}	
+				invalidateLayout();
+			}
+		}
+		
+		public function get iconPadding():Number {
+			return _iconPadding;
+		}
+		public function set iconPadding(value:Number):void {
+			if(value != _iconPadding) {
+				_iconPadding = value;
+				invalidateLayout();
+			}
+		}
+		
+		[Inspectable(enumeration="left,right", defaultValue="left")]
+		public function get iconPlacement():String {
+			return _iconPlacement;
+		}
+		public function set iconPlacement(value:String):void {
+			if(value != _iconPlacement) {
+				_iconPlacement = value;
+				invalidate();
+			}
+		}
+
 		public function get textField():TextField {
 			return _textField;
 		}
@@ -170,15 +248,7 @@ package com.flow.components {
 			} else {
 				_textField.embedFonts = true;
 			}
-			if(_size) {
-				def.size = _size;
-			}
-			if(hasColor) {
-				def.color = _color;
-			}
-			if(_align) {
-				def.align = _align;
-			}
+			decorateTextFormat(def);
 			_textField.defaultTextFormat = def;
 			_textField.multiline = _multiline;
 			_textField.wordWrap = _multiline;
@@ -195,10 +265,22 @@ package com.flow.components {
 			}
 		}
 		
+		protected function decorateTextFormat(textFormat:TextFormat):void {
+			if(_size) {
+				textFormat.size = _size;
+			}
+			if(hasColor) {
+				textFormat.color = _color;
+			}
+			if(_align) {
+				textFormat.align = _align;
+			}
+		}
+		
 		private function get transformedText():String {
 			if(_textTransform == "uppercase") {
 				return _text.toUpperCase();
-			} else if(_textTransform == "lowecase") {
+			} else if(_textTransform == "lowercase") {
 				return _text.toLowerCase();
 			}
 			return _text;
@@ -213,19 +295,20 @@ package com.flow.components {
 			} else {
 				_textField.text = transformedText;
 			}
-			measuredWidth = Math.ceil(_textField.textWidth + horizontal + 4); // 4px gutter
-			measuredHeight = Math.ceil(_textField.textHeight + vertical + 6); // 4px gutter + 2px top margin
+			measuredWidth = Math.ceil(_textField.textWidth + horizontal + 4) + (_icon ? _icon.width + _iconPadding : 0);
+			measuredHeight = Math.ceil(_textField.textHeight + vertical + 4);
 		}
 		
 		override protected function drawWithPadding(offsetX:int, offsetY:int, width:int, height:int):void {
 			super.drawWithPadding(offsetX, offsetY, width, height);
-			_textField.x = offsetX;
+			var iconW:Number = _icon ? _icon.width + _iconPadding : 0;
+			_textField.x = offsetX + (_iconPlacement == "left" ? iconW : 0);
 			_textField.autoSize = "none";
-			_textField.width = width+1;
+			_textField.width = width+1 - iconW;
 			if(align == "center") {
 				_textField.width = Math.floor(_textField.width/2)*2;
 			}
-			_textField.height = height-2;
+			_textField.height = height;
 			
 			if(_verticalAlign == "top") {
 				_textField.y = offsetY+2;
@@ -240,6 +323,15 @@ package com.flow.components {
 					orgi = orgi.substring(0,orgi.length-1);
 					_textField.text = orgi + "...";
 				}
+			}
+			if(_icon) {
+				if(_iconPlacement == "left") {
+					_icon.x = offsetX;
+				} else {
+					_icon.x = offsetX + width - icon.width;
+				}
+				_icon.y = Math.round(_textField.y + (_textField.textHeight - _icon.height) / 2);
+				_icon.visible = true;
 			}
 		}
 	}
