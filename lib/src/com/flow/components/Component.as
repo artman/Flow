@@ -84,6 +84,8 @@ package com.flow.components {
 		protected var _maxWidth:Number;
 		protected var _maxHeight:Number;
 		
+		private var _borderExpand:int = 0;
+		
 		public var propertiesInvalidated:Boolean = false;
 		public var layoutInvalidated:Boolean = false;
 		public var invalidated:Boolean = false;
@@ -255,7 +257,11 @@ package com.flow.components {
 				_border.beginDraw(graphics, width, height);
 			}
 			if(_background || _border) {
-				graphics.drawRect(0,0, width, height);
+				var widthExt:int = 0;
+				if(_borderExpand) {
+					widthExt = _borderExpand * 2 - 1;
+				}
+				graphics.drawRect(-borderExpand,-borderExpand, width + widthExt, height + widthExt);
 			}
 			if(_background) {
 				_background.endDraw(graphics);
@@ -585,6 +591,17 @@ package com.flow.components {
 				if(_border) {
 					_border.addEventListener(InvalidationEvent.INVALIDATE, invalidate);
 				}
+				invalidate();
+			}
+		}
+		
+		public function get borderExpand():int {
+			return _borderExpand;
+		}
+		
+		public function set borderExpand(value:int):void {
+			if(value != _borderExpand) {
+				_borderExpand = value;
 				invalidate();
 			}
 		}
