@@ -152,13 +152,12 @@ package com.flow.graphics {
 			}
 		}
 
-		override public function draw(w:int, h:int):void {
+		override public function draw(w:Number, h:Number):void {
 			super.draw(w, h);
 			if (_image) {
 				_image.scaleX = _image.scaleY = 1;
 				_image.x = _image.y = 0;
-				
-				
+		
 				if(!(_image is Sprite)) {
 					_image.width = w;
 					_image.height = h;

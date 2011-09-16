@@ -22,6 +22,7 @@
 
 package com.flow.containers {
 	
+	import com.flow.containers.layout.LayoutBase;
 	import com.flow.containers.layout.VBoxLayout;
 	import com.flow.motion.Tween;
 	import com.flow.motion.easing.Quadratic;
@@ -40,7 +41,10 @@ package com.flow.containers {
 		
 		public function ScrollArea() {
 			super();
-			layout = new VBoxLayout();
+		}
+		
+		override protected function getDefaultLayout():LayoutBase {
+			return new VBoxLayout();
 		}
 		
 		public function get scrollX():Number {

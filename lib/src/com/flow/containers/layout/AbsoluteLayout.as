@@ -33,7 +33,7 @@ package com.flow.containers.layout {
 		public function AbsoluteLayout() {
 		}
 		
-		override public function layoutChildren(offsetX:int, offsetY:int, w:int, h:int):void {
+		override public function layoutChildren(offsetX:Number, offsetY:Number, w:Number, h:Number):void {
 			for(var i:int = 0; i<_target.numChildren; i++) {
 				
 				if(_target.getChildAt(i) is Component) {
@@ -51,7 +51,7 @@ package com.flow.containers.layout {
 								group.x = parseDimension(w, m.left);
 							}
 						} else {
-							group.x = Math.round(w/2 - group.width/2 + parseDimension(w, m.horizontalCenter));
+							group.x = w/2 - group.width/2 + parseDimension(w, m.horizontalCenter);
 						}
 					} else {
 						group.absoluteWidth = w - parseDimension(w, m.left) - parseDimension(w, m.right);
@@ -69,7 +69,7 @@ package com.flow.containers.layout {
 								group.y = parseDimension(h, m.top);
 							}
 						} else {
-							group.y = Math.round(h/2 - group.height/2 + parseDimension(h, m.verticalCenter));
+							group.y = h/2 - group.height/2 + parseDimension(h, m.verticalCenter);
 						}
 					} else {
 						group.absoluteHeight = h - parseDimension(h, m.top) - parseDimension(h, m.bottom);
@@ -82,19 +82,19 @@ package com.flow.containers.layout {
 			}	
 		}
 		
-		private function parseDimension(total:int, m:MeasureUnit):int {
+		private function parseDimension(total:Number, m:MeasureUnit):Number {
 			if(m.isNull) {
 				return 0;
 			}
 			if(!m.isPercentage) {
 				return m.value;
 			}
-			return Math.round(total * m.value / 100.00);
+			return total * m.value / 100.00;
 		}
 		
 		override public function measureChildren():void {
-			var maxW:int = 0;
-			var maxH:int = 0;
+			var maxW:Number = 0;
+			var maxH:Number = 0;
 			
 			for(var i:int = 0; i<_target.numChildren; i++) {
 				var child:DisplayObject = _target.getChildAt(i);
@@ -104,8 +104,8 @@ package com.flow.containers.layout {
 					var comp:Component = child as Component;
 					var m:MeasureUnits = comp.measureUnits;
 					
-					var w:int = comp.width;
-					var h:int = comp.height;
+					var w:Number = comp.width;
+					var h:Number = comp.height;
 					
 					if(!comp.hasExplicitWidth) {
 						w = comp.sanitizeWidth(comp.measuredWidth);
@@ -137,8 +137,8 @@ package com.flow.containers.layout {
 				maxH = Math.max(maxH, h);
 			}
 			
-			_target.measuredWidth = Math.round(maxW)
-			_target.measuredHeight = Math.round(maxH);
+			_target.measuredWidth = maxW;
+			_target.measuredHeight = maxH;
 		}
 	}
 }

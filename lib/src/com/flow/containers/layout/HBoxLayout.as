@@ -28,8 +28,8 @@ package com.flow.containers.layout {
 	
 	public class HBoxLayout extends AbsoluteLayout {
 		
-		private var _spacing:int = 5;
-		private var _verticalAlign:String = "middle";
+		private var _spacing:Number = 0;
+		private var _verticalAlign:String = "top";
 		private var _horizontalAlign:String = "left";
 		private var _zSort:String = "normal";
 		private var _inverted:Boolean = false;
@@ -37,10 +37,10 @@ package com.flow.containers.layout {
 		public function HBoxLayout() {
 		}
 
-		public function get spacing():int {
+		public function get spacing():Number {
 			return _spacing;
 		}
-		public function set spacing(value:int):void {
+		public function set spacing(value:Number):void {
 			if(value != _spacing) {
 				_spacing = value;
 				invalidate();
@@ -105,16 +105,16 @@ package com.flow.containers.layout {
 			}
 		}
 		
-		override public function layoutChildren(offsetX:int, offsetY:int, w:int, h:int):void {
+		override public function layoutChildren(offsetX:Number, offsetY:Number, w:Number, h:Number):void {
 			super.layoutChildren(offsetX, offsetY, w, h);
 			var maxW:int = 0;
 			if(_horizontalAlign != AlignType.ALIGN_LEFT) {
 				for(var i:int = 0; i<_target.numChildren; i++) {
 					var displayObject:DisplayObject = _target.getChildAt(i) 
-					maxW += Math.round(displayObject.width) + (i==0 ? 0 : spacing);	
+					maxW += displayObject.width + (i==0 ? 0 : spacing);	
 				}
 			}
-			var x:int = _horizontalAlign == AlignType.ALIGN_LEFT ? 0 : _horizontalAlign == AlignType.ALIGN_RIGHT ? w - maxW : Math.round((w - maxW) / 2);
+			var x:int = _horizontalAlign == AlignType.ALIGN_LEFT ? 0 : _horizontalAlign == AlignType.ALIGN_RIGHT ? w - maxW : (w - maxW) / 2;
 			for(i = 0; i<_target.numChildren; i++) {
 				var invert:Boolean = _inverted;
 				if(_zSort == "inverted") {
@@ -131,9 +131,9 @@ package com.flow.containers.layout {
 				if(_verticalAlign == AlignType.ALIGN_TOP) {
 					displayObject.y = 0;
 				} else if(_verticalAlign == AlignType.ALIGN_MIDDLE) {
-					displayObject.y = Math.round((h - displayObject.height) / 2);
+					displayObject.y = (h - displayObject.height) / 2;
 				} else if(_verticalAlign == AlignType.ALIGN_BOTTOM) {
-					displayObject.y = Math.round(h - displayObject.height);
+					displayObject.y = h - displayObject.height;
 				}
 				displayObject.x += offsetX;
 				displayObject.y += offsetY;

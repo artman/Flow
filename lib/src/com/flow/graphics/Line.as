@@ -30,7 +30,7 @@ package com.flow.graphics {
 			stroke = new SolidStroke();
 		}
 		
-		override public function draw(width:int, height:int):void {
+		override public function draw(width:Number, height:Number):void {
 			super.draw(width, height);
 			graphics.moveTo(0,0);
 			graphics.lineTo(width,height);

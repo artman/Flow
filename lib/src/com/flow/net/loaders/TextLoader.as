@@ -32,7 +32,7 @@ package com.flow.net.loaders {
 	/**
 	 * Loads text data from a remote URL.
 	 */
-	public class TextLoader extends AbstractLoader {
+	public class TextLoader extends LoaderBase {
 		
 		private var text:String;
 		private var loader:URLLoader;
