@@ -76,7 +76,7 @@ package com.flow.containers {
 			return _selectedIndex;
 		}
 		public function set selectedIndex(value:int):void {
-			if(value != _selectedIndex) {
+			if(value != _selectedIndex && value != -1) {
 				_selectedIndex = value;
 				invalidateProperties();
 			}

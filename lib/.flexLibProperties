@@ -13,36 +13,11 @@
     <classEntry path="com.flow.collections.IList"/>
     <classEntry path="com.flow.commands.Command"/>
     <classEntry path="com.flow.commands.CommandDispatch"/>
+    <classEntry path="com.flow.components.Alert"/>
     <classEntry path="com.flow.components.Button"/>
     <classEntry path="com.flow.components.Checkbox"/>
     <classEntry path="com.flow.components.Component"/>
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <classEntry path="com.flow.components.DefaultTooltip"/>
-    <classEntry path="com.flow.components.ITooltip"/>
-<<<<<<< HEAD
-<<<<<<< HEAD
-    <classEntry path="com.flow.components.Label"/>
-=======
-    <classEntry path="com.flow.components.MeasureUnits"/>
->>>>>>> Refactoring, added messages
-=======
-    <classEntry path="com.flow.components.Label"/>
->>>>>>> Implementing skins
-    <classEntry path="com.flow.components.PaddableComponent"/>
-    <classEntry path="com.flow.components.Preloader"/>
-    <classEntry path="com.flow.components.Skin"/>
-    <classEntry path="com.flow.components.SkinnableComponent"/>
-=======
-=======
-=======
     <classEntry path="com.flow.components.HScrollBar"/>
->>>>>>> ScrollBars, Scroller and ScrollBar skins.
-=======
-    <classEntry path="com.flow.components.HScrollBar"/>
->>>>>>> 2d319c7e5a5cea5fca2ee07d27b1d702f9c164aa
     <classEntry path="com.flow.components.Label"/>
     <classEntry path="com.flow.components.LabelButton"/>
     <classEntry path="com.flow.components.Spacing"/>
@@ -52,40 +27,12 @@
     <classEntry path="com.flow.components.WebCam"/>
     <classEntry path="com.flow.components.measuring.MeasureUnit"/>
     <classEntry path="com.flow.components.measuring.MeasureUnits"/>
-<<<<<<< HEAD
->>>>>>> Refactored graphics into own package
-=======
->>>>>>> 2d319c7e5a5cea5fca2ee07d27b1d702f9c164aa
     <classEntry path="com.flow.components.supportClasses.DefaultTooltip"/>
     <classEntry path="com.flow.components.supportClasses.ITooltip"/>
     <classEntry path="com.flow.components.supportClasses.PaddableComponent"/>
     <classEntry path="com.flow.components.supportClasses.Preloader"/>
     <classEntry path="com.flow.components.supportClasses.Skin"/>
     <classEntry path="com.flow.components.supportClasses.SkinnableComponent"/>
-<<<<<<< HEAD
-<<<<<<< HEAD
->>>>>>> Refactored components into supportClasses package, renamed background
-    <classEntry path="com.flow.components.Spacing"/>
-    <classEntry path="com.flow.components.WebCam"/>
-    <classEntry path="com.flow.components.graphics.Geometry"/>
-    <classEntry path="com.flow.components.graphics.GradientData"/>
-    <classEntry path="com.flow.components.graphics.Image"/>
-    <classEntry path="com.flow.components.graphics.Line"/>
-    <classEntry path="com.flow.components.graphics.Rect"/>
-    <classEntry path="com.flow.components.graphics.Shape"/>
-    <classEntry path="com.flow.components.graphics.fills.BitmapFill"/>
-    <classEntry path="com.flow.components.graphics.fills.GradientFill"/>
-    <classEntry path="com.flow.components.graphics.fills.IFill"/>
-    <classEntry path="com.flow.components.graphics.fills.SolidFill"/>
-    <classEntry path="com.flow.components.graphics.strokes.GradientStroke"/>
-    <classEntry path="com.flow.components.graphics.strokes.IStroke"/>
-    <classEntry path="com.flow.components.graphics.strokes.SolidStroke"/>
-    <classEntry path="com.flow.components.measuring.MeasureUnit"/>
-    <classEntry path="com.flow.components.measuring.MeasureUnits"/>
-=======
->>>>>>> Refactored graphics into own package
-=======
->>>>>>> 2d319c7e5a5cea5fca2ee07d27b1d702f9c164aa
     <classEntry path="com.flow.containers.Application"/>
     <classEntry path="com.flow.containers.Container"/>
     <classEntry path="com.flow.containers.HBox"/>
@@ -93,13 +40,14 @@
     <classEntry path="com.flow.containers.ScrollArea"/>
     <classEntry path="com.flow.containers.Scroller"/>
     <classEntry path="com.flow.containers.VBox"/>
+    <classEntry path="com.flow.containers.ViewStack"/>
     <classEntry path="com.flow.containers.ViewSwapper"/>
+    <classEntry path="com.flow.containers.Window"/>
     <classEntry path="com.flow.containers.layout.AbsoluteLayout"/>
     <classEntry path="com.flow.containers.layout.AlignType"/>
     <classEntry path="com.flow.containers.layout.HBoxLayout"/>
     <classEntry path="com.flow.containers.layout.LayoutBase"/>
     <classEntry path="com.flow.containers.layout.VBoxLayout"/>
-    <classEntry path="com.flow.containers.ViewStack"/>
     <classEntry path="com.flow.effects.BevelEffect"/>
     <classEntry path="com.flow.effects.BlurEffect"/>
     <classEntry path="com.flow.effects.CSBEffect"/>
@@ -128,6 +76,7 @@
     <classEntry path="com.flow.effects.utils.ColorRGB"/>
     <classEntry path="com.flow.effects.utils.CopyEffect"/>
     <classEntry path="com.flow.events.AMFGatewayEvent"/>
+    <classEntry path="com.flow.events.AlertEvent"/>
     <classEntry path="com.flow.events.CollectionEvent"/>
     <classEntry path="com.flow.events.CollectionEventKind"/>
     <classEntry path="com.flow.events.CommandEvent"/>
@@ -155,6 +104,7 @@
     <classEntry path="com.flow.managers.IntrospectionManager"/>
     <classEntry path="com.flow.managers.KeyboardManager"/>
     <classEntry path="com.flow.managers.LayoutManager"/>
+    <classEntry path="com.flow.managers.PopupManager"/>
     <classEntry path="com.flow.managers.SkinManager"/>
     <classEntry path="com.flow.managers.TextFormatManager"/>
     <classEntry path="com.flow.managers.TooltipManager"/>
@@ -184,6 +134,7 @@
     <classEntry path="com.flow.net.loaders.LoaderBatch"/>
     <classEntry path="com.flow.net.loaders.TextLoader"/>
     <classEntry path="com.flow.net.loaders.XMLLoader"/>
+    <classEntry path="com.flow.skins.AlertSkin"/>
     <classEntry path="com.flow.skins.ButtonSkin"/>
     <classEntry path="com.flow.skins.CheckboxSkin"/>
     <classEntry path="com.flow.skins.HScrollBarSkin"/>
@@ -206,11 +157,6 @@
     <classEntry path="mx.states.SetProperty"/>
     <classEntry path="mx.states.State"/>
     <classEntry path="mx.states.Transition"/>
-    <classEntry path="com.flow.containers.Window"/>
-    <classEntry path="com.flow.managers.PopupManager"/>
-    <classEntry path="com.flow.components.Alert"/>
-    <classEntry path="com.flow.skins.AlertSkin"/>
-    <classEntry path="com.flow.events.AlertEvent"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests>
