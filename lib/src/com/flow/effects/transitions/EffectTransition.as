@@ -32,8 +32,8 @@ package com.flow.effects.transitions {
 		public var fade:Boolean;
 		public var effect:Effect;
 		
-		public function EffectTransition(speed:Number = 0.3, effect:Effect = null, fade:Boolean = true) {
-			super(speed);
+		public function EffectTransition(effect:Effect = null, speed:Number = 0.3, speedOut:Number = 0, fade:Boolean = true) {
+			super(speed, speedOut);
 			this.effect = effect;
 			this.fade = fade;
 		}
