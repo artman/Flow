@@ -25,13 +25,13 @@ package com.flow.components {
 		private var _track:DisplayObject;
 		private var _value:Number = 0;
 		protected var direction:String = "horizontal";
-		private var clickLoc:Point;
 		private var _minimum:Number = 0;
 		private var _maximum:Number = 1;
 		private var _thumbSizePercentage:Number = 0;
 		private var originalThumbSize:Point;
 		private var scrollDirection:int;
 		private var scrollTimer:Timer;
+		private var downPercentage:Point;
 		
 		public function HScrollBar() {
 			super();
@@ -118,16 +118,16 @@ package com.flow.components {
 		}
 		
 		protected function thumbDown(e:MouseEvent):void {
-			clickLoc = new Point(thumb.mouseX, thumb.mouseY);
+			downPercentage = new Point(thumb.mouseX / thumb.width, thumb.mouseY / thumb.height);
 			addEventListener(Event.ENTER_FRAME, thumbMove);
 			stage.addEventListener(MouseEvent.MOUSE_UP, thumbUp);
 		}
 		
 		protected function thumbMove(event:Event):void {
 			if(direction == "horizontal") {
-				var percentage:Number =  (mouseX - clickLoc.x - _track.x) / (_track.width - _thumb.width);
+				var percentage:Number =  (mouseX - downPercentage.x * thumb.width - _track.x) / (_track.width - _thumb.width);
 			} else {
-				percentage =  (mouseY - clickLoc.y - _track.y) / (_track.height - _thumb.height);
+				percentage =  (mouseY - downPercentage.y * thumb.height - _track.y) / (_track.height - _thumb.height);
 			}
 			value = _minimum + Math.max(0, Math.min(1, percentage)) * (_maximum - _minimum);
 		}

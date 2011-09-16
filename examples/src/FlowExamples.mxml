@@ -73,9 +73,13 @@
 =======
 			<fx:String>Transitions</fx:String>
 <<<<<<< HEAD
+<<<<<<< HEAD
 			<fx:String>Remote procedures</fx:String>
 >>>>>>> Added remote procedures, container templates. Added padding shortcuts
 =======
+=======
+			<fx:String>Scroll container</fx:String>
+>>>>>>> Added scroll examples, fixed CheckBox skin
 			<!--fx:String>Remote procedures</fx:String-->
 >>>>>>> Fixed width layout problem with ScrollPane.
 		</fx:Array>
@@ -91,13 +95,13 @@
 		<fw:Label textFormat="heading" x="10" y="2" text="{sectionCounter.selectedItem}" filters="{[new DropShadowFilter(1, 90, 0, 0.2, 2, 2)]}" />
 		
 		<fw:ScrollArea scrollSpeed="0.5" snapWidthToEven="true" snapHeightToEven="true" id="section" top="37" bottom="38" selectedIndex="{sectionCounter.selectedIndex}">
-			<!--view:StatesView />
-			<view:ScrollingView /-->
 			<view:BasicLayoutView />			
 			<view:BoxLayout />
 			<view:ControlsView />
 			<view:TransitionsView />
-			<view:RemoteProceduresView />
+			<view:ScrollingView />
+			<!--view:StatesView /-->
+			<!--view:RemoteProceduresView /-->
 		</fw:ScrollArea>
 		
 		<fw:Container width="100%" height="40" bottom="0">

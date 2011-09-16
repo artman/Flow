@@ -41,17 +41,19 @@
 		<fw:SolidStroke id="itemStroke" color="0x990000" />
 	</fx:Declarations>
 	
-	
 	<fw:Container>
 		<fw:layout>
 			<fw:VBoxLayout spacing="10" horizontalAlign="left" padding="10" />
 		</fw:layout>
-		
 		<fw:Label width="480" text="There are not that many controls available in flow yet. More are comming, and you can always create your own!" left="10" right="10" multiline="true" />
 		<fw:Button label="Yep, I'm a button" skinClass="{new ButtonSkin}" verticalCenter="0" left="8" />
 		<fw:Checkbox id="checkbox" label="{checkbox.selected ? 'I\'m a selected checkbox' : 'I\'m an unselected checkbox'}" skinClass="{new CheckboxSkin}" verticalCenter="0" left="8" />
 		<fw:TextInput id="textInput" width="200" value="Text input" skinClass="{new TextInputSkin}" />
 		<fw:Label text="This label is bound to the input above: {textInput.value}" multiline="true" width="480" />
+		<fw:HBox spacing="10" verticalAlign="middle">
+			<fw:HScrollBar id="scroller" minimum="0" maximum="100" width="200" />
+			<fw:Label text="Scroll value: {Math.round(scroller.value)}" />
+		</fw:HBox>
 
 	</fw:Container>
 	

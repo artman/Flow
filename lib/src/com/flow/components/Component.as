@@ -481,9 +481,9 @@ package com.flow.components {
 			_measuredWidth = value;
 			if(width != oldWidth) {
 				invalidate();
-			}
-			if(hasEventListener("widthChange")) {
-				dispatchEvent(new Event("widthChange"));
+				if(hasEventListener("widthChange")) {
+					dispatchEvent(new Event("widthChange"));
+				}
 			}
 		}
 		
@@ -496,9 +496,9 @@ package com.flow.components {
 			_measuredHeight = value;
 			if(height != oldHeight) {
 				invalidate();
-			}
-			if(hasEventListener("heightChange")) {
-				dispatchEvent(new Event("heightChange"));
+				if(hasEventListener("heightChange")) {
+					dispatchEvent(new Event("heightChange"));
+				}
 			}
 		}
 

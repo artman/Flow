@@ -24,7 +24,7 @@
 <fw:Container xmlns:fx="http://ns.adobe.com/mxml/2009"
 			  xmlns:s="library://ns.adobe.com/flex/spark" 
 			  xmlns:fw="http://artman.fi/flow" xmlns:assets="assets.*" xmlns:view="com.flow.view.*"
-			  width="500" height="300" enterFrame="container1_enterFrameHandler(event)">
+			  enterFrame="enterFrame(event)" padding="10" height="380" width="420">
 	<fx:Script>
 		<![CDATA[
 			import com.flow.containers.HBox;
@@ -34,21 +34,18 @@
 			
 			import flash.utils.getTimer;
 			
-			protected function container1_enterFrameHandler(event:Event):void {
-				//jepa.height = Math.sin(getTimer()/600) * 150 + 200;
+			protected function enterFrame(event:Event):void {
+				scroller.height = Math.sin(getTimer()/600) * 60 + 300;
 			}
-			
 		]]>
 	</fx:Script>
 	
 	
-	<fw:Scroller id="scroller" x="10" y="10" width="300" height="200">
+	<fw:Scroller id="scroller" left="0" top="0" width="400" height="200" >
 		<fw:stroke>
-			<fw:SolidStroke color="0" />
+			<fw:SolidStroke color="0xDDDDDD" />
 		</fw:stroke>
-		<fw:Button id="jepa" label="Kivaaaa" width="300" height="1500" />
+		<fw:Image source="http://farm5.static.flickr.com/4096/4818850928_556b7cf7dd_b.jpg" fadeInSpeed="2" />
 	</fw:Scroller>
-	
-	<fw:VScrollBar height="200" x = "400" /> 
-	
+
 </fw:Container>
