@@ -32,10 +32,7 @@
     </libraryPath>
     <sourceAttachmentPath/>
   </compiler>
-  <applications>
-    <application path="FlowExamples.mxml"/>
-    <application path="Testbed.mxml"/>
-  </applications>
+  <applications/>
   <modules/>
   <buildCSSFiles/>
   <flashCatalyst validateFlashCatalystCompatibility="false"/>
