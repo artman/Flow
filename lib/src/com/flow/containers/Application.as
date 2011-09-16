@@ -20,7 +20,7 @@
  * THE SOFTWARE.
  */
 
-package com.flow.components {
+package com.flow.containers {
 	
 	import com.flow.motion.Tween;
 	
@@ -30,6 +30,9 @@ package com.flow.components {
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
 	import flash.text.TextField;
+	import com.flow.components.Component;
+	import com.flow.components.Preloader;
+	import com.flow.components.TooltipManager;
 	
 	public class Application extends Container {
 		

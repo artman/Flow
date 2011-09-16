@@ -22,12 +22,13 @@
 
 package com.flow.components {
 	
-	import com.flow.components.layout.VBoxLayout;
+	import com.flow.containers.layout.VBoxLayout;
 	import com.flow.motion.Tween;
 	import com.flow.motion.easing.Quadratic;
 	
 	import flash.display.DisplayObject;
 	import flash.geom.Rectangle;
+	import com.flow.containers.Container;
 
 	public class ScrollArea extends Container {
 		
