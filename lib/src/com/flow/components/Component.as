@@ -25,7 +25,7 @@ package com.flow.components {
 	import com.flow.components.graphics.fills.IFill;
 	import com.flow.components.graphics.strokes.IStroke;
 	import com.flow.containers.Container;
-	import com.flow.effects.Transition;
+	import com.flow.effects.transitions.FadeTransition;
 	import com.flow.events.ComponentEvent;
 	import com.flow.events.InvalidationEvent;
 	import com.flow.events.StateEvent;
@@ -105,7 +105,7 @@ package com.flow.components {
 		private var _visible:Boolean = true;
 		
 		protected var _active:Boolean = true;
-		protected var _transition:Transition;
+		protected var _transition:FadeTransition;
 		
 		private var _states:Array = [];
 		
@@ -717,10 +717,10 @@ package com.flow.components {
 			dispatchEvent(new StateEvent(StateEvent.ACTIVITY_CHANGE));
 		}
 		
-		public function get transition():Transition {
+		public function get transition():FadeTransition {
 			return _transition;
 		}
-		public function set transition(value:Transition):void {
+		public function set transition(value:FadeTransition):void {
 			if(_transition != value) {	
 				if(_transition) {
 					_transition.removeEventListener(Event.COMPLETE, reportActivityChange);

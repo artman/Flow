@@ -48,9 +48,10 @@
 	<component id="DropShadowEffect" class="com.flow.effects.DropShadowEffect"/>
 	<component id="Effect" class="com.flow.effects.Effect"/>
 	<component id="EffectComposition" class="com.flow.effects.EffectComposition"/>
-	<component id="EffectTransition" class="com.flow.effects.EffectTransition"/>
+	<component id="EffectTransition" class="com.flow.effects.transitions.EffectTransition"/>
 	<component id="Elastic" class="com.flow.motion.easing.Elastic"/>
 	<component id="Exponential" class="com.flow.motion.easing.Exponential"/>
+	<component id="FadeTransition" class="com.flow.effects.transitions.FadeTransition"/>
 	<component id="FlipEffect" class="com.flow.effects.FlipEffect"/>
 	<component id="FullBevelEffect" class="com.flow.effects.FullBevelEffect"/>
 	<component id="Geometry" class="com.flow.components.graphics.Geometry"/>
@@ -64,7 +65,8 @@
 	<component id="IFill" class="com.flow.components.graphics.fills.IFill"/>
 	<component id="IList" class="com.flow.collections.IList"/>
 	<component id="IOverride" class="mx.states.IOverride"/>
-	<component id="IStateClient2" class="mx.states.IStateClient2"/>
+	<component id="IStateClient" class="mx.core.IStateClient"/>
+	<component id="IStateClient2" class="mx.core.IStateClient2"/>
 	<component id="IStroke" class="com.flow.components.graphics.strokes.IStroke"/>
 	<component id="ITooltip" class="com.flow.components.ITooltip"/>
 	<component id="Image" class="com.flow.components.graphics.Image"/>
@@ -115,7 +117,7 @@
 	<component id="TintEffect" class="com.flow.effects.TintEffect"/>
 	<component id="TooltipManager" class="com.flow.components.TooltipManager"/>
 	<component id="Transform3DEffect" class="com.flow.effects.Transform3DEffect"/>
-	<component id="Transition" class="com.flow.effects.Transition"/>
+	<component id="Transition" class="mx.states.Transition"/>
 	<component id="Tween" class="com.flow.motion.Tween"/>
 	<component id="VBoxLayout" class="com.flow.containers.layout.VBoxLayout"/>
 	<component id="ViewStack" class="com.flow.containers.layout.ViewStack"/>
@@ -125,6 +127,7 @@
 	<component id="XMLLoader" class="com.flow.net.loaders.XMLLoader"/>
 ..com.flow.utils.callLater
 ..com.flow.utils.callLaterTimed
+..com.flow.utils.hasPlayerVersion
 </componentPackage>
 
 <!--

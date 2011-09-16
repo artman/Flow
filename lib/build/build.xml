@@ -1,0 +1,8 @@
+<project name="Manifest generation" default="Generate Manifest File">
+	<target name="Generate Manifest File">
+		<exec executable="./GenerateManifest" failOnError="true">
+			<arg line="../src" />
+			<arg line="../src/manifest.xml" />
+		</exec>
+	</target>
+</project>
