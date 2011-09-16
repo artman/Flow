@@ -71,6 +71,7 @@
 			<fx:String>Components</fx:String>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 			<fx:String>Remote procedures</fx:String>
 >>>>>>> Housekeeping
@@ -86,6 +87,11 @@
 >>>>>>> Added scroll examples, fixed CheckBox skin
 			<!--fx:String>Remote procedures</fx:String-->
 >>>>>>> Fixed width layout problem with ScrollPane.
+=======
+			<fx:String>Transitions</fx:String>
+			<fx:String>Scroll container</fx:String>
+			<!--fx:String>Remote procedures</fx:String-->
+>>>>>>> 2d319c7e5a5cea5fca2ee07d27b1d702f9c164aa
 		</fx:Array>
 	</fx:Declarations>
 	

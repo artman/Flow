@@ -19,6 +19,7 @@
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <classEntry path="com.flow.components.DefaultTooltip"/>
     <classEntry path="com.flow.components.ITooltip"/>
 <<<<<<< HEAD
@@ -39,6 +40,9 @@
 =======
     <classEntry path="com.flow.components.HScrollBar"/>
 >>>>>>> ScrollBars, Scroller and ScrollBar skins.
+=======
+    <classEntry path="com.flow.components.HScrollBar"/>
+>>>>>>> 2d319c7e5a5cea5fca2ee07d27b1d702f9c164aa
     <classEntry path="com.flow.components.Label"/>
     <classEntry path="com.flow.components.LabelButton"/>
     <classEntry path="com.flow.components.Spacing"/>
@@ -48,13 +52,17 @@
     <classEntry path="com.flow.components.WebCam"/>
     <classEntry path="com.flow.components.measuring.MeasureUnit"/>
     <classEntry path="com.flow.components.measuring.MeasureUnits"/>
+<<<<<<< HEAD
 >>>>>>> Refactored graphics into own package
+=======
+>>>>>>> 2d319c7e5a5cea5fca2ee07d27b1d702f9c164aa
     <classEntry path="com.flow.components.supportClasses.DefaultTooltip"/>
     <classEntry path="com.flow.components.supportClasses.ITooltip"/>
     <classEntry path="com.flow.components.supportClasses.PaddableComponent"/>
     <classEntry path="com.flow.components.supportClasses.Preloader"/>
     <classEntry path="com.flow.components.supportClasses.Skin"/>
     <classEntry path="com.flow.components.supportClasses.SkinnableComponent"/>
+<<<<<<< HEAD
 <<<<<<< HEAD
 >>>>>>> Refactored components into supportClasses package, renamed background
     <classEntry path="com.flow.components.Spacing"/>
@@ -76,6 +84,8 @@
     <classEntry path="com.flow.components.measuring.MeasureUnits"/>
 =======
 >>>>>>> Refactored graphics into own package
+=======
+>>>>>>> 2d319c7e5a5cea5fca2ee07d27b1d702f9c164aa
     <classEntry path="com.flow.containers.Application"/>
     <classEntry path="com.flow.containers.Container"/>
     <classEntry path="com.flow.containers.HBox"/>
