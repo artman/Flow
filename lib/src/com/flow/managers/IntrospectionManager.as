@@ -20,7 +20,6 @@
  * THE SOFTWARE.
  */
 
-
 package com.flow.managers {
 	
 	import flash.utils.Dictionary;
