@@ -29,20 +29,39 @@ package com.flow.managers {
 	
 	[Event(name="keyUp", type="flash.events.KeyboardEvent")]
 	[Event(name="keyDown", type="flash.events.KeyboardEvent")]
+	/**
+	 * A utility singleton to retreive key states or listen to keyboard events. 
+	 */	
 	public class KeyboardManager extends EventDispatcher {
 		
 		private var keysDown:Dictionary;
+		
+		/**
+		 * The singleton instance. 
+		 */		
 		public static var instance:KeyboardManager = new KeyboardManager();
 		
+		/**
+		 * Constructor.
+		 */		
 		public function KeyboardManager(){
 			keysDown = new Dictionary();
 		}
 		
+		/**
+		 * Initializes the KeyboarManager. This needs to be called once from your application before using any of the manager's methods. 
+		 * @param A reference to the stage
+		 */		
 		public function initialize(stage:Stage):void {
 			stage.addEventListener(KeyboardEvent.KEY_DOWN, keyPressed, false, 1000);
 			stage.addEventListener(KeyboardEvent.KEY_UP, keyReleased, false, 1000);
 		}
 		
+		/**
+		 * Check if a key is currently beeing pressed. 
+		 * @param The key code to check for
+		 * @return True, if the key is beeing pressed, false otherwise.
+		 */		
 		public function isKeyDown(code:int):Boolean {
 			if(keysDown[code]){
 				return true;

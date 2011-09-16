@@ -25,11 +25,22 @@ package com.flow.utils {
 	import flash.display.BitmapData;
 	import flash.display.DisplayObject;
 	import flash.geom.Matrix;
-
+	
+	/**
+	 * A collection of static graphics-related methods. 
+	 */	
 	public class GraphicUtils {
 		public function GraphicUtils() {
 		}
 		
+		/**
+		 * Turns any DisplayObject into BitmapData of the given size. Should the aspect ratio of the DisplayObject and the given
+		 * width and height not match, the DisplayObject is cropped. 
+		 * @param The display object to draw.
+		 * @param The width of the resulting BitmapData instance.
+		 * @param The height of the resulting BitmapData instance.
+		 * @return A BitmapData instance.
+		 */		
 		public static function draw(dis:DisplayObject, w:int, h:int):BitmapData {
 			var bmp:BitmapData = new BitmapData(w,h);
 			var scaleX:Number = dis.scaleX;
@@ -60,6 +71,11 @@ package com.flow.utils {
 			return bmp;
 		}
 		
+		/**
+		 * Flips a BitmapData instance horizontally. 
+		 * @param The source BitmapData instace to flip.
+		 * @return A flipped BitmapData instance.
+		 */		
 		public static function flipHorizontally(source:BitmapData):BitmapData {
 			var bmp:BitmapData = new BitmapData(source.width, source.height);
 			var matrix:Matrix = new Matrix();
