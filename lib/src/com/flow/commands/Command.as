@@ -29,13 +29,21 @@ package com.flow.commands {
 	
 	[Event(name="complete", type="com.flow.events.CommandEvent")]
 	[Event(name="error", type="com.flow.events.CommandEvent")]
-	/** @private */
+	/**
+	 * The super-class for all commands. Flow defines a simple MVC model to separate visual representation from data and commands.
+	 * In Flow, there is no central controller that acts as the glue between user triggered events and commands. Instead, whenever
+	 * you need to call a command, you intantiate the command class directly. If any component needs to be notified whenever a 
+	 * specific command is run or has finished, you use the CommandDispatch singleton.
+	 */	
 	public class Command extends EventDispatcher {
 		
 		private var completeHandler:Function = null;
 		private var errorHandler:Function = null;
 		public var data:*;
 		
+		/**
+		 * Constructor. Sub-classes should always call super on their constructors to make sure that command events are dispatched. 
+		 */		
 		public function Command() {
 			CommandDispatch.instance.executeCommand(this);
 			callLater(executed, 1);
@@ -45,6 +53,12 @@ package com.flow.commands {
 			CommandDispatch.instance.executedCommand(this);
 		}
 		
+		/**
+		 * Whenever a command contains RPC operations, or operations that don't finish immediately, sub-classes need to call the 
+		 * sueper-classes complete-method to notify that the command has completed and optionally pass in any data retreived or
+		 * computed by the command.  
+		 * @param The data was retreived or computed.
+		 */		
 		protected function complete(data:* = null):void { 
 			this.data = data;
 			if(completeHandler != null) {
@@ -56,6 +70,11 @@ package com.flow.commands {
 			CommandDispatch.instance.completeCommand(this);
 		}
 		
+		/**
+		 * Whenever a command finishes with an error (such as a network error for RPC's), sub-classes call the error-method to
+		 * notify the user of a unsucessfull completion of the command. 
+		 * @param Any data associated with the error.
+		 */		
 		protected function error(data:* = null):void { 
 			this.data = data;
 			if(errorHandler != null) {
@@ -66,6 +85,14 @@ package com.flow.commands {
 			dispatchEvent(evt);
 		}
 		
+		/**
+		 * Adds functions that handle the successfull or unsucessfull completion of the command. 
+		 * @param A function that is called when the command completes successfully. Any data passed to the commands complete-method
+		 * is passed to this callback.
+		 * @param A function that is called when the command completes unsucessfully. Any data passed to the commands error-method
+		 * is passes to this callback.
+		 * 
+		 */		
 		public function addHandlers(complete:Function, error:Function = null):void {
 			completeHandler = complete;
 			errorHandler = error;

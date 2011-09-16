@@ -23,7 +23,10 @@
 package com.flow.components.supportClasses {
 	
 	import flash.text.TextField;
-
+	
+	/**
+	 * A very simple default tooltip skin.
+	 */	
 	public class DefaultTooltip extends TextField implements ITooltip {
 		
 		private var textField:TextField;

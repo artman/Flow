@@ -21,17 +21,33 @@
  */
 
 package com.flow.components.measuring {
-	/** @private */
+	/**
+	 * A collection of measure units that can be accessed using the measeureUnits property of a Component. Accessing these is faster
+	 * than to access all the measure units individually. A MeasureUnits instance is usually used in a Layout-class.
+	 * @author artman
+	 * @see MeasureUnit
+	 */	
 	public class MeasureUnits {
+		/** The MeasureUnit for the top property. */		
 		public var top:MeasureUnit;
+		/** The MeasureUnit for the bottom property. */
 		public var bottom:MeasureUnit;
+		/** The MeasureUnit for the left property. */
 		public var left:MeasureUnit;
+		/** The MeasureUnit for the right property. */
 		public var right:MeasureUnit;
+		/** The MeasureUnit for the width property. */
 		public var w:MeasureUnit;
+		/** The MeasureUnit for the height property. */
 		public var h:MeasureUnit;
+		/** The MeasureUnit for the verticalCenter property. */
 		public var verticalCenter:MeasureUnit;
+		/** The MeasureUnit for the horizontalCenter property. */
 		public var horizontalCenter:MeasureUnit;
 		
+		/**
+		 * Constructor. You never need to instantiate this class directly. 
+		 */		
 		public function MeasureUnits() {
 		}
 	}

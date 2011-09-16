@@ -21,17 +21,28 @@
  */
 
 package com.flow.components.measuring {
-	/** @private */
+	/**
+	 * A unit to measurement used by the layout-engine.
+	 */	
 	public class MeasureUnit {
 		
+		/** The value of the unit. */		
 		public var value:Number = 0;
+		/** Whether the value is a percentage of the parent objects dimensions. */		
 		public var isPercentage:Boolean = false;
+		/** Whether the unit us null. */		
 		public var isNull:Boolean = true;
 		
+		/**
+		 * Consturctor. Creates a new measure unit. 
+		 * @param The value of the measure unit. Acceptably type for the value are Number, int and String. If the value is a string and
+		 * contains the %-character the unit is defined to be a percentage of it's parent components dimensions.
+		 */		
 		public function MeasureUnit(value:*) {
 			parse(value);
 		}
 		
+		/** @private */  
 		public function parse(value:*):void {
 			if(value is String || value is Number || value is int) {
 				isNull = false;
@@ -49,6 +60,7 @@ package com.flow.components.measuring {
 			}
 		}
 		
+		/** @private */  
 		public function get unit():* {
 			if(isNull) {
 				return null;

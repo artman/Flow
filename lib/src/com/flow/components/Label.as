@@ -33,6 +33,9 @@ package com.flow.components {
 	import flash.text.TextFormat;
 	import flash.text.TextLineMetrics;
 	
+	/**
+	 * A generic class for displaying text with an optional icon.
+	 */	
 	[DefaultProperty("htmlText")]
 	public class Label extends PaddableComponent {
 		
@@ -69,6 +72,9 @@ package com.flow.components {
 		/** @private */
 		protected var isHTML:Boolean = false;		
 		
+		/**
+		 * Constructor.
+		 */		
 		public function Label() {
 			super();
 			mouseChildren = false;
@@ -80,6 +86,9 @@ package com.flow.components {
 			addChild(_textField);
 		}
 		
+		/**
+		 * A text transformation to be applied to the text that is displayed. Supported values are none, uppercase and lowercase. 
+		 */		
 		[Inspectable(enumeration="none,uppercase,lowercase", defaultValue="none")]
 		public function get textTransform():String {
 			return _textTransform;
@@ -91,6 +100,7 @@ package com.flow.components {
 			}
 		}
 		
+		/** The text to display. */		
 		public function get text():String {
 			return _text;
 		}
@@ -102,6 +112,7 @@ package com.flow.components {
 			}
 		}
 		
+		/** Whether the label is user editable or not. */
 		public function get editable():Boolean {
 			return _editable;
 		}
@@ -117,6 +128,7 @@ package com.flow.components {
 			}
 		}
 		
+		/** Wheher the label should be displayed as HTML text or plain text. */
 		public function get htmlText():String {
 			return _text;
 		}
@@ -128,6 +140,7 @@ package com.flow.components {
 			}
 		}
 		
+		/** The alignment of the text. Supported values are left, right and center. */
 		[Inspectable(enumeration="left,center,right", defaultValue="left")]
 		public function get align():String {
 			return _align;
@@ -139,6 +152,7 @@ package com.flow.components {
 			}
 		}
 		
+		/** How to vertically align the text. Supported values are top, middle and bottom. */
 		[Inspectable(enumeration="top,middle,bottom", defaultValue="middle")]
 		public function get verticalAlign():String {
 			return _verticalAlign;
@@ -150,6 +164,8 @@ package com.flow.components {
 			}
 		}
 		
+		/** If the text does not fit into the dimensions of the label and ellipisis is set to true, the overflow will be cut of and three dots
+		 * (...) are added to the end. */		
 		public function get ellipsis():Boolean {
 			return _ellipsis;
 		}
@@ -160,6 +176,7 @@ package com.flow.components {
 			}
 		}
 		
+		/** Defines whether the label can have multiple lines */
 		public function get multiline():Boolean {
 			return _multiline;
 		}
@@ -170,6 +187,7 @@ package com.flow.components {
 			}
 		}
 		
+		/** The color of the text */
 		[Animateable(type='color')]
 		public function get color():int {
 			return _color;
@@ -181,6 +199,7 @@ package com.flow.components {
 		}
 		
 		[Animateable]
+		/** The pixel size of the font */
 		public function get size():int {
 			return _size;
 		}
@@ -189,6 +208,10 @@ package com.flow.components {
 			invalidateProperties();
 		}
 		
+		/** 
+		 * The text format to use on this label. You define new textformats using the TextFormatManager. 
+		 * @see TextFormatManager
+		 */
 		public function get textFormat():String {
 			return _textFormat;
 		}
@@ -199,6 +222,7 @@ package com.flow.components {
 			}
 		}
 		
+		/** A icon the be displayed on the label */
 		public function get icon():DisplayObject {
 			return _icon;
 		}
@@ -217,6 +241,7 @@ package com.flow.components {
 			}
 		}
 		
+		/** The padding between an icon and the text */
 		public function get iconPadding():Number {
 			return _iconPadding;
 		}
@@ -228,6 +253,7 @@ package com.flow.components {
 			}
 		}
 		
+		/** The placement of the icon. Values can be either left or right */
 		[Inspectable(enumeration="left,right", defaultValue="left")]
 		public function get iconPlacement():String {
 			return _iconPlacement;
@@ -238,11 +264,13 @@ package com.flow.components {
 				invalidate();
 			}
 		}
-
+		
+		/** A reference to the TextField instance used by the label */
 		public function get textField():TextField {
 			return _textField;
 		}
 		
+		/** @private */
 		override public function validateProperties():void {
 			super.validateProperties();
 			var def:TextFormat = TextFormatManager.getTextFormat(_textFormat);
@@ -269,6 +297,7 @@ package com.flow.components {
 			}
 		}
 		
+		/** @private */
 		protected function decorateTextFormat(textFormat:TextFormat):void {
 			if(_size) {
 				textFormat.size = _size;
@@ -281,6 +310,7 @@ package com.flow.components {
 			}
 		}
 		
+		/** @private */
 		private function get transformedText():String {
 			if(_textTransform == "uppercase") {
 				return _text.toUpperCase();
@@ -290,6 +320,7 @@ package com.flow.components {
 			return _text;
 		}
 		
+		/** @private */
 		override protected function measureWithPadding(horizontal:Number, vertical:Number):void {
 			if(hasExplicitWidth) {
 				_textField.width = _w.value - horizontal;
@@ -303,6 +334,7 @@ package com.flow.components {
 			measuredHeight = Math.ceil(Math.max(_icon ? _icon.height : 0, _textField.textHeight + vertical + 4));
 		}
 		
+		/** @private */
 		override protected function drawWithPadding(offsetX:Number, offsetY:Number, width:Number, height:Number):void {
 			super.drawWithPadding(offsetX, offsetY, width, height);
 			var iconW:Number = _icon ? _icon.width + _iconPadding : 0;

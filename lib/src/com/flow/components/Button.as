@@ -67,6 +67,7 @@ package com.flow.components {
 			}
 		}
 		
+		/** @private */  
 		override public function validateProperties():void {
 			super.validateProperties();
 			if(_labelDisplay) {

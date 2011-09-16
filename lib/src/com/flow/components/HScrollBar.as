@@ -17,6 +17,9 @@ package com.flow.components {
 	[SkinState("up")]
 	[SkinState("disabled")]
 	[Event(name="change", type="flash.events.Event")]
+	/**
+	 * A horizontal scrollbar component with a track, thumb and optional arrows buttons.
+	 */	
 	public class HScrollBar extends SkinnableComponent {
 		
 		private var _decreaseButton:Button;
@@ -24,6 +27,7 @@ package com.flow.components {
 		private var _thumb:Button;
 		private var _track:DisplayObject;
 		private var _value:Number = 0;
+		/** @private */
 		protected var direction:String = "horizontal";
 		private var _minimum:Number = 0;
 		private var _maximum:Number = 1;
@@ -33,6 +37,7 @@ package com.flow.components {
 		private var scrollTimer:Timer;
 		private var downPercentage:Point;
 		
+		/** @private */
 		public function HScrollBar() {
 			super();
 			states = [
@@ -41,6 +46,9 @@ package com.flow.components {
 			];
 		}
 		
+		/**
+		 * A skin part representing the thumb of the scrollbar. 
+		 */		
 		[SkinPart(required="true")]
 		public function get thumb():Button {
 			return _thumb;
@@ -57,6 +65,9 @@ package com.flow.components {
 		}
 		
 		[SkinPart(required="false")]
+		/**
+		 * A optional skin part representing the left arrow of the scrollbar.  
+		 */		
 		public function get decreaseButton():Button {
 			return _decreaseButton;
 		}
@@ -71,6 +82,9 @@ package com.flow.components {
 		}
 		
 		[SkinPart(required="false")]
+		/**
+		 * A optional skin part representing the right arrow of the scrollbar. 
+		 */		
 		public function get increaseButton():Button {
 			return _increaseButton;
 		}
@@ -85,6 +99,9 @@ package com.flow.components {
 		}
 		
 		[SkinPart(required="true")]
+		/**
+		 * A required skin part representing the track of the scrollbar. The thumb will move within the rect of this track.
+		 */		
 		public function get track():DisplayObject {
 			return _track;
 		}
@@ -93,6 +110,9 @@ package com.flow.components {
 		}
 		
 		[Bindable]		
+		/**
+		 * The value of the scrollbar. 
+		 */		
 		public function get value():Number {
 			return _value;
 		} 
@@ -102,6 +122,7 @@ package com.flow.components {
 			dispatchEvent(new Event(Event.CHANGE));
 		}
 		
+		/** @inheritDoc */		
 		override public function set disabled(value:Boolean):void {
 			super.disabled = value;
 			if(value) {
@@ -117,12 +138,14 @@ package com.flow.components {
 			e.stopImmediatePropagation();
 		}
 		
+		/** @private */
 		protected function thumbDown(e:MouseEvent):void {
 			downPercentage = new Point(thumb.mouseX / thumb.width, thumb.mouseY / thumb.height);
 			addEventListener(Event.ENTER_FRAME, thumbMove);
 			stage.addEventListener(MouseEvent.MOUSE_UP, thumbUp);
 		}
 		
+		/** @private */
 		protected function thumbMove(event:Event):void {
 			if(direction == "horizontal") {
 				var percentage:Number =  (mouseX - downPercentage.x * thumb.width - _track.x) / (_track.width - _thumb.width);
@@ -132,19 +155,23 @@ package com.flow.components {
 			value = _minimum + Math.max(0, Math.min(1, percentage)) * (_maximum - _minimum);
 		}
 		
+		/** @private */
 		protected function thumbUp(event:MouseEvent):void {
 			removeEventListener(Event.ENTER_FRAME, thumbMove);
 			stage.removeEventListener(MouseEvent.MOUSE_UP, thumbUp);
 		}
 		
+		/** @private */
 		protected function decreaseDown(e:MouseEvent):void {
 			startScrolling(-1);
 		}
 		
+		/** @private */
 		protected function increaseDown(e:MouseEvent):void {
 			startScrolling(1);
 		}
 		
+		/** @private */
 		protected function startScrolling(direction:int):void {
 			scrollDirection = direction;
 			stage.addEventListener(MouseEvent.MOUSE_UP, stopScrolling);
@@ -154,6 +181,7 @@ package com.flow.components {
 			scrollTick();
 		}
 		
+		/** @private */
 		protected function scrollTick(event:TimerEvent = null):void {
 			if(scrollTimer.currentCount == 1) {
 				scrollTimer.delay = 30
@@ -179,6 +207,7 @@ package com.flow.components {
 			stage.removeEventListener(MouseEvent.MOUSE_UP, stopScrolling);
 		}
 		
+		/** @private */
 		public function get size():Number {
 			if(direction == "horizontal") {
 				return width;
@@ -188,6 +217,9 @@ package com.flow.components {
 		
 
 		[Bindable]
+		/**
+		 * The minimum value of this scrollbar. 
+		 */		
 		public function get minimum():Number {
 			return _minimum;
 		}
@@ -198,6 +230,9 @@ package com.flow.components {
 		}
 
 		[Bindable]
+		/**
+		 * The maximum value of the scrollbar. 
+		 */		
 		public function get maximum():Number {
 			return _maximum;
 		}
@@ -208,6 +243,9 @@ package com.flow.components {
 		}
 		
 		[Bindable]
+		/**
+		 * The size of the thumb in percent of the track size. 
+		 */		
 		public function get thumbSizePercentage():Number {
 			return _thumbSizePercentage;
 		}
@@ -216,6 +254,7 @@ package com.flow.components {
 			invalidateProperties();
 		}
 		
+		/** @private */ 
 		override public function draw(width:Number, height:Number):void {
 			super.draw(width, height);
 			if(_minimum == _maximum) {
