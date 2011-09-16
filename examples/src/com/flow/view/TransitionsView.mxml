@@ -49,7 +49,9 @@
 				<fw:Image id="postcard" active="false" source="{Postcard}">
 					<fw:transition>
 						<fw:EffectTransition speed="2">
-							<fw:ChihulyEffect />
+							<fw:ChihulyEffect>
+								<fw:BevelEffect bevelQuality="2" blurX="4" blurY="4" distance="1" strength="10" highlightAlpha="1" shadowAlpha="1"/> 
+							</fw:ChihulyEffect>
 						</fw:EffectTransition>
 					</fw:transition>
 				</fw:Image>

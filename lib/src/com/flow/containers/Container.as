@@ -45,6 +45,9 @@ package com.flow.containers {
 		protected var _children:DisplayObjectCollection;
 		protected var childrenInvalidated:Boolean = false;
 		protected var _layout:LayoutBase;
+		
+		public var snapWidthToEven:Boolean = false;
+		public var snapHeightToEven:Boolean = false;
 
 		public function Container() {
 			super();
@@ -148,6 +151,14 @@ package com.flow.containers {
 					validateLayout();
 				}
 			}
+		}
+		
+		override public function set width(value:Number):void {
+			super.width = snapWidthToEven ? Math.round(value/2)*2 : value;
+		}
+		
+		override public function set height(value:Number):void {
+			super.height = snapHeightToEven ? Math.round(value/2)*2 : value;
 		}
 		
 		public function get layout():LayoutBase {

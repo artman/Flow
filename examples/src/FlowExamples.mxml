@@ -70,23 +70,12 @@
 		<fw:Image filters="{[new DropShadowFilter(6, 90, 0, 0.3, 20, 20, 1, 2)]}" left="-1" right="-2" height="100%" source="{WindowBkg}" />
 		<fw:Label textFormat="heading" x="10" y="2" text="{sectionCounter.selectedItem}" filters="{[new DropShadowFilter(1, 90, 0, 0.2, 2, 2)]}" />
 		
-		<fw:ScrollArea scrollSpeed="5" id="section" top="37" bottom="38" selectedIndex="{sectionCounter.selectedIndex}">
+		<fw:ScrollArea scrollSpeed="0.5" snapWidthToEven="true" snapHeightToEven="true" id="section" top="37" bottom="38" selectedIndex="{sectionCounter.selectedIndex}">
 			<view:BasicLayoutView />			
 			<view:BoxLayout />
 			<view:ControlsView />
 			<view:TransitionsView />
 			<view:RemoteProceduresView />
-
-			<fw:Container width="400" height="300" verticalCenter="0" horizontalCenter="0">
-				<fw:fill>
-					<fw:SolidFill color="0xDDDD00" />
-				</fw:fill>
-			</fw:Container>
-			<fw:Container width="700" height="400" verticalCenter="0" horizontalCenter="0">
-				<fw:fill>
-					<fw:SolidFill color="0xDD00DD" />
-				</fw:fill>
-			</fw:Container>
 		</fw:ScrollArea>
 		
 		<fw:Container width="100%" height="40" bottom="0">

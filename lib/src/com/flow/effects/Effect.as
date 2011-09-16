@@ -29,21 +29,22 @@ package com.flow.effects {
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	
+	[DefaultProperty("children")]
 	public class Effect extends EventDispatcher{
 		
 		private var _value:Number;
 		protected var _target:DisplayObject;
-		private var childEffects:Array;
+		private var _children:Vector.<Effect>;
 		private var assignedFilters:Array = [];
 		private var _alpha:Number;
 		private var _followTargetAlpha:Boolean;
 		public var parent:Effect = null;
-		public var composition:String = EffectComposition.SHARE_VALUE;
+		private var _composition:String = EffectComposition.SHARE_VALUE;
 		public var invalidated:Boolean = false;
 		private var propertiesInvalidated:Boolean;
 		
 		public function Effect(target:DisplayObject = null){
-			childEffects = new Array();
+			_children = new Vector.<Effect>();
 			this.target = target;
 			_alpha = 1;
 			_value = 0;
@@ -67,7 +68,29 @@ package com.flow.effects {
 					assignedFilters = _target.filters;
 					invalidate();
 				}
+				for(var i:int = 0; i<_children.length; i++) {
+					_children[i].target = _target;
+				}
 			}
+		}
+		
+		[ArrayElementType("com.flow.effects.Effect")]
+		public function get children():Vector.<Effect> {
+			return _children;
+		}
+		public function set children(value:Vector.<Effect>):void {
+			_children = new Vector.<Effect>();
+			for(var i:int = 0; i<value.length; i++) {
+				addChild(value[i]);
+			}
+			invalidate();
+		}
+		
+		public function addChild(effect:Effect, composition:String = "shareValue"):void {
+			effect.parent = this;
+			effect.composition = composition;
+			effect.target = target;
+			children.push(effect);
 		}
 		
 		private function removedFromStage(e:Event):void {
@@ -114,6 +137,19 @@ package com.flow.effects {
 			value = 1-val;
 		}
 		
+		public function get composition():String {
+			return _composition;
+		}
+		
+		public function set composition(value:String):void {
+			if(value != _composition) {
+				_composition = value;
+				for(var i:int = 0; i<_children.length; i++) {
+					_children[i].composition = _composition;
+				}
+			}
+		}
+		
 		protected function invalidateProperties():void {
 			if(!propertiesInvalidated) {
 				propertiesInvalidated = true;
@@ -133,10 +169,6 @@ package com.flow.effects {
 		}
 		
 		public function validate(evt:Event = null):void {
-			if(propertiesInvalidated) {
-				validateProperties();
-				propertiesInvalidated = false;
-			}
 			if(parent) {
 				parent.validate(evt);
 			} else {
@@ -146,9 +178,13 @@ package com.flow.effects {
 		}
 	
 		private function apply(val:Number):Array{	
+			if(propertiesInvalidated) {
+				validateProperties();
+				propertiesInvalidated = false;
+			}
 			var filters:Array = render(val);
-			for(var i:Number = 0; i<childEffects.length; i++) {
-				var child:Effect = childEffects[i];
+			for(var i:Number = 0; i<children.length; i++) {
+				var child:Effect = children[i];
 				var childValue:Number = val;
 				if(child.composition == EffectComposition.INDEPENDENT) {
 					childValue = child.value;
@@ -185,15 +221,9 @@ package com.flow.effects {
 		public function animateOut(speed:Number, params:Object = null):Tween {
 			return new Tween(this, speed, {value:0}, params); 
 		}
-		
-		public function addChild(effect:Effect, composition:String = "shareValue"):void {
-			effect.parent = this;
-			effect.composition = composition;
-			childEffects.push(effect);
-		}
-
+	
 		public function dispose():void {
 			_target.filters = assignedFilters;
-		}
+		}	
 	}
 }
