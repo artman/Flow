@@ -20,49 +20,30 @@
  * THE SOFTWARE.
  */
 
-package com.flow.graphics.strokes {
-	
-	import com.flow.events.InvalidationEvent;
-	
-	import flash.display.CapsStyle;
-	import flash.display.Graphics;
-	import flash.display.JointStyle;
-	import flash.events.EventDispatcher;
-	
-	[Event(name="invalidate", type="com.flow.events.InvalidationEvent")]
-	public class SolidStroke extends StrokeBase {
-		
-		private var _color:int = 0;
-		private var _alpha:Number = 1;
-		
-		public function SolidStroke() {
-			super();
-		}
-		
-		[Animateable]
-		public function get alpha():Number {
-			return _alpha;
-		}
-		public function set alpha(value:Number):void {
-			if(value != _alpha) {
-				_alpha = value;
-				invalidate();
-			}
-		}
-		
-		[Animateable(type="color")]
-		public function get color():int {
-			return _color;
-		}
-		public function set color(value:int):void {
-			if(value != _color) {
-				_color = value;
-				invalidate();
-			}
-		}
+package com.flow.motion {
+	import com.flow.effects.utils.ColorRGB;
 
-		override public function beginDraw(graphics:Graphics, width:int, height:int):void  {
-			graphics.lineStyle(_thickness, color, alpha, true, "normal", _caps, _joints, _miterLimit);
+	public class AnimationProperty {
+		
+		public var name:String;
+		public var value:*;
+		public var startValue:*;
+		public var deltaValue:*;
+		public var type:String;
+		
+		public function AnimationProperty(name:String, value:* = null, type:String = null) {
+			this.name = name;
+			this.value = value;
+			this.type = type;
+		}
+		
+		public function currentValue(ratio:Number):* {
+			switch(type) {
+				case "color":
+					return new ColorRGB(startValue).mix(new ColorRGB(startValue + deltaValue), ratio).color;
+				default:
+					return startValue + deltaValue * ratio;
+			}	
 		}
 	}
 }

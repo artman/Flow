@@ -21,6 +21,7 @@
 * THE SOFTWARE.
 -->
 
+
 <fw:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
 				xmlns:s="library://ns.adobe.com/flex/spark" 
 				xmlns:fw="http://artman.fi/flow"
@@ -31,12 +32,14 @@
 			import assets.WindowBkg;
 			
 			import com.flow.commands.InitApplicationCommand;
+			import com.flow.components.Component;
 			import com.flow.managers.TextFormatManager;
 			import com.flow.skins.ButtonSkin;
 			import com.flow.skins.TextInputSkin;
 			
 			import flash.filters.DropShadowFilter;
 			import flash.net.navigateToURL;
+			import flash.utils.describeType;
 			
 			import mx.utils.ObjectProxy;
 			
@@ -51,6 +54,7 @@
 				contextMenu.hideBuiltInItems();
 				this.contextMenu = contextMenu;
 				
+				var com:Component = new Component();				
 			}
 
 			protected function openViewSource(event:ContextMenuEvent):void {
@@ -113,19 +117,19 @@
 					<fx:Component>
 						<fw:Label paddingTop="2" interactive="true" width="20" height="20" text="{rendererIndex+1}" align="center" color="0" color.selected="0xFFFFFF">
 							<fw:states>
-								<s:State name="up" />
-								<s:State name="over" />
-								<s:State name="selected" />
+								<s:State name="up" transitionSpeed="0.8" />
+								<s:State name="over" transitionSpeed="0.1" />
+								<s:State name="selected" transitionSpeed="0.2" />
 							</fw:states>
 							
 							<fw:stroke>
-								<fw:SolidStroke color="0xDDDDDD" color.over="0xBBBBBB" />
+								<fw:SolidStroke color="0xDDDDDD" color.over="0xBBBBBB" color.selected="0xDD0000" />
 							</fw:stroke>
 						
 							<fw:fill>
 								<fw:GradientFill rotation="90">
-									<fw:GradientData color="0xEEEEEE" color.over="0xDDDDDD" color.selected="0xDD0000" ratio="0" />
-									<fw:GradientData color="0xFFFFFF" color.selected="0xDD0000" ratio="1" />
+									<fw:GradientData color="0xEEEEEE" color.over="0xBBBBBB" color.selected="0xDD0000" ratio="0" />
+									<fw:GradientData color="0xFFFFFF" color.selected="0xBB0000" ratio="1" />
 								</fw:GradientFill>
 							</fw:fill>
 						</fw:Label>

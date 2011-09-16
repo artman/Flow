@@ -22,10 +22,12 @@
 
 package com.flow.graphics.strokes {
 	
+	import com.flow.motion.IAnimateable;
+	
 	import flash.display.Graphics;
 	import flash.events.IEventDispatcher;
 
-	public interface IStroke extends IEventDispatcher {
+	public interface IStroke extends IEventDispatcher, IAnimateable {
 		function beginDraw(graphics:Graphics, width:int, height:int):void ;
 		function endDraw(graphics:Graphics):void;
 		function get thickness():Number;

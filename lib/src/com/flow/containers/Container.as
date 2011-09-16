@@ -96,7 +96,7 @@ package com.flow.containers {
 		 * The visual content children for this Group.
 		 * This method is used internally by Flow and is not intended for direct use by developers. 
 		 */		
-		[ArrayElementType("DisplayObject")]
+		[ArrayElementType("DisplayObject")] [AnimateableChild]
 		public function get children():* {
 			return _children;
 		}
