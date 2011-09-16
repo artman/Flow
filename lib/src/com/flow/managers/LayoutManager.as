@@ -160,6 +160,10 @@ package com.flow.managers {
 			while(invalidInitList.length) {
 				invalidInitList.shift().init();
 			}
+			// Second loop over children if init created some
+			while(invalidChildrenList.length) {
+				invalidChildrenList.shift().validateChildren();
+			}
 			
 			layoutPhase = LAYOUT_PHASE_VALIDATING;
 			invalidLayoutList.sort(depthSort);
@@ -182,6 +186,7 @@ package com.flow.managers {
 					effect.validate();
 				}
 			}
+
 			invalidated = false;
 			layoutPhase = LAYOUT_PHASE_NONE;
 			
