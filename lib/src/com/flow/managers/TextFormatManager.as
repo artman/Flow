@@ -33,13 +33,15 @@ package com.flow.managers {
 		public static function getTextFormat(name:String):TextFormat {
 			if(textFormatDictionary) {
 				var ret:TextFormat = textFormatDictionary[name];
-				if(ret) {
-					return ret;
-				} else {
+				if(!ret) {
 					for each(var tf:Object in textFormatDictionary) {
-						return tf as TextFormat;
+						ret = tf as TextFormat;
+						break;
 					}
 				}
+			}
+			if(ret) {
+				return new TextFormat(ret.font, ret.size, ret.color, ret.bold, ret.italic, ret.underline, ret.url, ret.target, ret.align, ret.leftMargin, ret.rightMargin, ret.indent, ret.leading);
 			}
 			return new TextFormat("Arial", 11);
 		}

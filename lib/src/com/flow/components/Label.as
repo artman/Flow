@@ -161,9 +161,6 @@ package com.flow.components {
 		}
 		
 		override public function validateProperties():void {
-			var k:int;
-			
-			
 			var def:TextFormat = TextFormatManager.getTextFormat(_textFormat);
 			if(!def) {
 				_textField.embedFonts = false;
@@ -221,7 +218,6 @@ package com.flow.components {
 		override protected function drawWithPadding(offsetX:int, offsetY:int, width:int, height:int):void {
 			super.drawWithPadding(offsetX, offsetY, width, height);
 			_textField.x = offsetX;
-			
 			_textField.autoSize = "none";
 			_textField.width = width+1;
 			if(align == "center") {
