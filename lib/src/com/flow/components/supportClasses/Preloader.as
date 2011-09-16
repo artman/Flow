@@ -31,13 +31,26 @@ package com.flow.components.supportClasses {
 	import flash.utils.getDefinitionByName;
 	import com.flow.containers.Application;
 
+	/**
+	 * The base class for preloaders that are displayed as the application is loaded.
+	 * 
+	 * To create an application with a preloader, subclass Preloader and override the draw method, and assign
+	 * the full class path of your main application to the mainClassName parameter. If you omit the mainClassName
+	 * the preloader will user the SWF name as the name of the main class to instantiate.
+	 * 
+	 * Finally, add some metadata to your application class to tell Flex to use your preloader:
+	 * <code>[Frame(factoryClass="com.myapp.MyPreloader")]</code>
+	 */	
 	public class Preloader extends MovieClip {
 		 
-		public var mainClassName:String;
-		public var loadingProgress:int;
-		public var removeAfterLoadingDone:Boolean = true;
+		private var _mainClassName:String;
+		private var _loadingProgress:int;
+		private var _removeAfterLoadingDone:Boolean = true;
 		private var firstDraw:Boolean = true;
 		
+		/**
+		 * Constructor 
+		 */		
 		public function Preloader() {
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
@@ -78,21 +91,62 @@ package com.flow.components.supportClasses {
 			}
 			var mainClass:Class = Class(getDefinitionByName(mainClassName));
 			var app:Application = new mainClass() as Application;
-			stage.addChild(app);
+			stage.addChildAt(app, 0);
 			if(removeAfterLoadingDone) {
 				remove();
 			} else {
 				app.preloader = this;
 			}
 		}
-		
+		/**
+		 * Override this method and draw your preloader view according to the width and height. This will be called
+		 * whenever the stage size changes or the loading progress changes. 
+		 * @param The width to draw.
+		 * @param The height to draw.
+		 */		
 		public function draw(width:Number, height:Number):void {
 			// Nothing
 		}
 		
+		/** Removes the preloader from the display list */ 	
 		public function remove():void {
 			stage.removeEventListener(Event.RESIZE, resize);
 			stage.removeChild(this);
 		}
+
+		/** 
+		 * The name of the main application class. An instance of this class will be added to the display list once
+		 * the application has fully loaded. 
+		 */
+		public function get mainClassName():String {
+			return _mainClassName;
+		}
+		public function set mainClassName(value:String):void {
+			_mainClassName = value;
+		}
+
+		/** The progress of the load (0-1). User this property to draw a progress bar on every draw-call. */
+		public function get loadingProgress():int {
+			return _loadingProgress;
+		}
+
+		public function set loadingProgress(value:int):void {
+			_loadingProgress = value;
+		}
+
+		/** 
+		 * Whether to automatically remove the preloader when the application has loaded and initialized. If you set this to false
+		 * you need to call remove when you're ready to remove the preloader. This is usefull if you still want to display the preloader
+		 * once your main application class has loaded to load other data.
+		 */
+		public function get removeAfterLoadingDone():Boolean {
+			return _removeAfterLoadingDone;
+		}
+
+		public function set removeAfterLoadingDone(value:Boolean):void {
+			_removeAfterLoadingDone = value;
+		}
+
+
 	}
 }
