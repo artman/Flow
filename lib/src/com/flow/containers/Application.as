@@ -41,7 +41,7 @@ package com.flow.containers {
 	 */	
 	public class Application extends Container {
 		
-		public static var application:Application;
+		[Bindable] public static var application:Application;
 		public var preloader:Preloader;
 		public var tooltipRoot:Sprite;
 		private var debugLog:TextField;
