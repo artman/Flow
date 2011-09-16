@@ -27,10 +27,12 @@ package com.flow.components.graphics.fills {
 	
 	import flash.display.GradientType;
 	import flash.display.Graphics;
+	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	import flash.geom.Matrix;
 
 	[DefaultProperty("colors")]
+	[Event(name="invalidate", type="com.flow.events.InvalidationEvent")]
 	public class GradientFill extends EventDispatcher implements IFill {
 		protected var _colors:Vector.<GradientData>;
 		protected var _data:String;
@@ -52,20 +54,28 @@ package com.flow.components.graphics.fills {
 		}
 		public function set colors(value:Vector.<GradientData>):void {
 			if(value != _colors) {
-				_colors = value;
-				
-				gradientColors = new Array();
-				gradientAlphas = new Array();
-				gradientRatios = new Array();
-				
-				var item:GradientData;
-				for each (item in colors) {
-					gradientColors.push(item.color);
-					gradientAlphas.push(item.alpha);
-					gradientRatios.push(item.ratio * 255);
+				if(_colors) {
+					for each (var item:GradientData in colors) {
+						item.removeEventListener(InvalidationEvent.INVALIDATE, invalidate);
+					}
 				}
-				invalidate();
+				_colors = value;
+				invalidateColors();
 			}
+		}
+		
+		protected function invalidateColors(event:InvalidationEvent = null):void {
+			gradientColors = new Array();
+			gradientAlphas = new Array();
+			gradientRatios = new Array();
+			
+			for each (var item:GradientData in colors) {
+				item.addEventListener(InvalidationEvent.INVALIDATE, invalidateColors);
+				gradientColors.push(item.color);
+				gradientAlphas.push(item.alpha);
+				gradientRatios.push(item.ratio * 255);
+			}
+			invalidate();
 		}
 		
 		public function get matrix():Matrix {
@@ -101,7 +111,7 @@ package com.flow.components.graphics.fills {
 			graphics.endFill();
 		}
 		
-		private function invalidate():void {
+		private function invalidate(e:InvalidationEvent = null):void {
 			dispatchEvent(new InvalidationEvent(InvalidationEvent.INVALIDATE));
 		}
 	}

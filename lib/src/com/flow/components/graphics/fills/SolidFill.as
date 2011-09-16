@@ -27,6 +27,7 @@ package com.flow.components.graphics.fills {
 	import flash.display.Graphics;
 	import flash.events.EventDispatcher;
 	
+	[Event(name="invalidate", type="com.flow.events.InvalidationEvent")]
 	public class SolidFill extends EventDispatcher implements IFill {
 		
 		private var _alpha:Number = 1;

@@ -6,6 +6,7 @@ package com.flow.events {
 	public class ListEvent extends Event {
 		
 		public static const RENDERER_CREATED:String = "rendererCreated";
+		public static const SELECTION_CHANGED:String = "selectionChanged";
 		
 		public var renderer:Component;
 		

@@ -45,18 +45,18 @@ package mx.states {
 			if(itemIndexInList == -1) {
 				(object[propertyName] as IList).addItemAt(item, index);
 			}
-			if(item is Component) {
-				(item as Component).active = true;
-			}
+			//if(item is Component) {
+			//	(item as Component).active = true;
+			//}
 		}
 		
 		private function removeFromList(parent:Object, object:*, item:*):void {
 			var index:int = (object[propertyName] as IList).getItemIndex(item);
-			if(item is Component) {
-				(item as Component).active = false;
-			} else {
+			//if(item is Component) {
+			//	(item as Component).active = false;
+			//} else {
 				(object[propertyName] as IList).removeItemAt(index);
-			}
+			//}
 		}
 		
 		private function getInsertIndex(parent:Object, position:String, dest:*):int {

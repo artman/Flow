@@ -650,6 +650,7 @@ package com.flow.components {
 		
 		private function mouseDown(e:MouseEvent):void {
 			addState(STATE_DOWN);
+			TooltipManager.instance.hideTooltip(this);
 		}
 		
 		private function mouseUp(e:MouseEvent):void {
@@ -733,7 +734,7 @@ package com.flow.components {
 			}
 		}
 		
-		protected function addState(stateName:String, updateCurrentState:Boolean = true):void {
+		public function addState(stateName:String, updateCurrentState:Boolean = true):void {
 			var state:State = getState(stateName);
 			if(state) {
 				if(statesActive.indexOf(state) == -1) {
@@ -745,7 +746,7 @@ package com.flow.components {
 			}
 		}
 		
-		protected function removeState(stateName:String):void {
+		public function removeState(stateName:String):void {
 			var state:State = getState(stateName);
 			if(state && statesActive.indexOf(state) != -1) {
 				statesActive.splice(statesActive.indexOf(state), 1);
