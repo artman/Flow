@@ -40,7 +40,7 @@ package com.flow.graphics.fills {
 		protected var _width:Number;
 		protected var _height:Number;
 		
-		public var type:String = GradientType.LINEAR;
+		protected var _type:String = GradientType.LINEAR;
 		protected var gradientColors:Array;
 		protected var gradientAlphas:Array;
 		protected var gradientRatios:Array;
@@ -95,7 +95,18 @@ package com.flow.graphics.fills {
 				_rotation = value;
 				invalidate();
 			}
-		}	
+		}
+		
+		[Inspectable(enumeration="linear,radial", defaultValue="linear")]
+		public function get type():String {
+			return _type;
+		}
+		public function set type(value:String):void {
+			if(value != _type) {
+				_type = value;
+				invalidate();
+			}
+		}
 		
 		public function beginDraw(graphics:Graphics, width:int, height:int):void {		
 			if (!_matrix) {
@@ -103,7 +114,7 @@ package com.flow.graphics.fills {
 			}
 			var r:Number = _rotation * (Math.PI/180);
 			_matrix.createGradientBox(width, height, r);
-			graphics.beginGradientFill(type, gradientColors, gradientAlphas, gradientRatios, _matrix);
+			graphics.beginGradientFill(_type, gradientColors, gradientAlphas, gradientRatios, _matrix);
 		}
 		
 		public function endDraw(graphics:Graphics):void  {
