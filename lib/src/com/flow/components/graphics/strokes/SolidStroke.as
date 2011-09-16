@@ -27,6 +27,7 @@ package com.flow.components.graphics.strokes {
 	import flash.display.Graphics;
 	import flash.events.EventDispatcher;
 	
+	[Event(name="invalidate", type="com.flow.events.InvalidationEvent")]
 	public class SolidStroke extends EventDispatcher implements IStroke {
 		
 		private var _color:int = 0;

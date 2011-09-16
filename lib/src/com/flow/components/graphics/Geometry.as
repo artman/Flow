@@ -25,6 +25,7 @@ package com.flow.components.graphics {
 	import com.flow.components.Component;
 	import com.flow.components.graphics.fills.IFill;
 	import com.flow.components.graphics.strokes.IStroke;
+	import com.flow.events.InvalidationEvent;
 	
 	[DefaultProperty("stroke")]
 	public class Geometry extends Component {
@@ -41,7 +42,13 @@ package com.flow.components.graphics {
 		}
 		public function set stroke(value:IStroke):void {
 			if(value != _stroke) {
+				if(_stroke) {
+					_stroke.removeEventListener(InvalidationEvent.INVALIDATE, invalidate);
+				}
 				_stroke = value;
+				if(_stroke) {
+					_stroke.addEventListener(InvalidationEvent.INVALIDATE, invalidate);
+				}
 				invalidate();
 			}
 		}
@@ -51,7 +58,13 @@ package com.flow.components.graphics {
 		}
 		public function set fill(value:IFill):void  {
 			if(value != _fill) {
+				if(_fill) {
+					_fill.removeEventListener(InvalidationEvent.INVALIDATE, invalidate);
+				}
 				_fill = value;
+				if(_fill) {
+					_fill.addEventListener(InvalidationEvent.INVALIDATE, invalidate);
+				}
 				invalidate();
 			}
 		}

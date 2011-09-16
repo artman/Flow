@@ -31,6 +31,7 @@ package com.flow.components.graphics.strokes {
 	import flash.geom.Matrix;
 
 	[DefaultProperty("colors")]
+	[Event(name="invalidate", type="com.flow.events.InvalidationEvent")]
 	public class GradientStroke extends EventDispatcher implements IStroke {
 		
 		protected var _colors:Vector.<GradientData>;
@@ -56,14 +57,19 @@ package com.flow.components.graphics.strokes {
 		}
 		public function set colors(value:Vector.<GradientData>):void {
 			if(value != _colors) {
+				if(_colors) {
+					for each (var item:GradientData in colors) {
+						item.removeEventListener(InvalidationEvent.INVALIDATE, invalidate);
+					}
+				}
 				_colors = value;
 				
 				gradientColors = new Array();
 				gradientAlphas = new Array();
 				gradientRatios = new Array();
-				
-				var item:GradientData;
+		
 				for each (item in colors) {
+					item.addEventListener(InvalidationEvent.INVALIDATE, invalidate);
 					gradientColors.push(item.color);
 					gradientAlphas.push(item.alpha);
 					gradientRatios.push(item.ratio * 255);
@@ -115,7 +121,7 @@ package com.flow.components.graphics.strokes {
 		
 		public function endDraw(graphics:Graphics):void {}
 		
-		public function invalidate():void {
+		public function invalidate(e:InvalidationEvent = null):void {
 			dispatchEvent(new InvalidationEvent(InvalidationEvent.INVALIDATE));
 		}
 	}
