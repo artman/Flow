@@ -3,6 +3,7 @@ package com.flow.components {
 	import com.flow.containers.Container;
 	import com.flow.containers.layout.LayoutBase;
 	
+	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	
@@ -34,5 +35,6 @@ package com.flow.components {
 				_hostComponent.layout = layout
 			}
 		}
+
 	}
 }
