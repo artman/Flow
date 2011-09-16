@@ -27,9 +27,24 @@ package com.flow.graphics.fills {
 	import flash.display.Graphics;
 	import flash.events.IEventDispatcher;
 	
+	/**
+	 * A IFill instance is responsible to call beginFill and endFill on the graphics context before and after drawing occurs. 
+	 */	
 	[Event(name="invalidate", type="com.flow.events.InvalidateEvent")]
 	public interface IFill extends IEventDispatcher, IAnimateable {
+		/**
+		 * Called when a draw is about to commence on the given graphics context. The implementation needs to begin a fill on the
+		 * given graphics context.
+		 * @param The graphics context to begin the fill on.
+		 * @param The width at which a draw is about to commence.
+		 * @param The height at which a draw is about to commence.
+		 * 
+		 */		
 		function beginDraw(graphics:Graphics, width:int, height:int):void ;
+		/**
+		 * Called when a draw has finished. The implementation needs to end the fill on the given graphics context. 
+		 * @param The graphics context to end the fill on.
+		 */		
 		function endDraw(graphics:Graphics):void;
 	}
 }

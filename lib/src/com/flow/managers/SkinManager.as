@@ -13,19 +13,20 @@ package com.flow.managers {
 		}
 		init();
 		
-		public static function registerDefaultSkin(component:String, skinClass:String):void {
+		public static function registerDefaultSkin(component:*, skinClass:*):void {
+			if(!(component is String)) {
+				component = IntrospectionManager.getClassName(component);
+			}
+			if (skinClass is String) {
+				skinClass = getDefinitionByName(defaultSkins[component]) as Class;	
+			}
 			defaultSkins[component] = skinClass;
 		}
 		
 		public static function getDefaultSkin(component:String):Class {
 			component = component.replace("::", ".");
 			if(defaultSkins[component]) {
-				try {
-					var skin:String = defaultSkins[component];
-					return getDefinitionByName(defaultSkins[component]) as Class;
-				} catch(e:Error) {
-					return null;
-				}
+				return defaultSkins[component];
 			}
 			return null;
 		}

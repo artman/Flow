@@ -29,25 +29,43 @@ package com.flow.graphics.fills {
 	import flash.display.Graphics;
 	import flash.events.EventDispatcher;
 	import flash.geom.Matrix;
-
+	
+	/**
+	 * A Gradient fill. 
+	 */	
 	[DefaultProperty("colors")]
 	[Event(name="invalidate", type="com.flow.events.InvalidationEvent")]
 	public class GradientFill extends EventDispatcher implements IFill {
+		/** @private */
 		protected var _colors:Vector.<GradientData>;
+		/** @private */
 		protected var _data:String;
-		protected var _matrix:Matrix;
+		/** @private */
+		protected var matrix:Matrix;
+		/** @private */
 		protected var _rotation:Number = 0;
+		/** @private */
 		protected var _width:Number;
+		/** @private */
 		protected var _height:Number;
-		
+		/** @private */
 		protected var _type:String = GradientType.LINEAR;
+		/** @private */
 		protected var gradientColors:Array;
+		/** @private */
 		protected var gradientAlphas:Array;
+		/** @private */
 		protected var gradientRatios:Array;
-				
+		
+		/**
+		 * Constructor 
+		 */		
 		public function GradientFill() {
 		}
 		
+		/**
+		 * A Vector of GradientData defining the colors, alphas and ratios for the gradient. 
+		 */		
 		[AnimateableChild]
 		public function get colors():Vector.<GradientData> {
 			return _colors;
@@ -56,7 +74,7 @@ package com.flow.graphics.fills {
 			if(value != _colors) {
 				if(_colors) {
 					for each (var item:GradientData in colors) {
-						item.removeEventListener(InvalidationEvent.INVALIDATE, invalidate);
+						item.removeEventListener(InvalidationEvent.INVALIDATE, invalidateColors);
 					}
 				}
 				_colors = value;
@@ -64,6 +82,7 @@ package com.flow.graphics.fills {
 			}
 		}
 		
+		/** @private */
 		protected function invalidateColors(event:InvalidationEvent = null):void {
 			gradientColors = new Array();
 			gradientAlphas = new Array();
@@ -78,16 +97,9 @@ package com.flow.graphics.fills {
 			invalidate();
 		}
 		
-		public function get matrix():Matrix {
-			return _matrix;
-		}
-		public function set matrix(value:Matrix):void  {
-			if(value != _matrix) {
-				_matrix = value;
-				invalidate();
-			}
-		}
-		
+		/**
+		 * The rotation of the fill. 
+		 */		
 		[Animateable]
 		public function get rotation():Number {
 			return _rotation
@@ -99,6 +111,9 @@ package com.flow.graphics.fills {
 			}
 		}
 		
+		/**
+		 * The type of the fill (default linear). 
+		 */		
 		[Inspectable(enumeration="linear,radial", defaultValue="linear")]
 		public function get type():String {
 			return _type;
@@ -110,15 +125,17 @@ package com.flow.graphics.fills {
 			}
 		}
 		
+		/** @private */
 		public function beginDraw(graphics:Graphics, width:int, height:int):void {		
-			if (!_matrix) {
-				_matrix = new Matrix();
+			if (!matrix) {
+				matrix = new Matrix();
 			}
 			var r:Number = _rotation * (Math.PI/180);
-			_matrix.createGradientBox(width, height, r);
-			graphics.beginGradientFill(_type, gradientColors, gradientAlphas, gradientRatios, _matrix);
+			matrix.createGradientBox(width, height, r);
+			graphics.beginGradientFill(_type, gradientColors, gradientAlphas, gradientRatios, matrix);
 		}
 		
+		/** @private */
 		public function endDraw(graphics:Graphics):void  {
 			graphics.endFill();
 		}

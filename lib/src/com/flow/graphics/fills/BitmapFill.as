@@ -30,16 +30,26 @@ package com.flow.graphics.fills {
 	import flash.events.EventDispatcher;
 	import flash.geom.Matrix;
 	
+	/**
+	 * A bitmap fill. 
+	 */	
 	public class BitmapFill extends EventDispatcher implements IFill {
 		
 		private var _source:Class;
 		private var _bitmap:BitmapData;
 		private var _xOffset:Number = 0;
 		private var _yOffset:Number = 0;
-
+		
+		/**
+		 * Constructor 
+		 */		
 		public function BitmapFill() {
 		}
 		
+		/**
+		 * A shorthand for setting the bitmap-property. The value set on the source-property will be instantiated and assigned
+		 * the the bitmap-property. Thie Class can either be a Bitmap or BitmapData.
+		 */		
 		public function get source():Class {
 			return _source;
 		}
@@ -51,6 +61,9 @@ package com.flow.graphics.fills {
 			}
 		}
 		
+		/**
+		 * The bitmap to use when filling.
+		 */		
 		public function get bitmap():BitmapData {
 			return _bitmap;
 		}
@@ -58,6 +71,9 @@ package com.flow.graphics.fills {
 			_bitmap = value;
 		}
 		
+		/**
+		 * The number of pixels to offset the bitmap horizontally when filling.
+		 */		
 		public function get xOffset():Number {
 			return _xOffset;
 		}
@@ -68,6 +84,9 @@ package com.flow.graphics.fills {
 			}
 		}
 		
+		/**
+		 * The number of pixels to offset the bitmap vertically when filling. 
+		 */		
 		public function get yOffset():Number {
 			return _yOffset;
 		}
@@ -78,6 +97,7 @@ package com.flow.graphics.fills {
 			}
 		}
 		
+		/** @private */
 		public function beginDraw(graphics:Graphics, width:int, height:int):void {
 			if(_bitmap) {
 				var matrix:Matrix = new Matrix();
@@ -86,13 +106,14 @@ package com.flow.graphics.fills {
 			}
 		}
 		
+		/** @private */
 		public function endDraw(graphics:Graphics):void  {
 			if(_bitmap) {
 				graphics.endFill();
 			}
 		}
 		
-		public function invalidate():void {
+		private function invalidate():void {
 			dispatchEvent(new InvalidationEvent(InvalidationEvent.INVALIDATE));
 		}
 	}

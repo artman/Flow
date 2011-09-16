@@ -29,16 +29,25 @@ package com.flow.graphics.strokes {
 	import flash.display.JointStyle;
 	import flash.events.EventDispatcher;
 	
+	/**
+	 * A solid, single color stroke. 
+	 */	
 	[Event(name="invalidate", type="com.flow.events.InvalidationEvent")]
 	public class SolidStroke extends StrokeBase {
 		
 		private var _color:int = 0;
 		private var _alpha:Number = 1;
 		
+		/**
+		 * Constructor 
+		 */		
 		public function SolidStroke() {
 			super();
 		}
 		
+		/**
+		 * The alpha of the stroke .
+		 */		
 		[Animateable]
 		public function get alpha():Number {
 			return _alpha;
@@ -50,6 +59,9 @@ package com.flow.graphics.strokes {
 			}
 		}
 		
+		/**
+		 * The color of the stroke. 
+		 */		
 		[Animateable(type="color")]
 		public function get color():int {
 			return _color;
@@ -60,9 +72,10 @@ package com.flow.graphics.strokes {
 				invalidate();
 			}
 		}
-
+		
+		/** @inheritDoc */
 		override public function beginDraw(graphics:Graphics, width:int, height:int):void  {
-			graphics.lineStyle(_thickness, color, alpha, true, "normal", _caps, _joints, _miterLimit);
+			graphics.lineStyle(_thickness, color, alpha, _pixelHinting, "normal", _caps, _joints, _miterLimit);
 		}
 	}
 }
