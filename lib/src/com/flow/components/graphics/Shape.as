@@ -70,7 +70,7 @@ package com.flow.components.graphics {
 			measuredHeight = maxH;
 		}
 		
-		override protected function draw(width:int, height:int):void {
+		override public function draw(width:int, height:int):void {
 			super.draw(width, height);
 			if(_points) {
 				var mulX:int = 1;

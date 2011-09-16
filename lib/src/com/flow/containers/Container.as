@@ -24,20 +24,22 @@ package com.flow.containers {
 
 	import com.flow.collections.DisplayObjectCollection;
 	import com.flow.collections.IList;
+	import com.flow.components.Component;
 	import com.flow.containers.layout.AbsoluteLayout;
 	import com.flow.containers.layout.LayoutBase;
 	import com.flow.events.CollectionEvent;
 	import com.flow.events.CollectionEventKind;
+	import com.flow.events.InvalidationEvent;
 	import com.flow.events.StateEvent;
+	import com.flow.managers.LayoutManager;
 	
 	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.utils.getTimer;
-	import com.flow.components.Component;
-	import com.flow.managers.LayoutManager;
 	
 	[DefaultProperty("children")]
 	[Event(name="creationComplete", type="com.flow.events.ComponentEvent")]
+	[Event(name="invalidateLayout", type="com.flow.events.InvalidationEvent")]
 	public class Container extends Component {
 		
 		private var _children:DisplayObjectCollection;
@@ -70,7 +72,7 @@ package com.flow.containers {
 			invalidateLayout();
 		}
 
-		[ArrayElementType("DisplayObject")]
+		[ElementType("DisplayObject")]
 		public function get children():IList {
 			return _children;
 		}
@@ -217,6 +219,7 @@ package com.flow.containers {
 		override public function invalidateLayout(fromChild:Boolean = false):void {
 			if(!layoutInvalidated && parent) {
 				layoutInvalidated = true;
+				dispatchEvent(new InvalidationEvent(InvalidationEvent.INVALIDATE_LAYOUT));
 				if(manager.layoutPhase != LayoutManager.LAYOUT_PHASE_VALIDATING) {
 					var delegate:Boolean = true;
 					if(!(parent is Container)) {
@@ -270,6 +273,8 @@ package com.flow.containers {
 				for(var i:int = sanitizedChildren.length-1; i>=0; i--) {
 					if(sanitizedChildren[i] is Component && !(sanitizedChildren[i] as Component).includeAsChild) {
 						sanitizedChildren.splice(i, 1);
+					} else if(sanitizedChildren[i] is Component) {
+						sanitizedChildren[i] = (sanitizedChildren[i] as Component).visualRepresentation;
 					}
 				}
 				for(i = numChildren-1; i>=0; i--) {

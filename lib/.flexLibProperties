@@ -109,7 +109,7 @@
     <classEntry path="com.flow.net.loaders.LoaderBatch"/>
     <classEntry path="com.flow.net.loaders.TextLoader"/>
     <classEntry path="com.flow.net.loaders.XMLLoader"/>
-    <classEntry path="com.flow.skins.LabelSkin"/>
+    <classEntry path="com.flow.skins.ButtonSkin"/>
     <classEntry path="com.flow.ui.KeyboardManager"/>
     <classEntry path="com.flow.utils.GraphicUtils"/>
     <classEntry path="com.flow.utils.MultiBinder"/>
