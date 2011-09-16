@@ -9,15 +9,23 @@ package com.flow.containers {
 	
 	import mx.core.IFactory;
 	
+<<<<<<< HEAD
 	
 	
 	[DefaultProperty("renderer")]
+=======
+	[DefaultProperty("itemRenderer")]
+>>>>>>> Added IFactory, modified List to use IFactory.
 	[Event(name="rendererCreated", type="com.flow.events.ListEvent")]
 	[Event(name="selectionChanged", type="com.flow.events.ListEvent")]
 	public class List extends Container {
 		
 		private var _dataProvider:*;
+<<<<<<< HEAD
 		private var _renderer:IFactory;
+=======
+		private var _itemRenderer:IFactory;
+>>>>>>> Added IFactory, modified List to use IFactory.
 		private var _selectedIndex:int = -1;
 		private var _selectedItem:Object;
 		
@@ -40,7 +48,7 @@ package com.flow.containers {
 		}
 		
 		override public function validateProperties():void {
-			if(_dataProvider && _renderer) {
+			if(_dataProvider && _itemRenderer) {
 				if(children && children.length) {
 					for(var i:int = 0; i<children.length; i++) {
 						(children.getItemAt(i) as Component).removeEventListener(MouseEvent.CLICK, rendererClicked);
@@ -49,7 +57,11 @@ package com.flow.containers {
 				children.removeAll();
 				if(_dataProvider is Array || _dataProvider is Vector.<*>) {
 					for(i = 0; i<_dataProvider.length; i++) {
+<<<<<<< HEAD
 						var renderer:Component = _renderer.newInstance();
+=======
+						var renderer:Component = _itemRenderer.newInstance();
+>>>>>>> Added IFactory, modified List to use IFactory.
 						renderer.data = _dataProvider[i];
 						
 						var evt:ListEvent = new ListEvent(ListEvent.RENDERER_CREATED);
@@ -70,6 +82,7 @@ package com.flow.containers {
 			selectedIndex = children.getItemIndex(event.currentTarget);
 		}
 		
+<<<<<<< HEAD
 		
 
 		public function get itemRenderer():IFactory {
@@ -78,6 +91,14 @@ package com.flow.containers {
 		public function set itemRenderer(value:IFactory):void {
 			if(value != _renderer) {
 				_renderer = value;
+=======
+		public function get itemRenderer():IFactory {
+			return _itemRenderer;
+		}
+		public function set itemRenderer(value:IFactory):void {
+			if(value != _itemRenderer) {
+				_itemRenderer = value;
+>>>>>>> Added IFactory, modified List to use IFactory.
 				invalidateProperties();
 			}
 		}
