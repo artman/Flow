@@ -47,7 +47,7 @@ package com.flow.effects {
 			_children = new Vector.<Effect>();
 			this.target = target;
 			_alpha = 1;
-			_value = 0;
+			_value = 1;
 			propertiesInvalidated = true;
 		}
 		
@@ -162,7 +162,7 @@ package com.flow.effects {
 		}
 		
 		protected function invalidate():void {
-			if(!invalidated && target) {
+			if(!invalidated && _target) {
 				LayoutManager.instance.invalidateEffect(this);
 				invalidated = true;
 			}
@@ -197,7 +197,9 @@ package com.flow.effects {
 				return filters;
 			} else {
 				filters = filters.concat(assignedFilters);
-				_target.filters = filters;
+				if(_target) {
+					_target.filters = filters;
+				}
 			}
 			return null;
 		}

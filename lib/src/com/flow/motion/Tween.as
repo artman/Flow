@@ -27,6 +27,7 @@ package com.flow.motion {
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
+	import flash.utils.Dictionary;
 	import flash.utils.getTimer;
 	
 	/**

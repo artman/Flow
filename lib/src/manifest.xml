@@ -93,6 +93,7 @@
 	<component id="JSONTokenizer" class="com.adobe.serialization.json.JSONTokenizer"/>
 	<component id="KeyboardManager" class="com.flow.managers.KeyboardManager"/>
 	<component id="Label" class="com.flow.components.Label"/>
+	<component id="LabelButton" class="com.flow.components.LabelButton"/>
 	<component id="LayoutBase" class="com.flow.containers.layout.LayoutBase"/>
 	<component id="LayoutManager" class="com.flow.managers.LayoutManager"/>
 	<component id="Line" class="com.flow.graphics.Line"/>

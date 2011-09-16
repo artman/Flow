@@ -46,7 +46,7 @@ package com.flow.components {
 		public var camera:Camera;
 		private var holder:Sprite;
 		private var detectTimer:Timer;
-		private var effect:Effect;
+		private var pixelateEffect:Effect;
 		private var _mirror:Boolean = true;
 		
 		[Bindable]
@@ -61,8 +61,8 @@ package com.flow.components {
 			video.smoothing = true;
 			video.visible = false;
 			
-			effect = new PixelateEffect(video, 20);
-			effect.value = 0;
+			pixelateEffect = new PixelateEffect(video, 20);
+			pixelateEffect.value = 0;
 			
 			holder.addChild(video);
 			addEventListener(Event.ADDED_TO_STAGE, added);
@@ -176,8 +176,8 @@ package com.flow.components {
 		
 		private function cameraAvailable():void {
 			video.visible = true;
-			effect.targetAlpha = 0;
-			effect.fadeTargetIn(0.6);
+			pixelateEffect.targetAlpha = 0;
+			pixelateEffect.fadeTargetIn(0.6);
 			dispatchEvent(new WebCamEvent(WebCamEvent.CAMERA_READY));
 		}
 		
