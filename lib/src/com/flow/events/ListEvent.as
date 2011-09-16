@@ -7,6 +7,7 @@ package com.flow.events {
 		
 		public static const RENDERER_CREATED:String = "rendererCreated";
 		public static const SELECTION_CHANGED:String = "selectionChanged";
+		public static const ITEMS_CREATED:String = "itemsCreated";
 		
 		public var renderer:Component;
 		
