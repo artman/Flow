@@ -51,6 +51,7 @@ package com.flow.graphics.strokes {
 			super();
 		}
 		
+		[AnimateableChild]
 		public function get colors():Vector.<GradientData> {
 			return _colors;
 		}
@@ -87,6 +88,7 @@ package com.flow.graphics.strokes {
 			}
 		}
 		
+		[Animateable]
 		public function get rotation():Number {
 			return _rotation
 		}

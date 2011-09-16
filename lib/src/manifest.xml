@@ -17,7 +17,8 @@
 	<component id="AbsoluteLayout" class="com.flow.containers.layout.AbsoluteLayout"/>
 	<component id="AddItems" class="mx.states.AddItems"/>
 	<component id="AlignType" class="com.flow.containers.layout.AlignType"/>
-	<component id="AnimationProps" class="com.flow.effects.AnimationProps"/>
+	<component id="AnimationProperties" class="com.flow.motion.AnimationProperties"/>
+	<component id="AnimationProperty" class="com.flow.motion.AnimationProperty"/>
 	<component id="Application" class="com.flow.containers.Application"/>
 	<component id="ArrayCollection" class="com.flow.collections.ArrayCollection"/>
 	<component id="Back" class="com.flow.motion.easing.Back"/>
@@ -69,6 +70,7 @@
 	<component id="HBoxLayout" class="com.flow.containers.layout.HBoxLayout"/>
 	<component id="HScrollBar" class="com.flow.components.HScrollBar"/>
 	<component id="HScrollBarSkin" class="com.flow.skins.HScrollBarSkin"/>
+	<component id="IAnimateable" class="com.flow.motion.IAnimateable"/>
 	<component id="IFactory" class="mx.core.IFactory"/>
 	<component id="IFill" class="com.flow.graphics.fills.IFill"/>
 	<component id="IList" class="com.flow.collections.IList"/>
@@ -79,6 +81,7 @@
 	<component id="ITooltip" class="com.flow.components.supportClasses.ITooltip"/>
 	<component id="Image" class="com.flow.graphics.Image"/>
 	<component id="InnerGlowEffect" class="com.flow.effects.InnerGlowEffect"/>
+	<component id="IntrospectionManager" class="com.flow.managers.IntrospectionManager"/>
 	<component id="InvalidationEvent" class="com.flow.events.InvalidationEvent"/>
 	<component id="JSONDecoder" class="com.adobe.serialization.json.JSONDecoder"/>
 	<component id="JSONEncoder" class="com.adobe.serialization.json.JSONEncoder"/>
@@ -152,6 +155,7 @@
 	<component id="XMLLoader" class="com.flow.net.loaders.XMLLoader"/>
 ..com.flow.utils.callLater
 ..com.flow.utils.callLaterTimed
+..com.flow.utils.cloneObject
 ..com.flow.utils.hasPlayerVersion
 </componentPackage>
 

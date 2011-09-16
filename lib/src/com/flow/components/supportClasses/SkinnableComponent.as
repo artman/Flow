@@ -17,12 +17,11 @@ package com.flow.components.supportClasses {
 	public class SkinnableComponent extends Container {
 		
 		private var _skinClass:IFactory;
-		private var skinChanged:Boolean = false;
+		private var skinChanged:Boolean = true;
 		protected var skin:Skin;
 		
 		public function SkinnableComponent() {
 			super();
-			skinChanged = true;
 		}
 		
 		public function get skinClass():IFactory {
@@ -38,7 +37,6 @@ package com.flow.components.supportClasses {
 		}
 		
 		override public function validateProperties():void {
-			super.validateProperties();
 			if(skinChanged) {
 				skinChanged = false;
 				var parts:Object = skinParts;
@@ -82,19 +80,13 @@ package com.flow.components.supportClasses {
 							skinHeightChange();
 						}
 					}
-					
-					/*if(!hasExplicitWidth && skin.hasExplicitWidth) {
-						width = skin.width;
-					}
-					if(!hasExplicitHeight && skin.hasExplicitHeight) {
-						height = skin.height;
-					}*/
 					skin.currentState = currentState;
 					skinAttached();
 				} else {
 					throw new Error("No skinClass defined and could not retreive default skin")
 				}
 			}
+			super.validateProperties();
 		}
 		
 		private function skinWidthChange(e:Event = null):void {

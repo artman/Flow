@@ -37,6 +37,7 @@ package com.flow.graphics {
 			stroke = null;
 		}
 		
+		[Animateable]
 		public function get radius():Number {
 			return _radius;
 		}
@@ -47,6 +48,7 @@ package com.flow.graphics {
 			}
 		}
 		
+		[Animateable]
 		public function get topLeftRadius():Number {
 			return _topLeftRadius;
 		}
@@ -57,6 +59,7 @@ package com.flow.graphics {
 			}
 		}
 		
+		[Animateable]
 		public function get topRightRadius():Number {
 			return _topRightRadius;
 		}
@@ -67,6 +70,7 @@ package com.flow.graphics {
 			}
 		}
 		
+		[Animateable]
 		public function get bottomLeftRadius():Number {
 			return _bottomLeftRadius;
 		}
@@ -77,6 +81,7 @@ package com.flow.graphics {
 			}
 		}
 		
+		[Animateable]
 		public function get bottomRightRadius():Number {
 			return _bottomRightRadius;
 		}

@@ -36,6 +36,7 @@ package com.flow.graphics.fills {
 		public function SolidFill() {
 		}
 		
+		[Animateable]
 		public function get alpha():Number {
 			return _alpha;
 		}
@@ -46,6 +47,7 @@ package com.flow.graphics.fills {
 			}
 		}
 		
+		[Animateable(type="color")]
 		public function get color():Number {
 			return _color;
 		}

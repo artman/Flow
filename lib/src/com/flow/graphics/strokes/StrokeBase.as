@@ -72,6 +72,7 @@ package com.flow.graphics.strokes {
 			}
 		}
 		
+		[Animateable]
 		public function get thickness():Number {
 			return _thickness;
 		}

@@ -23,10 +23,11 @@
 package com.flow.graphics {
 	
 	import com.flow.events.InvalidationEvent;
+	import com.flow.motion.IAnimateable;
 	
 	import flash.events.EventDispatcher;
 
-	public class GradientData extends EventDispatcher {
+	public class GradientData extends EventDispatcher implements IAnimateable {
 		
 		private var _color:int;
 		private var _alpha:Number;
@@ -37,7 +38,8 @@ package com.flow.graphics {
 			this.alpha = alpha;
 			this.ratio = ratio;
 		}
-
+		
+		[Animateable(type="color")]
 		public function get color():int {
 			return _color;
 		}
@@ -47,7 +49,8 @@ package com.flow.graphics {
 				invalidate();
 			}
 		}
-
+		
+		[Animateable]
 		public function get alpha():Number {
 			return _alpha;
 		}
@@ -58,6 +61,7 @@ package com.flow.graphics {
 			}
 		}
 
+		[Animateable]
 		public function get ratio():Number {
 			return _ratio;
 		}
