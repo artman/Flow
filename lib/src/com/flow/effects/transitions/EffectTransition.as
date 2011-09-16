@@ -20,13 +20,14 @@
  * THE SOFTWARE.
  */
 
-package com.flow.effects {
+package com.flow.effects.transitions {
 	
 	import com.flow.components.Component;
 	import com.flow.motion.Tween;
+	import com.flow.effects.Effect;
 
 	[DefaultProperty("effect")]
-	public class EffectTransition extends Transition {
+	public class EffectTransition extends FadeTransition {
 		
 		public var fade:Boolean;
 		public var effect:Effect;

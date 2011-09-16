@@ -20,7 +20,7 @@
  * THE SOFTWARE.
  */
 
-package com.flow.effects {
+package com.flow.effects.transitions {
 	
 	import com.flow.components.Component;
 	import com.flow.motion.Tween;
@@ -29,7 +29,7 @@ package com.flow.effects {
 	import flash.events.EventDispatcher;
 
 	[Event(name="complete", type="flash.events.Event")]
-	public class Transition extends EventDispatcher {
+	public class FadeTransition extends EventDispatcher {
 		
 		public var speed:Number;
 		public var speedOut:Number = 0;
@@ -37,7 +37,7 @@ package com.flow.effects {
 		private var firstShow:Boolean = true;
 		private var _active:Boolean = false;
 		
-		public function Transition(speed:Number = 0.3) {
+		public function FadeTransition(speed:Number = 0.3) {
 			this.speed = speed;
 		}
 		
