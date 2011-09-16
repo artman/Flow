@@ -37,6 +37,7 @@
 =======
     <classEntry path="com.flow.components.Label"/>
     <classEntry path="com.flow.components.Spacing"/>
+    <classEntry path="com.flow.components.TextInput"/>
     <classEntry path="com.flow.components.WebCam"/>
     <classEntry path="com.flow.components.measuring.MeasureUnit"/>
     <classEntry path="com.flow.components.measuring.MeasureUnits"/>
@@ -70,8 +71,10 @@
 >>>>>>> Refactored graphics into own package
     <classEntry path="com.flow.containers.Application"/>
     <classEntry path="com.flow.containers.Container"/>
+    <classEntry path="com.flow.containers.HBox"/>
     <classEntry path="com.flow.containers.List"/>
     <classEntry path="com.flow.containers.ScrollArea"/>
+    <classEntry path="com.flow.containers.VBox"/>
     <classEntry path="com.flow.containers.layout.AbsoluteLayout"/>
     <classEntry path="com.flow.containers.layout.AlignType"/>
     <classEntry path="com.flow.containers.layout.HBoxLayout"/>
@@ -129,6 +132,7 @@
     <classEntry path="com.flow.graphics.strokes.GradientStroke"/>
     <classEntry path="com.flow.graphics.strokes.IStroke"/>
     <classEntry path="com.flow.graphics.strokes.SolidStroke"/>
+    <classEntry path="com.flow.graphics.strokes.StrokeBase"/>
     <classEntry path="com.flow.log.Log"/>
     <classEntry path="com.flow.managers.LayoutManager"/>
     <classEntry path="com.flow.managers.TextFormatManager"/>
@@ -147,14 +151,18 @@
     <classEntry path="com.flow.motion.easing.Sine"/>
     <classEntry path="com.flow.net.AMFGateway"/>
     <classEntry path="com.flow.net.AMFGatewayResponder"/>
-    <classEntry path="com.flow.net.loaders.AbstractLoader"/>
+    <classEntry path="com.flow.net.RemoteProcedureAMF"/>
+    <classEntry path="com.flow.net.RemoteProcedureHTTP"/>
+    <classEntry path="com.flow.net.RemoteProcedureTypes"/>
     <classEntry path="com.flow.net.loaders.DisplayObjectLoader"/>
     <classEntry path="com.flow.net.loaders.JSONLoader"/>
+    <classEntry path="com.flow.net.loaders.LoaderBase"/>
     <classEntry path="com.flow.net.loaders.LoaderBatch"/>
     <classEntry path="com.flow.net.loaders.TextLoader"/>
     <classEntry path="com.flow.net.loaders.XMLLoader"/>
     <classEntry path="com.flow.skins.ButtonSkin"/>
     <classEntry path="com.flow.skins.CheckboxSkin"/>
+    <classEntry path="com.flow.skins.TextInputSkin"/>
     <classEntry path="com.flow.ui.KeyboardManager"/>
     <classEntry path="com.flow.utils.GraphicUtils"/>
     <classEntry path="com.flow.utils.MultiBinder"/>
@@ -170,9 +178,6 @@
     <classEntry path="mx.states.SetProperty"/>
     <classEntry path="mx.states.State"/>
     <classEntry path="mx.states.Transition"/>
-    <classEntry path="com.flow.graphics.strokes.StrokeBase"/>
-    <classEntry path="com.flow.components.TextInput"/>
-    <classEntry path="com.flow.skins.TextInputSkin"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests>

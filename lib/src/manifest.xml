@@ -15,7 +15,6 @@
 	<component id="AMFGatewayEvent" class="com.flow.events.AMFGatewayEvent"/>
 	<component id="AMFGatewayResponder" class="com.flow.net.AMFGatewayResponder"/>
 	<component id="AbsoluteLayout" class="com.flow.containers.layout.AbsoluteLayout"/>
-	<component id="AbstractLoader" class="com.flow.net.loaders.AbstractLoader"/>
 	<component id="AddItems" class="mx.states.AddItems"/>
 	<component id="AlignType" class="com.flow.containers.layout.AlignType"/>
 	<component id="AnimationProps" class="com.flow.effects.AnimationProps"/>
@@ -66,6 +65,7 @@
 	<component id="GradientStroke" class="com.flow.graphics.strokes.GradientStroke"/>
 	<component id="GraphicUtils" class="com.flow.utils.GraphicUtils"/>
 	<component id="GreyscaleEffect" class="com.flow.effects.GreyscaleEffect"/>
+	<component id="HBox" class="com.flow.containers.HBox"/>
 	<component id="HBoxLayout" class="com.flow.containers.layout.HBoxLayout"/>
 	<component id="IFactory" class="mx.core.IFactory"/>
 	<component id="IFill" class="com.flow.graphics.fills.IFill"/>
@@ -94,6 +94,7 @@
 	<component id="Linear" class="com.flow.motion.easing.Linear"/>
 	<component id="List" class="com.flow.containers.List"/>
 	<component id="ListEvent" class="com.flow.events.ListEvent"/>
+	<component id="LoaderBase" class="com.flow.net.loaders.LoaderBase"/>
 	<component id="LoaderBatch" class="com.flow.net.loaders.LoaderBatch"/>
 	<component id="Log" class="com.flow.log.Log"/>
 	<component id="MaskFilterEffect" class="com.flow.effects.MaskFilterEffect"/>
@@ -111,6 +112,9 @@
 	<component id="Quintic" class="com.flow.motion.easing.Quintic"/>
 	<component id="RadialWipeEffect" class="com.flow.effects.RadialWipeEffect"/>
 	<component id="Rect" class="com.flow.graphics.Rect"/>
+	<component id="RemoteProcedureAMF" class="com.flow.net.RemoteProcedureAMF"/>
+	<component id="RemoteProcedureHTTP" class="com.flow.net.RemoteProcedureHTTP"/>
+	<component id="RemoteProcedureTypes" class="com.flow.net.RemoteProcedureTypes"/>
 	<component id="RippleEffect" class="com.flow.effects.RippleEffect"/>
 	<component id="ScrollArea" class="com.flow.containers.ScrollArea"/>
 	<component id="SetProperty" class="mx.states.SetProperty"/>
@@ -133,6 +137,7 @@
 	<component id="Transform3DEffect" class="com.flow.effects.Transform3DEffect"/>
 	<component id="Transition" class="mx.states.Transition"/>
 	<component id="Tween" class="com.flow.motion.Tween"/>
+	<component id="VBox" class="com.flow.containers.VBox"/>
 	<component id="VBoxLayout" class="com.flow.containers.layout.VBoxLayout"/>
 	<component id="ViewStack" class="com.flow.containers.layout.ViewStack"/>
 	<component id="WebCam" class="com.flow.components.WebCam"/>

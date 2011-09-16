@@ -33,10 +33,10 @@ package com.flow.containers.layout {
 		
 		protected var _target:Container;
 	
-		protected var _paddingLeft:int = 0;
-		protected var _paddingRight:int = 0;
-		protected var _paddingBottom:int = 0;
-		protected var _paddingTop:int = 0;
+		protected var _paddingLeft:Number = 0;
+		protected var _paddingRight:Number = 0;
+		protected var _paddingBottom:Number = 0;
+		protected var _paddingTop:Number = 0;
 		
 		public function invalidate():void {
 			if(_target) {
@@ -57,78 +57,78 @@ package com.flow.containers.layout {
 			// Override
 		}
 		
-		final public function layout(w:int, h:int):void {
+		final public function layout(w:Number, h:Number):void {
 			if(_target) {
 				layoutChildren(_paddingLeft, _paddingTop, w-_paddingLeft - _paddingRight, h-_paddingTop-_paddingBottom);
 			}
 		}
 		
-		public function layoutChildren(offsetX:int, offsetY:int, w:int, h:int):void {
+		public function layoutChildren(offsetX:Number, offsetY:Number, w:Number, h:Number):void {
 			// Override
 		}
 		
 		
-		public function get padding():int {
+		public function get padding():Number {
 			if(_paddingTop == _paddingBottom && _paddingBottom == _paddingLeft && _paddingLeft == _paddingRight) {
 				return _paddingTop
 			}
 			return 0;
 		}
-		public function set padding(value:int):void {
+		public function set padding(value:Number):void {
 			paddingTop = paddingBottom = paddingLeft = paddingRight = value;
 		}
 		
-		public function get verticalPadding():int {
+		public function get verticalPadding():Number {
 			if(_paddingTop == _paddingBottom) {
 				return _paddingTop
 			}
 			return 0;
 		}
-		public function set verticalPadding(value:int):void {
+		public function set verticalPadding(value:Number):void {
 			paddingTop = paddingBottom = value;
 		}
 		
-		public function get horizontalPadding():int {
+		public function get horizontalPadding():Number {
 			if(_paddingLeft == _paddingRight) {
 				return _paddingLeft;
 			}
 			return 0;
 		}
-		public function set horizontalPadding(value:int):void {
+		public function set horizontalPadding(value:Number):void {
 			paddingLeft = paddingRight = value;
 		}
 		
-		public function get paddingTop():int {
+		public function get paddingTop():Number {
 			return _paddingTop;
 		}
-		public function set paddingTop(value:int):void {
+		public function set paddingTop(value:Number):void {
 			if(value != _paddingTop) {
 				_paddingTop = value;
 				invalidate();
 			}
 		}
-		public function get paddingRight():int {
+		public function get paddingRight():Number {
 			return _paddingRight;
 		}
-		public function set paddingRight(value:int):void {
+		public function set paddingRight(value:Number):void {
 			if(value != _paddingRight) {
 				_paddingRight = value;
 				invalidate();
 			}
 		}
-		public function get paddingBottom():int {
+		public function get paddingBottom():Number {
 			return _paddingBottom;
 		}
-		public function set paddingBottom(value:int):void {
+		public function set paddingBottom(value:Number):void {
 			if(value != _paddingBottom) {
 				_paddingBottom = value;
 				invalidate();
 			}
 		}
-		public function get paddingLeft():int {
+		public function get paddingLeft():Number {
 			return _paddingLeft;
 		}
-		public function set paddingLeft(value:int):void {
+		public function set paddingLeft(value:Number):void {
 			if(value != _paddingLeft) {
 				_paddingLeft = value;
 				invalidate();

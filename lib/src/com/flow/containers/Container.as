@@ -48,8 +48,9 @@ package com.flow.containers {
 
 		public function Container() {
 			super();
+			_layout = getDefaultLayout();
+			_layout.assignToComponent(this);
 			children = new DisplayObjectCollection();
-			layout = getDefaultLayout();
 			addEventListener(Event.ADDED_TO_STAGE, added);
 		}
 		
@@ -72,7 +73,7 @@ package com.flow.containers {
 			invalidateLayout();
 		}
 
-		[ElementType("DisplayObject")]
+		[ArrayElementType("DisplayObject")]
 		public function get children():* {
 			return _children;
 		}
@@ -154,6 +155,9 @@ package com.flow.containers {
 		}
 		public function set layout(value:LayoutBase):void {
 			if(value != _layout) {
+				if(!value) {
+					throw new Error("Container requires a layout");
+				}
 				if(_layout) {
 					_layout.resignFromComponent(this); 
 				}
@@ -248,13 +252,11 @@ package com.flow.containers {
 
 		public function validateLayout(e:Event = null):void {
 			layoutInvalidated = false;
-			if(layout) {
-				layout.layout(width, height);
-				for(var i:int=0; i<numChildren; i++) {
-					var displayObject:DisplayObject = getChildAt(i);
-					if(displayObject is Container) {
-						(displayObject as Container).validateLayout();
-					}
+			_layout.layout(width, height);
+			for(var i:int=0; i<numChildren; i++) {
+				var displayObject:DisplayObject = getChildAt(i);
+				if(displayObject is Container) {
+					(displayObject as Container).validateLayout();
 				}
 			}
 		}
@@ -288,9 +290,7 @@ package com.flow.containers {
 					}
 					setChildIndex(sanitizedChildren[i],i);
 				}			
-				if(layout) {
-					layout.childrenChanged();
-				}
+				_layout.childrenChanged();
 			}
 		}
 		
@@ -313,9 +313,56 @@ package com.flow.containers {
 		}
 		
 		override public function measure():void {
-			if(_layout) {
-				_layout.measure();
-			}
+			_layout.measure();
+		}
+		
+		public function get padding():Number {
+			return _layout.padding;
+		}
+		public function set padding(value:Number):void {
+			_layout.padding = value;
+		}
+		
+		public function get verticalPadding():Number {
+			return _layout.verticalPadding;
+		}
+		public function set verticalPadding(value:Number):void {
+			_layout.verticalPadding = value;
+		}
+		
+		public function get horizontalPadding():Number {
+			return _layout.horizontalPadding;
+		}
+		public function set horizontalPadding(value:Number):void {
+			_layout.horizontalPadding = value;
+		}
+		
+		public function get paddingTop():Number {
+			return _layout.paddingTop;
+		}
+		public function set paddingTop(value:Number):void {
+			_layout.paddingTop = value;
+		}
+		
+		public function get paddingRight():Number {
+			return _layout.paddingRight;
+		}
+		public function set paddingRight(value:Number):void {
+			_layout.paddingRight = value;
+		}
+		
+		public function get paddingBottom():Number {
+			return _layout.paddingBottom;
+		}
+		public function set paddingBottom(value:Number):void {
+			_layout.paddingBottom = value;
+		}
+		
+		public function get paddingLeft():Number {
+			return _layout.paddingLeft;
+		}
+		public function set paddingLeft(value:Number):void {
+			_layout.paddingLeft = value;
 		}
 	}
 }

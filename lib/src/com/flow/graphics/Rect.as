@@ -89,7 +89,7 @@ package com.flow.graphics {
 		
 		
 		
-		override public function draw(width:int, height:int):void {
+		override public function draw(width:Number, height:Number):void {
 			super.draw(width, height);
 			
 			if (_topLeftRadius || _topRightRadius || _bottomRightRadius, _bottomLeftRadius) {

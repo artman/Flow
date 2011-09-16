@@ -44,6 +44,7 @@ package com.flow.net {
 			this.url = url;
 		}
 		
+		[Bindable]
 		public function get url():String {
 			return _url
 		}
@@ -59,11 +60,11 @@ package com.flow.net {
 		public function rp(remoteProcedure:String, ...rest):AMFGatewayResponder {
 			var resp:AMFGatewayResponder = new AMFGatewayResponder();
 			resp.addEventListener(AMFGatewayEvent.ERROR, error);
-			call(remoteProcedure, resp, rest[0], rest[1], rest[2], rest[3]);
+			var params:Array = [remoteProcedure, resp].concat(rest);
+			call.apply(this, params);
 			return resp;
 		}
 
-		
 		private function error(e:AMFGatewayEvent):void{
 			var evt:AMFGatewayEvent = new AMFGatewayEvent(AMFGatewayEvent.ERROR);
 			evt.result = e.result;

@@ -20,39 +20,11 @@
  * THE SOFTWARE.
  */
 
-package com.flow.graphics {
-	
-	import com.flow.components.Component;
-	
-	[DefaultProperty("stroke")]
-	public class Geometry extends Component {
-		
-		public function Geometry() {
-			super();
-		}
-
-		override protected function checkVisibility():Boolean {
-			return true;
-		}
-		
-		override public function draw(w:Number, h:Number):void {	
-			graphics.clear();
-			graphics.lineStyle(undefined);
-			if (_stroke) {
-				_stroke.beginDraw(graphics, w, h);
-			}
-			if (_fill) {
-				_fill.beginDraw(graphics, w, h);
-			}
-		}
-		
-		public function endDraw():void  {
-			if (_stroke) {
-				_stroke.endDraw(graphics);
-			}
-			if (_fill) {
-				_fill.endDraw(graphics);
-			}
-		}
+package com.flow.net {
+	public class RemoteProcedureTypes {
+		public static var TEXT:String = "text";
+		public static var JSON:String = "json";
+		public static var XML:String = "xml";
+		public static var DISPLAY_OBJECT:String = "displayObject";
 	}
 }
