@@ -22,13 +22,13 @@ package com.flow.components {
 			]
 		}
 		
-		override protected function skinApplied():void {
+		override protected function skinAttached():void {
 			skin.buttonMode = true;
 			skin.mouseChildren = false;
 			skin.useHandCursor = true;
 			skin.interactive = true;
 		}
-		
+
 		private function disableClick(e:MouseEvent):void {
 			e.stopImmediatePropagation();
 		}
@@ -53,11 +53,9 @@ package com.flow.components {
 		}
 		
 		override public function validateProperties():void {
-		
 		}
 		
 		override public function measure():void {
-			
 		}
 		
 		override public function draw(width:int, height:int):void {

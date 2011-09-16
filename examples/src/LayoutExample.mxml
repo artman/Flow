@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <flow:Application xmlns:fx="http://ns.adobe.com/mxml/2009"
 				  xmlns:flow="http://artman.fi/flow">
+	<fx:Script>
+		<![CDATA[
+			import com.flow.skins.ButtonSkin;
+		]]>
+	</fx:Script>
 	
-	<flow:ScrollArea>
+	<!--flow:ScrollArea>
 		
 	
 	
@@ -37,7 +42,7 @@
 	</flow:List>
 	
 	
-	<!--flow:Container width="100%" height="20" bottom="0">
+	<flow:Container width="100%" height="20" bottom="0">
 		<flow:layout>
 			<flow:HBoxLayout spacing="5" />
 		</flow:layout>
@@ -61,5 +66,9 @@
 		</flow:Component>
 		
 	</flow:Container-->
+	
+	
+	<flow:Button label="Jepssaaa" left="100" top="100" skinClass="{ButtonSkin}">
+	</flow:Button>
 	
 </flow:Application>

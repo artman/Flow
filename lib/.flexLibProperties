@@ -17,10 +17,14 @@
     <classEntry path="com.flow.components.DefaultTooltip"/>
     <classEntry path="com.flow.components.ITooltip"/>
 <<<<<<< HEAD
+<<<<<<< HEAD
     <classEntry path="com.flow.components.Label"/>
 =======
     <classEntry path="com.flow.components.MeasureUnits"/>
 >>>>>>> Refactoring, added messages
+=======
+    <classEntry path="com.flow.components.Label"/>
+>>>>>>> Implementing skins
     <classEntry path="com.flow.components.PaddableComponent"/>
     <classEntry path="com.flow.components.Preloader"/>
     <classEntry path="com.flow.components.Skin"/>
@@ -129,7 +133,6 @@
     <classEntry path="mx.states.SetProperty"/>
     <classEntry path="mx.states.State"/>
     <classEntry path="mx.states.Transition"/>
-    <classEntry path="mx.core.IFactory"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests>
