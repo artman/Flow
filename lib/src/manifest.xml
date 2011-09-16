@@ -82,7 +82,7 @@
 	<component id="JSONTokenizer" class="com.adobe.serialization.json.JSONTokenizer"/>
 	<component id="KeyboardManager" class="com.flow.ui.KeyboardManager"/>
 	<component id="LayoutBase" class="com.flow.containers.layout.LayoutBase"/>
-	<component id="LayoutManager" class="com.flow.components.LayoutManager"/>
+	<component id="LayoutManager" class="com.flow.managers.LayoutManager"/>
 	<component id="Line" class="com.flow.components.graphics.Line"/>
 	<component id="Linear" class="com.flow.motion.easing.Linear"/>
 	<component id="List" class="com.flow.containers.List"/>
@@ -90,8 +90,8 @@
 	<component id="LoaderBatch" class="com.flow.net.loaders.LoaderBatch"/>
 	<component id="Log" class="com.flow.log.Log"/>
 	<component id="MaskFilterEffect" class="com.flow.effects.MaskFilterEffect"/>
-	<component id="MeasureUnit" class="com.flow.components.MeasureUnit"/>
-	<component id="MeasureUnits" class="com.flow.components.MeasureUnits"/>
+	<component id="MeasureUnit" class="com.flow.components.measuring.MeasureUnit"/>
+	<component id="MeasureUnits" class="com.flow.components.measuring.MeasureUnits"/>
 	<component id="MultiBinder" class="com.flow.utils.MultiBinder"/>
 	<component id="OuterBevelEffect" class="com.flow.effects.OuterBevelEffect"/>
 	<component id="OverrideBase" class="mx.states.OverrideBase"/>
@@ -104,7 +104,7 @@
 	<component id="RadialWipeEffect" class="com.flow.effects.RadialWipeEffect"/>
 	<component id="Rect" class="com.flow.components.graphics.Rect"/>
 	<component id="RippleEffect" class="com.flow.effects.RippleEffect"/>
-	<component id="ScrollArea" class="com.flow.components.ScrollArea"/>
+	<component id="ScrollArea" class="com.flow.containers.ScrollArea"/>
 	<component id="SetProperty" class="mx.states.SetProperty"/>
 	<component id="Shape" class="com.flow.components.graphics.Shape"/>
 	<component id="Sine" class="com.flow.motion.easing.Sine"/>
@@ -115,7 +115,7 @@
 	<component id="StateEvent" class="com.flow.events.StateEvent"/>
 	<component id="TextLoader" class="com.flow.net.loaders.TextLoader"/>
 	<component id="TintEffect" class="com.flow.effects.TintEffect"/>
-	<component id="TooltipManager" class="com.flow.components.TooltipManager"/>
+	<component id="TooltipManager" class="com.flow.managers.TooltipManager"/>
 	<component id="Transform3DEffect" class="com.flow.effects.Transform3DEffect"/>
 	<component id="Transition" class="mx.states.Transition"/>
 	<component id="Tween" class="com.flow.motion.Tween"/>

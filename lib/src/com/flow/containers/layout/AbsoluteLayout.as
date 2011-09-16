@@ -23,8 +23,8 @@
 package com.flow.containers.layout {
 	
 	import com.flow.components.Component;
-	import com.flow.components.MeasureUnit;
-	import com.flow.components.MeasureUnits;
+	import com.flow.components.measuring.MeasureUnit;
+	import com.flow.components.measuring.MeasureUnits;
 	
 	import flash.display.DisplayObject;
 	
