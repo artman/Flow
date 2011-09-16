@@ -10,10 +10,14 @@ package com.flow.containers {
 	import mx.core.IFactory;
 	
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
 	
 	[DefaultProperty("renderer")]
 =======
+=======
+
+>>>>>>> Merged with origin
 	[DefaultProperty("itemRenderer")]
 >>>>>>> Added IFactory, modified List to use IFactory.
 	[Event(name="rendererCreated", type="com.flow.events.ListEvent")]
@@ -83,6 +87,7 @@ package com.flow.containers {
 		}
 		
 <<<<<<< HEAD
+<<<<<<< HEAD
 		
 
 		public function get itemRenderer():IFactory {
@@ -92,6 +97,9 @@ package com.flow.containers {
 			if(value != _renderer) {
 				_renderer = value;
 =======
+=======
+
+>>>>>>> Merged with origin
 		public function get itemRenderer():IFactory {
 			return _itemRenderer;
 		}
@@ -120,11 +128,15 @@ package com.flow.containers {
 				dispatchEvent(new ListEvent(ListEvent.SELECTION_CHANGED));
 			}
 		}
+<<<<<<< HEAD
 		
 		
 		
 		
 		
+=======
+
+>>>>>>> Merged with origin
 		[Bindable]
 		public function get selectedItem():Object {
 			return _selectedItem;
