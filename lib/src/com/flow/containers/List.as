@@ -157,6 +157,8 @@ package com.flow.containers {
 				_selectedIndex = value;
 				if(_dataProvider is Array || _dataProvider is Vector.<*>) {
 					selectedItem = _dataProvider[_selectedIndex];
+				} else if(_dataProvider is IList) {
+					selectedItem = (_dataProvider as IList).getItemAt(_selectedIndex);
 				}
 				if(!propertiesInvalidated) {
 					(children.getItemAt(_selectedIndex) as Component).addState("selected");
