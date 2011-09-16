@@ -192,6 +192,7 @@
     <classEntry path="mx.states.SetProperty"/>
     <classEntry path="mx.states.State"/>
     <classEntry path="mx.states.Transition"/>
+    <classEntry path="com.flow.skins.TextAreaSkin"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests>

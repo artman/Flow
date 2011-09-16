@@ -5,7 +5,7 @@ package com.flow.managers {
 		
 		private static var defaultSkins:Object;
 		public static function init():void {
-			var components:Array = ["Button", "CheckBox", "HScrollBar", "VScrollBar", "TextInput"]
+			var components:Array = ["Button", "CheckBox", "HScrollBar", "VScrollBar", "TextInput", "TextArea"]
 			defaultSkins = {};
 			for each(var component:String in components) {
 				defaultSkins["com.flow.components." + component] = "com.flow.skins." + component + "Skin";

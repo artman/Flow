@@ -136,6 +136,8 @@
 	<component id="State" class="mx.states.State"/>
 	<component id="StateEvent" class="com.flow.events.StateEvent"/>
 	<component id="StrokeBase" class="com.flow.graphics.strokes.StrokeBase"/>
+	<component id="TextArea" class="com.flow.components.TextArea"/>
+	<component id="TextAreaSkin" class="com.flow.skins.TextAreaSkin"/>
 	<component id="TextFormatManager" class="com.flow.managers.TextFormatManager"/>
 	<component id="TextInput" class="com.flow.components.TextInput"/>
 	<component id="TextInputSkin" class="com.flow.skins.TextInputSkin"/>
