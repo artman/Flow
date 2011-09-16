@@ -42,9 +42,9 @@ package com.flow.containers {
 	[Event(name="invalidateLayout", type="com.flow.events.InvalidationEvent")]
 	public class Container extends Component {
 		
-		private var _children:DisplayObjectCollection;
-		private var childrenInvalidated:Boolean = false;
-		private var _layout:LayoutBase;
+		protected var _children:DisplayObjectCollection;
+		protected var childrenInvalidated:Boolean = false;
+		protected var _layout:LayoutBase;
 
 		public function Container() {
 			super();

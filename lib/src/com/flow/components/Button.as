@@ -3,6 +3,7 @@ package com.flow.components {
 	
 	import com.flow.components.graphics.Image;
 	
+	import flash.display.InteractiveObject;
 	import flash.events.MouseEvent;
 	
 	import mx.states.State;
@@ -12,6 +13,16 @@ package com.flow.components {
 		private var _label:String;
 		private var _color:int;
 		
+		
+		[SkinPart(required="true")]
+		public function set labelDisplay(value:Label):void {
+			trace("SETTING");
+		}
+		public function get labelDisplay():Label {
+			return null;
+		}
+		
+		
 		public function Button() {
 			super();
 			states = [
@@ -19,7 +30,7 @@ package com.flow.components {
 				new State("hover"),
 				new State("down"),
 				new State("disabled")
-			]
+			];
 		}
 		
 		override protected function skinAttached():void {
@@ -36,10 +47,11 @@ package com.flow.components {
 		public function set label(value:String):void {
 			_label = value;
 			invalidateProperties(true);
+			trace(labelDisplay);
 		}
 		public function get label():String {
 			return _label;
-		}
+		} 
 		
 		override public function set disabled(value:Boolean):void {
 			super.disabled = value;
@@ -52,14 +64,9 @@ package com.flow.components {
 			}
 		}
 		
-		override public function validateProperties():void {
-		}
 		
-		override public function measure():void {
-		}
-		
-		override public function draw(width:int, height:int):void {
-			super.draw(width, height);
+		override protected function partAdded(partName:String, skinPart:InteractiveObject):void {
+			trace(partName + "xxxx");
 		}
 	}
 }
