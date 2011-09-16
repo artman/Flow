@@ -23,6 +23,9 @@
 package com.flow.utils {
 	import flash.utils.ByteArray;
 	
+	/**
+	 * Deep clones an object. 
+	 */	
 	public function cloneObject(object:Object):Object {
 		var buffer:ByteArray = new ByteArray();
 		buffer.writeObject(object);
