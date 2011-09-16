@@ -76,6 +76,7 @@ package com.flow.utils {
 		 * @param The source BitmapData instace to flip.
 		 * @return A flipped BitmapData instance.
 		 */		
+		
 		public static function flipHorizontally(source:BitmapData):BitmapData {
 			var bmp:BitmapData = new BitmapData(source.width, source.height);
 			var matrix:Matrix = new Matrix();

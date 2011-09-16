@@ -1222,6 +1222,16 @@ package com.flow.components {
 		}
 		
 		/** @private */
+		public function copyInstance():* {
+			var klass:Class = getDefinitionByName(getQualifiedClassName(this)) as Class;
+			var instance:Component = new klass();
+			for(var prop:String in this) {
+				instance[prop] = this[prop];
+			}
+			return instance;
+		}
+		
+		/** @private */
 		public function get visualRepresentation():Component {
 			return this;
 		}
