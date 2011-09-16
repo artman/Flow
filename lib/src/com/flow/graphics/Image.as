@@ -20,7 +20,7 @@
  * THE SOFTWARE.
  */
 
-package com.flow.components.graphics {
+package com.flow.graphics {
 	
 	import com.flow.components.Component;
 	import com.flow.effects.Effect;

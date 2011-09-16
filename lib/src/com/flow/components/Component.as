@@ -22,8 +22,6 @@
 
 package com.flow.components {
 	
-	import com.flow.components.graphics.fills.IFill;
-	import com.flow.components.graphics.strokes.IStroke;
 	import com.flow.components.measuring.MeasureUnit;
 	import com.flow.components.measuring.MeasureUnits;
 	import com.flow.containers.Container;
@@ -31,10 +29,11 @@ package com.flow.components {
 	import com.flow.events.ComponentEvent;
 	import com.flow.events.InvalidationEvent;
 	import com.flow.events.StateEvent;
+	import com.flow.graphics.fills.IFill;
+	import com.flow.graphics.strokes.IStroke;
 	import com.flow.managers.LayoutManager;
 	import com.flow.managers.TooltipManager;
 	
-	import flash.display.DisplayObject;
 	import flash.display.InteractiveObject;
 	import flash.display.MovieClip;
 	import flash.display.Sprite;

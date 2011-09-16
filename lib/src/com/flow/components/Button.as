@@ -1,7 +1,7 @@
 
 package com.flow.components {
 	
-	import com.flow.components.graphics.Image;
+	import com.flow.graphics.Image;
 	
 	import flash.display.InteractiveObject;
 	import flash.events.MouseEvent;

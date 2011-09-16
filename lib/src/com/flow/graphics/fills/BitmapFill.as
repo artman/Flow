@@ -20,51 +20,79 @@
  * THE SOFTWARE.
  */
 
-package com.flow.components.graphics.fills {
+package com.flow.graphics.fills {
 	
 	import com.flow.events.InvalidationEvent;
 	
+	import flash.display.Bitmap;
+	import flash.display.BitmapData;
 	import flash.display.Graphics;
 	import flash.events.EventDispatcher;
+	import flash.geom.Matrix;
 	
-	[Event(name="invalidate", type="com.flow.events.InvalidationEvent")]
-	public class SolidFill extends EventDispatcher implements IFill {
+	public class BitmapFill extends EventDispatcher implements IFill {
 		
-		private var _alpha:Number = 1;
-		private var _color:uint = 0x000000;
-		
-		public function SolidFill() {
+		private var _source:Class;
+		private var _bitmap:BitmapData;
+		private var _xOffset:Number = 0;
+		private var _yOffset:Number = 0;
+
+		public function BitmapFill() {
 		}
 		
-		public function get alpha():Number {
-			return _alpha;
+		public function get source():Class {
+			return _source;
 		}
-		public function set alpha(value:Number):void {
-			if(value != _alpha) {
-				_alpha = value;
+		public function set source(value:Class):void {
+			if(value != _source) {
+				_source = value;
+				var instance:* = new _source();
+				bitmap = (instance is Bitmap) ? (instance as Bitmap).bitmapData : instance;
+			}
+		}
+		
+		public function get bitmap():BitmapData {
+			return _bitmap;
+		}
+		public function set bitmap(value:BitmapData):void {
+			_bitmap = value;
+		}
+		
+		public function get xOffset():Number {
+			return _xOffset;
+		}
+		public function set xOffset(value:Number):void {
+			if(value != _xOffset) {
+				_xOffset = value;
 				invalidate();
 			}
 		}
 		
-		public function get color():Number {
-			return _color;
+		public function get yOffset():Number {
+			return _yOffset;
 		}
-		public function set color(value:Number):void {
-			if(value != _color) {
-				_color = value;
+		public function set yOffset(value:Number):void {
+			if(value != yOffset) {
+				_yOffset = value;
 				invalidate();
 			}
 		}
 		
 		public function beginDraw(graphics:Graphics, width:int, height:int):void {
-			graphics.beginFill(_color, _alpha);
+			if(_bitmap) {
+				var matrix:Matrix = new Matrix();
+				matrix.translate(_xOffset, _yOffset);
+				graphics.beginBitmapFill(_bitmap, matrix, true, false);
+			}
 		}
 		
 		public function endDraw(graphics:Graphics):void  {
-			graphics.endFill();
+			if(_bitmap) {
+				graphics.endFill();
+			}
 		}
 		
-		private function invalidate():void {
+		public function invalidate():void {
 			dispatchEvent(new InvalidationEvent(InvalidationEvent.INVALIDATE));
 		}
 	}
