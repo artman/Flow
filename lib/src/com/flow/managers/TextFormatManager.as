@@ -7,6 +7,7 @@ package com.flow.managers {
 		
 		private static var fontDictionary:Object;
 		private static var textFormatDictionary:Object;
+		private static var fonts:Object;
 		
 		public static function registerFont(fontName:String, fontClass:Class):void {
 			if(!fontDictionary) {
@@ -40,7 +41,24 @@ package com.flow.managers {
 					}
 				}
 			}
-			return null;
+			return new TextFormat("Arial", 11);
+		}
+		
+		public static function hasEmbeddedFont(fontName:String, fontStyle:String = null):Boolean {
+			if(!fonts) {
+				fonts = {};
+				var fontArray:Array = Font.enumerateFonts(false);
+				for(var i:int; i<fontArray.length; i++) {
+					if(!fonts[fontArray[i].fontName]) {
+						fonts[fontArray[i].fontName] = {}
+					}
+					fonts[fontArray[i].fontName][fontArray[i].fontStyle] = true;
+				}
+			}
+			if(!fontStyle) {
+				return fonts[fontName] ? true : false;
+			} 
+			return fonts[fontName][fontStyle] ? true : false;
 		}
 	}
 }
