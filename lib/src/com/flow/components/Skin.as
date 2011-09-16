@@ -16,6 +16,7 @@ package com.flow.components {
 		
 		override public function dispatchEvent(event:Event):Boolean {
 			return hostComponent.dispatchEvent(event);
+			super.dispatchEvent(event);
 		}
 	}
 }
