@@ -902,7 +902,9 @@ package com.flow.components {
 		private function mouseUpAfterPress(event:MouseEvent):void {
 			pressed = false;
 			removeState(STATE_DOWN);
-			stage.removeEventListener(MouseEvent.MOUSE_UP, mouseUpAfterPress);
+			if(stage) {
+				stage.removeEventListener(MouseEvent.MOUSE_UP, mouseUpAfterPress);
+			}
 		}
 		
 		private function mouseUp(e:MouseEvent):void {

@@ -84,6 +84,8 @@ package com.flow.graphics {
 						_loader.addHandlers(loadingComplete);
 						_loader.fadeInSpeed = _fadeInSpeed;
 						_loader.fadeInEffect = _fadeInEffect;
+					} else if(_source is Bitmap) {
+						image = _source;
 					}
 				} else {
 					image = null;
