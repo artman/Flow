@@ -170,6 +170,7 @@
     <classEntry path="mx.states.SetProperty"/>
     <classEntry path="mx.states.State"/>
     <classEntry path="mx.states.Transition"/>
+    <classEntry path="com.flow.graphics.strokes.StrokeBase"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests>

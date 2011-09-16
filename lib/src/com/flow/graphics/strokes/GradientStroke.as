@@ -22,8 +22,8 @@
 
 package com.flow.graphics.strokes {
 	
-	import com.flow.graphics.GradientData;
 	import com.flow.events.InvalidationEvent;
+	import com.flow.graphics.GradientData;
 	
 	import flash.display.GradientType;
 	import flash.display.Graphics;
@@ -32,7 +32,7 @@ package com.flow.graphics.strokes {
 
 	[DefaultProperty("colors")]
 	[Event(name="invalidate", type="com.flow.events.InvalidationEvent")]
-	public class GradientStroke extends EventDispatcher implements IStroke {
+	public class GradientStroke extends StrokeBase {
 		
 		protected var _colors:Vector.<GradientData>;
 		protected var _data:String;
@@ -41,8 +41,7 @@ package com.flow.graphics.strokes {
 		protected var _width:Number;
 		protected var _height:Number;
 		
-		public var type:String = GradientType.LINEAR;
-		private var _thickness:Number = 0;
+		private var _type:String = GradientType.LINEAR;
 
 		protected var gradientColors:Array;
 		protected var gradientAlphas:Array;
@@ -98,31 +97,25 @@ package com.flow.graphics.strokes {
 			}
 		}
 		
-		
-		public function get thickness():Number {
-			return _thickness;
+		[Inspectable(enumeration="linear,radial", defaultValue="linear")]
+		public function get type():String {
+			return _type;
 		}
-		public function set thickness(value:Number):void {
-			if(value != _thickness) {
-				_thickness = value;
+		public function set type(value:String):void {
+			if(value != _type) {
+				_type = value;
 				invalidate();
 			}
 		}
-
-		public function beginDraw(graphics:Graphics, width:int, height:int):void {
+		
+		override public function beginDraw(graphics:Graphics, width:int, height:int):void {
 			if (!_matrix) {
 				_matrix = new Matrix();
 			}
 			var r:Number = _rotation * (Math.PI/180);
 			_matrix.createGradientBox(width, height, r);
-			graphics.lineStyle(thickness);
-			graphics.lineGradientStyle(type, gradientColors, gradientAlphas, gradientRatios, _matrix);
-		}
-		
-		public function endDraw(graphics:Graphics):void {}
-		
-		public function invalidate(e:InvalidationEvent = null):void {
-			dispatchEvent(new InvalidationEvent(InvalidationEvent.INVALIDATE));
+			graphics.lineStyle(_thickness, 0, 1, true, "normal", _caps, _joints, _miterLimit);
+			graphics.lineGradientStyle(_type, gradientColors, gradientAlphas, gradientRatios, _matrix);
 		}
 	}
 }
