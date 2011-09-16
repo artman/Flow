@@ -1,0 +1,211 @@
+<!-- #################################################################################################### 
+	This file is released under the Creative Commons Attribution-Share Alike 
+	3.0 License All enclosed files are copyright (C) 2007 Mike Jones & FlashGen.Com, 
+	unless otherwise indicated. You can redistribute it and/or modify it under 
+	the terms of the CREATIVE COMMONS ATTRIBUTION-SHARE ALIKE 3.0 License as 
+	published by the Creative Commons. This program is distributed in the hope 
+	that it will be useful, but WITHOUT ANY WARRANTY;without even the implied 
+	warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the 
+	Creative Commons Attribution-Share Alike 3.0 License for more details. For 
+	any queries not directly related to the CREATIVE COMMONS ATTRIBUTION-SHARE 
+	ALIKE 3.0 LICENSE please use the following methods of contact: web: http://www.flashgen.com 
+	email: fgdevelopment@flashgen.com ##################################################################################################### -->
+<project name="FlashGen.Com Flex Ant tasks" default="Generate Complete Namespace">
+
+	<!-- ############################################################################################# 
+		# # # Generic Properties and Tasks # # # ############################################################################################# -->
+	<property name="ScriptVersion" value="0.8" />
+
+	<!-- ############################################################################################## 
+		The location of your Flex project on your Computer NOTE: This Path should 
+		be relative to the build.xml file. NOTE: ${basedir} is an ant property that 
+		represents the directory holding the build.xml file (by default I have this 
+		in "build" on the root of the workspace. NOTE: I have encountered issues 
+		with this folder containing Spaces so be warned. ############################################################################################## -->
+	<property name="AppClasses.dir" location="${basedir}/../" />
+
+	<!-- ############################################################################################## 
+		The location of your source folder By default I have my source files in a 
+		directory called "src" in the root. However if you just use the root of your 
+		project for your source files leave this as an empty pair of quotes "" ############################################################################################## -->
+	<property name="Source.dir" value="src" />
+
+	<!-- ############################################################################################# 
+		# # # ASDoc Tasks # # # ############################################################################################# -->
+
+	<!-- ############################################################################################## 
+		The Location of the ASDoc generation script on your Computer (Customize as 
+		required based on it's location on your machine). They are set to a sub directory 
+		in the Ant build folder - This way if you use them in a version controlled 
+		environment so all developers in the project can access them. ############################################################################################## -->
+	<property name="DocScriptPath" location="${basedir}/scripts/GenerateDocs" />
+
+	<!-- ############################################################################################## 
+		The name of the current project (Customize as required). This value is used 
+		as a parameter passed to ASDoc to create the window title, page title (that 
+		appears at the top of each class page), and the footer. NOTE: You cannot 
+		put symbols in these values as the tend to lead to execution errors within 
+		ASDoc. ############################################################################################## -->
+	<property name="WindowTitle" value="FlashGen.Com Common Class Library" />
+	<property name="PageTitle" value="FlashGen.Com Class Library" />
+	<property name="Footer" value="Copyright 2007 FlashGen.Com" />
+
+	<!-- ############################################################################################## 
+		The Location of ASDoc templates on your Computer (Customize as required) 
+		NOTE: you don't need to use single quotes (') within the double quotes (") 
+		if you have a path with spaces in it as this is handled in the ASDoc task 
+		further down. ############################################################################################## -->
+	<property name="Templates.dir"
+		value="${user.home}/Development/Resources/Flex/Templates" />
+	<!-- ############################################################################################## 
+		The Location of ASDocs on your Computer. You will need to alter this if you 
+		have installed the SDK in another location. I've included the path to the 
+		ASDoc script in Flex Builder 2 - Just uncomment and comment whichever one 
+		you need to use depending on your version of Flex Builder. ############################################################################################## -->
+	<property name="ASDocs.dir" location="/Applications/Adobe Flex Builder 2/Flex SDK 2" />
+	<!--<property name="ASDocs.dir" location="/Applications/Adobe Flex Builder 
+		3/sdks/moxie"/> -->
+
+	<!-- ############################################################################################## 
+		The Location you wish to output to relative to the root of your project. 
+		If no location is specified then a folder called "docs" will automatically 
+		be generated in the root of your project. NOTE: I have encountered issues 
+		with this folder containing Spaces ############################################################################################## -->
+	<property name="Output.dir" value="docs" />
+
+	<!-- ############################################################################################## 
+		Create a new set of documents based on the source folder provided. NOTE: 
+		This will delete the old output directory prior to creating the new set of 
+		documents. Therefore if you have made any custom modifications that will 
+		not automatically get rolled in to this process either back up the current 
+		directory or add then to the task. ############################################################################################## -->
+	<target name="Document Export"
+		description="Full document export including directory recreation">
+		<exec executable="${DocScriptPath}" failOnError="true">
+			<arg value="${AppClasses.dir}" />
+			<arg value="${Source.dir}" />
+			<arg value="${Output.dir}" />
+			<arg value="${Templates.dir}" />
+			<arg line="'${WindowTitle}'" />
+			<arg line="'${PageTitle}'" />
+			<arg line="'${Footer}'" />
+			<arg value="${ASDocs.dir}" />
+		</exec>
+	</target>
+
+	<!-- ############################################################################################# 
+		# # # Manifest / Config Specific Tasks # # # ############################################################################################# -->
+
+	<!-- ############################################################################################## 
+		The Location of the Manifest and Config scripts on your Computer (Customize 
+		as required based on it's location on your machine). They are set to a sub 
+		directory in the Ant build folder - This way if you use them in a version 
+		controlled environment so all developers in the project can access them. 
+		############################################################################################## -->
+	<property name="ManifestScriptPath" value="${basedir}/scripts/GenerateManifest" />
+	<property name="ConfigScriptPath" value="${basedir}/scripts/GenerateConfig" />
+
+	<!-- ############################################################################################## 
+		While there are separate variables for the Manifest and Config paths they 
+		will generally be located in the same directory. NOTE: you need to use single 
+		quotes (') within the double quotes (") if you have an AppClasses.dir directory 
+		path with spaces in it. You shouldn't need to change this but if you do remember 
+		to re-implement them. ############################################################################################## -->
+	<property name="Manifest.dir" value="'${AppClasses.dir}/${Source.dir}'" />
+	<property name="Config.dir" value="'${AppClasses.dir}/${Source.dir}'" />
+
+	<!-- ############################################################################################## 
+		This value is the main Application file in your source root (i.e FlashGenApp.mxml). 
+		Note: Don't include the file extension, just the name (i.e. FlashGenApp not 
+		FlashGenApp.mxml). ############################################################################################## -->
+	<property name="ApplicationFilePrefix" value="main" />
+
+	<!-- ############################################################################################## 
+		These are some of the more useful property flags for the config.xml file. 
+		Personally I would leave them "as is" but if you want to change the flag 
+		values feel free. ############################################################################################## -->
+	<property name="ConfigAccessibility" value="false" />
+	<property name="ConfigASWarnings" value="true" />
+	<property name="ConfigDebug" value="false" />
+	<property name="ConfigKeepAS" value="false" />
+	<property name="ConfigOptimized" value="true" />
+
+	<!-- ############################################################################################## 
+		These variables deal with the "namespace" you wish to use to associate your 
+		manifest file with. For example I use http://www.flashgen.com/fg/2007/". 
+		############################################################################################## -->
+	<property name="ConfigNamespaceURI" value="http://www.flashgen.com/fg/2007" />
+
+	<!-- ############################################################################################## 
+		These properties are used to define the meta fields within the config file. 
+		You won't see these values once the SWF is exported they are embedded into 
+		the file and can be accessed via the SWF metadata property. Think along the 
+		lines of EXIF. NOTE: in the ConfigTitle you need to use single quotes (') 
+		within the double quotes (") if you have a title with spaces in it. ############################################################################################## -->
+	<property name="ConfigTitle" value="'FlashGen.Com Flex Application'" />
+	<property name="ConfigDescription" value="http://www.flashgen.com/flexdevelopment/" />
+	<property name="ConfigPublisher" value="unknown" />
+	<property name="ConfigCreator" value="unknown" />
+	<property name="ConfigLanguage" value="EN" />
+
+	<!-- ############################################################################################## 
+		A few additional flags for setting specific parameters for the compiler. 
+		If you don't know what they are leave them as they are as these are the defaults. 
+		Feel free to update the RawMeta entry though :D ############################################################################################## -->
+	<property name="Benchmark" value="false" />
+	<property name="RawMeta" value="'FlashGen.Com Flex Development'" />
+	<property name="DefaultColor" value="#ffffff" />
+
+	<!-- ############################################################################################## 
+		These values are for those using some form of remoting solution (FDS or a 
+		third-party AMF solution). If you leave this blank "" then the XML tags will 
+		not be included in the config file. If you provide a value they will be inserted 
+		when the config file is generated. i.e <property name="AMFService" value="" 
+		/> // Won't include the tags <property name="AMFService" value="services-config.xml" 
+		/> // Will include the tags ############################################################################################## -->
+	<property name="AMFService" value="" />
+
+	<!-- ############################################################################################## 
+		Finally here are the actual exec command to run our scripts. All of the arg 
+		parameters relate to those that are set above so if you get weird values 
+		check this script first to make sure that it's not a typo or missing (') 
+		single quote in a property that has spaces in it. ############################################################################################## -->
+	<target name="Generate Config File">
+		<exec executable="${ConfigScriptPath}" failOnError="true">
+			<arg line="${Config.dir}" />
+			<arg line="${Config.dir}/${ApplicationFilePrefix}-config.xml" />
+			<arg line="${ConfigAccessibility}" />
+			<arg line="${ConfigASWarnings}" />
+			<arg line="${ConfigDebug}" />
+			<arg line="${ConfigKeepAS}" />
+			<arg line="${ConfigNamespaceURI}" />
+			<arg line="${ApplicationFilePrefix}-manifest.xml" />
+			<arg line="${ConfigOptimized}" />
+			<arg line="${ConfigTitle}" />
+			<arg line="${ConfigDescription}" />
+			<arg line="${ConfigPublisher}" />
+			<arg line="${ConfigCreator}" />
+			<arg line="${ConfigLanguage}" />
+			<arg line="${RawMeta}" />
+			<arg line="${Benchmark}" />
+			<arg line="${DefaultColor}" />
+			<arg line="${AMFService}" />
+		</exec>
+	</target>
+
+	<target name="Generate Manifest File">
+		<exec executable="${ManifestScriptPath}" failOnError="true">
+			<arg line="${Manifest.dir}" />
+			<arg line="${Manifest.dir}/${ApplicationFilePrefix}-manifest.xml" />
+		</exec>
+	</target>
+
+	<!-- ############################################################################################## 
+		This entry does nothing more that allow us to run multiple tasks. For the 
+		sake of this script it runs both the GenerateConfig and GenerateManifest 
+		tasks so you can create them both straight away and then us the individual 
+		entries if you need to refresh a specific script. ############################################################################################## -->
+	<target name="Generate Complete Namespace" depends="Generate Manifest File, Generate Config File"
+		description="Generates a complete namespace for use in Flex" />
+
+</project>

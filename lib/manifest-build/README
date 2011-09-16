@@ -1,0 +1,75 @@
+####################################################################################################
+This file is released under the Creative Commons Attribution-Share Alike 3.0 License
+
+All enclosed files are copyright (C) 2007 Mike Jones & FlashGen.Com, unless otherwise indicated.
+
+You can redistribute it and/or modify it under the terms of the CREATIVE COMMONS ATTRIBUTION-SHARE 
+ALIKE 3.0 License as published by the Creative Commons.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY;without even 
+the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+
+See the Creative Commons Attribution-Share Alike 3.0 License for more details.
+
+For any queries not directly related to the CREATIVE COMMONS ATTRIBUTION-SHARE ALIKE 3.0 LICENSE 
+please use the following methods of contact:
+
+web: http://www.flashgen.com
+email: fgdevelopment@flashgen.com																		
+#####################################################################################################
+
+Change Log
+0.8
+
+    * Fixed ASDoc Ant task
+    * Added additional parameters to ASDoc execution
+    * Added Window text support
+    * Added Page title text support
+    * Added Footer text support
+    * Updated Symbolic Linking to automatically remove at process exit
+
+0.7
+
+    * Added ASDoc support in Ant script
+    * Added script sub directory
+    * Added Symbolic linking
+    * Migrated external scripts to script directory
+
+0.6
+
+    * Fixed erroneous parameter in Ant task
+    * Added services support in Ant and Shell scripts
+
+0.5
+
+    * Added flex-config support
+    * Added manifest sorting
+    * Added manifest commenting of base files
+
+0.4
+
+    * Fixed manifest xml regex
+    * Added flex-config parameters to Ant script
+
+0.3
+
+    * Created Shell script “GenerateConfig”
+
+0.2
+
+    * Fixed regex bug in directory listing
+    * Added find command to “GenerateManifest”
+    * Added external parameters for directory location
+    * Removed ls command
+
+0.1
+
+    * Created initial Shell script GenerateManifest
+    * Created initial Ant script
+    * Added initial sed regex for directory manipulation of files
+
+Known Issues:
+0.7: If your main application file name is lower case the XML manifest will not convert it (Regex)
+0.5: Additional Ant parameter being passed in task to create custom flex-config XML)
+0.3: Regex doesn’t comment out root MXML file by default
+0.1: Regex issue when writing directory listing (ordering is not correct)

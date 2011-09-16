@@ -1,0 +1,98 @@
+#!/bin/bash
+
+########################################################################
+# This file is released under the Creative Commons Attribution-Share 
+# Alike 3.0 License
+#
+# All enclosed files are copyright (C) 2007 Mike Jones & FlashGen.Com, 
+# unless otherwise indicated.
+#
+# You can redistribute it and/or modify it under the terms of the 
+# CREATIVE COMMONS ATTRIBUTION-SHARE ALIKE 3.0 License as published by 
+# the Creative Commons.
+#
+# This program is distributed in the hope that it will be useful, but 
+# WITHOUT ANY WARRANTY; without even the implied warranty of 
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. 
+#
+# See the Creative Commons Attribution-Share Alike 3.0 License for 
+# more details.
+#
+# For any queries not directly related to the CREATIVE COMMONS 
+# ATTRIBUTION-SHARE ALIKE 3.0 LICENSE please use the following methods 
+# of contact:
+#
+# web: http://www.flashgen.com
+# email: fgdevelopment@flashgen.com
+#
+########################################################################
+
+########################################################################
+					# Set up our variables #
+########################################################################
+
+# These are just simple string stores to use for the opening and closing
+# of our  manifest file.
+
+xmlHeader="<?xml version=\"1.0\"?>\n"
+manifestHeader="<componentPackage>"
+manifestFooter="</componentPackage>"
+notes="<!-- 
+	As it isn't good form to have classes / components etc defined in the default package 
+	(i.e. the root of your\n\tsource), this script automatically comments them out. This 
+	is only because it is best to only really have the\n\tdefault application file in the 
+	source root i.e. myApplication.mxml. However if you do this script only comments out 
+	the source root files so you can easily uncomment them.
+-->
+	"
+info="
+<!--
+	This file was auto-generated using FlashGen.Com's Flex Ant scripts for Flex Builder
+	Created by Mike Jones (fgdevelopment@flashgen.com) and released under the Creative 
+	Commons Attribution-Share Alike 3.0 license
+-->"
+
+# Here we do a quick CD to the location provided to this script as variable 1.
+cd "$1"
+# This is the main guts of the script:
+#		
+#	Firstly we need to return all of the files in the specified directory
+#	pass them over to sed for processing
+createXMLBody ()
+{	
+	find -s . | grep ".as$\|.mxml$" |
+	# As we go over the returned directory listings we need to grab out the name
+	# of each component ready to insert it into our final script.
+	# We also store the pattern of the main path ready to be reused and cleaned up with our additional
+	# 's///' patterns. The second substitution looks for files in the soure root and comments them out 
+	# (see footnote in the manifest file for more information).
+	sed '{
+			s/\(^.*\/\)\([A-Z].*\)/	<component id\=\"\2\" class\=\"\1\2\">/
+			s/^	<\(c.*\)\(\.\/[A-Z].*\"\)/<\!--	<component id\=\"\2 class\=\"\2> --/
+			s/^	<\(*class="\)\(\)/\1/
+			s/\=\"\./\=\"/g
+			s/\//./g
+			s/\"\./\"/g
+			s/\.as//g
+			s/\.mxml//g
+			s/\>/\/\>/
+		}' |		
+			
+	# Finally we need to sort the entries so that they are in alphabetical order.	
+	sort -di
+}
+
+writeXMLFile ()
+{
+	echo -e "$xmlHeader"
+	echo -e "$notes"
+	echo -e "$manifestHeader"
+	createXMLBody 
+	echo -e "$manifestFooter"
+	echo -e "$info"
+}
+
+# Finally we can push all of the information out to the file we supplied as the second parameter.
+writeXMLFile > "$2"
+
+exit $?
