@@ -42,6 +42,7 @@
     <classEntry path="com.flow.components.Label"/>
     <classEntry path="com.flow.components.LabelButton"/>
     <classEntry path="com.flow.components.Spacing"/>
+    <classEntry path="com.flow.components.TextArea"/>
     <classEntry path="com.flow.components.TextInput"/>
     <classEntry path="com.flow.components.VScrollBar"/>
     <classEntry path="com.flow.components.WebCam"/>
@@ -175,6 +176,7 @@
     <classEntry path="com.flow.skins.ButtonSkin"/>
     <classEntry path="com.flow.skins.CheckboxSkin"/>
     <classEntry path="com.flow.skins.HScrollBarSkin"/>
+    <classEntry path="com.flow.skins.TextAreaSkin"/>
     <classEntry path="com.flow.skins.TextInputSkin"/>
     <classEntry path="com.flow.skins.VScrollBarSkin"/>
     <classEntry path="com.flow.utils.GraphicUtils"/>
@@ -192,7 +194,6 @@
     <classEntry path="mx.states.SetProperty"/>
     <classEntry path="mx.states.State"/>
     <classEntry path="mx.states.Transition"/>
-    <classEntry path="com.flow.skins.TextAreaSkin"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests>

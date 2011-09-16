@@ -30,10 +30,19 @@ package com.flow.collections {
 	
 	[DefaultProperty("source")]
 	[Event(name="collectionChange", type="com.flow.events.CollectionEvent")]
+	/**
+	 * A collection of display list objects for Flow internal use. 
+	 * @author artman
+	 */	
 	public class DisplayObjectCollection extends EventDispatcher implements IList {
 		
 		private var _source:Vector.<DisplayObject>;
 		
+		/**
+		 * Constructor 
+		 * @param A vector of DisplayObjects used to initialize the collection.
+		 * 
+		 */		
 		public function DisplayObjectCollection(source:Vector.<DisplayObject> = null) {
 			super();
 			if (!source) {
@@ -43,6 +52,9 @@ package com.flow.collections {
 			}
 		}
 		
+		/**
+		 * The source of the collection. 
+		 */		
 		public function get source():Vector.<DisplayObject> {
 			return _source; 
 		}
@@ -53,42 +65,50 @@ package com.flow.collections {
 				dispatchEvent(event);
 			}
 		}
-
+		
+		/** @inheritDoc */	
 		public function get length():int {
 			return _source.length;
 		}
 		
+		/** @inheritDoc */
 		public function addItem(item:Object):void {
 			var index:uint = _source.push(item) - 1;
 			var event:CollectionEvent = new CollectionEvent(CollectionEvent.COLLECTION_CHANGE, false, false, CollectionEventKind.ADD, index, -1, [item]);
 			dispatchEvent(event);
 		}
 		
+		/** @inheritDoc */
 		public function addItemAt(item:Object, index:int):void {
 			_source.splice(index, 0, item);
 			var event:CollectionEvent = new CollectionEvent(CollectionEvent.COLLECTION_CHANGE, false, false, CollectionEventKind.ADD, index, -1, [item]);
 			dispatchEvent(event);
 		}
 		
+		/** @inheritDoc */
 		public function getItemAt(index:int, prefetch:int=0):Object {
 			return _source[index];
 		}
 		
+		/** @inheritDoc */
 		public function getItemIndex(item:Object):int {
 			return _source.indexOf(item);
 		}
 		
+		/** @private */
 		public function itemUpdated(item:Object, property:Object=null, oldValue:Object=null, newValue:Object = null):void {
 			var index:int = _source.indexOf(item);
 			var event:CollectionEvent = new CollectionEvent(CollectionEvent.COLLECTION_CHANGE, false, false, CollectionEventKind.UPDATE, index, index, [item]);
 		}
 		
+		/** @inheritDoc */
 		public function removeAll():void {
 			_source = new Vector.<DisplayObject>();
 			var event:CollectionEvent = new CollectionEvent(CollectionEvent.COLLECTION_CHANGE, false, false, CollectionEventKind.RESET, -1, -1, null);
 			dispatchEvent(event);
 		}
 		
+		/** @inheritDoc */
 		public function removeItemAt(index:int):Object {
 			var item:Object = _source.splice(index, 1);
 			var event:CollectionEvent = new CollectionEvent(CollectionEvent.COLLECTION_CHANGE, false, false, CollectionEventKind.REMOVE, -1, index, item as Array);
@@ -96,6 +116,7 @@ package com.flow.collections {
 			return item;
 		}
 		
+		/** @inheritDoc */
 		public function setItemAt(item:Object, index:int):Object {
 			var oldItem:Object = _source.splice(index, 1, item);
 			var event:CollectionEvent = new CollectionEvent(CollectionEvent.COLLECTION_CHANGE, false, false, CollectionEventKind.REPLACE, index, index, [item]);
@@ -103,6 +124,7 @@ package com.flow.collections {
 			return oldItem;
 		}
 		
+		/** @inheritDoc */
 		public function toArray():Array {
 			var arr:Array = [];
 			for(var i:int = 0; i<_source.length; i++) {

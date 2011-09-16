@@ -24,16 +24,19 @@ package com.flow.components {
 	
 	import flash.display.Sprite;
 	
+	/** A spacer to be used in horizontal or vertical layouts */
 	public class Spacing extends Sprite {
 		private var _width:int;
 		private var _height:int;
 		
+		/** Constructor */
 		public function Spacing() {
 			width=1;
 			height=1;
 			super();
 		}
 		
+		/** The width of the spacer */
 		override public function get width():Number {
 			return _width;
 		}
@@ -41,6 +44,7 @@ package com.flow.components {
 			_width = value;
 		}
 		
+		/** The height of the spacer */
 		override public function get height():Number {
 			return _height;
 		}

@@ -8,12 +8,18 @@ package com.flow.components {
 	import mx.binding.utils.BindingUtils;
 	
 	[Event(name="change", type="flash.events.Event")]
+	/**
+	 * A checkbox that can be selected. 
+	 */	
 	public class Checkbox extends Button {
 		
 		private var _selected:Boolean = false;
 		private var _checker:Component;
 		private var hitSprite:Sprite;
 		
+		/**
+		 * Constructor 
+		 */		
 		public function Checkbox() {
 			super();
 			hitSprite = new Sprite();
@@ -62,6 +68,7 @@ package com.flow.components {
 			dispatchEvent(new Event(Event.CHANGE));
 		}
 		
+		/** @private */
 		override public function draw(width:Number, height:Number):void {
 			super.draw(width, height);
 			hitSprite.graphics.clear();
@@ -70,6 +77,7 @@ package com.flow.components {
 			hitSprite.graphics.endFill();
 		}
 		
+		/** @private */
 		override public function validateChildren():void {
 			super.validateChildren();
 			rawAddChild(hitSprite);

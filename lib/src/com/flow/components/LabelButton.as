@@ -25,13 +25,16 @@ package com.flow.components {
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
 	import flash.text.TextFormat;
-
+	
+	/**
+	 * A simple label that can be clicked 
+	 */	
 	public class LabelButton extends Label {
 		
 		private var _underline:Boolean = false;
 		private var hitSprite:Sprite;
 		
-		
+		/** Constructor */
 		public function LabelButton() {
 			super();
 			interactive = true;
@@ -88,7 +91,7 @@ package com.flow.components {
 			e.stopImmediatePropagation();
 		}
 		
-		
+		/** @private */
 		override public function draw(width:Number, height:Number):void {
 			super.draw(width, height);
 			hitSprite.graphics.clear();

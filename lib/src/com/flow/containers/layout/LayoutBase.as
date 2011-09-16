@@ -30,7 +30,6 @@ package com.flow.containers.layout {
 	public class LayoutBase {
 		
 		public function LayoutBase() {}
-		
 		protected var _target:Container;
 	
 		protected var _paddingLeft:Number = 0;
