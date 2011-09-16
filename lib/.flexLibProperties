@@ -12,9 +12,9 @@
     <classEntry path="com.flow.collections.IList"/>
     <classEntry path="com.flow.commands.Command"/>
     <classEntry path="com.flow.commands.CommandDispatch"/>
-    <classEntry path="com.flow.components.Application"/>
+    <classEntry path="com.flow.containers.Application"/>
     <classEntry path="com.flow.components.Component"/>
-    <classEntry path="com.flow.components.Container"/>
+    <classEntry path="com.flow.containers.Container"/>
     <classEntry path="com.flow.components.DefaultTooltip"/>
     <classEntry path="com.flow.components.ITooltip"/>
     <classEntry path="com.flow.components.LayoutManager"/>
@@ -39,12 +39,12 @@
     <classEntry path="com.flow.components.graphics.strokes.GradientStroke"/>
     <classEntry path="com.flow.components.graphics.strokes.IStroke"/>
     <classEntry path="com.flow.components.graphics.strokes.SolidStroke"/>
-    <classEntry path="com.flow.components.layout.AbsoluteLayout"/>
-    <classEntry path="com.flow.components.layout.AlignType"/>
-    <classEntry path="com.flow.components.layout.HBoxLayout"/>
-    <classEntry path="com.flow.components.layout.LayoutBase"/>
-    <classEntry path="com.flow.components.layout.VBoxLayout"/>
-    <classEntry path="com.flow.components.layout.ViewStack"/>
+    <classEntry path="com.flow.containers.layout.AbsoluteLayout"/>
+    <classEntry path="com.flow.containers.layout.AlignType"/>
+    <classEntry path="com.flow.containers.layout.HBoxLayout"/>
+    <classEntry path="com.flow.containers.layout.LayoutBase"/>
+    <classEntry path="com.flow.containers.layout.VBoxLayout"/>
+    <classEntry path="com.flow.containers.layout.ViewStack"/>
     <classEntry path="com.flow.effects.AnimationProps"/>
     <classEntry path="com.flow.effects.BevelEffect"/>
     <classEntry path="com.flow.effects.BlurEffect"/>
@@ -113,6 +113,8 @@
     <classEntry path="mx.states.OverrideBase"/>
     <classEntry path="mx.states.SetProperty"/>
     <classEntry path="mx.states.State"/>
+    <classEntry path="com.flow.containers.List"/>
+    <classEntry path="com.flow.events.ListEvent"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests>

@@ -20,10 +20,10 @@
  * THE SOFTWARE.
  */
 
-package com.flow.components.layout {
+package com.flow.containers.layout {
 	
 	import com.flow.components.Component;
-	import com.flow.components.Container;
+	import com.flow.containers.Container;
 	
 	import flash.display.DisplayObject;
 	

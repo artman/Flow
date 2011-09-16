@@ -38,6 +38,7 @@ package com.flow.components {
 	
 	import mx.core.IStateClient2;
 	import mx.states.State;
+	import com.flow.containers.Container;
 	
 	[DefaultProperty("background")]
 	[Event(name="stateChange", type="com.flow.events.StateEvent")]
@@ -110,6 +111,8 @@ package com.flow.components {
 		protected var _border:IStroke;
 		
 		private var _tooltip:String;
+		
+		[Bindable] public var data:*;
 		
 		[Event(name="creationComplete", type="com.flow.events.ComponentEvent")]
 		public function Component() {
@@ -531,10 +534,10 @@ package com.flow.components {
 		}
 		
 		[Bindable]
-		override public function get y():Number {
+		override public function get y ():Number {
 			return _y;
 		}
-		override public function set y(value:Number):void {
+		override public function set y (value:Number):void {
 			_y = value;
 			super.y = Math.round(value);
 		}
@@ -718,6 +721,7 @@ package com.flow.components {
 		
 		/*--------------- States support ---------------*/
 		
+		[Inspectable(name="states", category="Common")]
 		public function get states():Array {
 			return _states;
 		}

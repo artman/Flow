@@ -14,12 +14,12 @@
 	<component id="AMFGateway" class="com.flow.net.AMFGateway"/>
 	<component id="AMFGatewayEvent" class="com.flow.events.AMFGatewayEvent"/>
 	<component id="AMFGatewayResponder" class="com.flow.net.AMFGatewayResponder"/>
-	<component id="AbsoluteLayout" class="com.flow.components.layout.AbsoluteLayout"/>
+	<component id="AbsoluteLayout" class="com.flow.containers.layout.AbsoluteLayout"/>
 	<component id="AbstractLoader" class="com.flow.net.loaders.AbstractLoader"/>
 	<component id="AddItems" class="mx.states.AddItems"/>
-	<component id="AlignType" class="com.flow.components.layout.AlignType"/>
+	<component id="AlignType" class="com.flow.containers.layout.AlignType"/>
 	<component id="AnimationProps" class="com.flow.effects.AnimationProps"/>
-	<component id="Application" class="com.flow.components.Application"/>
+	<component id="Application" class="com.flow.containers.Application"/>
 	<component id="Back" class="com.flow.motion.easing.Back"/>
 	<component id="BevelEffect" class="com.flow.effects.BevelEffect"/>
 	<component id="BitmapFill" class="com.flow.components.graphics.fills.BitmapFill"/>
@@ -39,7 +39,7 @@
 	<component id="CommandEvent" class="com.flow.events.CommandEvent"/>
 	<component id="Component" class="com.flow.components.Component"/>
 	<component id="ComponentEvent" class="com.flow.events.ComponentEvent"/>
-	<component id="Container" class="com.flow.components.Container"/>
+	<component id="Container" class="com.flow.containers.Container"/>
 	<component id="CopyEffect" class="com.flow.effects.utils.CopyEffect"/>
 	<component id="Cubic" class="com.flow.motion.easing.Cubic"/>
 	<component id="DefaultTooltip" class="com.flow.components.DefaultTooltip"/>
@@ -60,7 +60,7 @@
 	<component id="GradientStroke" class="com.flow.components.graphics.strokes.GradientStroke"/>
 	<component id="GraphicUtils" class="com.flow.utils.GraphicUtils"/>
 	<component id="GreyscaleEffect" class="com.flow.effects.GreyscaleEffect"/>
-	<component id="HBoxLayout" class="com.flow.components.layout.HBoxLayout"/>
+	<component id="HBoxLayout" class="com.flow.containers.layout.HBoxLayout"/>
 	<component id="IFill" class="com.flow.components.graphics.fills.IFill"/>
 	<component id="IList" class="com.flow.collections.IList"/>
 	<component id="IOverride" class="mx.states.IOverride"/>
@@ -79,10 +79,12 @@
 	<component id="JSONTokenType" class="com.adobe.serialization.json.JSONTokenType"/>
 	<component id="JSONTokenizer" class="com.adobe.serialization.json.JSONTokenizer"/>
 	<component id="KeyboardManager" class="com.flow.ui.KeyboardManager"/>
-	<component id="LayoutBase" class="com.flow.components.layout.LayoutBase"/>
+	<component id="LayoutBase" class="com.flow.containers.layout.LayoutBase"/>
 	<component id="LayoutManager" class="com.flow.components.LayoutManager"/>
 	<component id="Line" class="com.flow.components.graphics.Line"/>
 	<component id="Linear" class="com.flow.motion.easing.Linear"/>
+	<component id="List" class="com.flow.containers.List"/>
+	<component id="ListEvent" class="com.flow.events.ListEvent"/>
 	<component id="LoaderBatch" class="com.flow.net.loaders.LoaderBatch"/>
 	<component id="Log" class="com.flow.log.Log"/>
 	<component id="MaskFilterEffect" class="com.flow.effects.MaskFilterEffect"/>
@@ -115,8 +117,8 @@
 	<component id="Transform3DEffect" class="com.flow.effects.Transform3DEffect"/>
 	<component id="Transition" class="com.flow.effects.Transition"/>
 	<component id="Tween" class="com.flow.motion.Tween"/>
-	<component id="VBoxLayout" class="com.flow.components.layout.VBoxLayout"/>
-	<component id="ViewStack" class="com.flow.components.layout.ViewStack"/>
+	<component id="VBoxLayout" class="com.flow.containers.layout.VBoxLayout"/>
+	<component id="ViewStack" class="com.flow.containers.layout.ViewStack"/>
 	<component id="WebCam" class="com.flow.components.WebCam"/>
 	<component id="WebCamEvent" class="com.flow.events.WebCamEvent"/>
 	<component id="WipeEffect" class="com.flow.effects.WipeEffect"/>
