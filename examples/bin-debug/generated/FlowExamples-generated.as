@@ -6,7 +6,7 @@
  *  Class:      FlowExamples
  *  Source:     /Users/artman/Documents/Flow/examples/src/FlowExamples.mxml
  *  Template:   flex2/compiler/mxml/gen/ClassDef.vm
- *  Time:       2011.06.13 16:48:27 EEST
+ *  Time:       2011.06.14 11:20:55 EEST
  */
 
 package 
@@ -266,8 +266,8 @@ private function _FlowExamples_ScrollArea1_i() : com.flow.containers.ScrollArea
 {
 	var temp : com.flow.containers.ScrollArea = new com.flow.containers.ScrollArea();
 	temp.scrollSpeed = 0.5;
-	temp.snapWidthToEven = true;
-	temp.snapHeightToEven = true;
+	temp.snapToEventWidth = true;
+	temp.snapToEventHeight = true;
 	temp.top = 37;
 	temp.bottom = 38;
 	temp.children = [_FlowExamples_BasicLayoutView1_c(), _FlowExamples_BoxLayout1_c(), _FlowExamples_ControlsView1_c(), _FlowExamples_TransitionsView1_c(), _FlowExamples_ScrollingView1_c()];

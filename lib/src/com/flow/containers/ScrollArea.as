@@ -90,6 +90,7 @@ package com.flow.containers {
 		}
 		
 		override public function validateProperties():void {
+			super.validateProperties();
 			if(firstValidation) {
 				firstValidation = false;
 				scrollTo(selectedIndex, 0);	
@@ -135,7 +136,7 @@ package com.flow.containers {
 			if(_stroke) {
 				inset = Math.ceil(_stroke.thickness/2);
 			}
-			if(pixelSnapping) {
+			if(snapToPixels) {
 				scrollRect = new Rectangle(Math.round(_scrollX), Math.round(_scrollY), Math.round(width+inset), Math.round(height+inset));
 			} else {
 				scrollRect = new Rectangle(_scrollX, _scrollY, width+inset, height+inset);

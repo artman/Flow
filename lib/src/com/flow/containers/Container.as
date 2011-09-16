@@ -30,6 +30,7 @@ package com.flow.containers {
 	import com.flow.containers.layout.LayoutBase;
 	import com.flow.events.CollectionEvent;
 	import com.flow.events.CollectionEventKind;
+	import com.flow.events.ComponentEvent;
 	import com.flow.events.InvalidationEvent;
 	import com.flow.events.StateEvent;
 	import com.flow.managers.LayoutManager;
@@ -104,7 +105,6 @@ package com.flow.containers {
 				if(_children) {
 					_children.removeEventListener(CollectionEvent.COLLECTION_CHANGE, invalidateChildren);
 				}
-				
 				var parsed:DisplayObjectCollection = null;
 				if (value is DisplayObjectCollection) {
 					parsed = value;

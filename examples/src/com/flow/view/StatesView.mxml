@@ -31,6 +31,6 @@
 		<s:State name="over" transitionSpeed="2" />
 	</fw:states>
 
-	<fw:Button horizontalCenter="0" snapWidthToEven="true" verticalCenter="0" width="200" width.over="400" label="Roll over me to change state" rollOver="currentState='over'" rollOut="currentState='out'" />
+	<fw:Button horizontalCenter="0" snapToEventWidth="true" verticalCenter="0" width="200" width.over="400" label="Roll over me to change state" rollOver="currentState='over'" rollOut="currentState='out'" />
 	
 </fw:Container>
