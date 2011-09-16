@@ -3,10 +3,7 @@ package com.flow.managers {
 	import com.flow.containers.Application;
 	import com.flow.containers.Container;
 	import com.flow.effects.Effect;
-	import com.flow.effects.transitions.FadeTransition;
 	import com.flow.motion.Tween;
-	
-	import flash.display.DisplayObject;
 
 	public class PopupManager {
 		

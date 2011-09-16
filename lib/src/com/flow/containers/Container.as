@@ -23,9 +23,7 @@
 package com.flow.containers {
 
 	import com.flow.collections.DisplayObjectCollection;
-	import com.flow.collections.IList;
 	import com.flow.components.Component;
-	import com.flow.components.HScrollBar;
 	import com.flow.containers.layout.AbsoluteLayout;
 	import com.flow.containers.layout.LayoutBase;
 	import com.flow.events.CollectionEvent;
@@ -38,7 +36,6 @@ package com.flow.containers {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.events.Event;
-	import flash.utils.getTimer;
 	
 	/**
 	 * The Container class is the base grouping class for visual elements. The Container takes as children any 

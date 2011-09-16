@@ -24,10 +24,7 @@ package com.flow.graphics.strokes {
 	
 	import com.flow.events.InvalidationEvent;
 	
-	import flash.display.CapsStyle;
 	import flash.display.Graphics;
-	import flash.display.JointStyle;
-	import flash.events.EventDispatcher;
 	
 	/**
 	 * A solid, single color stroke. 

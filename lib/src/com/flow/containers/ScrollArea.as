@@ -31,8 +31,6 @@ package com.flow.containers {
 	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.geom.Rectangle;
-	
-	import mx.binding.utils.ChangeWatcher;
 
 	public class ScrollArea extends Container {
 		

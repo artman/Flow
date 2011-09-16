@@ -22,9 +22,6 @@
 
 package com.flow.components {
 	
-	import com.flow.components.TextInput;
-	
-	import flash.events.KeyboardEvent;
 	import flash.events.TextEvent;
 	
 	/**

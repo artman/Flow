@@ -24,7 +24,6 @@ package com.flow.managers {
 	
 	import flash.utils.Dictionary;
 	import flash.utils.describeType;
-	import flash.utils.getDefinitionByName;
 	import flash.utils.getQualifiedClassName;
 	
 	/**
