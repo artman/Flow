@@ -70,7 +70,9 @@ package com.flow.components {
 		/** @private */
 		protected var _iconPlacement:String = "left";
 		/** @private */
-		protected var isHTML:Boolean = false;		
+		protected var isHTML:Boolean = false;
+		/** @private */
+		private var ellipsisText:String;
 		
 		/**
 		 * Constructor.
@@ -313,11 +315,14 @@ package com.flow.components {
 		/** @private */
 		private function get transformedText():String {
 			if(_textTransform == "uppercase") {
-				return _text.toUpperCase();
+				return (_ellipsis && ellipsisText && !isHTML) ? ellipsisText.toUpperCase() : _text.toUpperCase();
+				//return _text.toUpperCase();
 			} else if(_textTransform == "lowercase") {
-				return _text.toLowerCase();
+				return (_ellipsis && ellipsisText && !isHTML) ? ellipsisText.toLowerCase() : _text.toLowerCase();
+				//return _text.toLowerCase();
 			}
-			return _text;
+			return (_ellipsis && ellipsisText && !isHTML) ? ellipsisText : _text;
+			//return _text;
 		}
 		
 		/** @private */
@@ -365,6 +370,11 @@ package com.flow.components {
 				while(_textField.textWidth+4 > _textField.width && orgi.length) {
 					orgi = orgi.substring(0,orgi.length-1);
 					_textField.text = orgi + "...";
+				}
+				if(orgi != _text) {
+					ellipsisText = _textField.text;
+				} else {
+					ellipsisText = _text;
 				}
 			}
 			if(_icon) {
