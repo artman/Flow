@@ -12,6 +12,7 @@ package com.flow.containers {
 	
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 	
 	
 	[DefaultProperty("renderer")]
@@ -21,6 +22,10 @@ package com.flow.containers {
 >>>>>>> Merged with origin
 	[DefaultProperty("itemRenderer")]
 >>>>>>> Added IFactory, modified List to use IFactory.
+=======
+
+	[DefaultProperty("itemRenderer")]
+>>>>>>> 2d319c7e5a5cea5fca2ee07d27b1d702f9c164aa
 	[Event(name="rendererCreated", type="com.flow.events.ListEvent")]
 	[Event(name="selectionChanged", type="com.flow.events.ListEvent")]
 	[Event(name="itemsCreated", type="com.flow.events.ListEvent")]
@@ -28,10 +33,14 @@ package com.flow.containers {
 		
 		private var _dataProvider:*;
 <<<<<<< HEAD
+<<<<<<< HEAD
 		private var _renderer:IFactory;
 =======
 		private var _itemRenderer:IFactory;
 >>>>>>> Added IFactory, modified List to use IFactory.
+=======
+		private var _itemRenderer:IFactory;
+>>>>>>> 2d319c7e5a5cea5fca2ee07d27b1d702f9c164aa
 		private var _selectedIndex:int = -1;
 		private var _selectedItem:Object;
 		
@@ -81,6 +90,7 @@ package com.flow.containers {
 			
 			if(_dataProvider && _itemRenderer) {
 <<<<<<< HEAD
+<<<<<<< HEAD
 				if(children && children.length) {
 					for(var i:int = 0; i<children.length; i++) {
 						(children.getItemAt(i) as Component).removeEventListener(MouseEvent.CLICK, rendererClicked);
@@ -101,6 +111,10 @@ package com.flow.containers {
 				removeItemRenderers();
 				
 >>>>>>> List: setting selectedIndex to -1 doesn't crash anymore. Added some other sanity checks, too.
+=======
+				removeItemRenderers();
+				
+>>>>>>> 2d319c7e5a5cea5fca2ee07d27b1d702f9c164aa
 				var data:* = _dataProvider;
 				if(data is IList) {
 					data = (data as IList).toArray();
@@ -114,7 +128,10 @@ package com.flow.containers {
 						renderer = _itemRenderer.newInstance();
 						renderer.data = data[i];
 						renderer.rendererIndex = i;
+<<<<<<< HEAD
 >>>>>>> Whole set of examples on layout
+=======
+>>>>>>> 2d319c7e5a5cea5fca2ee07d27b1d702f9c164aa
 						
 						var evt:ListEvent = new ListEvent(ListEvent.RENDERER_CREATED);
 						evt.renderer = renderer;
@@ -148,6 +165,7 @@ package com.flow.containers {
 		
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 		
 
 		public function get itemRenderer():IFactory {
@@ -161,12 +179,19 @@ package com.flow.containers {
 
 >>>>>>> Merged with origin
 		public function get itemRenderer():IFactory {
+=======
+
+		public function get itemRenderer():IFactory {
+>>>>>>> 2d319c7e5a5cea5fca2ee07d27b1d702f9c164aa
 			return _itemRenderer;
 		}
 		public function set itemRenderer(value:IFactory):void {
 			if(value != _itemRenderer) {
 				_itemRenderer = value;
+<<<<<<< HEAD
 >>>>>>> Added IFactory, modified List to use IFactory.
+=======
+>>>>>>> 2d319c7e5a5cea5fca2ee07d27b1d702f9c164aa
 				invalidateProperties();
 			}
 		}
@@ -197,6 +222,7 @@ package com.flow.containers {
 			}
 		}
 <<<<<<< HEAD
+<<<<<<< HEAD
 		
 		
 		
@@ -205,6 +231,9 @@ package com.flow.containers {
 =======
 
 >>>>>>> Merged with origin
+=======
+
+>>>>>>> 2d319c7e5a5cea5fca2ee07d27b1d702f9c164aa
 		[Bindable]
 		public function get selectedItem():Object {
 			return _selectedItem;

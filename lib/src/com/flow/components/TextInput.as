@@ -52,6 +52,7 @@ package com.flow.components {
 	public class TextInput extends SkinnableComponent {
 		
 <<<<<<< HEAD
+<<<<<<< HEAD
 		private var _labelDisplay:Label;
 		private var _hintDisplay:Label;
 		private var _value:String = "";
@@ -60,6 +61,8 @@ package com.flow.components {
 		private var _password:Boolean;
 		private var _hint:String;
 =======
+=======
+>>>>>>> 2d319c7e5a5cea5fca2ee07d27b1d702f9c164aa
 		/** @private */
 		protected var _labelDisplay:Label;
 		/** @private */
@@ -74,7 +77,11 @@ package com.flow.components {
 		protected var _password:Boolean;
 		/** @private */
 		protected var _hint:String;
+<<<<<<< HEAD
 >>>>>>> Added documentation, refactored fills, added TextArea component
+=======
+
+>>>>>>> 2d319c7e5a5cea5fca2ee07d27b1d702f9c164aa
 		
 		/**
 		 * Constructor 
