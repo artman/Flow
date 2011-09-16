@@ -35,7 +35,7 @@ package com.flow.net.loaders {
 	import flash.system.LoaderContext;
 	
 	/**
-	 * Simple, fire and forget loading of DisplayObjects (png, jpeg, gif, swf).
+	 * Simple fire and forget loading of DisplayObjects (png, jpeg, gif, swf).
 	 */
 	public class DisplayObjectLoader extends LoaderBase {
 		
@@ -43,12 +43,15 @@ package com.flow.net.loaders {
 		
 		private var target:DisplayObjectContainer;
 		private var replaceAllChildren:Boolean;
+		/** @private */
 		public var loader:Loader;
 		private var content:DisplayObject;
 		private var revealSpeed:Number = -1;
-		public var fadeInSpeed:Number = 0;
-		public var fadeInEffect:Effect;
 		
+		/** Defines a fade-in-speed for the loaded content in seconds. If this >0, the content will be faded in once it has loaded */		
+		public var fadeInSpeed:Number = 0;
+		/** Defines a fade-in effect for the loaded content. If set, the content will be animated in with this effect once it has laoded */ 
+		public var fadeInEffect:Effect;
 		
 		/**
 		 * Constructor. Starts loading a display object.
@@ -70,6 +73,7 @@ package com.flow.net.loaders {
 			loader.load(this.url, context);
 		}
 		
+		/** @private */
 		override protected function complete(e:Event):void {
 			loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, complete);
 			content = loader.content;
@@ -94,12 +98,14 @@ package com.flow.net.loaders {
 			super.complete(e);
 		}
 		
+		/** @private */
 		override protected function removeLoaderEventListeners():void {
 			loader.contentLoaderInfo.removeEventListener(Event.COMPLETE, complete);
 			loader.contentLoaderInfo.removeEventListener(IOErrorEvent.IO_ERROR, fail);
 			loader.contentLoaderInfo.removeEventListener(ProgressEvent.PROGRESS, progressHandler);
 		}
 		
+		/** @inheritDoc */
 		override public function close():void {
 			removeLoaderEventListeners();
 			loader.close();

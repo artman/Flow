@@ -31,6 +31,9 @@ package com.flow.containers {
 	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
 	
+	/**
+	 * A scrolling container with horizontal and vertical scroll bars that can be controlled with the keyboard or mouse wheel.
+	 */	
 	public class Scroller extends Container {
 		
 		private var _scrollX:Number = 0;
@@ -38,6 +41,9 @@ package com.flow.containers {
 		private var hScrollBar:HScrollBar;
 		private var vScrollBar:VScrollBar;
 		
+		/**
+		 * Constructor 
+		 */		
 		public function Scroller() {
 			super();
 			childContainer = new Sprite();
@@ -53,10 +59,12 @@ package com.flow.containers {
 			mouseEnabled = true;
 		}
 		
+		/** @private */
 		protected function wheel(event:MouseEvent):void {
 			scrollY -= event.delta;
 		}
 		
+		/** @private */
 		private function keyDown(e:KeyboardEvent):void {
 			switch (e.keyCode) {
 				case 38: lineUp(); break;
@@ -81,6 +89,8 @@ package com.flow.containers {
 		private function pageDown():void {
 			scrollY += contentHeight;
 		}
+		
+		/** @private */
 		protected function checkScroll(event:Event = null):void {
 			if(measuredWidth > contentWidth) {
 				scrollX = (measuredWidth - contentWidth) * hScrollBar.value;
@@ -98,6 +108,7 @@ package com.flow.containers {
 			}
 		}
 		
+		/** The x scroll value for the container. This is the number of pixels that the content has been scrolled to the left */		
 		[Bindable]
 		public function get scrollX():Number {
 			return _scrollX;
@@ -108,6 +119,7 @@ package com.flow.containers {
 			invalidate();
 		}
 		
+		/** The y scroll value for the container. This is the number of pixels that the content has been scrolled to the right */
 		[Bindable]
 		public function get scrollY():Number {
 			return _scrollY;
@@ -118,12 +130,14 @@ package com.flow.containers {
 			invalidate();
 		}
 		
+		/** @inheritDoc */
 		override public function invalidateLayout(fromChild:Boolean=false):void {
 			super.invalidateLayout(fromChild);
 			manager.invalidateComponent(this);
 			invalidated = true;
 		}
 		
+		/** @inheritDoc */
 		override public function validateLayout(e:Event=null):void {
 			super.validateLayout(e);
 			vScrollBar.validateNow();
@@ -143,18 +157,22 @@ package com.flow.containers {
 			checkScroll();
 		}
 		
+		/** The width of the content */
 		public function get contentWidth():Number {
 			return width - (vScrollBar.visible ? vScrollBar.width : 0);
 		}
 		
+		/** The height of the content */
 		public function get contentHeight():Number {
 			return height - (hScrollBar.visible ? hScrollBar.height : 0);
 		}
 		
+		/** @inheritDoc */
 		override public function draw(width:Number, height:Number):void {
 			super.draw(width, height);
 		}
 		
+		/** @inheritDoc */
 		override protected function applyMask(width:Number, height:Number):void {
 			var inset:int = 0;
 			if(_stroke) {

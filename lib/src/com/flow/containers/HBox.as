@@ -24,20 +24,27 @@ package com.flow.containers {
 	import com.flow.containers.layout.HBoxLayout;
 	import com.flow.containers.layout.LayoutBase;
 	
+	/**
+	 * A shortcut class that for a container with a HBoxLayout layout. 
+	 */	
 	public class HBox extends Container {
 		
+		/** Constructor */		
 		public function HBox() {
 			super();
 		}
 		
+		/** @private */
 		final override protected function getDefaultLayout():LayoutBase {
 			return new HBoxLayout();
 		}
 		
+		/** @private */
 		final override public function set layout(value:LayoutBase):void {
 			throw new Error("Cannot set layout on HBox");
 		}
 		
+		/** The spacing between elements in the container */		
 		public function get spacing():Number {
 			return (_layout as HBoxLayout).spacing;
 		}
@@ -45,7 +52,8 @@ package com.flow.containers {
 			(_layout as HBoxLayout).spacing = value;
 		}
 		
-		[Inspectable(enumeration="top,middle,bottom,none", defaultValue="middle")]
+		/** How items in this container are vertically alligned. The value can be top (default), middle, bottom or none.  */	
+		[Inspectable(enumeration="top,middle,bottom,none", defaultValue="top")]
 		public function get verticalAlign():String {
 			return (_layout as HBoxLayout).verticalAlign;
 		}
@@ -53,6 +61,7 @@ package com.flow.containers {
 			(_layout as HBoxLayout).verticalAlign = value;
 		}
 		
+		/** How items in this container are horizontally aligned. The value can be left (default), center or right. */		
 		[Inspectable(enumeration="left,center,right", defaultValue="left")]
 		public function get horizontalAlign():String {
 			return (_layout as HBoxLayout).horizontalAlign;
@@ -61,6 +70,7 @@ package com.flow.containers {
 			(_layout as HBoxLayout).horizontalAlign = value;
 		}
 		
+		/** How to z-sort the items within this container. The value can be normal (default) or inverted. */
 		[Inspectable(enumeration="normal,inverted", defaultValue="normal")]
 		public function get zSort():String {
 			return (_layout as HBoxLayout).zSort;
@@ -69,6 +79,7 @@ package com.flow.containers {
 			(_layout as HBoxLayout).zSort = value;
 		}
 		
+		/** Defines whether items are arranged in an inverted order */
 		public function get inverted():Boolean {
 			return (_layout as HBoxLayout).inverted;
 		}

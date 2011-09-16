@@ -20,7 +20,7 @@
  * THE SOFTWARE.
  */
 
-package com.flow.ui {
+package com.flow.managers {
 	
 	import flash.display.Stage;
 	import flash.events.EventDispatcher;

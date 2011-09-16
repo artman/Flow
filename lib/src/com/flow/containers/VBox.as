@@ -24,21 +24,27 @@ package com.flow.containers {
 	import com.flow.containers.layout.LayoutBase;
 	import com.flow.containers.layout.VBoxLayout;
 
-	
+	/**
+	 * A shortcut class that for a container with a VBoxLayout layout. 
+	 */	
 	public class VBox extends Container {
 		
+		/** Constructor */		
 		public function VBox() {
 			super();
 		}
 		
+		/** @private */
 		final override protected function getDefaultLayout():LayoutBase {
 			return new VBoxLayout();
 		}
 		
+		/** @private */
 		final override public function set layout(value:LayoutBase):void {
 			throw new Error("Cannot set layout on HBox");
 		}
 		
+		/** The spacing between elements in the container */		
 		public function get spacing():Number {
 			return (_layout as VBoxLayout).spacing;
 		}
@@ -46,7 +52,8 @@ package com.flow.containers {
 			(_layout as VBoxLayout).spacing = value;
 		}
 		
-		[Inspectable(enumeration="top,middle,bottom", defaultValue="middle")]
+		/** How items in this container are vertically alligned. The value can be top (default), middle, bottom.  */
+		[Inspectable(enumeration="top,middle,bottom", defaultValue="top")]
 		public function get verticalAlign():String {
 			return (_layout as VBoxLayout).verticalAlign;
 		}
@@ -54,6 +61,7 @@ package com.flow.containers {
 			(_layout as VBoxLayout).verticalAlign = value;
 		}
 		
+		/** How items in this container are horizontally aligned. The value can be left (default), center or right and none. */		
 		[Inspectable(enumeration="left,center,right,none", defaultValue="left")]
 		public function get horizontalAlign():String {
 			return (_layout as VBoxLayout).horizontalAlign;
@@ -62,6 +70,16 @@ package com.flow.containers {
 			(_layout as VBoxLayout).horizontalAlign = value;
 		}
 		
+		/** How to z-sort the items within this container. The value can be normal (default) or inverted. */
+		[Inspectable(enumeration="normal,inverted", defaultValue="normal")]
+		public function get zSort():String {
+			return (_layout as VBoxLayout).zSort;
+		}
+		public function set zSort(value:String):void {
+			(_layout as VBoxLayout).zSort = value;
+		}
+		
+		/** Defines whether items are arranged in an inverted order */
 		public function get inverted():Boolean {
 			return (_layout as VBoxLayout).inverted;
 		}

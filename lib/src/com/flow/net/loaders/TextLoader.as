@@ -52,12 +52,14 @@ package com.flow.net.loaders {
 			loader.addEventListener(SecurityErrorEvent.SECURITY_ERROR, fail);
 			loader.load(this.url);
 		}
-
+		
+		/** @private */
 		override protected function complete(e:Event):void {
 			text = e.target.data;
 			super.complete(e);
 		}
-
+		
+		/** @private */
 		override protected function removeLoaderEventListeners():void {
 			loader.removeEventListener(Event.COMPLETE, complete);
 			loader.removeEventListener(IOErrorEvent.IO_ERROR, fail);
@@ -65,6 +67,7 @@ package com.flow.net.loaders {
 			loader.removeEventListener(HTTPStatusEvent.HTTP_STATUS, httpStatus);
 		}
 		
+		/** @inheritDoc */
 		override public function close():void {
 			loader.close();
 			super.close()
