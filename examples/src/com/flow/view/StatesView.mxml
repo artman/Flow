@@ -21,34 +21,16 @@
 * THE SOFTWARE.
 -->
 
-<fw:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
-		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:fw="http://artman.fi/flow" 
-		 height="24">	
-	
-	<fx:Metadata>
-		[HostComponent("com.flow.components.Button")]
-	</fx:Metadata>
+<fw:Container xmlns:fx="http://ns.adobe.com/mxml/2009"
+			  xmlns:s="library://ns.adobe.com/flex/spark" 
+			  xmlns:fw="http://artman.fi/flow"
+			  width="500" height="300">
 	
 	<fw:states>
-		<s:State name="up" transitionSpeed="1" />
-		<s:State name="over" transitionSpeed="1" />
-		<s:State name="down" />
-		<s:State name="disabled" />
+		<s:State name="out" transitionSpeed="2" />
+		<s:State name="over" transitionSpeed="2" />
 	</fw:states>
+
+	<fw:Button horizontalCenter="0" snapWidthToEven="true" verticalCenter="0" width="200" width.over="400" label="Roll over me to change state" rollOver="currentState='over'" rollOut="currentState='out'" />
 	
-	<fw:Rect width="100%" height="100%" radius="5">
-		<fw:fill>
-			<fw:GradientFill rotation="90">
-				<fw:GradientData color="0xF9F9F9" color.over="0xF7F7F7" color.down="0xEEEEEE" ratio="0" />
-				<fw:GradientData color="0xDDDDDD" color.over="0xCCCCCC" color.down="0xBBBBBB" color.disabled="0xFFFFFF" ratio="1" />
-			</fw:GradientFill>
-		</fw:fill>
-		<fw:stroke>
-			<fw:SolidStroke thickness="1" caps="none" joints="round" color="0xBBBBBB" color.over="0xAAAAAA" color.down="0x888888" color.disabled="0xDDDDDD" />
-		</fw:stroke>
-	</fw:Rect>
-	
-	<fw:Label horizontalPadding="10" verticalPadding="3" id="labelDisplay" align="center" horizontalCenter="0" verticalCenter="0" color="0" color.disabled="0xAAAAAA" />
-	
-</fw:Skin>
+</fw:Container>

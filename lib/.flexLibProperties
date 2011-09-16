@@ -18,6 +18,7 @@
     <classEntry path="com.flow.components.Component"/>
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
     <classEntry path="com.flow.components.DefaultTooltip"/>
     <classEntry path="com.flow.components.ITooltip"/>
 <<<<<<< HEAD
@@ -35,9 +36,13 @@
     <classEntry path="com.flow.components.SkinnableComponent"/>
 =======
 =======
+=======
+    <classEntry path="com.flow.components.HScrollBar"/>
+>>>>>>> ScrollBars, Scroller and ScrollBar skins.
     <classEntry path="com.flow.components.Label"/>
     <classEntry path="com.flow.components.Spacing"/>
     <classEntry path="com.flow.components.TextInput"/>
+    <classEntry path="com.flow.components.VScrollBar"/>
     <classEntry path="com.flow.components.WebCam"/>
     <classEntry path="com.flow.components.measuring.MeasureUnit"/>
     <classEntry path="com.flow.components.measuring.MeasureUnits"/>
@@ -74,6 +79,7 @@
     <classEntry path="com.flow.containers.HBox"/>
     <classEntry path="com.flow.containers.List"/>
     <classEntry path="com.flow.containers.ScrollArea"/>
+    <classEntry path="com.flow.containers.Scroller"/>
     <classEntry path="com.flow.containers.VBox"/>
     <classEntry path="com.flow.containers.layout.AbsoluteLayout"/>
     <classEntry path="com.flow.containers.layout.AlignType"/>
@@ -135,6 +141,7 @@
     <classEntry path="com.flow.graphics.strokes.StrokeBase"/>
     <classEntry path="com.flow.log.Log"/>
     <classEntry path="com.flow.managers.LayoutManager"/>
+    <classEntry path="com.flow.managers.SkinManager"/>
     <classEntry path="com.flow.managers.TextFormatManager"/>
     <classEntry path="com.flow.managers.TooltipManager"/>
     <classEntry path="com.flow.motion.Tween"/>
@@ -162,7 +169,9 @@
     <classEntry path="com.flow.net.loaders.XMLLoader"/>
     <classEntry path="com.flow.skins.ButtonSkin"/>
     <classEntry path="com.flow.skins.CheckboxSkin"/>
+    <classEntry path="com.flow.skins.HScrollBarSkin"/>
     <classEntry path="com.flow.skins.TextInputSkin"/>
+    <classEntry path="com.flow.skins.VScrollBarSkin"/>
     <classEntry path="com.flow.ui.KeyboardManager"/>
     <classEntry path="com.flow.utils.GraphicUtils"/>
     <classEntry path="com.flow.utils.MultiChangeWatcher"/>

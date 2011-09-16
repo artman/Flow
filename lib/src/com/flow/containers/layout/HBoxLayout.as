@@ -25,6 +25,7 @@ package com.flow.containers.layout {
 	import com.flow.components.Component;
 	
 	import flash.display.DisplayObject;
+	import flash.display.DisplayObjectContainer;
 	
 	public class HBoxLayout extends AbsoluteLayout {
 		
@@ -100,30 +101,32 @@ package com.flow.containers.layout {
 		}
 		
 		private function flipChildIndexes():void {
-			for(var i:int = 1; i<_target.numChildren; i++) {
-				_target.setChildIndex(_target.getChildAt(i), 0);
+			var container:DisplayObjectContainer = _target.childContainer;
+			for(var i:int = 1; i<container.numChildren; i++) {
+				_target.childContainer.setChildIndex(container.getChildAt(i), 0);
 			}
 		}
 		
 		override public function layoutChildren(offsetX:Number, offsetY:Number, w:Number, h:Number):void {
 			super.layoutChildren(offsetX, offsetY, w, h);
+			var container:DisplayObjectContainer = _target.childContainer;
 			var maxW:int = 0;
 			if(_horizontalAlign != AlignType.ALIGN_LEFT) {
-				for(var i:int = 0; i<_target.numChildren; i++) {
-					var displayObject:DisplayObject = _target.getChildAt(i) 
+				for(var i:int = 0; i<container.numChildren; i++) {
+					var displayObject:DisplayObject = container.getChildAt(i) 
 					maxW += displayObject.width + (i==0 ? 0 : spacing);	
 				}
 			}
 			var x:int = _horizontalAlign == AlignType.ALIGN_LEFT ? 0 : _horizontalAlign == AlignType.ALIGN_RIGHT ? w - maxW : (w - maxW) / 2;
-			for(i = 0; i<_target.numChildren; i++) {
+			for(i = 0; i<container.numChildren; i++) {
 				var invert:Boolean = _inverted;
 				if(_zSort == "inverted") {
 					invert = invert ? false : true;
 				}
 				if(invert) {
-					displayObject = _target.getChildAt(_target.numChildren - i - 1);
+					displayObject = container.getChildAt(container.numChildren - i - 1);
 				} else {
-					displayObject = _target.getChildAt(i);
+					displayObject = container.getChildAt(i);
 				}
 				displayObject.x = x;
 				x += Math.ceil(displayObject.width) + spacing;
@@ -141,10 +144,11 @@ package com.flow.containers.layout {
 		}
 
 		override public function measureChildren():void {
+			var container:DisplayObjectContainer = _target.childContainer;
 			var maxW:int = 0;
 			var maxH:int = 0;
-			for(var i:int = 0; i<_target.numChildren; i++) {
-				var displayObject:DisplayObject = _target.getChildAt(i) 
+			for(var i:int = 0; i<container.numChildren; i++) {
+				var displayObject:DisplayObject = container.getChildAt(i) 
 				var w:int = displayObject.width;
 				var h:int = displayObject.height;
 				if(displayObject is Component) {

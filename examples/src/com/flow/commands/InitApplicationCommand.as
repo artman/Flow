@@ -23,6 +23,11 @@
 package com.flow.commands {
 
 	import com.flow.managers.TextFormatManager;
+	import com.flow.skins.ButtonSkin;
+	import com.flow.skins.CheckboxSkin;
+	import com.flow.skins.HScrollBarSkin;
+	import com.flow.skins.TextInputSkin;
+	import com.flow.skins.VScrollBarSkin;
 	
 	import flash.text.TextFormat;
 
@@ -39,6 +44,13 @@ package com.flow.commands {
 			TextFormatManager.registerTextFormat("normal", new TextFormat("Universal", 11, 0, false, false, false, null, null, null, 0, 0, null, 2));
 			TextFormatManager.registerTextFormat("heading", new TextFormat("Universal", 18, 0, true, false, false, null, null, null, 0, 0, null, 2));
 			TextFormatManager.registerTextFormat("bold", new TextFormat("Universal", 11, 0, true, false, false, null, null, null, 0, 0, null, 2));
+			
+			// Tag skin classes so they get included
+			ButtonSkin;
+			HScrollBarSkin;
+			VScrollBarSkin;
+			TextInputSkin;
+			CheckboxSkin;
 		}
 	}
 }

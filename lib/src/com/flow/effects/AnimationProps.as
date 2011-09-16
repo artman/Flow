@@ -41,7 +41,7 @@ package com.flow.effects {
 		public var height:int;
 		public var percentWidth:Number;
 		public var percentHeight:Number
-		public var horizontalCenter:int;
+		public var horizontalCenter:*;
 		public var verticalCenter:*;
 		public var top:*;
 		public var right:*;
