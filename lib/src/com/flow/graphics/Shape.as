@@ -26,16 +26,25 @@ package com.flow.graphics {
 	
 	import flash.geom.Point;
 	
+	/**
+	 * A base class for drawing shapes. 
+	 */	
 	[DefaultProperty("points")]
 	public class Shape extends Geometry {
 		
 		private var _points:Vector.<Point>;
 		private var _flipHorizontal:Boolean = false;
 		
+		/**
+		 * Constructor 
+		 */		
 		public function Shape() {
 			fill = new SolidFill();
 		}
 		
+		/**
+		 * A list of points to draw 
+		 */		
 		public function get points():Vector.<Point> {
 			return _points;
 		}
@@ -46,6 +55,9 @@ package com.flow.graphics {
 			}
 		}
 		
+		/**
+		 * Whether to flip all points horizontally (default false). 
+		 */		
 		public function get flipHorizontal():Boolean {
 			return _flipHorizontal;
 		}
@@ -56,6 +68,7 @@ package com.flow.graphics {
 			}
 		}
 		
+		/** @private */
 		override public function measure():void {
 			var maxW:Number = 0;
 			var maxH:Number = 0;
@@ -70,6 +83,7 @@ package com.flow.graphics {
 			measuredHeight = maxH;
 		}
 		
+		/** @private */		
 		override public function draw(width:Number, height:Number):void {
 			super.draw(width, height);
 			if(_points) {

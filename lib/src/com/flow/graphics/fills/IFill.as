@@ -38,7 +38,6 @@ package com.flow.graphics.fills {
 		 * @param The graphics context to begin the fill on.
 		 * @param The width at which a draw is about to commence.
 		 * @param The height at which a draw is about to commence.
-		 * 
 		 */		
 		function beginDraw(graphics:Graphics, width:int, height:int):void ;
 		/**
