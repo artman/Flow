@@ -53,6 +53,7 @@ package com.flow.containers {
 		}
 		
 		override public function validateProperties():void {
+			super.validateProperties();
 			if(_dataProvider && _itemRenderer) {
 				if(children && children.length) {
 					for(var i:int = 0; i<children.length; i++) {

@@ -118,10 +118,6 @@ package com.flow.containers {
 			invalidate();
 		}
 		
-		override public function validateProperties():void {
-			super.validateProperties();
-		}
-		
 		override public function invalidateLayout(fromChild:Boolean=false):void {
 			super.invalidateLayout(fromChild);
 			manager.invalidateComponent(this);

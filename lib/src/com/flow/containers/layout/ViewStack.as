@@ -64,6 +64,7 @@ package com.flow.containers.layout {
 		}
 		
 		override public function validateProperties():void {
+			super.validateProperties();
 			if(children) {
 				if(fadeSpeed == 0 || firstProps) {
 					changeView();
