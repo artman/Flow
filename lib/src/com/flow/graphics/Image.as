@@ -33,7 +33,10 @@ package com.flow.graphics {
 	import flash.display.Sprite;
 	import flash.net.URLRequest;
 	import flash.system.LoaderContext;
-
+	
+	/**
+	 * Displays an external or embedded image. 
+	 */	
 	public class Image extends Component {
 		private var _source:*;
 		private var _image:DisplayObject;
@@ -47,10 +50,17 @@ package com.flow.graphics {
 		
 		private var _loader:DisplayObjectLoader;
 		
+		/**
+		 * Constructor 
+		 */		
 		public function Image() {
 			super();
 		}
 		
+		/**
+		 * A DisplayObject to be displayed. Setting the source property will automatically populate the image-property
+		 * accordingly. 
+		 */		
 		public function set image(value:DisplayObject):void {
 			if(value != _image) {
 				_image = value;
@@ -65,6 +75,10 @@ package com.flow.graphics {
 			return _image;
 		}
 		
+		/**
+		 * A source from which to display the image. The source can be a Bitmap-instance, a BitmapData-instance or a URL string from which to load
+		 * a Bitmap.
+		 */		
 		public function get source():* {
 			return _source;
 		}
@@ -100,7 +114,10 @@ package com.flow.graphics {
 				(image as Bitmap).pixelSnapping = PixelSnapping.NEVER;
 			}
 		}
-
+		
+		/**
+		 * Whether to flip the image vertically (default false) 
+		 */		
 		public function get flipVertical():Boolean {
 			return _flipVertical;
 		}
@@ -111,6 +128,9 @@ package com.flow.graphics {
 			}
 		}
 		
+		/**
+		 * Whether to flip the image horizontally (default false) 
+		 */	
 		public function get flipHorizontal():Boolean {
 			return _flipHorizontal;
 		}
@@ -121,6 +141,10 @@ package com.flow.graphics {
 			}
 		}
 		
+		/**
+		 * When you set the source to a remote URL, the fadeInSpeed property can be used to define the speed of
+		 * fading the image in (in seconds) after it has been loaded.
+		 */		
 		public function get fadeInSpeed():Number {
 			return _fadeInSpeed;
 		}
@@ -133,6 +157,10 @@ package com.flow.graphics {
 			}
 		}
 		
+		/**
+		 * When you set the source to a remote URL, the fadeInEffect property can be used to define the effect to
+		 * use when fading the image in after it has been loaded. The speed of the fade in is defined by fadeInSpeed.
+		 */	
 		public function get fadeInEffect():Effect {
 			return _fadeInEffect;
 		}
@@ -145,6 +173,7 @@ package com.flow.graphics {
 			}
 		}
 		
+		/** @private */
 		override public function validateProperties():void {
 			super.validateProperties();
 			while(numChildren > 0) {
@@ -154,7 +183,8 @@ package com.flow.graphics {
 				addChild(_image);
 			}
 		}
-
+		
+		/** @privagte */
 		override public function draw(w:Number, h:Number):void {
 			super.draw(w, h);
 			if (_image) {
@@ -179,6 +209,7 @@ package com.flow.graphics {
 			}
 		}
 		
+		/** @private */
 		override public function measure():void {
 			if(_image) {
 				measuredWidth = orgWidth;

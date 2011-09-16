@@ -24,17 +24,27 @@ package com.flow.graphics {
 	
 	import com.flow.components.Component;
 	
+	/**
+	 * The base class for all geometry classes. 
+	 */	
 	[DefaultProperty("stroke")]
 	public class Geometry extends Component {
 		
+		/**
+		 * Constructor 
+		 */		
 		public function Geometry() {
 			super();
 		}
-
+		
+		/** @private */
 		override protected function checkVisibility():Boolean {
 			return true;
 		}
 		
+		/**
+		 * @inheritDoc
+		 */		
 		override public function draw(w:Number, h:Number):void {	
 			graphics.clear();
 			graphics.lineStyle(undefined);
@@ -46,6 +56,9 @@ package com.flow.graphics {
 			}
 		}
 		
+		/**
+		 * @private 
+		 */		
 		public function endDraw():void  {
 			if (_fill) {
 				_fill.endDraw(graphics);
