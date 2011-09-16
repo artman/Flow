@@ -70,11 +70,11 @@
 	<component id="Image" class="com.flow.components.graphics.Image"/>
 	<component id="InnerGlowEffect" class="com.flow.effects.InnerGlowEffect"/>
 	<component id="InvalidationEvent" class="com.flow.events.InvalidationEvent"/>
-	<component id="JSON" class="com.adobe.serialization.json.JSON"/>
 	<component id="JSONDecoder" class="com.adobe.serialization.json.JSONDecoder"/>
 	<component id="JSONEncoder" class="com.adobe.serialization.json.JSONEncoder"/>
 	<component id="JSONLoader" class="com.flow.net.loaders.JSONLoader"/>
 	<component id="JSONParseError" class="com.adobe.serialization.json.JSONParseError"/>
+	<component id="JSONParsing" class="com.adobe.serialization.json.JSONParsing"/>
 	<component id="JSONToken" class="com.adobe.serialization.json.JSONToken"/>
 	<component id="JSONTokenType" class="com.adobe.serialization.json.JSONTokenType"/>
 	<component id="JSONTokenizer" class="com.adobe.serialization.json.JSONTokenizer"/>

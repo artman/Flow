@@ -22,7 +22,7 @@
 
 package com.flow.net.loaders {
 	
-	import com.adobe.serialization.json.JSON;
+	import com.adobe.serialization.json.JSONParsing;
 	
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
@@ -46,7 +46,7 @@ package com.flow.net.loaders {
 		override protected function complete(e:Event):void {
 			if(e.target.data) {
 				try {
-					data = JSON.decode(e.target.data);
+					data = JSONParsing.decode(e.target.data);
 				} catch (e:Error) {
 					super.fail(new IOErrorEvent(IOErrorEvent.VERIFY_ERROR));
 				}

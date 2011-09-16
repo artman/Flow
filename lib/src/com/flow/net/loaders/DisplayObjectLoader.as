@@ -63,8 +63,7 @@ package com.flow.net.loaders {
 			super(url)
 			this.target = target;
 			this.replaceAllChildren = replaceAllChildren;
-			loader = new Loader();
-			
+			loader = new Loader();			
 			loader.contentLoaderInfo.addEventListener(Event.COMPLETE, complete);
 			loader.contentLoaderInfo.addEventListener(IOErrorEvent.IO_ERROR, fail);
 			loader.contentLoaderInfo.addEventListener(ProgressEvent.PROGRESS, progressHandler);
@@ -81,7 +80,6 @@ package com.flow.net.loaders {
 			
 			if(target) {
 				target.addChild(e.target.content);
-				
 			}
 			if(fadeInSpeed) {
 				if(fadeInEffect) {
