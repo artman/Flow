@@ -86,12 +86,17 @@ package com.flow.managers {
 			root.addEventListener(Event.RESIZE, resize);
 			root.addEventListener(Event.FULLSCREEN, resize);
 			root.addEventListener(Event.ENTER_FRAME, enterFrame, false, 1000);
+			resize();
+			invalidate();
 		}
 		
 		private function resize(e:Event = null):void {
 			Application.application.width = root.stageWidth;
 			Application.application.height = root.stageHeight;
-			validate();
+			// Validate immediately if resize comes from event
+			if(e) {
+				validate();
+			}
 		}
 		
 		/** @private */
