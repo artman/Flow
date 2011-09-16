@@ -124,11 +124,10 @@ package com.flow.components {
 		}
 		
 		protected function thumbMove(event:Event):void {
-			var delta:Point = new Point(mouseX - clickLoc.x, mouseY - clickLoc.y);
 			if(direction == "horizontal") {
-				var percentage:Number =  (mouseX - clickLoc.x) / (_track.width - _thumb.width);
+				var percentage:Number =  (mouseX - clickLoc.x - _track.x) / (_track.width - _thumb.width);
 			} else {
-				percentage =  (mouseY - clickLoc.y) / (_track.height - _thumb.height);
+				percentage =  (mouseY - clickLoc.y - _track.y) / (_track.height - _thumb.height);
 			}
 			value = _minimum + Math.max(0, Math.min(1, percentage)) * (_maximum - _minimum);
 		}
