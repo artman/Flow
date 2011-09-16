@@ -52,8 +52,8 @@ package com.flow.components {
 	[Event(name="stateChange", type="com.flow.events.StateEvent")]
 	public class Component extends Sprite implements IStateClient2, IFactory {
 		
-		public static const STATE_NORMAL:String = "normal";
-		public static const STATE_HOVER:String = "hover";
+		public static const STATE_UP:String = "up";
+		public static const STATE_OVER:String = "over";
 		public static const STATE_DOWN:String = "down";
 		public static const STATE_FOCUS:String = "focus";
 		public static const STATE_DISABLED:String = "disabled";
@@ -640,7 +640,7 @@ package com.flow.components {
 				_tooltip = value;
 				if(_tooltip && _tooltip.length) {
 					interactive = true;
-					if(isStateActive(STATE_HOVER)) {
+					if(isStateActive(STATE_OVER)) {
 						TooltipManager.instance.showTooltip(this);
 					}
 				}
@@ -689,7 +689,7 @@ package com.flow.components {
 		}
 		
 		private function mouseOver(e:MouseEvent):void {
-			addState(STATE_HOVER);
+			addState(STATE_OVER);
 			if(_tooltip) {
 				TooltipManager.instance.showTooltip(this);
 			}
@@ -697,7 +697,7 @@ package com.flow.components {
 		
 		private function mouseOut(e:MouseEvent):void {
 			removeState(STATE_DOWN);
-			removeState(STATE_HOVER);
+			removeState(STATE_OVER);
 			if(_tooltip) {
 				TooltipManager.instance.hideTooltip(this);
 			}

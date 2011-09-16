@@ -8,8 +8,8 @@
 	</fx:Metadata>
 	
 	<fw:states>
-		<s:State name="normal" />
-		<s:State name="hover" />
+		<s:State name="up" />
+		<s:State name="over" />
 		<s:State name="down" />
 		<s:State name="disabled" />
 	</fw:states>
@@ -24,12 +24,12 @@
 	<fw:Rect width="100%" height="100%" radius="5" >
 		<fw:fill>
 			<fills:GradientFill rotation="90">
-				<fw:GradientData color="0xF9F9F9" color.hover="0xF7F7F7" color.down="0xEEEEEE" ratio="0" />
-				<fw:GradientData color="0xDDDDDD" color.hover="0xCCCCCC" color.down="0xBBBBBB" ratio="1" />
+				<fw:GradientData color="0xF9F9F9" color.over="0xF7F7F7" color.down="0xEEEEEE" ratio="0" />
+				<fw:GradientData color="0xDDDDDD" color.over="0xCCCCCC" color.down="0xBBBBBB" ratio="1" />
 			</fills:GradientFill>
 		</fw:fill>
 		<fw:stroke>
-			<strokes:SolidStroke color="0xBBBBBB" color.hover="0xAAAAAA" color.down="0x888888" />
+			<strokes:SolidStroke color="0xBBBBBB" color.over="0xAAAAAA" color.down="0x888888" />
 		</fw:stroke>
 	</fw:Rect>
 	
