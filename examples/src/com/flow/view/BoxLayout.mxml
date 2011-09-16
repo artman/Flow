@@ -23,8 +23,13 @@
 
 <fw:Container xmlns:fx="http://ns.adobe.com/mxml/2009"
 			  xmlns:s="library://ns.adobe.com/flex/spark" 
-			  xmlns:fw="http://artman.fi/flow" xmlns:assets="assets.*"
+			  xmlns:fw="http://artman.fi/flow" xmlns:assets="assets.*" xmlns:view="com.flow.view.*"
 			  >
+	<fx:Script>
+		<![CDATA[
+			import com.flow.skins.TextInputSkin;
+		]]>
+	</fx:Script>
 	
 	<fx:Declarations>
 		<fw:GradientFill id="itemFill" rotation="90">
@@ -34,13 +39,15 @@
 		<fw:SolidStroke id="itemStroke" color="0x990000" />
 	</fx:Declarations>
 	
-	
-	<fw:HBox spacing="10" padding="10">
+	<fw:HBox spacing="5" padding="10" verticalAlign="middle">
+		<fw:Label text="This input is bound to a label:" /><fw:TextInput id="textInput" value="Modify me to see if layout works" maxChars="60" x="10" y="10" width="200" skinClass="{new TextInputSkin}" />
+	</fw:HBox>
+		
+	<fw:HBox spacing="10" top="50" padding="10" verticalAlign="middle">
 		<fw:VBox spacing="5" horizontalAlign="center">
 			<fw:stroke>
 				<fw:SolidStroke color="0xDDDDDD" />
 			</fw:stroke>
-			
 			<fw:Label text="A Number" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
 			<fw:Label text="of labels" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
 			<fw:Label text="in a vbox layout" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
@@ -58,6 +65,7 @@
 			<fw:Label text="with horizontalAlign" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
 			<fw:Label text="=right" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
 			<fw:Label text="with spacing 10" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
+			<fw:Label text="{textInput.value}" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
 		</fw:VBox>
 		
 		<fw:VBox spacing="5" horizontalAlign="center" paddingBottom="1">

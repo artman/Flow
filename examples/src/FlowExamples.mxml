@@ -72,8 +72,12 @@
 >>>>>>> Housekeeping
 =======
 			<fx:String>Transitions</fx:String>
+<<<<<<< HEAD
 			<fx:String>Remote procedures</fx:String>
 >>>>>>> Added remote procedures, container templates. Added padding shortcuts
+=======
+			<!--fx:String>Remote procedures</fx:String-->
+>>>>>>> Fixed width layout problem with ScrollPane.
 		</fx:Array>
 	</fx:Declarations>
 	
