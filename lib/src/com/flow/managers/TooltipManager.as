@@ -26,8 +26,8 @@ package com.flow.managers {
 	import flash.display.DisplayObjectContainer;
 	import flash.events.MouseEvent;
 	import com.flow.components.Component;
-	import com.flow.components.DefaultTooltip;
-	import com.flow.components.ITooltip;
+	import com.flow.components.supportClasses.DefaultTooltip;
+	import com.flow.components.supportClasses.ITooltip;
 
 	public class TooltipManager {
 		

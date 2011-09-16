@@ -68,7 +68,7 @@
 	</fw:Container-->
 	
 	
-	<fw:Button id="kiva" label="Jepssaaa!" skinClass="{new ButtonSkin}" x="10" y="10" click="kiva.label='Hoioihoioi'">
+	<fw:Button id="kiva" label="Jepssaaa!" skinClass="{new ButtonSkin}" horizontalCenter="10" verticalCenter="10" click="kiva.label='Hoioihoioi kivaa!'">
 	</fw:Button>
 	
 </fw:Application>

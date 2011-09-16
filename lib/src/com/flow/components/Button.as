@@ -8,6 +8,7 @@ package com.flow.components {
 	
 	import mx.binding.utils.BindingUtils;
 	import mx.states.State;
+	import com.flow.components.supportClasses.SkinnableComponent;
 	
 	public class Button extends SkinnableComponent {
 		

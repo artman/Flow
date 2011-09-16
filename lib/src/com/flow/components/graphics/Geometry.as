@@ -30,45 +30,10 @@ package com.flow.components.graphics {
 	[DefaultProperty("stroke")]
 	public class Geometry extends Component {
 		
-		protected var _stroke:IStroke;
-		protected var _fill:IFill;
-
 		public function Geometry() {
 			super();
 		}
 
-		public function get stroke():IStroke {
-			return _stroke;
-		}
-		public function set stroke(value:IStroke):void {
-			if(value != _stroke) {
-				if(_stroke) {
-					_stroke.removeEventListener(InvalidationEvent.INVALIDATE, invalidate);
-				}
-				_stroke = value;
-				if(_stroke) {
-					_stroke.addEventListener(InvalidationEvent.INVALIDATE, invalidate);
-				}
-				invalidate();
-			}
-		}
-			
-		public function get fill():IFill {
-			return _fill;
-		}
-		public function set fill(value:IFill):void  {
-			if(value != _fill) {
-				if(_fill) {
-					_fill.removeEventListener(InvalidationEvent.INVALIDATE, invalidate);
-				}
-				_fill = value;
-				if(_fill) {
-					_fill.addEventListener(InvalidationEvent.INVALIDATE, invalidate);
-				}
-				invalidate();
-			}
-		}
-		
 		override protected function checkVisibility():Boolean {
 			return true;
 		}

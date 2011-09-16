@@ -1,4 +1,4 @@
-package com.flow.components {
+package com.flow.components.supportClasses {
 	
 	import com.flow.containers.Container;
 	import com.flow.containers.layout.LayoutBase;

@@ -20,7 +20,8 @@
  * THE SOFTWARE.
  */
 
-package com.flow.components {
+package com.flow.components.supportClasses {
+	import com.flow.components.Component;
 	
 	public class PaddableComponent extends Component {
 		

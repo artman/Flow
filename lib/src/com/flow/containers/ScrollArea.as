@@ -100,8 +100,8 @@ package com.flow.containers {
 		
 		override protected function applyMask(width:int, height:int):void {
 			var inset:int = 0;
-			if(_border) {
-				inset = Math.ceil(_border.thickness/2);
+			if(_stroke) {
+				inset = Math.ceil(_stroke.thickness/2);
 			}
 			scrollRect = new Rectangle(_scrollX, _scrollY, width+inset, height+inset);
 		}

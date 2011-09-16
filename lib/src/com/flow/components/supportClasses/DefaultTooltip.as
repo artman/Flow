@@ -20,7 +20,7 @@
  * THE SOFTWARE.
  */
 
-package com.flow.components {
+package com.flow.components.supportClasses {
 	
 	import flash.text.TextField;
 

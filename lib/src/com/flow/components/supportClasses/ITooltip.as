@@ -20,7 +20,7 @@
  * THE SOFTWARE.
  */
 
-package com.flow.components {
+package com.flow.components.supportClasses {
 	public interface ITooltip {
 		function set text(value:String):void;
 		function setLocation(x:int, y:int, stageWidth:int, stageHeight:int):void;
