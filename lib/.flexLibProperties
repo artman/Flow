@@ -196,6 +196,7 @@
     <classEntry path="mx.states.SetProperty"/>
     <classEntry path="mx.states.State"/>
     <classEntry path="mx.states.Transition"/>
+    <classEntry path="com.flow.containers.Window"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests>
