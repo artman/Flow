@@ -1,0 +1,102 @@
+/**
+ * Copyright (c) 2011 Tuomas Artman, http://artman.fi
+ * 
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ * 
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ * 
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
+package com.flow.net {
+	
+	import com.flow.events.AMFGatewayEvent;
+	
+	import flash.events.Event;
+	import flash.events.EventDispatcher;
+	import flash.events.IEventDispatcher;
+	import flash.net.Responder;
+	
+	/**
+	 * Dispatched when the server responds to the request.
+	 * @eventType fi.artman.events.AMFGatewayEvent.COMPLETE
+	 */  
+	[Event(name="complete", type="com.flow.events.AMFGatewayEvent")]
+	
+	/**
+	 * Dispatched, when the server responded with an error.
+	 * @eventType fi.artman.events.AMFGatewayEvent.ERROR
+	 */  
+	[Event(name="error", type="com.flow.events.AMFGatewayEvent")]
+	
+
+	public class AMFGatewayResponder extends Responder implements IEventDispatcher {
+		
+		private var ed:EventDispatcher;
+		private var remoteProcedure:String;
+		
+		private var resultHandler:Function = null;
+		private var errorHandler:Function = null;
+		
+		public function AMFGatewayResponder(){
+			super(result, error);
+			ed = new EventDispatcher(this);
+		}
+		
+		private function result(resp:Object):void{
+			if(resultHandler != null) {
+				resultHandler(resp);
+			}
+			var e:AMFGatewayEvent = new AMFGatewayEvent(AMFGatewayEvent.COMPLETE);
+			e.result = resp;
+			dispatchEvent(e);
+		}
+		
+		private function error(err:Object):void{
+			if(errorHandler != null) {
+				errorHandler(err);
+			}
+			var e:AMFGatewayEvent = new AMFGatewayEvent(AMFGatewayEvent.ERROR);
+			e.result = err;
+			dispatchEvent(e);
+		}
+		
+		public function addEventListener(type:String, listener:Function, useCapture:Boolean = false, priority:int = 0, useWeakReference:Boolean = false):void {
+			ed.addEventListener(type, listener, useCapture, priority, useWeakReference);
+		}
+		
+		public function dispatchEvent(event:Event):Boolean {
+			return ed.dispatchEvent(event);
+		}
+		
+		public function hasEventListener(type:String):Boolean{
+			return ed.hasEventListener(type)
+		}
+		
+		public function removeEventListener(type:String, listener:Function, useCapture:Boolean = false):void {
+			ed.removeEventListener(type, listener, useCapture);
+		}
+		
+		public function willTrigger(type:String):Boolean {
+			return ed.willTrigger(type);
+		}
+		
+		public function addHandlers(resultHandler:Function, errorHandler:Function = null):void {
+			this.resultHandler = resultHandler;
+			this.errorHandler = errorHandler;
+		}
+	}
+	
+}
