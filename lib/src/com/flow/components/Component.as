@@ -49,6 +49,13 @@ package com.flow.components {
 	import mx.core.IStateClient2;
 	import mx.states.State;
 	
+	/**
+	 * Component is the base class for displayable objects. It provides properties for constrained-based layout, states support
+	 * and a robust validation scheme. Components are used throughout the Flow framework and most displayable classes subclass
+	 * from Component.
+	 * 
+	 * In a Flex-application UIComponent would be the equivalent to Compoent in Flow. 
+	 */	
 	[DefaultProperty("fill")]
 	[Event(name="stateChange", type="com.flow.events.StateEvent")]
 	public class Component extends Sprite implements IStateClient2, IFactory {
@@ -59,82 +66,108 @@ package com.flow.components {
 		public static const STATE_FOCUS:String = "focus";
 		public static const STATE_DISABLED:String = "disabled";
 		
+		/** A static reference to the LayoutManager */
 		public static var manager:LayoutManager;
 		
-		protected var statesActive:Vector.<State>;
-		
-		public var hasExplicitWidth:Boolean = false;
-		public var hasExplicitHeight:Boolean = false;
-		
-		public var includeIn:String;
-		
+		/** @private */ 
+		protected var _x:Number = 0;
+		/** @private */ 
+		protected var _y:Number = 0;
+		/** @private */ 
 		protected var _top:MeasureUnit;
+		/** @private */ 
 		protected var _bottom:MeasureUnit;
+		/** @private */ 
 		protected var _left:MeasureUnit;
-		protected var _right:MeasureUnit;
-		
+		/** @private */ 
+		protected var _right:MeasureUnit;		
+		/** @private */ 
 		protected var _verticalCenter:MeasureUnit;
+		/** @private */ 
 		protected var _horizontalCenter:MeasureUnit;
-		
+		/** @private */ 
 		protected var _w:MeasureUnit;
+		/** @private */ 
 		protected var _h:MeasureUnit;
 		
-		protected var _x:Number = 0;
-		protected var _y:Number = 0;
-		
+		/** @private */ 
 		protected var _measuredWidth:Number = 0;
-		protected var _measuredHeight:Number = 0;
-		
-		protected var _absoluteWidth:Number;
-		protected var _absoluteHeight:Number;
-		
+		/** @private */ 
 		protected var _minWidth:Number;
-		protected var _minHeight:Number;
+		/** @private */ 
 		protected var _maxWidth:Number;
-		protected var _maxHeight:Number;
-		
-		private var _borderExpand:int = 0;
-		
-		public var propertiesInvalidated:Boolean = false;
-		public var layoutInvalidated:Boolean = false;
-		public var invalidated:Boolean = false;
-		
-		private var _measureUnits:MeasureUnits;
-		
-		private var _currentState:String = "";
-		private var _disabled:Boolean = false;
-		private var _interactive:Boolean = false;
-		
-		public var depth:int = 0;
+		/** @private */ 
+		protected var _absoluteWidth:Number;
+		/** Whether the component has been assigned a implicit width */
+		public var hasExplicitWidth:Boolean = false;		
 
-		public var stateMovieClips:Vector.<MovieClip>;
-		public var focusable:Boolean = false;
+		/** @private */
+		protected var _measuredHeight:Number = 0;
+		/** @private */
+		protected var _minHeight:Number;
+		/** @private */
+		protected var _maxHeight:Number;
+		/** @private */ 
+		protected var _absoluteHeight:Number;
+		/** Whether the component has been assigned a implicit height */
+		public var hasExplicitHeight:Boolean = false;
 		
+		/** @private */
+		public var includeIn:String;
+		private var _measureUnits:MeasureUnits;
+		private var _borderExpand:int = 0;
 		private var _clip:Boolean = false;
 		private var _visible:Boolean = true;
-		
+		/** @private */ 
 		protected var _active:Boolean = true;
+		/** @private */ 
 		protected var _transition:FadeTransition;
-		
-		private var _states:Array = [];
-		
+		/** @private */ 
 		protected var _fill:IFill;
+		/** @private */ 
 		protected var _stroke:IStroke;
 		
-		private var _tooltip:String;
-		protected var _focusElement:InteractiveObject;
-		private var _tabIndex:int = -1;
+		private var _states:Array = [];
+		private var _currentState:String = "";
+		/** @private */ 
+		protected var statesActive:Vector.<State>;
+		private var _disabled:Boolean = false;
+		private var _interactive:Boolean = false;
+		/** @private */ 
+		public var focusable:Boolean = false;
 		
+		private var _tooltip:String;
+		private var _tabIndex:int = -1;
+		/** @private */ 
+		protected var _focusElement:InteractiveObject;
+		/** @private */ 
 		protected var _pixelSnapping:Boolean = true;
 		
+		private var pressed:Boolean = false;
+		/** @private */ 
+		public var stateMovieClips:Vector.<MovieClip>;
+		
+		/** @private */
+		public var propertiesInvalidated:Boolean = false;
+		/** @private */
+		public var layoutInvalidated:Boolean = false;
+		/** @private */
+		public var invalidated:Boolean = false;
+		
+		/** The depth of the component inside the displayList */
+		public var depth:int = 0;
+		
+		/** The parent container if the component has been added as a child of a container */
 		public var parentContainer:Container;
 		
-		private var pressed:Boolean = false;
-		
+		/** If set to true, forces the component to snap to a even width */
 		public var snapWidthToEven:Boolean = false;
+		/** If set to true, forces the component to snap to a even height */
 		public var snapHeightToEven:Boolean = false;
 		
+		/** The data that is assigned to the component if it's used as a item renderer */
 		[Bindable] public var data:*;
+		/** The index of the component in a list if the component is used as a item renderer */
 		[Bindable] public var rendererIndex:int;
 		
 		[Event(name="creationComplete", type="com.flow.events.ComponentEvent")]
@@ -149,21 +182,26 @@ package com.flow.components {
 			_h = new MeasureUnit(null);
 			_verticalCenter = new MeasureUnit(null);
 			_horizontalCenter = new MeasureUnit(null);
-			preInitialize();
 			manager.invalidateInit(this);
 			invalidateProperties();
 			focusRect = null;
+			preInitialize();
 		}
 
+		/** @private */		
 		public final function init():void {
 			initialize();
 			dispatchEvent(new ComponentEvent(ComponentEvent.CREATION_COMPLETE));
 		}
 		
+		/**
+		 * Sets whether the component automatically tries to assign itself states based on user interaction.
+		 * The states that are assigned (if supported by the subclass) are up, over, down, focused and disabled. 
+		 * @return Whether the component is interactive
+		 */		
 		public function get interactive():Boolean {
 			return _interactive
 		}
-		
 		public function set interactive(value:Boolean):void {
 			if(value != _interactive) {
 				_interactive = value;
@@ -184,32 +222,31 @@ package com.flow.components {
 				}
 			}
 		}
-
+		
+		/**
+		 * Override this method to initalize any properties at the beginning of the component lifecycle. This method is called
+		 * during execution of the constructor.
+		 */		
 		protected function preInitialize():void {
 			// Override
 		}
 		
+		/**
+		 * Override this method to initialize any properties before the first rendering cycle of the component. At this stage all
+		 * properties have been assigned correct values, and any children have been created.
+		 */		
 		protected function initialize():void {
 			// Override
 		}
-
-		public function invalidate(e:Event = null):void {
-			if(!invalidated) {
-				invalidated = true;	
-				manager.invalidateComponent(this);
-			}
-		}
 		
-		public function invalidateTree():void {
-			invalidateLayout();
-		}
-		
-		public function invalidateLayout(fromChild:Boolean = false):void {
-			if(parentContainer) {
-				parentContainer.invalidateLayout();
-			}
-		}
-		
+		/**
+		 * Call invalidateProperties to issue a call to validateProperties during the next rendering cycle. It's more efficient to
+		 * defer validation of any properties that might take some time to complete to the next rendering cycle, as a property
+		 * might be changed a number of times before rendering occurs.
+		 * @param layoutValidationRequired Pass in true if you suspect that validating your properties also affect the size of your
+		 * component. In this case, invalidateLayout() will be called automatically.
+		 * 
+		 */		
 		public function invalidateProperties(layoutValidationRequired:Boolean = true):void {
 			propertiesInvalidated = true;
 			if(layoutValidationRequired) {
@@ -218,6 +255,39 @@ package com.flow.components {
 			invalidate();
 		}
 		
+		/**
+		 * Call invalidate to force a re-rendering of the component, but not change it's size. All components that have been
+		 * invalidated will receive a draw-call during the next rendering cycle. You should not directly position any child
+		 * objects or draw any graphics directly when component properties are validate. Instead, use invalidate to defer rendering
+		 * of your component to the next rendering cycle.
+		 */		
+		public function invalidate(e:Event = null):void {
+			if(!invalidated) {
+				invalidated = true;	
+				manager.invalidateComponent(this);
+			}
+		}
+		
+		/** @private */
+		public function invalidateTree():void {
+			invalidateLayout();
+		}
+		
+		/**
+		 * Call invalidateLayout when a property that might affect the size of your component has been changed. This will make flow
+		 * validate the size of your component during the next rendering cycle. It's not necessary to call invalidate() at the same time,
+		 * as Flow will issue a validation if the component's size is actually changed during measurement.
+		 *  
+		 * @param fromChild Defines whether the invalidation has been called from a child component. Setting this has no effect
+		 * on a component, as it's implemented by the Container.
+		 */		
+		public function invalidateLayout(fromChild:Boolean = false):void {
+			if(parentContainer) {
+				parentContainer.invalidateLayout();
+			}
+		}
+		
+		/** @private */
 		public function validate():void {
 			if(_visible) {
 				if(propertiesInvalidated) {
@@ -242,6 +312,12 @@ package com.flow.components {
 			invalidated = false;
 		}
 		
+		/**
+		 * Checks whether the component is visible. You normally would not override this method in a subclass, but there
+		 * might be instanced where it's needed. The implementation returns true if the component has a width and height
+		 * that are not 0.
+		 * @return Whether the component is visible and should be rendered.
+		 */		
 		protected function checkVisibility():Boolean {
 			var w:int = sanitizeWidth(!isNaN(_absoluteWidth) ? _absoluteWidth : _measuredWidth);
 			var h:int = sanitizeHeight(!isNaN(_absoluteHeight) ? _absoluteHeight : _measuredHeight);
@@ -251,6 +327,7 @@ package com.flow.components {
 			return false;
 		}
 		
+		/** @inheritDoc */		
 		override public function get visible():Boolean {
 			return _visible;
 		}
@@ -266,10 +343,26 @@ package com.flow.components {
 			}
 		}
 		
+		/**
+		 * This method is called whenever the component needs to be measured. Sub-classes should implement this to ensure
+		 * that the component can be used without explicitly setting it's width and height.
+		 * 
+		 * Implementations should measure the minimum width and height that the component requires to fully draw itself
+		 * (e.g. depending on the text in a Label). The method does not return anything. Instead, for a full implementation,
+		 * set the measuredWidth and measuredHeight properties of the component according to your measurement results.
+		 */		
 		public function measure():void {
 			// Override	
 		}
 		
+		/**
+		 * Draw is called whenever the component needs to render itself. Override this method to lay out any children and render
+		 * into the component's graphics context. Note that the component implementation clears the graphics context and renders
+		 * in any fills or strokes defined by the user.
+		 * 
+		 * @param width The absolute, non-scaled width of the component
+		 * @param height The absolute, non-scaled height of the component
+		 */		
 		public function draw(width:Number, height:Number):void {
 			graphics.clear();
 			if(_fill) {
@@ -294,6 +387,12 @@ package com.flow.components {
 			applyMask(width, height);
 		}
 		
+		/**
+		 * Applies a mask after rendering the component. Override this to implement your own masking or scrolling behaviour. The default implementation
+		 * will apply a mask to the full area of the component if it's clip-property is set to true.
+		 * @param width The absolute, non-scaled width of the component
+		 * @param height The absolute, non-scaled height of the component
+		 */		
 		protected function applyMask(width:Number, height:Number):void {
 			if(clip) {
 				var inset:int = 0;
@@ -306,15 +405,17 @@ package com.flow.components {
 		
 		
 		/*---------------- Measure --------------------*/
-		
+		/** @private */
 		public function sanitizeWidth(value:Number):Number {
 			return (isNaN(_minWidth) || value > _minWidth) ? ((isNaN(_maxWidth) || value < _maxWidth) ? value : _maxWidth) : _minWidth;
 		}
 		
+		/** @private */
 		public function sanitizeHeight(value:Number):Number {
 			return (isNaN(_minHeight) || value > _minHeight) ? ((isNaN(_maxHeight) || value < _maxHeight) ? value : _maxHeight) : _minHeight;
 		}
 		
+		/** The vertical distance in pixels or percent from the top edge of the component to the parent's top edge. */
 		[Bindable]
 		public function get top():* {
 			return _top.unit;
@@ -327,6 +428,7 @@ package com.flow.components {
 			invalidateLayout();
 		}
 		
+		/** The vertical distance in pixels or percent from the bottom edge of the component to the parent's bottom edge. */
 		[Bindable]
 		public function get bottom():* {
 			return _bottom.unit;
@@ -339,6 +441,7 @@ package com.flow.components {
 			invalidateLayout();
 		}
 		
+		/** The horizontal distance in pixels or percent from the left edge of the component to the parent's left edge. */
 		[Bindable]
 		public function get left():* {
 			return _left.unit;
@@ -351,6 +454,7 @@ package com.flow.components {
 			invalidateLayout();
 		}
 		
+		/** The horizontal distance in pixels or percent from the right edge of the component to the parent's right edge. */
 		[Bindable]
 		public function get right():* {
 			return _right.unit;
@@ -363,6 +467,7 @@ package com.flow.components {
 			invalidateLayout();
 		}
 		
+		/** The width of the component in pixels. If you use MXML, you can also set the width to a percentage of the parent's width. */
 		[Bindable(event="widthChange")] [PercentProxy("percentWidth")]
 		override public function get width():Number {
 			if(!_w.isNull && !_w.isPercentage) {
@@ -388,6 +493,8 @@ package com.flow.components {
 				hasExplicitHeight = false;
 			}
 		}
+		
+		/** The width of the component in percent of the parent's width. */
 		public function get percentWidth():Number {
 			if(_w.isPercentage) {
 				return _w.value;
@@ -399,6 +506,7 @@ package com.flow.components {
 			invalidateLayout();
 		}
 		
+		/** The height of the component in pixels. If you use MXML, you can also set the height to a percentage of the parent's height. */
 		[Bindable(event="heightChange")] [PercentProxy("percentHeight")]
 		override public function get height():Number {
 			if(!_h.isNull && !_h.isPercentage) {
@@ -423,6 +531,7 @@ package com.flow.components {
 				hasExplicitHeight = false;
 			}
 		}
+		/** The height of the component in percent of the parent's height. */
 		public function get percentHeight():Number {
 			if(_h.isPercentage) {
 				return _h.value;
@@ -434,6 +543,7 @@ package com.flow.components {
 			invalidateLayout();
 		}
 		
+		/** The minimum width of the component. The component won't be rendered smaller than this. */
 		[Bindable]
 		public function get minWidth():Number {
 			return _minWidth;
@@ -443,6 +553,7 @@ package com.flow.components {
 			invalidateLayout();
 		}
 		
+		/** The minimum height of the component. The component won't be rendered smaller than this. */
 		[Bindable]
 		public function get minHeight():Number {
 			return _minHeight;
@@ -452,6 +563,7 @@ package com.flow.components {
 			invalidateLayout();
 		}
 		
+		/** The maximum width of the component. The component won't be rendered larger than this */
 		public function get maxWidth():Number {
 			return _maxWidth;
 		}
@@ -462,6 +574,7 @@ package com.flow.components {
 			}
 		}
 		
+		/** The maximum height of the component. The component won't be rendered larger than this */
 		public function get maxHeight():Number {
 			return _maxHeight;
 		}
@@ -472,6 +585,7 @@ package com.flow.components {
 			}
 		}
 		
+		/** The measured width of the component. This needs to be set during a call to measure(). */
 		[Bindable]
 		public function get measuredWidth():Number {
 			return _measuredWidth;
@@ -487,6 +601,7 @@ package com.flow.components {
 			}
 		}
 		
+		/** The measured height of the component. This needs to be set during a call to measure(). */
 		[Bindable]
 		public function get measuredHeight():Number {
 			return _measuredHeight;
@@ -501,7 +616,8 @@ package com.flow.components {
 				}
 			}
 		}
-
+		
+		/** The vertical distance in pixels or percent from the center of the component to the center of the parent's content area. */
 		[Bindable]
 		public function get verticalCenter():* {
 			return _verticalCenter.unit;
@@ -515,6 +631,7 @@ package com.flow.components {
 			invalidateLayout();
 		}
 		
+		/** The horizontal distance in pixels or percent from the center of the component to the center of the parent's content area. */
 		[Bindable]
 		public function get horizontalCenter():* {
 			return _horizontalCenter.unit;
@@ -528,10 +645,12 @@ package com.flow.components {
 			invalidateLayout();
 		}
 		
+		/** @private */
 		[Exclude(name="absoluteWidth", kind="property")]
 		public function get absoluteWidth():Number {
 			return _absoluteWidth;
 		}
+		/**  @private */
 		public function set absoluteWidth(value:Number):void {
 			if(_absoluteWidth != value) {
 				_absoluteWidth = value;
@@ -542,10 +661,12 @@ package com.flow.components {
 			}
 		}
 		
+		/** @private */
 		[Exclude(name="absoluteHeight", kind="property")]
 		public function get absoluteHeight():Number {
 			return _absoluteHeight;
 		}
+		/**  @private */
 		public function set absoluteHeight(value:Number):void {
 			if(_absoluteHeight != value) {
 				_absoluteHeight = value;
@@ -556,6 +677,7 @@ package com.flow.components {
 			}
 		}
 		
+		/** @inheritDoc */
 		[Bindable]
 		override public function get x():Number {
 			return _x;
@@ -567,6 +689,7 @@ package com.flow.components {
 			}
 		}
 		
+		/** @inheritDoc */
 		[Bindable]
 		override public function get y ():Number {
 			return _y;
@@ -578,6 +701,7 @@ package com.flow.components {
 			}
 		}
 		
+		/** Whether to snap the position and dimensions to full pixels (default true) */
 		public function get pixelSnapping():Boolean {
 			return _pixelSnapping;
 		}
@@ -589,6 +713,7 @@ package com.flow.components {
 			}
 		}
 		
+		/** @private */
 		public function get measureUnits():MeasureUnits {
 			if(!_measureUnits) {
 				_measureUnits = new MeasureUnits();
@@ -604,6 +729,10 @@ package com.flow.components {
 			return _measureUnits;
 		}
 		
+		/** 
+		 * The fill of the component. If assigned, the fill is applied to the full width and height of the component
+		 * during rendering.
+		 */
 		public function get fill():IFill {
 			return _fill;
 		}
@@ -620,6 +749,10 @@ package com.flow.components {
 			}
 		}
 		
+		/** 
+		 * The border stroke of the component. If assigned, the border stroke is applied to the full width and height of the component
+		 * during rendering.
+		 */
 		public function get stroke():IStroke {
 			return _stroke;
 		}
@@ -636,10 +769,11 @@ package com.flow.components {
 			}
 		}
 		
+		/** @private */
 		public function get borderExpand():int {
 			return _borderExpand;
 		}
-		
+		/**  @private */
 		public function set borderExpand(value:int):void {
 			if(value != _borderExpand) {
 				_borderExpand = value;
@@ -647,6 +781,7 @@ package com.flow.components {
 			}
 		}
 		
+		/** Whether to apply a mask to the full width and height of the component during rendering (default false). */
 		public function get clip():Boolean {
 			return _clip;
 		}
@@ -657,6 +792,7 @@ package com.flow.components {
 			}
 		}
 		
+		/** The tooltip string of the component. The tooltip is shown when the user rolls over the component */
 		public function get tooltip():String {
 			return _tooltip;
 		}
@@ -673,6 +809,7 @@ package com.flow.components {
 			}
 		}
 		
+		/** @inheritDoc */
 		override public function get tabIndex():int {
 			return _tabIndex;
 		}
@@ -686,10 +823,11 @@ package com.flow.components {
 			}
 		}
 		
+		/** @private */
 		public function get focusElement():InteractiveObject {
 			return _focusElement;
 		}
-		
+		/**  @private */
 		public function set focusElement(value:InteractiveObject):void {
 			if(value != _focusElement) {
 				_focusElement = value;
@@ -700,6 +838,7 @@ package com.flow.components {
 		
 		// ----------------- states ---------------------
 		
+		/** Whether the component is disabled */
 		[Bindable]
 		public function get disabled():Boolean {
 			return _disabled;
@@ -738,7 +877,7 @@ package com.flow.components {
 			TooltipManager.instance.hideTooltip(this);
 		}
 		
-		protected function mouseUpAfterPress(event:MouseEvent):void {
+		private function mouseUpAfterPress(event:MouseEvent):void {
 			pressed = false;
 			removeState(STATE_DOWN);
 			stage.removeEventListener(MouseEvent.MOUSE_UP, mouseUpAfterPress);
@@ -761,6 +900,7 @@ package com.flow.components {
 			removeState(STATE_FOCUS);
 		}
 		
+		/** @private */ 
 		public function get includeAsChild():Boolean {
 			if(_active) {
 				return true;
@@ -771,6 +911,10 @@ package com.flow.components {
 			return false;
 		}
 
+		/** 
+		 * Whether the component is active (included in rendering) or inactive (excluded from rendering). The default value
+		 * is true
+		 */
 		[Bindable]
 		public function get active():Boolean {
 			return _active;
@@ -793,6 +937,11 @@ package com.flow.components {
 			dispatchEvent(new StateEvent(StateEvent.ACTIVITY_CHANGE));
 		}
 		
+		/**
+		 * The transition of the component. The transition is applied whenever the active-property of the component is
+		 * changed. Setting this property will enable you to create a smooth tween (fade or effect) when the component
+		 * changes it's active-property. 
+		 */		
 		public function get transition():FadeTransition {
 			return _transition;
 		}
@@ -807,6 +956,7 @@ package com.flow.components {
 			} 
 		}
 		
+		/** Override this to validate your components properties */
 		public function validateProperties():void {
 			// Override
 		}
@@ -815,11 +965,11 @@ package com.flow.components {
 		
 		/*--------------- States support ---------------*/
 		
+		/** The states that this component supports */		
 		[Inspectable(name="states", category="Common")]
 		public function get states():Array {
 			return _states;
 		}
-		
 		public function set states(value:Array):void {
 			_states = value;
 			_currentState = "";
@@ -829,6 +979,23 @@ package com.flow.components {
 			}
 		}
 		
+		/**
+		 * In addition to setting the currentState property of a component directly, Flow supports adding and removing states the addState and
+		 * removeState methods. When applied this way, the currentState property will be assigned the state with the highest priority (defined last
+		 * in the states-properties). 
+		 * @param The state's name to add.
+		 * 
+		 * @example Your component has three states: up, down and disabled
+		 * <listing version="3.0">
+		 * addState("up"); // currentState is 'up'
+		 * addState("disabled"); // currenState is 'disabled'
+		 * addState("down"); // currenState is 'disabled'
+		 * removeState("disabled") // currentState is 'down'
+		 * </listing>
+		 * 
+		 * @see #removeState()
+		 * @see #currentState
+		 */
 		public function addState(stateName:String):void {
 			var state:State = getState(stateName);
 			if(state) {
@@ -839,6 +1006,14 @@ package com.flow.components {
 			}
 		}
 		
+		/**
+		 * In addition to setting the currentState property of a component directly, Flow supports adding and removing states the addState and
+		 * removeState methods. When applied this way, the currentState property will be assigned the state with the highest priority (defined last
+		 * in the states-properties). 
+		 * @param The state's name to remove.
+		 * @see #addState()
+		 * @see #currentState
+		 */		
 		public function removeState(stateName:String):void {
 			var state:State = getState(stateName);
 			if(state && statesActive.indexOf(state) != -1) {
@@ -847,6 +1022,12 @@ package com.flow.components {
 			}
 		}
 		
+		/**
+		 * Checks if the component has a state with the given name.
+		 * @param The name of the state to check.
+		 * @return True if the state exists, false otherwise.
+		 * 
+		 */		
 		public function hasState(stateName:String):Boolean {
 			for(var i:int = 0; i<states.length; i++) {
 				if(states[i].name == stateName) {
@@ -856,6 +1037,11 @@ package com.flow.components {
 			return false;
 		}
 		
+		/**
+		 * Returns a state with the given name.
+		 * @param The name of the state to fetch.
+		 * @return The state or null, if no state with such a name exists.
+		 */		
 		public function getState(state:String):State {
 			for(var i:int = 0; i<states.length; i++) {
 				if(states[i].name == state) {
@@ -865,6 +1051,11 @@ package com.flow.components {
 			return null;
 		}
 		
+		/**
+		 * Checks if a state has been added to the component using the addState-method. 
+		 * @param The name of the state to check.
+		 * @return True if the state has been added, false otherwise.
+		 */		
 		public function isStateActive(stateName:String):Boolean {
 			for(var i:int = 0; i<statesActive.length; i++) {
 				if(statesActive[i].name == stateName) {
@@ -874,6 +1065,7 @@ package com.flow.components {
 			return false;
 		}
 		
+		/** @private */
 		protected function checkState():void {
 			var maxFound:int = -1;
 			for(var i:int = 0; i<statesActive.length; i++) {
@@ -884,6 +1076,9 @@ package com.flow.components {
 			}
 		}
 		
+		/**
+		 * The current state of the component. Set this property to change the state of the component and apply all overrides.
+		 */		
 		[Bindable]
 		public function get currentState():String {
 			return _currentState;
@@ -925,10 +1120,12 @@ package com.flow.components {
 			}
 		}
 		
+		/** @private */
 		protected function get stateTarget():Component {
 			return this;
 		}
 		
+		/** @private */
 		public function addStateClip(clip:MovieClip):void {
 			if(!stateMovieClips) {
 				stateMovieClips = new Vector.<MovieClip>();
@@ -937,7 +1134,7 @@ package com.flow.components {
 			stateMovieClips.push(clip);
 		}
 		
-		
+		/** @private */
 		public function removeStateClip(clip:MovieClip):void {
 			if(stateMovieClips.indexOf(clip) != -1) {
 				stateMovieClips.splice(stateMovieClips.indexOf(clip), 1);
@@ -948,6 +1145,7 @@ package com.flow.components {
 			} 
 		}
 		
+		/** @private */
 		protected function stateChanged(e:StateEvent):void {
 			for(var i:int = 0; i<stateMovieClips.length; i++) {
 				if(stateMovieClips[i].currentLabels.indexOf(e.toState)) {
@@ -958,20 +1156,21 @@ package com.flow.components {
 			}
 		}
 		
-		/**
-		 * @private 
-		 */
+		/**  @private */
 		public function get transitions():Array {
 			return [];
 		}
+		/** @private */
 		public function set transitions(value:Array):void {
 		}
 		
+		/** @private */
 		public function newInstance():* {
 			var klass:Class = getDefinitionByName(getQualifiedClassName(this)) as Class;
 			return new klass();
 		}
 		
+		/** @private */
 		public function get visualRepresentation():Component {
 			return this;
 		}

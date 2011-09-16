@@ -39,13 +39,20 @@ package com.flow.containers {
 	import flash.events.Event;
 	import flash.utils.getTimer;
 	
+	/**
+	 * The Container class is the base grouping class for visual elements. The Container takes as children any 
+	 * components, containers or flash display objects. Use this container when you want to manage visual children.
+	 */	
 	[DefaultProperty("children")]
 	[Event(name="creationComplete", type="com.flow.events.ComponentEvent")]
 	[Event(name="invalidateLayout", type="com.flow.events.InvalidationEvent")]
 	public class Container extends Component {
 		
+		/** @private */ 
 		protected var _children:DisplayObjectCollection;
+		/** @private */ 
 		protected var childrenInvalidated:Boolean = false;
+		/** @private */ 
 		protected var _layout:LayoutBase;
 		
 		public var childContainer:DisplayObjectContainer;
@@ -59,6 +66,11 @@ package com.flow.containers {
 			addEventListener(Event.ADDED_TO_STAGE, added);
 		}
 		
+		/**
+		 * Returns a default layout instance to use if the user hasn't defined any. Subclasses might override this method
+		 * to return a layout more appropriate for their needs. The container's implementation returns a absolute layout.
+		 * @return A layout instance
+		 */		
 		protected function getDefaultLayout():LayoutBase {
 			return new AbsoluteLayout();
 		}
@@ -73,11 +85,16 @@ package com.flow.containers {
 			invalidate();
 		}
 		
+		/** @inheritDoc */
 		override public function invalidate(e:Event = null):void {
 			super.invalidate();
 			invalidateLayout();
 		}
-
+		
+		/**
+		 * The visual content children for this Group.
+		 * This method is used internally by Flow and is not intended for direct use by developers. 
+		 */		
 		[ArrayElementType("DisplayObject")]
 		public function get children():* {
 			return _children;
@@ -126,7 +143,7 @@ package com.flow.containers {
 			}
 		}
 		
-		public function childrenModified(e:CollectionEvent):void {
+		private function childrenModified(e:CollectionEvent):void {
 			for(var i:int = 0; i<e.items.length; i++) {
 				if(e.items[i] is Component) {
 					if(e.kind == CollectionEventKind.ADD) {
@@ -140,7 +157,7 @@ package com.flow.containers {
 			invalidateChildren();
 		}
 		
-		public function invalidateChildren(e:Event = null):void {
+		private function invalidateChildren(e:Event = null):void {
 			if(!childrenInvalidated) {
 				childrenInvalidated = true;
 				if(manager.layoutPhase != LayoutManager.LAYOUT_PHASE_VALIDATING) {
@@ -154,6 +171,7 @@ package com.flow.containers {
 			}
 		}
 		
+		/** The layout instance used by the container to lay out it's children. */		
 		public function get layout():LayoutBase {
 			return _layout;
 		}
@@ -170,6 +188,7 @@ package com.flow.containers {
 			}
 		}
 		
+		/** @inheritDoc */	
 		override public function addChild(child:DisplayObject):DisplayObject {
 			if(child) {
 				removeChild(child);
@@ -178,6 +197,7 @@ package com.flow.containers {
 			return child;
 		}
 		
+		/** @inheritDoc */
 		override public function addChildAt(child:DisplayObject, index:int):DisplayObject {
 			if(child) {
 				removeChild(child);
@@ -186,6 +206,7 @@ package com.flow.containers {
 			return child;
 		}
 		
+		/** @inheritDoc */
 		override public function removeChild(child:DisplayObject):DisplayObject {
 			if(_children.getItemIndex(child) != -1) {
 				_children.removeItemAt(_children.getItemIndex(child));
@@ -193,27 +214,32 @@ package com.flow.containers {
 			return child;
 		}
 		
-
+		/** @inheritDoc */
 		override public function removeChildAt(index:int):DisplayObject {
 			return removeChild(_children.getItemAt(index) as DisplayObject);
 		}
 		
+		/** @private */
 		protected function rawAddChild(child:DisplayObject):DisplayObject {
 			return super.addChild(child);
 		}
 		
+		/** @private */
 		protected function rawAddChildAt(child:DisplayObject, index:int):DisplayObject {
 			return super.addChildAt(child, index);
 		}
 		
+		/** @private */
 		protected function rawRemoveChild(child:DisplayObject):DisplayObject {
 			return super.removeChild(child);
 		}
 		
+		/** @private */
 		protected function rawRemoveChildAt(index:int):DisplayObject {
 			return super.removeChildAt(index);
 		}
-
+		
+		/** @private */
 		override public function invalidateTree():void {
 			super.invalidateTree();
 			for(var i:int=0; i<numChildren; i++) {
@@ -224,6 +250,14 @@ package com.flow.containers {
 			}
 		}
 		
+		/**
+		 * Call invalidateLayout when a property that might affect the size of your component has been changed. This will make flow
+		 * validate the size of your component during the next rendering cycle. It's not necessary to call invalidate() at the same time,
+		 * as Flow will issue a validation if the component's size is actually changed during measurement.
+		 *  
+		 * @param fromChild Defines whether the invalidation has been called from a child component. When you call it, it should be left as
+		 * false.
+		 */	
 		override public function invalidateLayout(fromChild:Boolean = false):void {
 			if(!layoutInvalidated && parent) {
 				layoutInvalidated = true;
@@ -248,12 +282,14 @@ package com.flow.containers {
 			}
 		}
 		
+		/** @private */
 		public function validateLayoutOnRoot(e:Event = null):void {
 			var t:Number = getTimer();
 			measureChildren();
 			validateLayout();
 		}
-
+		
+		/** @private */
 		public function validateLayout(e:Event = null):void {
 			layoutInvalidated = false;
 			_layout.layout(width, height);
@@ -265,6 +301,11 @@ package com.flow.containers {
 			}
 		}
 		
+		/**
+		 * Sometimes you may need to validate a containers children, layout and rendering before the next rendering
+		 * cycle takes place, e.g. measuredWidht might not hold a correct value before it has been validated. 
+		 * validateNow() will validate the container and it's children instantly.
+		 */		
 		public function validateNow():void {
 			invalidateLayout();
 			validateChildren();
@@ -272,6 +313,7 @@ package com.flow.containers {
 			validate();
 		}
 		
+		/** @private */
 		public function validateChildren():void {
 			if (childrenInvalidated) {
 				childrenInvalidated = false;
@@ -312,6 +354,7 @@ package com.flow.containers {
 			}
 		}
 		
+		/** @private */
 		public function measureChildren():void {
 			for(var i:int=0; i<childContainer.numChildren; i++) {
 				var comp:Component = childContainer.getChildAt(i) as Component;
@@ -330,10 +373,16 @@ package com.flow.containers {
 			measure();
 		}
 		
+		/**
+		 * Measure works differently on an container than on an component, as usually the layout instance takes care
+		 * of measuring it's content, so normally you don't need to override this method when using a container as a
+		 * subclass.
+		 */		
 		override public function measure():void {
 			_layout.measure();
 		}
 		
+		/** The padding of the container's content */
 		public function get padding():Number {
 			return _layout.padding;
 		}
@@ -341,6 +390,7 @@ package com.flow.containers {
 			_layout.padding = value;
 		}
 		
+		/** The vertical padding of the container's content */
 		public function get verticalPadding():Number {
 			return _layout.verticalPadding;
 		}
@@ -348,6 +398,7 @@ package com.flow.containers {
 			_layout.verticalPadding = value;
 		}
 		
+		/** The horizontal padding of the container's content */
 		public function get horizontalPadding():Number {
 			return _layout.horizontalPadding;
 		}
@@ -355,6 +406,7 @@ package com.flow.containers {
 			_layout.horizontalPadding = value;
 		}
 		
+		/** The top padding of the container's children */		
 		public function get paddingTop():Number {
 			return _layout.paddingTop;
 		}
@@ -362,6 +414,7 @@ package com.flow.containers {
 			_layout.paddingTop = value;
 		}
 		
+		/** The right-side padding of the container's children */		
 		public function get paddingRight():Number {
 			return _layout.paddingRight;
 		}
@@ -369,6 +422,7 @@ package com.flow.containers {
 			_layout.paddingRight = value;
 		}
 		
+		/** The bottom padding of the container's children */		
 		public function get paddingBottom():Number {
 			return _layout.paddingBottom;
 		}
@@ -376,6 +430,7 @@ package com.flow.containers {
 			_layout.paddingBottom = value;
 		}
 		
+		/** The left-side padding of the container's children */		
 		public function get paddingLeft():Number {
 			return _layout.paddingLeft;
 		}
