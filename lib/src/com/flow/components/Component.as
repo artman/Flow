@@ -24,6 +24,7 @@ package com.flow.components {
 	
 	import com.flow.components.graphics.fills.IFill;
 	import com.flow.components.graphics.strokes.IStroke;
+	import com.flow.containers.Container;
 	import com.flow.effects.Transition;
 	import com.flow.events.ComponentEvent;
 	import com.flow.events.InvalidationEvent;
@@ -38,7 +39,6 @@ package com.flow.components {
 	
 	import mx.core.IStateClient2;
 	import mx.states.State;
-	import com.flow.containers.Container;
 	
 	[DefaultProperty("background")]
 	[Event(name="stateChange", type="com.flow.events.StateEvent")]
@@ -855,7 +855,9 @@ package com.flow.components {
 		
 		protected function stateChanged(e:StateEvent):void {
 			for(var i:int = 0; i<stateMovieClips.length; i++) {
-				stateMovieClips[i].gotoAndPlay(e.toState);
+				if(stateMovieClips[i].currentLabels.indexOf(e.toState)) {
+					stateMovieClips[i].gotoAndPlay(e.toState);
+				}
 			}
 		}
 		
