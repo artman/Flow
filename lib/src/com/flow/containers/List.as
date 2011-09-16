@@ -23,6 +23,7 @@ package com.flow.containers {
 >>>>>>> Added IFactory, modified List to use IFactory.
 	[Event(name="rendererCreated", type="com.flow.events.ListEvent")]
 	[Event(name="selectionChanged", type="com.flow.events.ListEvent")]
+	[Event(name="itemsCreated", type="com.flow.events.ListEvent")]
 	public class List extends Container {
 		
 		private var _dataProvider:*;
@@ -112,6 +113,7 @@ package com.flow.containers {
 			} else {
 				children.removeAll();
 			}
+			dispatchEvent(new ListEvent(ListEvent.ITEMS_CREATED));
 		}
 		
 		protected function rendererClicked(event:MouseEvent):void {
