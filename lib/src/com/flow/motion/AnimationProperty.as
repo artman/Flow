@@ -22,7 +22,11 @@
 
 package com.flow.motion {
 	import com.flow.effects.utils.ColorRGB;
-
+	
+	/**
+	 * Acts as a wrapper for all animateable properties and makes it possible to animate non-linear values
+	 * such as RGB colors. In addition to linear values, currently only colors are supported.
+	 */	
 	public class AnimationProperty {
 		
 		public var name:String;
