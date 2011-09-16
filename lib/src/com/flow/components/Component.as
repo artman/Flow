@@ -124,7 +124,10 @@ package com.flow.components {
 		protected var _focusElement:InteractiveObject;
 		private var _tabIndex:int = -1;
 		
+		private var _pixelSnapping:Boolean = true;
+		
 		[Bindable] public var data:*;
+		[Bindable] public var rendererIndex:int;
 		
 		[Event(name="creationComplete", type="com.flow.events.ComponentEvent")]
 		public function Component() {
@@ -143,7 +146,7 @@ package com.flow.components {
 			invalidateProperties();
 			focusRect = null;
 		}
-		
+
 		public final function init():void {
 			initialize();
 			dispatchEvent(new ComponentEvent(ComponentEvent.CREATION_COMPLETE));
@@ -548,7 +551,7 @@ package com.flow.components {
 		override public function set x(value:Number):void {
 			if(value != _x) {
 				_x = value;
-				super.x = Math.round(value);
+				super.x = _pixelSnapping ? Math.round(value) : value;
 			}
 		}
 		
@@ -559,7 +562,18 @@ package com.flow.components {
 		override public function set y (value:Number):void {
 			if(value != _y) {
 				_y = value;
-				super.y = Math.round(value);
+				super.y = _pixelSnapping ? Math.round(value) : value;
+			}
+		}
+		
+		public function get pixelSnapping():Boolean {
+			return _pixelSnapping;
+		}
+		public function set pixelSnapping(value:Boolean):void {
+			if(value != _pixelSnapping) {
+				_pixelSnapping = value;
+				x = (--_x) + 1; // force update
+				y = (--_y) + 1;
 			}
 		}
 		
@@ -842,10 +856,10 @@ package com.flow.components {
 		protected function checkState():void {
 			var maxFound:int = -1;
 			for(var i:int = 0; i<statesActive.length; i++) {
-				maxFound = Math.max(states.indexOf(statesActive[i]), maxFound);
+				maxFound = Math.max(_states.indexOf(statesActive[i]), maxFound);
 			}
 			if(maxFound > -1) {
-				currentState = states[maxFound].name;
+				currentState = _states[maxFound].name;
 			}
 		}
 		
@@ -855,9 +869,9 @@ package com.flow.components {
 		}
 		public function set currentState(value:String):void {
 			if(value != _currentState) {
-				for(var i:int = 0; i<states.length; i++) {
-					if(states[i].name == _currentState) {
-						(states[i] as State).remove(this);
+				for(var i:int = 0; i<_states.length; i++) {
+					if(_states[i].name == _currentState) {
+						(_states[i] as State).remove(this);
 					}
 				}
 				

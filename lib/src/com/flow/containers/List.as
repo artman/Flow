@@ -41,7 +41,8 @@ package com.flow.containers {
 			return new VBoxLayout();
 		}
 		
-		public function get dataProviver():* {
+		[Bindable]
+		public function get dataProvider():* {
 			return _dataProvider;
 		}
 		public function set dataProvider(value:*):void {
@@ -59,6 +60,7 @@ package com.flow.containers {
 					}
 				}
 				children.removeAll();
+<<<<<<< HEAD
 				if(_dataProvider is Array || _dataProvider is Vector.<*>) {
 					for(i = 0; i<_dataProvider.length; i++) {
 <<<<<<< HEAD
@@ -67,6 +69,18 @@ package com.flow.containers {
 						var renderer:Component = _itemRenderer.newInstance();
 >>>>>>> Added IFactory, modified List to use IFactory.
 						renderer.data = _dataProvider[i];
+=======
+				var data:* = _dataProvider;
+				if(data is IList) {
+					data = (data as IList).toArray();
+				}
+
+				if(data is Array || data is Vector.<*>) {
+					for(i = 0; i<data.length; i++) {
+						var renderer:Component = _itemRenderer.newInstance();
+						renderer.data = data[i];
+						renderer.rendererIndex = i;
+>>>>>>> Whole set of examples on layout
 						
 						var evt:ListEvent = new ListEvent(ListEvent.RENDERER_CREATED);
 						evt.renderer = renderer;
@@ -75,6 +89,10 @@ package com.flow.containers {
 						renderer.interactive = true;
 						renderer.addEventListener(MouseEvent.CLICK, rendererClicked);
 						children.addItem(renderer);
+					}
+					if(_selectedIndex != -1) {
+						(children.getItemAt(_selectedIndex) as Component).addState("selected");
+						selectedItem = _dataProvider[_selectedIndex];
 					}
 				}
 			} else {
@@ -117,14 +135,16 @@ package com.flow.containers {
 		}
 		public function set selectedIndex(value:int):void {
 			if(value != _selectedIndex) {
-				if(_selectedIndex != -1) {
+				if(_selectedIndex != -1 && !propertiesInvalidated) {
 					(children.getItemAt(_selectedIndex) as Component).removeState("selected");
 				}
 				_selectedIndex = value;
 				if(_dataProvider is Array || _dataProvider is Vector.<*>) {
 					selectedItem = _dataProvider[_selectedIndex];
 				}
-				(children.getItemAt(_selectedIndex) as Component).addState("selected");
+				if(!propertiesInvalidated) {
+					(children.getItemAt(_selectedIndex) as Component).addState("selected");
+				}
 				dispatchEvent(new ListEvent(ListEvent.SELECTION_CHANGED));
 			}
 		}

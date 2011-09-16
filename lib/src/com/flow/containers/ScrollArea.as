@@ -27,6 +27,7 @@ package com.flow.containers {
 	import com.flow.motion.easing.Quadratic;
 	
 	import flash.display.DisplayObject;
+	import flash.events.Event;
 	import flash.geom.Rectangle;
 
 	public class ScrollArea extends Container {
@@ -62,6 +63,7 @@ package com.flow.containers {
 			}
 		}
 		
+		[Bindable]
 		public function get selectedIndex():int {
 			return _selectedIndex;
 		}
@@ -70,6 +72,11 @@ package com.flow.containers {
 				_selectedIndex = value;
 				invalidateProperties();
 			}
+		}
+		
+		[Bindable(event="itemCountChanged")]
+		public function get itemCount():int {
+			return numChildren;
 		}
 		
 		override public function validateProperties():void {
@@ -88,12 +95,17 @@ package com.flow.containers {
 			}
 		}
 		
+		override public function validateChildren():void {
+			super.validateChildren();
+			dispatchEvent(new Event("itemCountChanged"));
+		}
+		
 		public function scrollTo(index:int, speed:Number, tweenParams:Object = null):Tween {
 			validateLayout();
 			_selectedIndex = index;
 			if(numChildren > _selectedIndex) {
 				var content:DisplayObject = getChildAt(selectedIndex);
-				return new Tween(this, speed, {height:content.height, scrollY:content.y}, tweenParams ? tweenParams : {ease:Quadratic.easeInOut});
+				return new Tween(this, speed, {height:content.height, width:content.width, scrollY:content.y}, tweenParams ? tweenParams : {ease:Quadratic.easeInOut});
 			}
 			return null;
 		}

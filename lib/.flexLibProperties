@@ -8,11 +8,13 @@
     <classEntry path="com.adobe.serialization.json.JSONToken"/>
     <classEntry path="com.adobe.serialization.json.JSONTokenType"/>
     <classEntry path="com.adobe.serialization.json.JSONTokenizer"/>
+    <classEntry path="com.flow.collections.ArrayCollection"/>
     <classEntry path="com.flow.collections.DisplayObjectCollection"/>
     <classEntry path="com.flow.collections.IList"/>
     <classEntry path="com.flow.commands.Command"/>
     <classEntry path="com.flow.commands.CommandDispatch"/>
     <classEntry path="com.flow.components.Button"/>
+    <classEntry path="com.flow.components.Checkbox"/>
     <classEntry path="com.flow.components.Component"/>
 <<<<<<< HEAD
 <<<<<<< HEAD

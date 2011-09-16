@@ -43,10 +43,6 @@ package com.flow.components {
 			return _labelDisplay;
 		}
 
-		private function disableClick(e:MouseEvent):void {
-			e.stopImmediatePropagation();
-		}
-		
 		[Bindable]		
 		public function get label():String {
 			return _label;
@@ -65,6 +61,10 @@ package com.flow.components {
 				removeEventListener(MouseEvent.CLICK, disableClick);
 				useHandCursor = true;
 			}
+		}
+		
+		private function disableClick(e:MouseEvent):void {
+			e.stopImmediatePropagation();
 		}
 	}
 }
