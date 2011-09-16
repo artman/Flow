@@ -42,7 +42,7 @@ package com.flow.managers {
 		 */		
 		public static function getClassName(object:Object):String {
 			if(object is String) {
-				return object as String;
+				return (object as String).replace("::", ".");
 			}
 			return getQualifiedClassName(object).replace("::", ".");
 		}

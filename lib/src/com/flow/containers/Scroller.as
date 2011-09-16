@@ -140,21 +140,23 @@ package com.flow.containers {
 		/** @inheritDoc */
 		override public function validateLayout(e:Event=null):void {
 			super.validateLayout(e);
-			vScrollBar.validateNow();
-			hScrollBar.validateNow();
+			if(vScrollBar && hScrollBar) {
+				vScrollBar.validateNow();
+				hScrollBar.validateNow();
 			
-			hScrollBar.visible = measuredWidth > width;
-			vScrollBar.visible = measuredHeight > height;
+				hScrollBar.visible = measuredWidth > width;
+				vScrollBar.visible = measuredHeight > height;
 			
-			hScrollBar.visible = measuredWidth > contentWidth;
-			vScrollBar.visible = measuredHeight > contentHeight;
+				hScrollBar.visible = measuredWidth > contentWidth;
+				vScrollBar.visible = measuredHeight > contentHeight;
 
-			hScrollBar.y = height - hScrollBar.height;
-			hScrollBar.width = contentWidth;
+				hScrollBar.y = height - hScrollBar.height;
+				hScrollBar.width = contentWidth;
 			
-			vScrollBar.x = width - vScrollBar.width;
-			vScrollBar.height = contentHeight;
-			checkScroll();
+				vScrollBar.x = width - vScrollBar.width;
+				vScrollBar.height = contentHeight;
+				checkScroll();
+			}
 		}
 		
 		/** The width of the content */
