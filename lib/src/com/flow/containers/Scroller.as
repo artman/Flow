@@ -24,18 +24,12 @@ package com.flow.containers {
 	
 	import com.flow.components.HScrollBar;
 	import com.flow.components.VScrollBar;
-	import com.flow.containers.layout.LayoutBase;
-	import com.flow.containers.layout.VBoxLayout;
-	import com.flow.motion.Tween;
-	import com.flow.motion.easing.Quadratic;
-	import com.flow.utils.MultiChangeWatcher;
 	
-	import flash.display.DisplayObject;
 	import flash.display.Sprite;
 	import flash.events.Event;
+	import flash.events.KeyboardEvent;
+	import flash.events.MouseEvent;
 	import flash.geom.Rectangle;
-	
-	import mx.binding.utils.ChangeWatcher;
 	
 	public class Scroller extends Container {
 		
@@ -54,8 +48,39 @@ package com.flow.containers {
 			rawAddChild(vScrollBar);
 			vScrollBar.addEventListener(Event.CHANGE, checkScroll);
 			hScrollBar.addEventListener(Event.CHANGE, checkScroll);
+			addEventListener(MouseEvent.MOUSE_WHEEL, wheel);
+			addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
+			mouseEnabled = true;
 		}
 		
+		protected function wheel(event:MouseEvent):void {
+			scrollY -= event.delta;
+		}
+		
+		private function keyDown(e:KeyboardEvent):void {
+			switch (e.keyCode) {
+				case 38: lineUp(); break;
+				case 40: lineDown(); break;
+				case 33: pageUp(); break;
+				case 34: pageDown(); break;
+				
+			}
+		}
+		
+		private function lineUp():void {
+			scrollY -= 20;
+		}
+		
+		private function lineDown():void {
+			scrollY += 20;
+		}
+		
+		private function pageUp():void {
+			scrollY -= contentHeight
+		}
+		private function pageDown():void {
+			scrollY += contentHeight;
+		}
 		protected function checkScroll(event:Event = null):void {
 			if(measuredWidth > contentWidth) {
 				scrollX = (measuredWidth - contentWidth) * hScrollBar.value;
@@ -73,24 +98,24 @@ package com.flow.containers {
 			}
 		}
 		
+		[Bindable]
 		public function get scrollX():Number {
 			return _scrollX;
 		}
 		public function set scrollX(value:Number):void {
-			if(value != _scrollX) {
-				_scrollX = value;
-				invalidate();
-			}
+			_scrollX = value;
+			hScrollBar.value = scrollX / (measuredWidth - contentWidth);
+			invalidate();
 		}
 		
+		[Bindable]
 		public function get scrollY():Number {
 			return _scrollY;
 		}
 		public function set scrollY(value:Number):void {
-			if(value != _scrollY) {
-				_scrollY = value;
-				invalidate();
-			}
+			_scrollY = value;
+			vScrollBar.value = _scrollY / (measuredHeight - contentHeight);
+			invalidate();
 		}
 		
 		override public function validateProperties():void {
