@@ -37,8 +37,9 @@ package com.flow.effects.transitions {
 		private var firstShow:Boolean = true;
 		private var _active:Boolean = false;
 		
-		public function FadeTransition(speed:Number = 0.3) {
+		public function FadeTransition(speed:Number = 0.3, speedOut:Number = 0) {
 			this.speed = speed;
+			this.speedOut = speedOut;
 		}
 		
 		public final function get target():Component {
