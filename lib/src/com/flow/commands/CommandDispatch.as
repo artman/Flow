@@ -28,7 +28,15 @@ package com.flow.commands {
 	import flash.utils.getQualifiedClassName;
 
 	/**
-	 * A singleton class that enabels you to be notified whenever commands are called or completed.
+	 * A singleton class that enabels you to be notified whenever commands are called or completed. In Flow, commands are implemented
+	 * in a different way than in other MVC frameworks. Flow's command architecture is designed to minimize boiler-plate code or the
+	 * number of edits required to implement a new command.
+	 * 
+	 * Flow's CommandDispatch does not need to be subclassed or edited when adding new Commands. You're notified when commands are executed
+	 * or when they complete by registering a listener with the CommandDispatcher by passing in a Class reference. Your listener will be
+	 * called whenever a instance of that class is run or has completed.
+	 * 
+	 * @see Command
  	 */
 	public class CommandDispatch extends EventDispatcher {
 		
@@ -67,8 +75,8 @@ package com.flow.commands {
 		}
 		
 		/**
-		 * Adds a listener that is called whenever a command of a specific type is instantiated. 
-		 * @param The class of the command of whose execution you want to be notified.
+		 * Adds a listener that is called whenever a command of a specific type is about to be executed. 
+		 * @param A reference to a command class. Instances of this class will fire the listener when they are about to be executed.
 		 * @param The function to call whenever the command is executed.
 		 * @param Whether to use capture or not.
 		 * @param The priority of the event handler.
@@ -79,8 +87,8 @@ package com.flow.commands {
 		}
 		
 		/**
-		 * Removes a previously added listener. 
-		 * @param The class of the command you no longer want to receive events from.
+		 * Removes a execute listener. 
+		 * @param The class of the command from which instances you no longer want to receive events from.
 		 * @param The listener function to remove.
 		 * @param Whether to use capture or not.
 		 */	
@@ -91,7 +99,7 @@ package com.flow.commands {
 		/**
 		 * Adds a listener that is called whenever a command of a specific type has been executed. This is called one frame
 		 * after the command has been instantiated. 
-		 * @param The class of the command of whose execution you want to be notified.
+		 * @param A reference to a command class. Instances of this class will fire the listener when they have been executed.
 		 * @param The function to call whenever the command has been executed.
 		 * @param Whether to use capture or not.
 		 * @param The priority of the event handler.
@@ -102,8 +110,8 @@ package com.flow.commands {
 		}
 		
 		/**
-		 * Removes a previously added listener. 
-		 * @param The class of the command you no longer want to receive events from.
+		 * Removes a executed listener. 
+		 * @param The class of the command of which instances you no longer want to receive events from.
 		 * @param The listener function to remove.
 		 * @param Whether to use capture or not.
 		 */	
@@ -112,9 +120,10 @@ package com.flow.commands {
 		}
 		
 		/**
-		 * Adds a listener that is called whenever a command of a specific type has completed successfully. Only commands that don't complete instantly
-		 * (e.g. RPC's or timed commands) dispatch a complete-event. 
-		 * @param The class of the command of whose completion you want to be notified.
+		 * Adds a listener that is called whenever a command of a specific type has completed fully. Only commands that don't complete instantly
+		 * (e.g. RPC's or timed commands) dispatch a complete-event. Note that it is up to the developer of a command whether it supports the
+		 * complete event. Compatible events need to call the complete-method of the command at some point of it's lifetime.
+		 * @param A reference to a command class. Instances of this class will fire the listener when they have completed execution.
 		 * @param The function to call whenever the command has completed.
 		 * @param Whether to use capture or not.
 		 * @param The priority of the event handler.
@@ -125,7 +134,7 @@ package com.flow.commands {
 		}
 		
 		/**
-		 * Removes a previously added listener. 
+		 * Removes a complete listener. 
 		 * @param The class of the command you no longer want to receive events from.
 		 * @param The listener function to remove.
 		 * @param Whether to use capture or not.

@@ -41,7 +41,6 @@ package com.flow.collections {
 		/**
 		 * Constructor 
 		 * @param A vector of DisplayObjects used to initialize the collection.
-		 * 
 		 */		
 		public function DisplayObjectCollection(source:Vector.<DisplayObject> = null) {
 			super();

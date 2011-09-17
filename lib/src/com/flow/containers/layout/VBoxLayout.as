@@ -27,10 +27,10 @@ package com.flow.containers.layout {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	
+	/**
+	 * A layout that positions children below each other, from top to bottom, taking into consideration their appropriate height. 
+	 */	
 	public class VBoxLayout extends AbsoluteLayout {
-		
-		public function VBoxLayout() {
-		}
 		
 		private var _spacing:Number = 0;
 		private var _horizontalAlign:String = "left";
@@ -38,6 +38,15 @@ package com.flow.containers.layout {
 		private var _zSort:String = "normal";
 		private var _inverted:Boolean = false;
 		
+		/**
+		 * Constructor 
+		 */		
+		public function VBoxLayout() {
+		}
+		
+		/**
+		 * The spacing to apply between each child in pixels.
+		 */	
 		public function get spacing():Number {
 			return _spacing;
 		}
@@ -48,6 +57,10 @@ package com.flow.containers.layout {
 			}
 		}
 		
+		/**
+		 * Defines how children are aligned horizontally. Possible values are left, center, right and none. Of these "none" does not try to change
+		 * the horizontal position of each child. Instead, the horizontal position is computed according to the position parameters of each child.
+		 */	
 		[Inspectable(enumeration="left,center,right,none", defaultValue="center")]
 		public function get horizontalAlign():String {
 			return _horizontalAlign;
@@ -59,6 +72,10 @@ package com.flow.containers.layout {
 			}
 		}
 		
+		/**
+		 * Defines how children are aligned vertically. Possible values are top, middle, bottom. This only has an effect if the parent container is larger (or smaller)
+		 * than the combined height of it's children. 
+		 */	
 		[Inspectable(enumeration="top,middle,bottom", defaultValue="top")]
 		public function get verticalAlign():String {
 			return _verticalAlign;
@@ -70,16 +87,9 @@ package com.flow.containers.layout {
 			}
 		}
 		
-		public function get inverted():Boolean {
-			return _inverted;
-		}
-		public function set inverted(value:Boolean):void {
-			if(value != inverted) {
-				_inverted = value;
-				invalidate();
-			}
-		}
-		
+		/**
+		 * Whether the draw-order of all children should be "inverted" or "normal" (default). 
+		 */
 		[Inspectable(enumeration="normal,inverted", defaultValue="normal")]
 		public function get zSort():String {
 			return _zSort;
@@ -94,6 +104,21 @@ package com.flow.containers.layout {
 			}
 		}
 		
+		/**
+		 * Whether the children should be drawn in an inverted order or not. Leaving this at false will draw items from top to bottom,
+		 * applying true will make the draw from bottom to top. 
+		 */	
+		public function get inverted():Boolean {
+			return _inverted;
+		}
+		public function set inverted(value:Boolean):void {
+			if(value != inverted) {
+				_inverted = value;
+				invalidate();
+			}
+		}
+		
+		/** @private */ 
 		override public function childrenChanged():void {
 			if(_zSort == "inverted") {
 				flipChildIndexes();
@@ -107,6 +132,7 @@ package com.flow.containers.layout {
 			}
 		}
 		
+		/** @private */
 		override public function layoutChildren(offsetX:Number, offsetY:Number, w:Number, h:Number):void {
 			super.layoutChildren(offsetX, offsetY, w, h);
 			var container:DisplayObjectContainer = _target.childContainer;
@@ -146,6 +172,7 @@ package com.flow.containers.layout {
 			}
 		}
 		
+		/** @private */
 		override public function measureChildren():void {
 			var container:DisplayObjectContainer = _target.childContainer;
 			var maxW:Number = 0;
