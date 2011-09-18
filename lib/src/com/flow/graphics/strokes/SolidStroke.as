@@ -43,7 +43,9 @@ package com.flow.graphics.strokes {
 		}
 		
 		/**
-		 * The alpha of the stroke .
+		 * The alpha of the stroke.
+		 * 
+		 * This property is animateable.
 		 */		
 		[Animateable]
 		public function get alpha():Number {
@@ -57,7 +59,9 @@ package com.flow.graphics.strokes {
 		}
 		
 		/**
-		 * The color of the stroke. 
+		 * The color of the stroke.
+		 * 
+		 * This property is animateable.
 		 */		
 		[Animateable(type="color")]
 		public function get color():int {

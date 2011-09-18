@@ -31,26 +31,43 @@ package com.flow.containers {
 	import flash.display.DisplayObject;
 	import flash.events.Event;
 	import flash.geom.Rectangle;
-
+		
+	/**
+	 * A container that can be used to scroll through it's children. Changing the selectedIndex property will have the ScrollArea smoothly
+	 * scroll it's content to show the component at the selected index. In addition to scrolling, the ScrollArea will also change it's size to
+	 * accomodate the component at the selected index.
+	 */	
 	public class ScrollArea extends Container {
 		
 		private var _scrollX:Number = 0;
 		private var _scrollY:Number = 0;
 		private var _selectedIndex:Number = 0;
+		
+		/**
+		 * The speed to use when scrolling to a new item. 
+		 */		
 		public var scrollSpeed:Number = 0.5;
 		private var firstValidation:Boolean = true;
 		private var sizeWatcher:MultiChangeWatcher;
 		
+		/**
+		 * Constructor.
+		 */		
 		public function ScrollArea() {
 			super();
 		}
 		
+		/** @private */
 		override protected function getDefaultLayout():LayoutBase {
 			var ret:VBoxLayout = new VBoxLayout();
 			ret.horizontalAlign = "center";
 			return ret;
 		}
 		
+		/**
+		 * The number of pixels scrolled horizontally. Normaly you wouldn't set this property directly, but would set the selectedIndex
+		 * property to have the ScrollArea show a specific child.
+		 */		
 		public function get scrollX():Number {
 			return _scrollX;
 		}
@@ -61,6 +78,10 @@ package com.flow.containers {
 			}
 		}
 		
+		/**
+		 * The number of pixels scrolled vertically. Normaly you wouldn't set this property directly, but would set the selectedIndex
+		 * property to have the ScrollArea show a specific child.
+		 */		
 		public function get scrollY():Number {
 			return _scrollY;
 		}
@@ -72,6 +93,10 @@ package com.flow.containers {
 		}
 		
 		[Bindable]
+		/**
+		 * The childs index to show. Setting this property will make the ScrollArea pan to that child and smoothly adjust it's size
+		 * to accomodate the child.
+		 */		
 		public function get selectedIndex():int {
 			return _selectedIndex;
 		}
@@ -82,11 +107,13 @@ package com.flow.containers {
 			}
 		}
 		
+		/** @private */  
 		[Bindable(event="itemCountChanged")]
 		public function get itemCount():int {
 			return numChildren;
 		}
 		
+		/** @private */
 		override public function validateProperties():void {
 			super.validateProperties();
 			if(firstValidation) {
@@ -97,6 +124,7 @@ package com.flow.containers {
 			}
 		} 
 		
+		/** @private */
 		override public function set measuredHeight(value:Number):void {
 			if(measuredHeight != value) {
 				super.measuredHeight = value;
@@ -104,11 +132,20 @@ package com.flow.containers {
 			}
 		}
 		
+		/** @private */
 		override public function validateChildren():void {
 			super.validateChildren();
 			dispatchEvent(new Event("itemCountChanged"));
 		}
 		
+		/**
+		 * Instead of seting the selectedIndex-property you can call the scrollTo method. This is usefull if you want to scroll
+		 * to an item with a custom speed or tween parameters. 
+		 * @param The child index to scroll to.
+		 * @param The speed of the pan in seconds.
+		 * @param Any tween paramters to be assigned to the Tween.
+		 * @return The Tween instance responsible for the pan and size change. 
+		 */		
 		public function scrollTo(index:int, speed:Number, tweenParams:Object = null):Tween {
 			validateLayout();
 			_selectedIndex = index;
@@ -129,6 +166,7 @@ package com.flow.containers {
 			height = content.height;
 		}
 		
+		/** @private */
 		override protected function applyMask(width:Number, height:Number):void {
 			var inset:int = 0;
 			if(_stroke) {

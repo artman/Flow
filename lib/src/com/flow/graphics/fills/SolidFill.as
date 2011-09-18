@@ -28,15 +28,26 @@ package com.flow.graphics.fills {
 	import flash.events.EventDispatcher;
 	
 	[Event(name="invalidate", type="com.flow.events.InvalidationEvent")]
+	/**
+	 * A solid color fill. 
+	 */	
 	public class SolidFill extends EventDispatcher implements IFill {
 		
 		private var _alpha:Number = 1;
 		private var _color:uint = 0x000000;
 		
+		/**
+		 * Constructor 
+		 */		
 		public function SolidFill() {
 		}
 		
 		[Animateable]
+		/**
+		 * The alpha value of the fill.
+		 * 
+		 * This property is animateable. 
+		 */		
 		public function get alpha():Number {
 			return _alpha;
 		}
@@ -48,6 +59,11 @@ package com.flow.graphics.fills {
 		}
 		
 		[Animateable(type="color")]
+		/**
+		 * The color of the fill.
+		 * 
+		 * This property is animateable. 
+		 */		
 		public function get color():Number {
 			return _color;
 		}
@@ -58,10 +74,12 @@ package com.flow.graphics.fills {
 			}
 		}
 		
+		/** @private */
 		public function beginDraw(graphics:Graphics, width:int, height:int):void {
 			graphics.beginFill(_color, _alpha);
 		}
 		
+		/** @private */ 
 		public function endDraw(graphics:Graphics):void  {
 			graphics.endFill();
 		}

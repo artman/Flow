@@ -65,7 +65,9 @@ package com.flow.graphics.strokes {
 		}
 		
 		/**
-		 * A Vector of GradientData defining the colors, alphas and ratios for the gradient 
+		 * A Vector of GradientData defining the colors, alphas and ratios for the gradient.
+		 * 
+		 * The properties of the GradientData elements are animateable.
 		 */		
 		[AnimateableChild]
 		public function get colors():Vector.<GradientData> {
@@ -99,7 +101,9 @@ package com.flow.graphics.strokes {
 		}
 		
 		/**
-		 * The rotation of the gradient. 
+		 * The rotation of the gradient.
+		 * 
+		 * This property is animateable.
 		 */		
 		[Animateable]
 		public function get rotation():Number {

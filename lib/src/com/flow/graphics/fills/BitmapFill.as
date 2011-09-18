@@ -73,7 +73,10 @@ package com.flow.graphics.fills {
 		
 		/**
 		 * The number of pixels to offset the bitmap horizontally when filling.
-		 */		
+		 * 
+		 * This property is animateable.
+		 */	
+		[Animateable]
 		public function get xOffset():Number {
 			return _xOffset;
 		}
@@ -85,8 +88,11 @@ package com.flow.graphics.fills {
 		}
 		
 		/**
-		 * The number of pixels to offset the bitmap vertically when filling. 
-		 */		
+		 * The number of pixels to offset the bitmap vertically when filling.
+		 * 
+		 * This property is animateable. 
+		 */
+		[Animateable]
 		public function get yOffset():Number {
 			return _yOffset;
 		}

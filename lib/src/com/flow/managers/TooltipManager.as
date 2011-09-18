@@ -29,29 +29,49 @@ package com.flow.managers {
 	import flash.display.DisplayObject;
 	import flash.display.DisplayObjectContainer;
 	import flash.events.MouseEvent;
-
+	
+	/**
+	 * A singleton class to manage the display of tooltips. You usually don't call any methods of the TooltipManager directly. Instead,
+	 * you set the tooltip-propert of a Component to the text you whish to display, and the Component will take care of creating and
+	 * destroying the tooltip.
+	 */	
 	public class TooltipManager {
 		
+		/**
+		 * The singleton instance. 
+		 */		
 		public static var instance:TooltipManager = new TooltipManager();
 		
+		/**
+		 * The class to use for all tooltips. 
+		 */		
 		public var defaultTooltip:Class;
 		private var activeTip:DisplayObject;
 		private var root:DisplayObjectContainer;
 		
+		/**
+		 * Constructor. As this is a singleton instance, you don't instantiate it directly. 
+		 */		
 		public function TooltipManager() {
 			defaultTooltip = DefaultTooltip;
 		}
 		
+		/** @private */ 
 		public function setRoot(container:DisplayObjectContainer):void {
 			root = container;
 			root.mouseEnabled = false;
 			root.mouseChildren = false;
 		}
 		
+		/**
+		 * Creates a tooltip for a component. This method is called automatically by any component that has the tooltip-property set. 
+		 * @param The component whose tooltip to display.
+		 */		
 		public function showTooltip(from:Component):void {
 			showTooltipWithText(from.tooltip);
 		}
 		
+		/** @private */  
 		public function showTooltipWithText(text:String):void {
 			if(activeTip) {
 				hideTooltip();
@@ -63,6 +83,9 @@ package com.flow.managers {
 			mouseMove()
 		}
 
+		/**
+		 * Hides a tooltip. This method is called automatically by all components when the mouse leaves it's bounding box. 
+		 */		
 		public function hideTooltip(from:Component = null):void {
 			if(activeTip) {
 				while(root.numChildren) {
