@@ -33,24 +33,25 @@ package com.flow.collections {
 		
 		private var _source:Array;
 		
-		public function ArrayCollection(source:Array = null) {
+		public function ArrayCollection(source:* = null) {
 			super();
-			if (!source) {
-				_source = [];
-			} else {
-				_source = source;
-			}
+			this.source = source;
 		}
 		
 		/**
-		 * The source of the collection 
+		 * The source of the collection. Value can be eithern an array or Vector.
 		 */		
 		public function get source():Array {
 			return _source; 
 		}
-		public function set source(value:Array):void {
+		public function set source(value:*):void {
 			if(value != _source) {
-				_source = value;
+				_source = [];
+				if (value) {
+					for each(var element:* in value) {
+						_source.push(element);
+					}
+				}
 				var event:CollectionEvent = new CollectionEvent(CollectionEvent.COLLECTION_CHANGE, false, false, CollectionEventKind.RESET, -1, -1);
 				dispatchEvent(event);
 			}

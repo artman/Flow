@@ -11,6 +11,7 @@
     <classEntry path="com.flow.collections.ArrayCollection"/>
     <classEntry path="com.flow.collections.DisplayObjectCollection"/>
     <classEntry path="com.flow.collections.IList"/>
+    <classEntry path="com.flow.collections.Sorter"/>
     <classEntry path="com.flow.commands.Command"/>
     <classEntry path="com.flow.commands.CommandDispatch"/>
     <classEntry path="com.flow.components.Alert"/>
@@ -83,6 +84,7 @@
     <classEntry path="com.flow.events.ComponentEvent"/>
     <classEntry path="com.flow.events.InvalidationEvent"/>
     <classEntry path="com.flow.events.ListEvent"/>
+    <classEntry path="com.flow.events.SorterEvent"/>
     <classEntry path="com.flow.events.StateEvent"/>
     <classEntry path="com.flow.events.WebCamEvent"/>
     <classEntry path="com.flow.graphics.Geometry"/>

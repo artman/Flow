@@ -29,6 +29,15 @@ package com.flow.effects {
 	import flash.events.Event;
 	import flash.events.EventDispatcher;
 	
+	/**
+	 * The Effect class is used as a base-class for all kinds of visual effects and used extensively by Flow. An Effect is a visual
+	 * transformation of a DisplayObject. In Flow, each effect can be animated in and out. This happend by changing the value-property
+	 * of an Effect. A value of 0 means that the Effect shall not transform the DisplayObject at all, a value of 1 means that the 
+	 * Effect is applied fully.
+	 * 
+	 * For example, a mask Effect with a value of 1 applied to a DisplayObject should make the DisplayObject invisible. A value of 0 would
+	 * fully show the DisplayObject and a value of 0.5 should mask half of the DisplayObject.
+	 */	
 	[DefaultProperty("children")]
 	public class Effect extends EventDispatcher{
 		
@@ -38,11 +47,17 @@ package com.flow.effects {
 		private var assignedFilters:Array = [];
 		private var _alpha:Number;
 		private var _followTargetAlpha:Boolean;
+		
+		/** @private */  
 		public var parent:Effect = null;
 		private var _composition:String = EffectComposition.SHARE_VALUE;
 		public var invalidated:Boolean = false;
 		private var propertiesInvalidated:Boolean;
 		
+		/**
+		 * Constructor. Creates the Effect and optionally sets it's target DisplayObject. 
+		 * @param The target of the effect.
+		 */		
 		public function Effect(target:DisplayObject = null){
 			_children = new Vector.<Effect>();
 			this.target = target;
@@ -51,6 +66,9 @@ package com.flow.effects {
 			propertiesInvalidated = true;
 		}
 		
+		/**
+		 * The target of the Effect. Changing this porperty will make the Effect apply its visual transformation to a new object.
+		 */		
 		public function get target():DisplayObject {
 			return _target;
 		}
@@ -74,6 +92,10 @@ package com.flow.effects {
 			}
 		}
 		
+		/**
+		 * Effect can be chained. Setting the children-property will add the passed Effect instances as children to the parent Effect.
+		 * The childrens target will be assigned to all it's children. 
+		 */		
 		[ArrayElementType("com.flow.effects.Effect")]
 		public function get children():Vector.<Effect> {
 			return _children;
@@ -86,6 +108,12 @@ package com.flow.effects {
 			invalidate();
 		}
 		
+		/**
+		 * Adds an Effect instance as a child to the parent Effect. The parent will assign it's target to the child instance. 
+		 * @param The effect to add.
+		 * @param How this effect should be compositioned.
+		 * @see #composition
+		 */		
 		public function addChild(effect:Effect, composition:String = "shareValue"):void {
 			effect.parent = this;
 			effect.composition = composition;
@@ -98,10 +126,15 @@ package com.flow.effects {
 			dispose();
 		}
 		
+		/**
+		 * Setting this to true will interlock the target's alpha value with the value of the effect. When the target's alpha is 0, the value of the
+		 * effect will be set to 1. When the target's alpha is 1, the value of the effect is set to 0.
+		 * 
+		 * Many effects work extremely well in conjunction with fading DisplayObjects in.
+		 */		
 		public function get followTargetAlpha():Boolean{
 			return _followTargetAlpha;
 		}
-		
 		public function set followTargetAlpha(value:Boolean):void {
 			_followTargetAlpha = value;
 			if(value) {
@@ -118,6 +151,9 @@ package com.flow.effects {
 			}
 		}
 		
+		/**
+		 * The value of the effect. 1 means that the effect is applied fully and 0 means that it's not applied at all.
+		 */		
 		public function get value():Number{
 			return _value;
 		}
@@ -125,7 +161,8 @@ package com.flow.effects {
 			_value = val;
 			invalidate();
 		}
-
+		
+		/** @private */
 		public function get targetAlpha():Number {
 			return _alpha;
 		}
@@ -137,10 +174,19 @@ package com.flow.effects {
 			value = 1-val;
 		}
 		
+		/**
+		 * The composition of the effect in regards to it's parent.
+		 * 
+		 * EffectComposition.SHARE_VALUE will make the interlock the child's value-property
+		 * with the parent's value-property. If you modify the value of the parent, the child will render with the same value.
+		 * 
+		 * EffectComposition.MULTIPLY will mutliply the child's value with the parent's value.
+		 * 
+		 * EffectComposition.INDEPENDENT will make the child's value independent from the parent's value.
+		 */		
 		public function get composition():String {
 			return _composition;
 		}
-		
 		public function set composition(value:String):void {
 			if(value != _composition) {
 				_composition = value;
@@ -150,6 +196,11 @@ package com.flow.effects {
 			}
 		}
 		
+		/**
+		 * Subclasses should call invalidateProperties whenever they request their properties be validated through a call to
+		 * validateProperties. Whenever properties are changed, the Effect should not immediately run through code that re-creates
+		 * the Effect. Instead it should deffer its validation to the next event loop through a call to this method.
+		 */		 
 		protected function invalidateProperties():void {
 			if(!propertiesInvalidated) {
 				propertiesInvalidated = true;
@@ -157,10 +208,17 @@ package com.flow.effects {
 			}
 		}
 		
+		/**
+		 * This method is called whenever an Effect as requested that it's properties be validated.
+		 */		
 		protected function validateProperties():void {
 			// Override
 		}
 		
+		/**
+		 * Whenever invalidate is called, the LayoutManager will make sure to call validate on the Effect instance in the next event loop. You should
+		 * call the invalidate-method in subclasses whenever a property changes that requires the effect to be re-rendered.
+		 */		
 		protected function invalidate():void {
 			if(!invalidated && _target) {
 				LayoutManager.instance.invalidateEffect(this);
@@ -168,6 +226,7 @@ package com.flow.effects {
 			}
 		}
 		
+		/** @private */
 		public function validate(evt:Event = null):void {
 			if(parent) {
 				parent.validate(evt);
@@ -204,26 +263,58 @@ package com.flow.effects {
 			return null;
 		}
 		
-		protected function render(val:Number):Array{
+		/**
+		 * Render is called whenever the Effect needs to apply it's visual transformation to the target. 
+		 * @param The value to render with. You should not rely on the value-property of the Effect, as the Effect might be chained to a parent.
+		 * @return An array of Filters that the Effect wants to have applied to the target. This is required as Effects might be chained and
+		 * there might be other Effects that want to add Filters to the DisplayObject. In case the Effect doesn't use filters, you should apply
+		 * any visual changes to the target object directly.
+		 */		
+		protected function render(val:Number):Array {
 			return new Array();
 		}
 		
+		/**
+		 * Fades the target in and inversly applies the effect. 
+		 * @param The speed in seconds of the fade
+		 * @param Any parameters to pass to the Tween as options
+		 * @return The Tween instance that'll take care of fading the target.
+		 */		
 		public function fadeTargetIn(speed:Number, params:Object = null):Tween {
 			return new Tween(this, speed, {targetAlpha:1}, params); 
 		}
 		
+		/**
+		 * Fades the target out and inversly applies the effect. 
+		 * @param The speed in seconds of the fade
+		 * @param Any parameters to pass to the Tween as options
+		 * @return The Tween instance that'll take care of fading the target.
+		 */	
 		public function fadeTargetOut(speed:Number, params:Object = null):Tween{
 			return new Tween(this, speed, {targetAlpha:0}, params); 
 		}
 
+		/**
+		 * Animates the effect in, i.e. animates value to 1. 
+		 * @param The speed in seconds of the animation
+		 * @param Any parameters to pass to the Tween as options
+		 * @return The Tween instance that'll take care of animating the value-property.
+		 */	
 		public function animateIn(speed:Number, params:Object = null):Tween {
 			return new Tween(this, speed, {value:1}, params); 
 		}
 
+		/**
+		 * Animates the effect out, i.e. animates value to 0. 
+		 * @param The speed in seconds of the animation
+		 * @param Any parameters to pass to the Tween as options
+		 * @return The Tween instance that'll take care of animating the value-property.
+		 */	
 		public function animateOut(speed:Number, params:Object = null):Tween {
 			return new Tween(this, speed, {value:0}, params); 
 		}
-	
+		
+		/** @private */  	
 		public function dispose():void {
 			_target.filters = assignedFilters;
 		}	
