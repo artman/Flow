@@ -23,6 +23,7 @@ package com.flow.containers {
 	public class List extends Container {
 		
 		private var _dataProvider:IList;
+		private var _orgDataProvider:*;
 		private var _itemRenderer:IFactory;
 		private var _selectedIndex:int = -1;
 		private var _selectedItem:Object;
@@ -46,9 +47,10 @@ package com.flow.containers {
 		 * immediately. Any selection will also be lost.
 		 */		
 		public function get dataProvider():* {
-			return _dataProvider;
+			return _orgDataProvider;
 		}
 		public function set dataProvider(value:*):void {
+			_orgDataProvider = value;
 			if(_dataProvider) {
 				_dataProvider.removeEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChanged);
 				selectedIndex = -1;
@@ -107,7 +109,7 @@ package com.flow.containers {
 					if(renderer) {
 						renderer.addState("selected");
 					}
-					selectedItem = (_dataProvider as IList).getItemAt(_selectedIndex);
+					selectedItem = _dataProvider.getItemAt(_selectedIndex);
 				}
 			} else {
 				removeItemRenderers();
@@ -146,7 +148,7 @@ package com.flow.containers {
 				(children.getItemAt(_selectedIndex) as Component).removeState("selected");
 			}
 			_selectedIndex = value;
-			if(_selectedIndex != -1) {
+			if(_selectedIndex != -1 && sortedDataProvider) {
 				selectedItem = sortedDataProvider.getItemAt(_selectedIndex);
 				if(!propertiesInvalidated) {
 					(children.getItemAt(_selectedIndex) as Component).addState("selected");
@@ -165,7 +167,6 @@ package com.flow.containers {
 			}
 		}
 		
-		
 		[Bindable]
 		/**
 		 * The data at the row defined by the selectedIndex. 
@@ -179,7 +180,7 @@ package com.flow.containers {
 
 		/**
 		 * Assign a Sorter instance to enable sorting of the data prior to display. 
-		 * @see Sorter  
+		 * @see com.flow.collections.Sorter  
 		 */		
 		public function get sorter():Sorter {
 			return _sorter;
@@ -199,7 +200,6 @@ package com.flow.containers {
 		}
 		
 		private function sortingChanged(e:SorterEvent):void {
-			trace("Invalidated sorter");
 			invalidateProperties();
 		}
 	}

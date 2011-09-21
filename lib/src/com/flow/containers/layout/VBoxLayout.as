@@ -60,6 +60,7 @@ package com.flow.containers.layout {
 		/**
 		 * Defines how children are aligned horizontally. Possible values are left, center, right and none. Of these "none" does not try to change
 		 * the horizontal position of each child. Instead, the horizontal position is computed according to the position parameters of each child.
+		 * @default AlignType.CENTER
 		 */	
 		[Inspectable(enumeration="left,center,right,none", defaultValue="center")]
 		public function get horizontalAlign():String {
@@ -75,6 +76,7 @@ package com.flow.containers.layout {
 		/**
 		 * Defines how children are aligned vertically. Possible values are top, middle, bottom. This only has an effect if the parent container is larger (or smaller)
 		 * than the combined height of it's children. 
+		 * @default AlignType.TOP
 		 */	
 		[Inspectable(enumeration="top,middle,bottom", defaultValue="top")]
 		public function get verticalAlign():String {
