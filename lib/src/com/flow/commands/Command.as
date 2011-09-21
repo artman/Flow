@@ -36,7 +36,7 @@ package com.flow.commands {
 	 * implementations and has only a few draw-backs (e.g. chaining commands is a bit more tedious).
 	 * 
 	 * Commands that don't terminate instantly in the constuctor (e.g RPC reliant commands) should call the complete-method once they've
-	 * completed their work in order for completion-notifications to be send out correctly.
+	 * completed their work in order for completion-notifications to be send out correctly.
 	 * 
 	 * If any component needs to be notified whenever a specific command is run or has finished, you use the CommandDispatch singleton.
 	 * 

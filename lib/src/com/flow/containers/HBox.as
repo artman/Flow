@@ -52,7 +52,11 @@ package com.flow.containers {
 			(_layout as HBoxLayout).spacing = value;
 		}
 		
-		/** How items in this container are vertically alligned. The value can be top (default), middle, bottom or none.  */	
+		/** 
+		 * How items in this container are vertically alligned. The value can be AlignType.ALIGN_TOP, AlignType.ALIGN_MIDDLE, AlignType.ALIGN_BOTTOM or AlignType.ALIGN_NONE. 
+		 * @default AlignType.ALIGN_TOP
+		 * @see com.flow.containers.layout.AlignType
+		 */	
 		[Inspectable(enumeration="top,middle,bottom,none", defaultValue="top")]
 		public function get verticalAlign():String {
 			return (_layout as HBoxLayout).verticalAlign;
@@ -61,7 +65,11 @@ package com.flow.containers {
 			(_layout as HBoxLayout).verticalAlign = value;
 		}
 		
-		/** How items in this container are horizontally aligned. The value can be left (default), center or right. */		
+		/** 
+		 * How items in this container are horizontally aligned. The value can be AlignType.ALIGN_LEFT, AlignType.ALING_CENTER or AlignType.ALING_RIGHT. 
+		 * @default AlignType.ALIGN_LEFT
+		 * @see com.flow.containers.layout.AlignType
+		 */	
 		[Inspectable(enumeration="left,center,right", defaultValue="left")]
 		public function get horizontalAlign():String {
 			return (_layout as HBoxLayout).horizontalAlign;
@@ -70,7 +78,10 @@ package com.flow.containers {
 			(_layout as HBoxLayout).horizontalAlign = value;
 		}
 		
-		/** How to z-sort the items within this container. The value can be normal (default) or inverted. */
+		/** 
+		 * How to z-sort the items within this container. The value can be "normal" or "inverted". 
+		 * @default "normal"
+		 */
 		[Inspectable(enumeration="normal,inverted", defaultValue="normal")]
 		public function get zSort():String {
 			return (_layout as HBoxLayout).zSort;
