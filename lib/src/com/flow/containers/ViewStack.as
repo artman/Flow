@@ -61,7 +61,7 @@ package com.flow.containers {
 		}
 		
 		/**
-		 * The current visible view.
+		 * The current visible view. You may also set this to a child of the ViewStack.
 		 */		
 		[Bindable]
 		public function get selectedView():DisplayObject {
