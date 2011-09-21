@@ -33,11 +33,19 @@ package com.flow.containers.layout {
 	import flash.net.getClassByAlias;
 	import flash.utils.getDefinitionByName;
 	
+	/**
+	 * A basic layout method where each child's location and dimensions are computed independently. Children may use
+	 * percentages for position and dimensions and are layed out according to any constraints (top, right, etc...).
+	 */	
 	public class AbsoluteLayout extends LayoutBase {
 		
+		/**
+		 * Constructor 
+		 */		
 		public function AbsoluteLayout() {
 		}
 		
+		/* @private */
 		override public function layoutChildren(offsetX:Number, offsetY:Number, w:Number, h:Number):void {
 			var container:DisplayObjectContainer = _target.childContainer;
 			

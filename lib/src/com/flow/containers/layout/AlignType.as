@@ -21,10 +21,14 @@
  */
 
 package com.flow.containers.layout {
+	
+	/**
+	 * A collection of static variables used to describe how layouts should align it's children. 
+	 */	
 	public class AlignType {
 		
 		public static const ALIGN_TOP:String = "top";
-		public static const ALIGN_MIDDLE:String = "middle";
+		public static const ALIGN_MIDDLE:String = "middle";	
 		public static const ALIGN_BOTTOM:String = "bottom";
 		public static const ALIGN_NONE:String = "none";
 		public static const ALIGN_LEFT:String = "left";

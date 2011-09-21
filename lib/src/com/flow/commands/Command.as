@@ -30,10 +30,17 @@ package com.flow.commands {
 	[Event(name="complete", type="com.flow.events.CommandEvent")]
 	[Event(name="error", type="com.flow.events.CommandEvent")]
 	/**
-	 * The super-class for all commands. Flow defines a simple MVC model to separate visual representation from data and commands.
-	 * In Flow, there is no central controller that acts as the glue between user triggered events and commands. Instead, whenever
-	 * you need to call a command, you intantiate the command class directly. If any component needs to be notified whenever a 
-	 * specific command is run or has finished, you use the CommandDispatch singleton.
+	 * The base-class for all commands in an Flow application. Flow defines a simple MVC model to separate visual representation from data and 
+	 * commands. In Flow, there is no command controller that acts as the glue between user triggered events and commands. Instead, whenever
+	 * you need to call a command, you intantiate the command class directly. This requires far less boiler-plate code than other MVC
+	 * implementations and has only a few draw-backs (e.g. chaining commands is a bit more tedious).
+	 * 
+	 * Commands that don't terminate instantly in the constuctor (e.g RPC reliant commands) should call the complete-method once they've
+	 * completed their work in order for completion-notifications to be send out correctly.
+	 * 
+	 * If any component needs to be notified whenever a specific command is run or has finished, you use the CommandDispatch singleton.
+	 * 
+	 * @see CommandDispatch
 	 */	
 	public class Command extends EventDispatcher {
 		
@@ -91,7 +98,6 @@ package com.flow.commands {
 		 * is passed to this callback.
 		 * @param A function that is called when the command completes unsucessfully. Any data passed to the commands error-method
 		 * is passes to this callback.
-		 * 
 		 */		
 		public function addHandlers(complete:Function, error:Function = null):void {
 			completeHandler = complete;

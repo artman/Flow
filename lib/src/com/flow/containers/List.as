@@ -7,14 +7,15 @@ package com.flow.containers {
 	import com.flow.events.ListEvent;
 	
 	import flash.events.MouseEvent;
-	
 	import mx.core.IFactory;
-	
 	
 	[DefaultProperty("itemRenderer")]
 	[Event(name="rendererCreated", type="com.flow.events.ListEvent")]
 	[Event(name="selectionChanged", type="com.flow.events.ListEvent")]
 	[Event(name="itemsCreated", type="com.flow.events.ListEvent")]
+	/**
+	 * A class that renders a set of data.
+	 */	
 	public class List extends Container {
 		
 		private var _dataProvider:*;
@@ -22,10 +23,12 @@ package com.flow.containers {
 		private var _selectedIndex:int = -1;
 		private var _selectedItem:Object;
 		
+		/** Constructor */
 		public function List() {
 			super();
 		}
 		
+		/** @private */
 		override protected function getDefaultLayout():LayoutBase {
 			var layout:VBoxLayout = new VBoxLayout();
 			layout.verticalAlign = "top";
@@ -33,6 +36,10 @@ package com.flow.containers {
 		}
 		
 		[Bindable]
+		/**
+		 * The data to render. The data type can be an Array, a Vector or an IList. Setting this property will force the list to be re-rendered
+		 * immediately. Any selection will also be lost.
+		 */		
 		public function get dataProvider():* {
 			return _dataProvider;
 		}
@@ -62,6 +69,7 @@ package com.flow.containers {
 			}
 		}
 		
+		/** @private */		
 		override public function validateProperties():void {
 			super.validateProperties();
 			if(_dataProvider && _itemRenderer) {
@@ -107,11 +115,15 @@ package com.flow.containers {
 			dispatchEvent(new ListEvent(ListEvent.ITEMS_CREATED));
 		}
 		
+		/** @private */
 		protected function rendererClicked(event:MouseEvent):void {
 			selectedIndex = children.getItemIndex(event.currentTarget);
 		}
 		
-		
+		/**
+		 * Sets the item renderer used to display each row of data. The item renderer can be any kind of component. This component will have it's
+		 * data-property set to the data associated with the row that it is representing. 
+		 */		
 		public function get itemRenderer():IFactory {
 			return _itemRenderer;
 		}
@@ -123,6 +135,9 @@ package com.flow.containers {
 		}
 		
 		[Bindable]
+		/**
+		 * The selected index. Setting this property will select that row.
+		 */		
 		public function get selectedIndex():int {
 			return _selectedIndex;
 		}
@@ -148,6 +163,9 @@ package com.flow.containers {
 		
 		
 		[Bindable]
+		/**
+		 * The data at the row defined by the selectedIndex. 
+		 */		
 		public function get selectedItem():Object {
 			return _selectedItem;
 		}
