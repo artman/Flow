@@ -45,7 +45,9 @@ package com.flow.graphics {
 		}
 		
 		/**
-		 * The radius of the rectangle's corners. 
+		 * The radius of the rectangle's corners.
+		 * 
+		 * This property is animateable.
 		 */		
 		[Animateable]
 		public function get radius():Number {
@@ -60,6 +62,8 @@ package com.flow.graphics {
 		
 		/**
 		 * The radius of the top left corner of the rectangle. If this is set, the radius-property will be ingored.
+		 * 
+		 * This property is animateable.
 		 */		
 		[Animateable]
 		public function get topLeftRadius():Number {
@@ -74,6 +78,8 @@ package com.flow.graphics {
 		
 		/**
 		 * The radius of the top right corner of the rectangle. If this is set, the radius-property will be ingored.
+		 * 
+		 * This property is animateable.
 		 */	
 		[Animateable]
 		public function get topRightRadius():Number {
@@ -88,6 +94,8 @@ package com.flow.graphics {
 		
 		/**
 		 * The radius of the bottom left corner of the rectangle. If this is set, the radius-property will be ingored.
+		 * 
+		 * This property is animateable.
 		 */	
 		[Animateable]
 		public function get bottomLeftRadius():Number {
@@ -102,6 +110,8 @@ package com.flow.graphics {
 		
 		/**
 		 * The radius of the bottom right corner of the rectangle. If this is set, the radius-property will be ingored.
+		 * 
+		 * This property is animateable.
 		 */	
 		[Animateable]
 		public function get bottomRightRadius():Number {

@@ -96,6 +96,8 @@ package com.flow.graphics.strokes {
 		
 		/**
 		 * The thickness of the stroke (default 1).
+		 * 
+		 * This property is animateable.
 		 */		
 		[Animateable]
 		public function get thickness():Number {
@@ -126,7 +128,6 @@ package com.flow.graphics.strokes {
 		 * @param graphics
 		 * @param width
 		 * @param height
-		 * 
 		 */		
 		public function beginDraw(graphics:Graphics, width:int, height:int):void  {
 			// Override

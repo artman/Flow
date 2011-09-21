@@ -44,7 +44,7 @@ package com.flow.graphics {
 		
 		/**
 		 * A list of points to draw 
-		 */		
+		 */
 		public function get points():Vector.<Point> {
 			return _points;
 		}
