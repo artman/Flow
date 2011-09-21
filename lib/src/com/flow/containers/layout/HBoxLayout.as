@@ -60,6 +60,8 @@ package com.flow.containers.layout {
 		/**
 		 * Defines how children are aligned vertically. Possible values are top, middle, bottom and none. Of these "none" does not try to change
 		 * the vertical position of each child. Instead, the vertical position is computed according to the position parameters of each child.
+		 * @default AlignType.MIDDLE
+		 * @see com.flow.containers.layout.AlignType
 		 */		
 		[Inspectable(enumeration="top,middle,bottom,none", defaultValue="middle")]
 		public function get verticalAlign():String {
@@ -75,6 +77,8 @@ package com.flow.containers.layout {
 		/**
 		 * How to align children horizontaly within their parent container. This only has an effect if the parent container is larger (or smaller)
 		 * than the combined width of it's children. 
+		 * @default AlignType.LEFT
+		 * @see com.flow.containers.layout.AlignType
 		 */		
 		[Inspectable(enumeration="left,center,right", defaultValue="left")]
 		public function get horizontalAlign():String {
