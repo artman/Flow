@@ -1,5 +1,7 @@
 package com.flow.containers {
+	import com.flow.collections.ArrayCollection;
 	import com.flow.collections.IList;
+	import com.flow.collections.Sorter;
 	import com.flow.components.Component;
 	import com.flow.containers.layout.LayoutBase;
 	import com.flow.containers.layout.VBoxLayout;
@@ -7,6 +9,7 @@ package com.flow.containers {
 	import com.flow.events.ListEvent;
 	
 	import flash.events.MouseEvent;
+	
 	import mx.core.IFactory;
 	
 	[DefaultProperty("itemRenderer")]
@@ -18,14 +21,16 @@ package com.flow.containers {
 	 */	
 	public class List extends Container {
 		
-		private var _dataProvider:*;
+		private var _dataProvider:IList;
 		private var _itemRenderer:IFactory;
 		private var _selectedIndex:int = -1;
 		private var _selectedItem:Object;
+		private var _sorter:Sorter;
 		
 		/** Constructor */
 		public function List() {
 			super();
+			_sorter = new Sorter();
 		}
 		
 		/** @private */
@@ -47,7 +52,12 @@ package com.flow.containers {
 			if(_dataProvider && _dataProvider is IList) {
 				(_dataProvider as IList).removeEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChanged);
 				selectedIndex = -1;
-			}			
+			}
+			
+			if(!(value is IList)) {
+				 value = new ArrayCollection(value);
+			}
+			
 			_dataProvider = value;
 			invalidateProperties();
 			if(_dataProvider && _dataProvider is IList) {
@@ -72,42 +82,32 @@ package com.flow.containers {
 		/** @private */		
 		override public function validateProperties():void {
 			super.validateProperties();
+			
 			if(_dataProvider && _itemRenderer) {
 				removeItemRenderers();
 				
-				var data:* = _dataProvider;
-				if(data is IList) {
-					data = (data as IList).toArray();
+				var data:IList = _dataProvider;
+				var n:int = data.length;
+				var renderer:Component;
+				for(var i:int = 0; i<n; i++) {
+					renderer = _itemRenderer.newInstance();
+					renderer.data = data.getItemAt(i);
+					renderer.rendererIndex = i;
+					
+					var evt:ListEvent = new ListEvent(ListEvent.RENDERER_CREATED);
+					evt.renderer = renderer;
+					dispatchEvent(evt);
+					
+					renderer.interactive = true;
+					renderer.addEventListener(MouseEvent.CLICK, rendererClicked);
+					children.addItem(renderer);
 				}
-				
-				if(data is Array || data is Vector.<*>) {
-					var i:int = 0;
-					var n:int = data.length;
-					var renderer:Component;
-					for(; i<n; ++i) {
-						renderer = _itemRenderer.newInstance();
-						renderer.data = data[i];
-						renderer.rendererIndex = i;
-						
-						var evt:ListEvent = new ListEvent(ListEvent.RENDERER_CREATED);
-						evt.renderer = renderer;
-						dispatchEvent(evt);
-						
-						renderer.interactive = true;
-						renderer.addEventListener(MouseEvent.CLICK, rendererClicked);
-						children.addItem(renderer);
+				if(_selectedIndex != -1) {
+					renderer = children.getItemAt(_selectedIndex) as Component;
+					if(renderer) {
+						renderer.addState("selected");
 					}
-					if(_selectedIndex != -1) {
-						renderer = children.getItemAt(_selectedIndex) as Component;
-						if(renderer) {
-							renderer.addState("selected");
-						}
-						if(_dataProvider is IList) {
-							selectedItem = (_dataProvider as IList).getItemAt(_selectedIndex);
-						} else {
-							selectedItem = _dataProvider[_selectedIndex];
-						}
-					}
+					selectedItem = (_dataProvider as IList).getItemAt(_selectedIndex);
 				}
 			} else {
 				removeItemRenderers();
@@ -171,6 +171,10 @@ package com.flow.containers {
 		}
 		public function set selectedItem(value:Object):void {
 			_selectedItem = value;
+		}
+
+		public function get sorter():Sorter {
+			return _sorter;
 		}
 	}
 }
