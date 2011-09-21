@@ -34,7 +34,6 @@
   </compiler>
   <applications>
     <application path="FlowExamples.mxml"/>
-    <application path="Testing.mxml"/>
   </applications>
   <modules/>
   <buildCSSFiles/>
