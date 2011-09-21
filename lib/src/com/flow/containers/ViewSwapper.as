@@ -25,18 +25,28 @@ package com.flow.containers {
 	import flash.display.DisplayObject;
 	
 	[DefaultProperty("view")]
+	/**
+	 * A simple container that will show one view at a time.
+	 */	
 	public class ViewSwapper extends Container {
 				
 		private var _view:DisplayObject;
 		
+		/**
+		 * Constructor 
+		 */		
 		public function ViewSwapper() {
 			super();
 		}
 	
+		/** @private */
 		override public function validateProperties():void {
 			super.validateProperties();
 		}
 		
+		/**
+		 * The view to show. Setting this will throw out the old view. 
+		 */		
 		public function set view(value:DisplayObject):void {
 			if(_view) {
 				removeChild(_view);
@@ -46,7 +56,6 @@ package com.flow.containers {
 				addChild(value);
 			}
 		}
-		
 		public function get view():DisplayObject {
 			return _view;
 		}
