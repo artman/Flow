@@ -7,6 +7,7 @@ package com.flow.containers {
 	import com.flow.containers.layout.VBoxLayout;
 	import com.flow.events.CollectionEvent;
 	import com.flow.events.ListEvent;
+	import com.flow.events.SorterEvent;
 	
 	import flash.events.MouseEvent;
 	
@@ -30,7 +31,6 @@ package com.flow.containers {
 		/** Constructor */
 		public function List() {
 			super();
-			_sorter = new Sorter();
 		}
 		
 		/** @private */
@@ -49,19 +49,20 @@ package com.flow.containers {
 			return _dataProvider;
 		}
 		public function set dataProvider(value:*):void {
-			if(_dataProvider && _dataProvider is IList) {
-				(_dataProvider as IList).removeEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChanged);
+			if(_dataProvider) {
+				_dataProvider.removeEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChanged);
 				selectedIndex = -1;
 			}
-			
-			if(!(value is IList)) {
+			if(value && !(value is IList)) {
 				 value = new ArrayCollection(value);
 			}
-			
 			_dataProvider = value;
+			if(sorter) {
+				sorter.dataProvider = _dataProvider;
+			}
 			invalidateProperties();
-			if(_dataProvider && _dataProvider is IList) {
-				(_dataProvider as IList).addEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChanged);
+			if(_dataProvider) {
+				_dataProvider.addEventListener(CollectionEvent.COLLECTION_CHANGE, collectionChanged);
 			}
 		}
 		
@@ -85,8 +86,7 @@ package com.flow.containers {
 			
 			if(_dataProvider && _itemRenderer) {
 				removeItemRenderers();
-				
-				var data:IList = _dataProvider;
+				var data:IList = sortedDataProvider;
 				var n:int = data.length;
 				var renderer:Component;
 				for(var i:int = 0; i<n; i++) {
@@ -147,11 +147,7 @@ package com.flow.containers {
 			}
 			_selectedIndex = value;
 			if(_selectedIndex != -1) {
-				if(_dataProvider is Array || _dataProvider is Vector.<*>) {
-					selectedItem = _dataProvider[_selectedIndex];
-				} else if(_dataProvider is IList) {
-					selectedItem = (_dataProvider as IList).getItemAt(_selectedIndex);
-				}
+				selectedItem = sortedDataProvider.getItemAt(_selectedIndex);
 				if(!propertiesInvalidated) {
 					(children.getItemAt(_selectedIndex) as Component).addState("selected");
 				}
@@ -159,6 +155,14 @@ package com.flow.containers {
 				selectedItem = null;
 			}
 			dispatchEvent(new ListEvent(ListEvent.SELECTION_CHANGED));
+		}
+		
+		private function get sortedDataProvider():IList {
+			if(sorter) {
+				return sorter.sortedData;
+			} else {
+				return _dataProvider;
+			}
 		}
 		
 		
@@ -173,8 +177,30 @@ package com.flow.containers {
 			_selectedItem = value;
 		}
 
+		/**
+		 * Assign a Sorter instance to enable sorting of the data prior to display. 
+		 * @see Sorter  
+		 */		
 		public function get sorter():Sorter {
 			return _sorter;
+		}
+		public function set sorter(value:Sorter):void {
+			if(_sorter != value) {
+				if(_sorter) {
+					_sorter.removeEventListener(SorterEvent.SORTING_CHANGED, sortingChanged);
+				}
+				_sorter = value;
+				if(_sorter) {
+					_sorter.dataProvider = _dataProvider;
+					_sorter.addEventListener(SorterEvent.SORTING_CHANGED, sortingChanged);
+				}
+				invalidateProperties();
+			}
+		}
+		
+		private function sortingChanged(e:SorterEvent):void {
+			trace("Invalidated sorter");
+			invalidateProperties();
 		}
 	}
 }
