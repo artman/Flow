@@ -65,6 +65,8 @@ package com.flow.graphics.fills {
 		
 		/**
 		 * A Vector of GradientData defining the colors, alphas and ratios for the gradient. 
+		 * 
+		 * Properties on the GradientData elements are animateable.
 		 */		
 		[AnimateableChild]
 		public function get colors():Vector.<GradientData> {
@@ -98,7 +100,9 @@ package com.flow.graphics.fills {
 		}
 		
 		/**
-		 * The rotation of the fill. 
+		 * The rotation of the fill.
+		 * 
+		 * This property is animateable. 
 		 */		
 		[Animateable]
 		public function get rotation():Number {
