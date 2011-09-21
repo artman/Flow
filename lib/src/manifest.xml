@@ -137,6 +137,8 @@
 	<component id="SkinnableComponent" class="com.flow.components.supportClasses.SkinnableComponent"/>
 	<component id="SolidFill" class="com.flow.graphics.fills.SolidFill"/>
 	<component id="SolidStroke" class="com.flow.graphics.strokes.SolidStroke"/>
+	<component id="Sorter" class="com.flow.collections.Sorter"/>
+	<component id="SorterEvent" class="com.flow.events.SorterEvent"/>
 	<component id="Spacing" class="com.flow.components.Spacing"/>
 	<component id="State" class="mx.states.State"/>
 	<component id="StateEvent" class="com.flow.events.StateEvent"/>
