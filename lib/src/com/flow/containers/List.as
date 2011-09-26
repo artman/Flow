@@ -28,8 +28,10 @@ package com.flow.containers {
 		private var _selectedIndex:int = -1;
 		private var _selectedItem:Object;
 		private var _sorter:Sorter;
+
 		private var _selectable:Boolean;
-		
+
+	
 		/** Constructor */
 		public function List() {
 			super();
@@ -64,6 +66,10 @@ package com.flow.containers {
 		 * immediately. Any selection will also be lost.
 		 */		
 		[Bindable]
+		/**
+		 * The data to render. The data type can be an Array, a Vector or an IList. Setting this property will force the list to be re-rendered
+		 * immediately. Any selection will also be lost.
+		 */		
 		public function get dataProvider():* {
 			return _orgDataProvider;
 		}
@@ -119,6 +125,7 @@ package com.flow.containers {
 					dispatchEvent(evt);
 					
 					renderer.interactive = _selectable;
+
 					renderer.addEventListener(MouseEvent.CLICK, rendererClicked);
 					children.addItem(renderer);
 				}
