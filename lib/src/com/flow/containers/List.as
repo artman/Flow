@@ -28,12 +28,13 @@ package com.flow.containers {
 		private var _selectedIndex:int = -1;
 		private var _selectedItem:Object;
 		private var _sorter:Sorter;
+		private var _selectable:Boolean;
 		
 		/** Constructor */
 		public function List() {
 			super();
 		}
-		
+
 		/** @private */
 		override protected function getDefaultLayout():LayoutBase {
 			var layout:VBoxLayout = new VBoxLayout();
@@ -41,11 +42,28 @@ package com.flow.containers {
 			return layout;
 		}
 		
+		/**
+		 * Whether or not the list is seletable. 
+		 */	
 		[Bindable]
+		public function get selectable():Boolean {
+			return _selectable;
+		}
+		public function set selectable(value:Boolean):void {
+			_selectable = value;
+			if(!_selectable) {
+				selectedIndex = -1;
+			}
+			for(var i:int = 0; i<numChildren; i++) {
+				(getChildAt(i) as Component).interactive = _selectable;
+			}
+		}		
+		
 		/**
 		 * The data to render. The data type can be an Array, a Vector or an IList. Setting this property will force the list to be re-rendered
 		 * immediately. Any selection will also be lost.
 		 */		
+		[Bindable]
 		public function get dataProvider():* {
 			return _orgDataProvider;
 		}
@@ -100,7 +118,7 @@ package com.flow.containers {
 					evt.renderer = renderer;
 					dispatchEvent(evt);
 					
-					renderer.interactive = true;
+					renderer.interactive = _selectable;
 					renderer.addEventListener(MouseEvent.CLICK, rendererClicked);
 					children.addItem(renderer);
 				}
