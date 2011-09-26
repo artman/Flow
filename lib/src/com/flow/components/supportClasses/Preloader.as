@@ -85,7 +85,7 @@ package com.flow.components.supportClasses {
 		private function preloadingDone():void {
 			loaderInfo.removeEventListener(ProgressEvent.PROGRESS, progress);
 			if (!mainClassName) {
-				var url:String = loaderInfo.loaderURL;
+				var url:String = loaderInfo.loaderURL.split("?")[0];
 				var dot:int = url.lastIndexOf(".");
 				var slash:int = url.lastIndexOf("/");
 				mainClassName = url.substring(slash + 1, dot);
