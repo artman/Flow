@@ -25,6 +25,9 @@ package com.flow.effects {
 	import flash.display.DisplayObject;
 	import flash.filters.ColorMatrixFilter;
 	
+	/**
+	 * Creates a color matrix effect that lets you apply colorization effects to a target display object. 
+	 */	
 	public class ColorMatrixEffect extends Effect {
 	
 		private var _matrix:Array;
@@ -32,7 +35,12 @@ package com.flow.effects {
 		private var changedMatrix:Array;
 		private var filter:ColorMatrixFilter;
 		
-
+		/**
+		 * Constructor. 
+		 * @param The target to colorize.
+		 * @param The ColorMatrix to apply to the target object. You ca easily create these with the ColorMatrix util.
+		 * @see com.flow.effects.utils.ColorMatrix
+		 */		
 		public function ColorMatrixEffect(target:DisplayObject = null, matrix:Array = null){
 			this.matrix = matrix;
 			super(target);
@@ -43,10 +51,12 @@ package com.flow.effects {
 			filter = new ColorMatrixFilter(_matrix);
 		}
 		
+		/**
+		 * The ColorMatrix to apply to the target object.
+		 */		
 		public function get matrix():Array {
 			return _matrix;
-		};
-		
+		}
 		public function set matrix(value:Array):void{
 			if(value != _matrix) {
 				_matrix = value;
@@ -54,6 +64,7 @@ package com.flow.effects {
 			}
 		}
 		
+		/** @private */
 		override protected function render(val:Number):Array{
 			changedMatrix = _matrix.concat();
 			for(var i:int = 0; i<20; i++) {
@@ -65,7 +76,6 @@ package com.flow.effects {
 			} else {
 				return new Array();
 			}
-			
 		}
 	}
 }

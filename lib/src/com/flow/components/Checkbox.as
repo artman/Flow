@@ -26,7 +26,11 @@ package com.flow.components {
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	
+	/**
+	 * Dispatched when the checkbox is toggled. 
+	 */	
 	[Event(name="change", type="flash.events.Event")]
+	
 	/**
 	 * A checkbox that can be selected. 
 	 */	

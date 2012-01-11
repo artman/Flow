@@ -24,7 +24,7 @@
 
 
 
-<fw:Container xmlns:fx="http://ns.adobe.com/mxml/2009"
+<fw:VBox padding="10" spacing="10" xmlns:fx="http://ns.adobe.com/mxml/2009"
 			  xmlns:s="library://ns.adobe.com/flex/spark" 
 			  xmlns:fw="http://artman.fi/flow"
 			  width="600" height="400" >
@@ -37,7 +37,18 @@
 		<fw:SolidStroke id="itemStroke" color="0x990000" />
 	</fx:Declarations>
 	
-	<fw:Container top="5%" left="5%" width="90%" >
+	<fw:HBox width="100%">
+		<fw:fill>
+			<fw:SolidFill color="0xE8E8E8" />
+		</fw:fill>
+		<fw:stroke>
+			<fw:SolidStroke color="0xCCCCCC" />
+		</fw:stroke>
+		<fw:Label width="100%" text="width=100%" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
+		<fw:Label width="100%" text="width=50" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
+	</fw:HBox>
+	
+	<fw:Container width="100%">
 		<fw:fill>
 			<fw:SolidFill color="0xE8E8E8" />
 		</fw:fill>
@@ -53,7 +64,7 @@
 		<fw:Label y="180" left="25%" right="25%" text="left=25% right=25%" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
 	</fw:Container>
 	
-	<fw:Container bottom="10" left="5%" width="90%" height="150" >
+	<fw:Container width="100%" height="150" >
 		<fw:fill>
 			<fw:SolidFill color="0xE8E8E8" />
 		</fw:fill>
@@ -65,4 +76,4 @@
 		<fw:Label right="0" horizontalPadding="10" verticalCenter="0" height="100" text="height=50 verticalCenter=0" color="0xFFFFFF" textFormat="bold" fill="{itemFill}" stroke="{itemStroke}" />
 	
 	</fw:Container>
-</fw:Container>
+</fw:VBox>

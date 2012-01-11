@@ -130,9 +130,11 @@
     <classEntry path="com.flow.net.RemoteProcedureAMF"/>
     <classEntry path="com.flow.net.RemoteProcedureHTTP"/>
     <classEntry path="com.flow.net.RemoteProcedureTypes"/>
+    <classEntry path="com.flow.net.loaders.AMFLoader"/>
+    <classEntry path="com.flow.net.loaders.AbstractLoader"/>
+    <classEntry path="com.flow.net.loaders.BinaryLoader"/>
     <classEntry path="com.flow.net.loaders.DisplayObjectLoader"/>
     <classEntry path="com.flow.net.loaders.JSONLoader"/>
-    <classEntry path="com.flow.net.loaders.LoaderBase"/>
     <classEntry path="com.flow.net.loaders.LoaderBatch"/>
     <classEntry path="com.flow.net.loaders.TextLoader"/>
     <classEntry path="com.flow.net.loaders.XMLLoader"/>

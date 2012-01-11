@@ -46,11 +46,11 @@ package com.flow.components {
 	 * Dispatched, when the value of the input changes. 
 	 */	
 	[Event(name="change", type="flash.events.Event")]
+	
 	/**
 	 * A text input component that lets the user input one line of text. 
 	 */	
 	public class TextInput extends SkinnableComponent {
-		
 		/** @private */
 		protected var _labelDisplay:Label;
 		/** @private */

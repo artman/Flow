@@ -45,7 +45,7 @@ package com.flow.containers.layout {
 		public function AbsoluteLayout() {
 		}
 		
-		/* @private */
+		/** @private */
 		override public function layoutChildren(offsetX:Number, offsetY:Number, w:Number, h:Number):void {
 			var container:DisplayObjectContainer = _target.childContainer;
 			

@@ -21,6 +21,7 @@
  */
 
 package com.flow.motion {
+	
 	/**
 	 * Tags a class as animateable. Animateable instances can use the [Animateable] and [AnimateableChild]-metadata
 	 * on their properties and state changes will check for updates on these properties and animate them.

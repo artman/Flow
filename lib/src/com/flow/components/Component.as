@@ -51,6 +51,11 @@ package com.flow.components {
 	import mx.states.State;
 	
 	/**
+	 * Dispatched when the state of the component changes.
+	 */	
+	[Event(name="stateChange", type="com.flow.events.StateEvent")]
+
+	/**
 	 * Component is the base class for displayable objects. It provides properties for constrained-based layout, states support
 	 * and a robust validation scheme. Components are used throughout the Flow framework and most displayable classes subclass
 	 * from Component.
@@ -58,7 +63,6 @@ package com.flow.components {
 	 * In a Flex-application UIComponent would be the equivalent to Compoent in Flow. 
 	 */	
 	[DefaultProperty("fill")]
-	[Event(name="stateChange", type="com.flow.events.StateEvent")]
 	public class Component extends Sprite implements IStateClient2, IFactory, IAnimateable {
 		
 		public static const STATE_UP:String = "up";

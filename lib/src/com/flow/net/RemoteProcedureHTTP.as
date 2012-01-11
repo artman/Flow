@@ -24,13 +24,14 @@ package com.flow.net {
 	
 	import com.flow.net.loaders.DisplayObjectLoader;
 	import com.flow.net.loaders.JSONLoader;
-	import com.flow.net.loaders.LoaderBase;
+	import com.flow.net.loaders.AbstractLoader;
 	import com.flow.net.loaders.TextLoader;
 	import com.flow.net.loaders.XMLLoader;
 	
 	import flash.net.URLRequest;
 	import flash.net.URLVariables;
 
+	/** @private */ 
 	public class RemoteProcedureHTTP {
 		
 		[Bindable] public var lastResult:* = null;
@@ -69,7 +70,7 @@ package com.flow.net {
 				req.data = variables
 			}
 			
-			var loader:LoaderBase;
+			var loader:AbstractLoader;
 			switch(type) {
 				case RemoteProcedureTypes.TEXT: loader = new TextLoader(req); break;
 				case RemoteProcedureTypes.JSON: loader = new JSONLoader(req); break;

@@ -37,8 +37,19 @@ package com.flow.components {
 	import flash.media.Video;
 	import flash.utils.Timer;
 
+	/**
+	 * Dispatched when the camera is muted (Flash has been removed access to use the camera by the user).
+	 */	
 	[Event(name="cameraMuted", type="com.flow.events.WebCamEvent")]
+	
+	/**
+	 * Dispatched when the camera is unmuted (Flash has been granted access to use the camera by the user).
+	 */	
 	[Event(name="cameraUnmuted", type="com.flow.events.WebCamEvent")]
+	
+	/**
+	 * Dispatched when a camera has been attached and a first frame has been received. 
+	 */	
 	[Event(name="cameraReady", type="com.flow.events.WebCamEvent")]
 	public class WebCam extends Component {
 		

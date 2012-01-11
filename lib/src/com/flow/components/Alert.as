@@ -28,7 +28,16 @@ package com.flow.components {
 	import com.flow.managers.PopupManager;
 	
 	import flash.events.MouseEvent;
-
+	
+	
+	/**
+	 * Dispatched when the alert has been dismissed. The buttonIndex of the dispatched event will hold the index of the button that was used to dismiss the dialog.
+	 */	
+	[Event(name="alertDismissed", type="com.flow.events.AlertEvent")]
+	
+	/**
+	 * Create a simple Alert dialog. 
+	 */	
 	public class Alert extends SkinnableComponent {
 		
 		private var _title:String;
@@ -41,7 +50,13 @@ package com.flow.components {
 		
 		private var defaultButton:Button;
 		
-		
+		/**
+		 * Creates a simple Alert dialog. 
+		 * @param The title for the dialog.
+		 * @param The text to display for the dialog.
+		 * @param An array of Button instances to attach to the dialog.
+		 * @return An instance of an Alert dialog.
+		 */		
 		public static function show(title:String, text:String, buttonsToShow:Array):Alert {
 			var alert:Alert = new Alert();
 			alert.title = title;
@@ -51,11 +66,18 @@ package com.flow.components {
 			return alert;
 		}
 		
+		/**
+		 * Consturctor. Don't create an instance directly. Intead, use the show-method
+		 * @see #show  
+		 */		
 		public function Alert() {
 			_buttons = [];
 			super();
 		}
 		
+		/**
+		 * A required skin-part that is used to display the title text. 
+		 */		  
 		[SkinPart(required="true")]
 		public function get titleLabel():Label {
 			return _titleLabel;
@@ -69,6 +91,9 @@ package com.flow.components {
 			}
 		}
 		
+		/**
+		 * A required skin-part that is used to display the contet text. 
+		 */		
 		[SkinPart(required="true")]		
 		public function get contentLabel():Label {
 			return _contentLabel;
@@ -80,6 +105,9 @@ package com.flow.components {
 			}
 		}
 		
+		/**
+		 * A required skin-part to hold all buttons that are attached to the Alert dialog. 
+		 */		
 		[SkinPart(required="true")]		
 		public function get buttonContainer():Container {
 			return _buttonContainer;
@@ -97,6 +125,9 @@ package com.flow.components {
 			}
 		}	
 
+		/**
+		 * The title for the Alert dialog. 
+		 */		
 		[Bindable]
 		public function get title():String {
 			return _title;
@@ -108,6 +139,9 @@ package com.flow.components {
 			}
 		}
 
+		/**
+		 * The content text of the dialog. 
+		 */		
 		[Bindable]
 		public function get text():String {
 			return _text;
@@ -119,6 +153,9 @@ package com.flow.components {
 			}
 		}
 
+		/**
+		 * An array of buttons to be attached to the Alert dialog. 
+		 */		
 		[Bindable]
 		public function get buttons():Array {
 			return _buttons;
@@ -139,6 +176,7 @@ package com.flow.components {
 			}
 		}
 		
+		/** @private */
 		protected function btnClicked(event:MouseEvent):void {
 			for(var i:int = 0; i<_buttonContainer.numChildren; i++) {
 				if(_buttonContainer.getChildAt(i) == event.currentTarget) {

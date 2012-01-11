@@ -75,9 +75,6 @@ package com.flow.motion {
 				tween = activeTweens[len];
 				tween.position = tween._position + deltaTime;
 			}
-/*			for(var i:int = activeTweens.length-1; i>=0; i--) {
-				activeTweens[i].position = activeTweens[i]._position + deltaTime;
-			}*/
 		}
 		
 		/** @private */

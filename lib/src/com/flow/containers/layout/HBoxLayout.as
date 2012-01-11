@@ -141,7 +141,8 @@ package com.flow.containers.layout {
 		override public function layoutChildren(offsetX:Number, offsetY:Number, w:Number, h:Number):void {
 			super.layoutChildren(offsetX, offsetY, w, h);
 			var container:DisplayObjectContainer = _target.childContainer;
-			var maxW:int = 0;
+			var maxW:int = 0;	
+			
 			if(_horizontalAlign != AlignType.ALIGN_LEFT) {
 				for(var i:int = 0; i<container.numChildren; i++) {
 					var displayObject:DisplayObject = container.getChildAt(i) 

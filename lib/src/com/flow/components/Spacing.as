@@ -24,7 +24,9 @@ package com.flow.components {
 	
 	import flash.display.Sprite;
 	
-	/** A spacer to be used in horizontal or vertical layouts */
+	/** 
+	 * A spacer to be used in horizontal or vertical layouts 
+	 */
 	public class Spacing extends Sprite {
 		private var _width:int;
 		private var _height:int;

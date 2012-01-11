@@ -37,7 +37,7 @@ package com.flow.net.loaders {
 	/**
 	 * Simple fire and forget loading of DisplayObjects (png, jpeg, gif, swf).
 	 */
-	public class DisplayObjectLoader extends LoaderBase {
+	public class DisplayObjectLoader extends AbstractLoader {
 		
 		private static var activeReplaceLoaders:Array = [];
 		

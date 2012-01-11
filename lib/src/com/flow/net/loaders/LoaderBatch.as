@@ -53,14 +53,14 @@ package com.flow.net.loaders {
 		private var completed:int = 0;
 		
 		/** All loaders in the batch */
-		public var loaderBatch:Vector.<LoaderBase>;
+		public var loaderBatch:Vector.<AbstractLoader>;
 		
 		/**
 		 * Constructor. Creates a loader batch.
 		 * @param AbstractLoaders to put into the batch.
 		 */
 		public function LoaderBatch(...rest) {
-			loaderBatch = new Vector.<LoaderBase>();
+			loaderBatch = new Vector.<AbstractLoader>();
 			if (rest.length > 0) {
 				for(var i:int = 0; i<rest.length; i++) {
 					addLoaders(rest[i]);
@@ -72,7 +72,7 @@ package com.flow.net.loaders {
 		 * Adds a loader instance into the batch.
 		 * @param The AbstractLoader instance to add to the batch.
 		 */
-		public function addLoader(loader:LoaderBase):void {
+		public function addLoader(loader:AbstractLoader):void {
 			removeLoader(loader);
 			loader.addEventListener(ProgressEvent.PROGRESS, progressHandler);
 			loader.addEventListener(Event.COMPLETE, complete);
@@ -94,7 +94,7 @@ package com.flow.net.loaders {
 		 * Removes a Loader instance from the batch.
 		 * @param The AbstractLoader instance to remove from the batch.
 		 */
-		public function removeLoader(loader:LoaderBase):void {
+		public function removeLoader(loader:AbstractLoader):void {
 			var index:int = loaderBatch.indexOf(loader);
 			if(index != -1) {
 				removeEventListenersForLoader(loaderBatch[index]);
@@ -106,7 +106,7 @@ package com.flow.net.loaders {
 			var evt:IOErrorEvent = new IOErrorEvent(IOErrorEvent.IO_ERROR);
 			evt.text = e.text;
 			dispatchEvent(evt);
-			removeLoader(e.currentTarget as LoaderBase);
+			removeLoader(e.currentTarget as AbstractLoader);
 			if (completed == loaderBatch.length) {
 				dispatchEvent(new Event(Event.COMPLETE));
 			}
@@ -114,7 +114,7 @@ package com.flow.net.loaders {
 		
 		private function complete(e:Event):void {
 			completed++;
-			removeEventListenersForLoader(e.currentTarget as LoaderBase);
+			removeEventListenersForLoader(e.currentTarget as AbstractLoader);
 			if (completed == loaderBatch.length) {
 				dispatchEvent(new Event(Event.COMPLETE));
 			}
@@ -130,7 +130,7 @@ package com.flow.net.loaders {
 			dispatchEvent(evt);
 		}
 		
-		private function removeEventListenersForLoader(loader:LoaderBase):void {
+		private function removeEventListenersForLoader(loader:AbstractLoader):void {
 			loader.removeEventListener(Event.COMPLETE, complete);
 			loader.removeEventListener(IOErrorEvent.IO_ERROR, ioerror);
 			loader.removeEventListener(ProgressEvent.PROGRESS, progressHandler);
@@ -156,7 +156,7 @@ package com.flow.net.loaders {
 			for (var i:int = loaderBatch.length - 1; i >= 0; i-- ) {
 				removeEventListenersForLoader(loaderBatch[i]);
 			}
-			loaderBatch = new Vector.<LoaderBase>();
+			loaderBatch = new Vector.<AbstractLoader>();
 		}
 	}
 }

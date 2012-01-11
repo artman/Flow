@@ -28,12 +28,13 @@ package com.flow.collections {
 	import flash.display.DisplayObject;
 	import flash.events.EventDispatcher;
 	
-	[DefaultProperty("source")]
 	[Event(name="collectionChange", type="com.flow.events.CollectionEvent")]
+	
 	/**
 	 * A collection of display list objects for Flow internal use. 
 	 * @author artman
 	 */	
+	[DefaultProperty("source")]
 	public class DisplayObjectCollection extends EventDispatcher implements IList {
 		
 		private var _source:Vector.<DisplayObject>;

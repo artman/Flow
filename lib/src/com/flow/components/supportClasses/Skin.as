@@ -33,7 +33,7 @@ package com.flow.components.supportClasses {
 		private var _hostComponent:Container;
 		
 		/**
-		 * Constructor
+		 * Constructor.
 		 */		
 		public function Skin() {
 			super();

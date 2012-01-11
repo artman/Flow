@@ -23,6 +23,9 @@
 package com.flow.events {
 	import flash.events.Event;
 	
+	/**
+	 * A event dispatched by AlertDialogs. 
+	 */	
 	public class AlertEvent extends Event {
 		
 		public static var ALERT_DISMISSED:String = "alertDismissed";

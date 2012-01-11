@@ -23,16 +23,43 @@
 package com.flow.containers.layout {
 	
 	/**
-	 * A collection of static variables used to describe how layouts should align it's children. 
+	 * A collection of static variables used to describe how layouts should align their children. 
 	 */	
 	public class AlignType {
 		
+		/**
+		 * A static constant describing the vertical top-alignment. 
+		 */
 		public static const ALIGN_TOP:String = "top";
+		
+		/**
+		 * A static constant describing the vertical middle-alignment. 
+		 */		
 		public static const ALIGN_MIDDLE:String = "middle";	
+		
+		/**
+		 * A static constant describing the vertical bottom-alignment. 
+		 */		
 		public static const ALIGN_BOTTOM:String = "bottom";
+		
+		/**
+		 * A static constant describing no alignment
+		 */		
 		public static const ALIGN_NONE:String = "none";
+		
+		/**
+		 * A static constant describing the horizontal left-alignment. 
+		 */		
 		public static const ALIGN_LEFT:String = "left";
+		
+		/**
+		 * A static constant describing the horizontal center-alignment. 
+		 */	
 		public static const ALIGN_CENTER:String = "center";
+		
+		/**
+		 * A static constant describing the horizontal right-alignment. 
+		 */	
 		public static const ALIGN_RIGHT:String = "right";
 		
 		public function AlignType() {

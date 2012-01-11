@@ -35,7 +35,12 @@ package com.flow.components {
 	
 	[SkinState("up")]
 	[SkinState("disabled")]
+	
+	/**
+	 * Dispatched when the value of the scollbar changes. 
+	 */
 	[Event(name="change", type="flash.events.Event")]
+	
 	/**
 	 * A horizontal scrollbar component with a track, thumb and optional arrows buttons.
 	 */	

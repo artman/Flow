@@ -39,7 +39,7 @@ package com.flow.containers.layout {
 		private var _inverted:Boolean = false;
 		
 		/**
-		 * Constructor 
+		 * Constructor.
 		 */		
 		public function VBoxLayout() {
 		}

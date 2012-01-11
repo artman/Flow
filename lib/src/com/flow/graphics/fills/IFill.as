@@ -40,6 +40,7 @@ package com.flow.graphics.fills {
 		 * @param The height at which a draw is about to commence.
 		 */		
 		function beginDraw(graphics:Graphics, width:int, height:int):void ;
+		
 		/**
 		 * Called when a draw has finished. The implementation needs to end the fill on the given graphics context. 
 		 * @param The graphics context to end the fill on.

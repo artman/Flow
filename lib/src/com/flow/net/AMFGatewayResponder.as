@@ -74,18 +74,22 @@ package com.flow.net {
 			eventDispatcher.addEventListener(type, listener, useCapture, priority, useWeakReference);
 		}
 		
+		/** @inheritDoc */
 		public function dispatchEvent(event:Event):Boolean {
 			return eventDispatcher.dispatchEvent(event);
 		}
 		
+		/** @inheritDoc */
 		public function hasEventListener(type:String):Boolean{
 			return eventDispatcher.hasEventListener(type)
 		}
 		
+		/** @inheritDoc */
 		public function removeEventListener(type:String, listener:Function, useCapture:Boolean = false):void {
 			eventDispatcher.removeEventListener(type, listener, useCapture);
 		}
 		
+		/** @inheritDoc */
 		public function willTrigger(type:String):Boolean {
 			return eventDispatcher.willTrigger(type);
 		}

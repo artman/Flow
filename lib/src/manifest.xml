@@ -15,6 +15,7 @@
 	<component id="AMFGatewayEvent" class="com.flow.events.AMFGatewayEvent"/>
 	<component id="AMFGatewayResponder" class="com.flow.net.AMFGatewayResponder"/>
 	<component id="AbsoluteLayout" class="com.flow.containers.layout.AbsoluteLayout"/>
+	<component id="AbstractLoader" class="com.flow.net.loaders.AbstractLoader"/>
 	<component id="AddItems" class="mx.states.AddItems"/>
 	<component id="Alert" class="com.flow.components.Alert"/>
 	<component id="AlertEvent" class="com.flow.events.AlertEvent"/>
@@ -104,7 +105,6 @@
 	<component id="Linear" class="com.flow.motion.easing.Linear"/>
 	<component id="List" class="com.flow.containers.List"/>
 	<component id="ListEvent" class="com.flow.events.ListEvent"/>
-	<component id="LoaderBase" class="com.flow.net.loaders.LoaderBase"/>
 	<component id="LoaderBatch" class="com.flow.net.loaders.LoaderBatch"/>
 	<component id="Log" class="com.flow.log.Log"/>
 	<component id="MaskFilterEffect" class="com.flow.effects.MaskFilterEffect"/>

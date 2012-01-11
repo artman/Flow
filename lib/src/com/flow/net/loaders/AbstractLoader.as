@@ -57,7 +57,7 @@ package com.flow.net.loaders {
 	/**
 	 * Base class for loading data. This class is used as a super-class to all the other laoding classes
 	 */
-	public class LoaderBase extends EventDispatcher {
+	public class AbstractLoader extends EventDispatcher {
 
 		public var url:URLRequest;
 		private var completeHandler:Function;
@@ -71,7 +71,7 @@ package com.flow.net.loaders {
 		 * Constrcutor.
 		 * @param The URL from which to load data. This can be of type String or URLRequest. If a String is given, a URLRequest is automatically created using GET.
 		 */
-		public function LoaderBase(url:*) {
+		public function AbstractLoader(url:*) {
 			if (typeof(url) == "string")
 				url = new URLRequest(url);
 			this.url = url;

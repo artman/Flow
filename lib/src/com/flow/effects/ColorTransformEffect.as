@@ -28,6 +28,9 @@ package com.flow.effects {
 	import flash.filters.ColorMatrixFilter;
 	import flash.geom.ColorTransform;
 	
+	/**
+	 * Creates a color transform effect. 
+	 */	
 	public class ColorTransformEffect extends Effect {
 		
 		private var filter:ColorMatrixFilter;

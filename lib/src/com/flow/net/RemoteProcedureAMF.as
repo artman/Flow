@@ -22,6 +22,7 @@
 
 package com.flow.net {
 	
+	/** @private */ 
 	public class RemoteProcedureAMF {
 		
 		[Bindable] public var lastResult:* = null;

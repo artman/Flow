@@ -28,6 +28,7 @@ package com.flow.graphics.fills {
 	import flash.events.EventDispatcher;
 	
 	[Event(name="invalidate", type="com.flow.events.InvalidationEvent")]
+	
 	/**
 	 * A solid color fill. 
 	 */	

@@ -30,7 +30,6 @@ package com.flow.containers {
 		private var _sorter:Sorter;
 
 		private var _selectable:Boolean;
-
 	
 		/** Constructor */
 		public function List() {

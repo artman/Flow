@@ -24,10 +24,13 @@ package com.flow.events {
 	
 	import flash.events.Event;
 	
+	/**
+	 * A event dispatched by Collections. 
+	 */	
 	public class CollectionEvent extends Event {
 
 		public static const COLLECTION_CHANGE:String = "collectionChange";
-		
+			
 		public function CollectionEvent(type:String, bubbles:Boolean = false, cancelable:Boolean = false, kind:String = null, location:int = -1, oldLocation:int = -1, items:Array = null) {
 			super(type, bubbles, cancelable);
 			this.kind = kind;
@@ -36,9 +39,24 @@ package com.flow.events {
 			this.items = items ? items : [];
 		}
 
+		/**
+		 * The type of the event. 
+		 */		
 		public var kind:String;
+		
+		/**
+		 * Items affected by the operation preceding that event. 
+		 */		
 		public var items:Array;
+		
+		/**
+		 * The location which the preceding operation in the Collection changed. 
+		 */		
 		public var location:int;
+		
+		/**
+		 * The old location of an item moved by an operation. 
+		 */		
 		public var oldLocation:int;
 	}
 }

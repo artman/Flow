@@ -27,8 +27,16 @@ package com.flow.managers {
 	import flash.events.KeyboardEvent;
 	import flash.utils.Dictionary;
 	
+	/**
+	 * Dispatched when a key has been released. 
+	 */	
 	[Event(name="keyUp", type="flash.events.KeyboardEvent")]
+	
+	/**
+	 * Dispatched when a key is pressed. 
+	 */	
 	[Event(name="keyDown", type="flash.events.KeyboardEvent")]
+	
 	/**
 	 * A utility singleton to retreive key states or listen to keyboard events. 
 	 */	

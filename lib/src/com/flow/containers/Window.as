@@ -28,8 +28,7 @@ package com.flow.containers {
 	import flash.events.MouseEvent;
 	
 	public class Window extends SkinnableComponent {
-		
-		
+			
 		private var _titleBar:Container;
 		private var _closeButton:Button;
 		private var _content:Container;

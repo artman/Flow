@@ -24,10 +24,7 @@ package com.flow.motion {
 	
 	import com.flow.effects.utils.ColorRGB;
 	
-	/**
-	 * Acts as a wrapper for all animateable properties and makes it possible to animate non-linear values
-	 * such as RGB colors. In addition to linear values, currently only colors are supported.
-	 */	
+	/** @private */
 	public class AnimationProperty {
 		
 		public var name:String;
@@ -36,12 +33,18 @@ package com.flow.motion {
 		public var deltaValue:*;
 		public var type:String;
 		
+		/**
+		 * Constructor. You should never have to instantiate this yourself. 
+		 */		
 		public function AnimationProperty(name:String, value:* = null, type:String = null) {
 			this.name = name;
 			this.value = value;
 			this.type = type;
 		}
 		
+		/**
+		 * @private
+		 */		
 		public function currentValue(ratio:Number):* {
 			switch(type) {
 				case "color":

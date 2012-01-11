@@ -27,6 +27,7 @@ package com.flow.motion {
 	import flash.display.DisplayObject;
 	import flash.utils.Dictionary;
 	
+	/** @private */
 	[RemoteClass(alias="AnimationProps")]
 	public class AnimationProperties {
 		

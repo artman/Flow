@@ -21,6 +21,8 @@
  */
 
 package com.flow.net {
+	
+	/** @private */
 	public class RemoteProcedureTypes {
 		public static var TEXT:String = "text";
 		public static var JSON:String = "json";

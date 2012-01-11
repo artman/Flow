@@ -25,27 +25,54 @@ package com.flow.effects.utils {
 	import flash.display.DisplayObject;
 	import flash.geom.ColorTransform;
 
+	/**
+	 * A class representing a RGB color value.
+	 */	
 	public class ColorRGB {
 		
+		/**
+		 * The red component of the color. 
+		 */		
 		public var r:uint;
+		
+		/**
+		 * The green component of the color. 
+		 */		
 		public var g:uint;
+		
+		/**
+		 * The blue component of the color. 
+		 */		
 		public var b:uint;
 		
+		/**
+		 * Constructor 
+		 * @param The color to create the instance from.
+		 */		
 		public function ColorRGB(color:uint = 0) {
 			this.color = color;
 		}
 		
+		/**
+		 * Parse a color string. 
+		 * @param The string to parse. This must be a hex-string and can begin (but does not have to) with "#" or "0x".
+		 */		
 		public function parseString(string:String):void {
 			if(string.length == 7 && string.indexOf("#") == 0){
 				string = string.substr(1,6);
 				color = int(string);
 			} else if(string.length == 8 && string.indexOf("0x") == 0) {
 				color = int(string);
+			} else if (string.length == 6){
+				color = int(string);
 			} else {
 				color = 0;
 			}
 		}
-
+		
+		/**
+		 * The uint value for the color.
+		 */		
 		public function get color():uint {
 			return r << 16 | g << 8 | b;
 		}
@@ -54,7 +81,13 @@ package com.flow.effects.utils {
 			g = value >> 8 & 0xFF;
 			b = value & 0xFF;
 		}
-	
+		
+		/**
+		 * Returns a new color that comes from mixing the instance with another color.
+		 * @param The color to mix with the color represented by the instance.
+		 * @param The amount (0-1) at which to use the new color.
+		 * @return The mixed color.
+		 */		
 		public function mix(color:ColorRGB, amount:Number):ColorRGB {
 			var ret:ColorRGB = new ColorRGB();
 			ret.r = r + (color.r-r) * amount;
@@ -62,11 +95,18 @@ package com.flow.effects.utils {
 			ret.b = b + (color.b-b) * amount;
 			return ret;
 		}
-
+		
+		/**
+		 * Duplicates the color.
+		 */		
 		public function duplicate():ColorRGB {
 			return new ColorRGB(color);
 		}
 		
+		/**
+		 * Uses the color to colorize a DisplayObject. 
+		 * @param The DisplayObject to colorize.
+		 */		
 		public function colorizeDisplayObject(displayObject:DisplayObject):void {
 			var colorTransform:ColorTransform = new ColorTransform(0, 0, 0, 1, r, g, b);
 			displayObject.transform.colorTransform = colorTransform;

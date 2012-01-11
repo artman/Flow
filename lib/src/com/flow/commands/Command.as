@@ -27,8 +27,17 @@ package com.flow.commands {
 	
 	import flash.events.EventDispatcher;
 	
+	/**
+	 * Dispatched when the command completes. This is only dispatched for events that don't finish immediately and call the complete-method, such
+	 * as RPC commands. 
+	 */	
 	[Event(name="complete", type="com.flow.events.CommandEvent")]
+	
+	/**
+	 * Dispatched when a command finishes with an error, such as a RPC failure. 
+	 */	
 	[Event(name="error", type="com.flow.events.CommandEvent")]
+	
 	/**
 	 * The base-class for all commands in an Flow application. Flow defines a simple MVC model to separate visual representation from data and 
 	 * commands. In Flow, there is no command controller that acts as the glue between user triggered events and commands. Instead, whenever

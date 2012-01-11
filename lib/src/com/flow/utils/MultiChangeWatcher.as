@@ -41,7 +41,6 @@ package com.flow.utils {
 		 * @param The properties to listen to. Properties can be chained just like with BindingUtils.
 		 * @param The handler that should be called when any of the target properties change.
 		 * @example new MultiChangeWatcher(myObj, ["x", "content.value"], myHandler);
-		 * 
 		 */		
 		public function MultiChangeWatcher(target:Object, properties:Array, handler:Function) {
 			watchers = new Vector.<ChangeWatcher>();

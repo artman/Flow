@@ -24,7 +24,10 @@ package com.flow.effects {
 	
 	import flash.display.DisplayObject;
 	import flash.filters.BevelFilter;
-
+	
+	/**
+	 * Createas a Bevel effect.
+	 */	
 	public class BevelEffect extends Effect {
 		
 		protected var filter:BevelFilter;
@@ -53,10 +56,14 @@ package com.flow.effects {
 			_bevelQuality = bevelQuality;
 		}	
 		
+		/** @private */
 		override protected function validateProperties():void {
 			this.filter = new BevelFilter(distance, angle, highlightColor, highlightAlpha, shadowColor, shadowAlpha, blurX, blurY, strength, bevelQuality)
 		}
 		
+		/**
+		 * The distance of the bevel effect.
+		 */		
 		public function get distance():Number {
 			return _distance;
 		}
@@ -67,6 +74,9 @@ package com.flow.effects {
 			}
 		}
 		
+		/**
+		 * The angle of the bevel effect.
+		 */		
 		public function get angle():Number {
 			return _angle;
 		}
@@ -77,6 +87,9 @@ package com.flow.effects {
 			}
 		}
 		
+		/**
+		 * The highlight color of the bevel. 
+		 */		
 		public function get highlightColor():Number {
 			return _highlightColor;
 		}
@@ -86,7 +99,10 @@ package com.flow.effects {
 				invalidateProperties();
 			}
 		}
-
+		
+		/**
+		 * The alpha-value of the highlight color of the bevel.
+		 */		
 		public function get highlightAlpha():Number {
 			return _highlightAlpha;
 		}
@@ -97,6 +113,9 @@ package com.flow.effects {
 			}
 		}
 
+		/**
+		 * The shadow color of the bevel.
+		 */		
 		public function get shadowColor():Number {
 			return _shadowColor;
 		}
@@ -107,6 +126,9 @@ package com.flow.effects {
 			}
 		}
 
+		/**
+		 * The alpha-value of the shadow color of the bevel.
+		 */		
 		public function get shadowAlpha():Number {
 			return _shadowAlpha;
 		}
@@ -117,6 +139,9 @@ package com.flow.effects {
 			}
 		}
 
+		/**
+		 * The horizontal blur of the bevel. 
+		 */		
 		public function get blurX():Number {
 			return _blurX;
 		}
@@ -127,6 +152,9 @@ package com.flow.effects {
 			}
 		}
 
+		/**
+		 * The vertical blur of the bevel.
+		 */		
 		public function get blurY():Number {
 			return _blurY;
 		}
@@ -137,6 +165,9 @@ package com.flow.effects {
 			}
 		}
 
+		/**
+		 * The strenght of the bevel.
+		 */		
 		public function get strength():Number {
 			return _strength;
 		}
@@ -147,6 +178,9 @@ package com.flow.effects {
 			}
 		}
 
+		/**
+		 * The quality of the bevel (1-3).
+		 */		
 		public function get bevelQuality():Number {
 			return _bevelQuality;
 		}
@@ -156,7 +190,8 @@ package com.flow.effects {
 				invalidateProperties();
 			}
 		}
-
+		
+		/** @private */
 		override protected function render(val:Number):Array{
 			filter.strength = strength * val;
 			

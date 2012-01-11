@@ -25,6 +25,9 @@ package com.flow.effects {
 	import flash.display.DisplayObject;
 	import flash.filters.BlurFilter;
 
+	/**
+	 * Creates a Blur effect. 
+	 */	
 	public class BlurEffect extends Effect {
 		
 		private var filter:BlurFilter;
@@ -32,6 +35,13 @@ package com.flow.effects {
 		private var _blurX:Number;
 		private var _blurY:Number;
 
+		/**
+		 * Constructor 
+		 * @param The target of the blur.
+		 * @param The amount of horizontal blur.
+		 * @param The amount of vertical blur.
+		 * @param The quality of the blur (1-3).
+		 */		
 		public function BlurEffect(target:DisplayObject = null, blurX:Number = 10, blurY:Number = 10, blurQuality:Number = 1){
 			super(target);
 			_blurX = blurX;
@@ -43,6 +53,9 @@ package com.flow.effects {
 			filter = new BlurFilter(_blurX, _blurY, _blurQuality);
 		}
 		
+		/**
+		 * The quality of the blur (1-3). 
+		 */		
 		public function get blurQuality():Number {
 			return _blurQuality;
 		}
@@ -53,6 +66,9 @@ package com.flow.effects {
 			}
 		}
 
+		/**
+		 * The amount of horizontal blur. 
+		 */		
 		public function get blurX():Number {
 			return _blurX;
 		}
@@ -62,7 +78,10 @@ package com.flow.effects {
 				invalidateProperties();
 			}
 		}
-
+		
+		/**
+		 * The amount of vertical blur. 
+		 */		
 		public function get blurY():Number {
 			return _blurY;
 		}
@@ -72,7 +91,8 @@ package com.flow.effects {
 				invalidateProperties();
 			}
 		}
-
+		
+		/** @private */
 		override protected function render(val:Number):Array{
 			filter.blurX = blurX*val;
 			filter.blurY = blurY*val;
@@ -84,5 +104,4 @@ package com.flow.effects {
 			}
 		}
 	}
-
 }
