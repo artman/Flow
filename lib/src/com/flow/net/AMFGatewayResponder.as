@@ -32,6 +32,10 @@ package com.flow.net {
 	[Event(name="complete", type="com.flow.events.AMFGatewayEvent")]
 	[Event(name="error", type="com.flow.events.AMFGatewayEvent")]
 	
+	/**
+	 * A AMFGatwayResponder instance is returned by each remote procedure call. You can use the addHandlers-method to register success- and error-
+	 * callbacks that are called when the remote procedure has executed. 
+	 */	
 	public class AMFGatewayResponder extends Responder implements IEventDispatcher {
 		
 		private var eventDispatcher:EventDispatcher;
@@ -40,6 +44,9 @@ package com.flow.net {
 		private var resultHandler:Function = null;
 		private var errorHandler:Function = null;
 		
+		/**
+		 * Constructor. There should be no need for you to create an instance of the AMFGatewayResponder yourself.
+		 */		
 		public function AMFGatewayResponder(){
 			super(result, error);
 			eventDispatcher = new EventDispatcher(this);
@@ -83,6 +90,13 @@ package com.flow.net {
 			return eventDispatcher.willTrigger(type);
 		}
 		
+		/**
+		 * Register callback functions that are called when the remote procedure call that returned the AMFGatewayResponder instance returns. 
+		 * @param The function to invoke when the remote procedure has returned successfully. The callback will be called with one parameter containing the result
+		 * of the remote procedure call.
+		 * @param The function to invoke when the remote procedure returns with an error. The callback will be called with one parameter containing the error
+		 * object returned by the procedure call.
+		 */		
 		public function addHandlers(resultHandler:Function, errorHandler:Function = null):void {
 			this.resultHandler = resultHandler;
 			this.errorHandler = errorHandler;

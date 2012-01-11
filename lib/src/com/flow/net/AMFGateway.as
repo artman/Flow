@@ -31,10 +31,17 @@ package com.flow.net {
 	[Event(name="result", type="com.flow.events.AMFGatewayEvent")]
 	[Event(name="error", type="com.flow.events.AMFGatewayEvent")]
 	
+	/**
+	 * AMFGateway provides a easy way to consume remote AMF services.
+	 */	
 	public class AMFGateway extends NetConnection {
 		
 		private var _url:String;
 		
+		/**
+		 * Constructor. 
+		 * @param The gateway URL to connect to.
+		 */		
 		public function AMFGateway(url:String = "") {
 			super();
 			NetConnection.defaultObjectEncoding = ObjectEncoding.AMF3;
@@ -44,6 +51,9 @@ package com.flow.net {
 			this.url = url;
 		}
 		
+		/**
+		 * The url to which the AMFGateway instance is connected to. 
+		 */		
 		[Bindable]
 		public function get url():String {
 			return _url
@@ -57,6 +67,12 @@ package com.flow.net {
 			}
 		}
 		
+		/**
+		 * Calls a remote procedure on the gateway. 
+		 * @param The procedure name to call
+		 * @param Any parameters to send to the procedure.
+		 * @return A GatewayResponder instance that you can use to wait for a response from the procedure call.
+		 */		
 		public function rp(remoteProcedure:String, ...rest):AMFGatewayResponder {
 			var resp:AMFGatewayResponder = new AMFGatewayResponder();
 			resp.addEventListener(AMFGatewayEvent.ERROR, error);

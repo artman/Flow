@@ -104,6 +104,9 @@ package com.flow.managers {
 			}
 		}	
 		
+		/**
+		 * Removes all open popups.
+		 */		
 		public static function removeAllPopups():void {
 			for(var i:int = popups.length-1; i>=0; i--) {
 				removePopup(popups[i]);
