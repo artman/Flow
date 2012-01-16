@@ -14,6 +14,7 @@
 	<component id="AMFGateway" class="com.flow.net.AMFGateway"/>
 	<component id="AMFGatewayEvent" class="com.flow.events.AMFGatewayEvent"/>
 	<component id="AMFGatewayResponder" class="com.flow.net.AMFGatewayResponder"/>
+	<component id="AMFLoader" class="com.flow.net.loaders.AMFLoader"/>
 	<component id="AbsoluteLayout" class="com.flow.containers.layout.AbsoluteLayout"/>
 	<component id="AbstractLoader" class="com.flow.net.loaders.AbstractLoader"/>
 	<component id="AddItems" class="mx.states.AddItems"/>
@@ -27,6 +28,7 @@
 	<component id="ArrayCollection" class="com.flow.collections.ArrayCollection"/>
 	<component id="Back" class="com.flow.motion.easing.Back"/>
 	<component id="BevelEffect" class="com.flow.effects.BevelEffect"/>
+	<component id="BinaryLoader" class="com.flow.net.loaders.BinaryLoader"/>
 	<component id="BitmapFill" class="com.flow.graphics.fills.BitmapFill"/>
 	<component id="BlurEffect" class="com.flow.effects.BlurEffect"/>
 	<component id="Bounce" class="com.flow.motion.easing.Bounce"/>
@@ -126,6 +128,7 @@
 	<component id="RemoteProcedureAMF" class="com.flow.net.RemoteProcedureAMF"/>
 	<component id="RemoteProcedureHTTP" class="com.flow.net.RemoteProcedureHTTP"/>
 	<component id="RemoteProcedureTypes" class="com.flow.net.RemoteProcedureTypes"/>
+	<component id="ResourceManager" class="com.flow.managers.ResourceManager"/>
 	<component id="RippleEffect" class="com.flow.effects.RippleEffect"/>
 	<component id="ScrollArea" class="com.flow.containers.ScrollArea"/>
 	<component id="Scroller" class="com.flow.containers.Scroller"/>

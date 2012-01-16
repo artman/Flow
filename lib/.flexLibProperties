@@ -107,6 +107,7 @@
     <classEntry path="com.flow.managers.KeyboardManager"/>
     <classEntry path="com.flow.managers.LayoutManager"/>
     <classEntry path="com.flow.managers.PopupManager"/>
+    <classEntry path="com.flow.managers.ResourceManager"/>
     <classEntry path="com.flow.managers.SkinManager"/>
     <classEntry path="com.flow.managers.TextFormatManager"/>
     <classEntry path="com.flow.managers.TooltipManager"/>

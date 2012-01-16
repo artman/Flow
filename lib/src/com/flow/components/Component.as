@@ -33,6 +33,7 @@ package com.flow.components {
 	import com.flow.graphics.fills.IFill;
 	import com.flow.graphics.strokes.IStroke;
 	import com.flow.managers.LayoutManager;
+	import com.flow.managers.ResourceManager;
 	import com.flow.managers.TooltipManager;
 	import com.flow.motion.IAnimateable;
 	
@@ -73,6 +74,9 @@ package com.flow.components {
 		
 		/** A static reference to the LayoutManager. */
 		public static var manager:LayoutManager;
+		
+		/** A static reference to the ResourceManager. */
+		public static var resources:ResourceManager;
 		
 		/** @private */ 
 		protected var _x:Number = 0;
