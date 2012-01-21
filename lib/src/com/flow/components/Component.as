@@ -76,7 +76,8 @@ package com.flow.components {
 		public static var manager:LayoutManager;
 		
 		/** A static reference to the ResourceManager. */
-		public static var resources:ResourceManager;
+		[Bindable]
+		public static var resources:ResourceManager = ResourceManager.instance;
 		
 		/** @private */ 
 		protected var _x:Number = 0;
