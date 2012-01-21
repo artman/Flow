@@ -14,6 +14,7 @@ package com.flow.managers {
 	 */	
 	public class ResourceManager {
 		
+		[Bindable]
 		public static var instance:ResourceManager = new ResourceManager();
 		private var bundles:Dictionary;
 		private var localeChain:Array;
