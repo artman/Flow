@@ -205,6 +205,7 @@ package com.flow.components {
 			invalidateProperties();
 			focusRect = null;
 			preInitialize();
+			tabEnabled = false;
 		}
 
 		/** @private */		
@@ -239,7 +240,7 @@ package com.flow.components {
 					removeEventListener(FocusEvent.FOCUS_IN, focusIn);
 					removeEventListener(FocusEvent.FOCUS_OUT, focusOut);
 				}
-				useHandCursor = buttonMode = _interactive;
+				tabEnabled = tabChildren = useHandCursor = buttonMode = _interactive;
 			}
 		}
 		
