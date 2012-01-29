@@ -35,10 +35,10 @@
     <classEntry path="com.flow.components.supportClasses.Skin"/>
     <classEntry path="com.flow.components.supportClasses.SkinnableComponent"/>
     <classEntry path="com.flow.containers.Application"/>
+    <classEntry path="com.flow.containers.ConfirmCancelHBox"/>
     <classEntry path="com.flow.containers.Container"/>
     <classEntry path="com.flow.containers.HBox"/>
     <classEntry path="com.flow.containers.List"/>
-    <classEntry path="com.flow.containers.ConfirmCancelHBox"/>
     <classEntry path="com.flow.containers.ScrollArea"/>
     <classEntry path="com.flow.containers.Scroller"/>
     <classEntry path="com.flow.containers.VBox"/>
