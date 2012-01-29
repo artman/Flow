@@ -38,7 +38,7 @@
     <classEntry path="com.flow.containers.Container"/>
     <classEntry path="com.flow.containers.HBox"/>
     <classEntry path="com.flow.containers.List"/>
-    <classEntry path="com.flow.containers.OKCancelHBox"/>
+    <classEntry path="com.flow.containers.ConfirmCancelHBox"/>
     <classEntry path="com.flow.containers.ScrollArea"/>
     <classEntry path="com.flow.containers.Scroller"/>
     <classEntry path="com.flow.containers.VBox"/>

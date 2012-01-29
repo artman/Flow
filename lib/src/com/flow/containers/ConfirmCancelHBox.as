@@ -32,10 +32,10 @@ package com.flow.containers {
 	 * the order that Windows would order it's buttons (ok first, cancel second). On a Mac, the order is inverted to conform to the
 	 * convetions of MacOS.
 	 */	
-	public class OKCancelHBox extends HBox {
+	public class ConfirmCancelHBox extends HBox {
 		
 		/** Constructor */		
-		public function OKCancelHBox() {
+		public function ConfirmCancelHBox() {
 			super();
 			horizontalAlign = "left";
 			inverted = Capabilities.os.indexOf("Mac") != -1 || Capabilities.os.indexOf("iPhone") != -1;
