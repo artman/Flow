@@ -51,6 +51,7 @@
 	<component id="CommandEvent" class="com.flow.events.CommandEvent"/>
 	<component id="Component" class="com.flow.components.Component"/>
 	<component id="ComponentEvent" class="com.flow.events.ComponentEvent"/>
+	<component id="ConfirmCancelHBox" class="com.flow.containers.ConfirmCancelHBox"/>
 	<component id="Container" class="com.flow.containers.Container"/>
 	<component id="CopyEffect" class="com.flow.effects.utils.CopyEffect"/>
 	<component id="Cubic" class="com.flow.motion.easing.Cubic"/>
@@ -113,7 +114,6 @@
 	<component id="MeasureUnit" class="com.flow.components.measuring.MeasureUnit"/>
 	<component id="MeasureUnits" class="com.flow.components.measuring.MeasureUnits"/>
 	<component id="MultiChangeWatcher" class="com.flow.utils.MultiChangeWatcher"/>
-	<component id="OKCancelHBox" class="com.flow.containers.OKCancelHBox"/>
 	<component id="OuterBevelEffect" class="com.flow.effects.OuterBevelEffect"/>
 	<component id="OverrideBase" class="mx.states.OverrideBase"/>
 	<component id="PaddableComponent" class="com.flow.components.supportClasses.PaddableComponent"/>
