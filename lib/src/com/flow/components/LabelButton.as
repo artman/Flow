@@ -42,6 +42,7 @@ package com.flow.components {
 			addChild(hitSprite);
 			hitArea = hitSprite;
 			hitSprite.visible = false;
+			textFormat = "link";
 		}
 		
 		/**
