@@ -25,7 +25,6 @@ package com.flow.managers {
 			
 			bundles = new Dictionary();
 			var applicationDomain:ApplicationDomain = ApplicationDomain.currentDomain;
-			
 						
 			if (!applicationDomain.hasDefinition("_CompiledResourceBundleInfo")) {
 				return;
@@ -67,9 +66,8 @@ package com.flow.managers {
 					}
 					
 					if (!bundleClass) {
-						throw new Error("Could not find compiled resource bundle '" + bundleName + "' for locale '" + locale + "'.");
+						//throw new Error("Could not find compiled resource bundle '" + bundleName + "' for locale '" + locale + "'.");
 					}
-					
 					var bndl:Object = new bundleClass();	
 					bundles[locale][bundleName.toLowerCase()] = bndl.content;
 				}
