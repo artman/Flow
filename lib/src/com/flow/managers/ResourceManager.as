@@ -26,10 +26,11 @@ package com.flow.managers {
 			bundles = new Dictionary();
 			var applicationDomain:ApplicationDomain = ApplicationDomain.currentDomain;
 			
-			var resourceInfo:Object = applicationDomain.getDefinition("_CompiledResourceBundleInfo");			
+						
 			if (!applicationDomain.hasDefinition("_CompiledResourceBundleInfo")) {
 				return;
 			}
+			var resourceInfo:Object = applicationDomain.getDefinition("_CompiledResourceBundleInfo");
 			var c:Class = Class(applicationDomain.getDefinition("_CompiledResourceBundleInfo"));
 			var locales:Array = c.compiledLocales;
 			var bundleNames:Array = c.compiledResourceBundleNames;
