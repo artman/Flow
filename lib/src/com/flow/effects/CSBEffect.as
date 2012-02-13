@@ -32,7 +32,7 @@ package com.flow.effects {
 		private var _saturation:Number;
 		private var _brightness:Number;
 		
-		public function CSBEffect(target:DisplayObject = null, contrast:Number = 10, saturation:Number = 0, brightness:Number = 0){
+		public function CSBEffect(target:DisplayObject = null, contrast:Number = 0, saturation:Number = 0, brightness:Number = 0){
 			_contrast = contrast;
 			_saturation = saturation;
 			_brightness = brightness;
@@ -48,6 +48,7 @@ package com.flow.effects {
 			matrix = colConv.toArray();
 		}
 		
+		[Animateable]
 		public function get contrast():Number {
 			return _contrast;
 		}
@@ -58,6 +59,7 @@ package com.flow.effects {
 			}
 		}
 
+		[Animateable]
 		public function get saturation():Number {
 			return _saturation;
 		}
@@ -68,6 +70,7 @@ package com.flow.effects {
 			}
 		}
 
+		[Animateable]
 		public function get brightness():Number {
 			return _brightness;
 		}

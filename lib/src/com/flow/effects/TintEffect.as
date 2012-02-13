@@ -40,6 +40,7 @@ package com.flow.effects {
 			super(target);
 		}
 		
+		[Animateable(type="color")]
 		public function get color():int {
 			return _color.color;
 		}
@@ -50,6 +51,7 @@ package com.flow.effects {
 			}
 		}
 
+		[Animateable]
 		public function get multiply():Number {
 			return _multiply;
 		}

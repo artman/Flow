@@ -63,7 +63,8 @@ package com.flow.effects {
 		
 		/**
 		 * The distance of the bevel effect.
-		 */		
+		 */	
+		[Animateable]
 		public function get distance():Number {
 			return _distance;
 		}
@@ -77,6 +78,7 @@ package com.flow.effects {
 		/**
 		 * The angle of the bevel effect.
 		 */		
+		[Animateable]
 		public function get angle():Number {
 			return _angle;
 		}
@@ -89,7 +91,8 @@ package com.flow.effects {
 		
 		/**
 		 * The highlight color of the bevel. 
-		 */		
+		 */	
+		[Animateable(type="color")]
 		public function get highlightColor():Number {
 			return _highlightColor;
 		}
@@ -103,6 +106,7 @@ package com.flow.effects {
 		/**
 		 * The alpha-value of the highlight color of the bevel.
 		 */		
+		[Animateable]
 		public function get highlightAlpha():Number {
 			return _highlightAlpha;
 		}
@@ -115,7 +119,8 @@ package com.flow.effects {
 
 		/**
 		 * The shadow color of the bevel.
-		 */		
+		 */	
+		[Animateable(type="color")]
 		public function get shadowColor():Number {
 			return _shadowColor;
 		}
@@ -129,6 +134,7 @@ package com.flow.effects {
 		/**
 		 * The alpha-value of the shadow color of the bevel.
 		 */		
+		[Animateable]
 		public function get shadowAlpha():Number {
 			return _shadowAlpha;
 		}
@@ -141,7 +147,8 @@ package com.flow.effects {
 
 		/**
 		 * The horizontal blur of the bevel. 
-		 */		
+		 */	
+		[Animateable]
 		public function get blurX():Number {
 			return _blurX;
 		}
@@ -155,6 +162,7 @@ package com.flow.effects {
 		/**
 		 * The vertical blur of the bevel.
 		 */		
+		[Animateable]
 		public function get blurY():Number {
 			return _blurY;
 		}
@@ -167,7 +175,8 @@ package com.flow.effects {
 
 		/**
 		 * The strenght of the bevel.
-		 */		
+		 */
+		[Animateable]
 		public function get strength():Number {
 			return _strength;
 		}

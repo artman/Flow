@@ -37,10 +37,10 @@ package com.flow.effects {
 			}
 		}
 		
+		[Animateable]
 		public function get feather():Number {
 			return _feather;
 		}
-
 		public function set feather(value:Number):void {
 			if(value != _feather) {
 				_feather = value;

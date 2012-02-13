@@ -36,6 +36,7 @@ package com.flow.effects {
 			_angle = angle;
 		}
 
+		[Animateable]
 		public function get smooth():Number {
 			return _smooth;
 		}
@@ -46,6 +47,7 @@ package com.flow.effects {
 			}
 		}
 
+		[Animateable]
 		public function get angle():Number {
 			return _angle;
 		}

@@ -53,6 +53,7 @@ package com.flow.effects{
 			}
 		}
 		
+		[Animateable]
 		public function get amount():Number {
 			return _amount;
 		}
@@ -63,6 +64,7 @@ package com.flow.effects{
 			}
 		}
 
+		[Animateable]
 		public function get waveLength():Number {
 			return _waveLength;
 		}

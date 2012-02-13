@@ -20,45 +20,15 @@
  * THE SOFTWARE.
  */
 
-package com.flow.effects {
+package com.flow.components {
 	
-	import flash.display.DisplayObject;
-	import flash.display.Shader;
-	import flash.filters.ShaderFilter;
-	
-	public class PixelateEffect extends Effect {
-		[Embed(source='pixelbender/pixelate.pbj', mimeType='application/octet-stream')]
-  		
-		private var PixelatePbj:Class;
-  		private var shader:Shader;
-  		private var filter:ShaderFilter;
-  		private var _amount:int;
-		
-		public function PixelateEffect(target:DisplayObject = null, amount:int = 20){
-			super(target);
-			this.amount = amount;
-			shader = new Shader(new PixelatePbj());
-			filter = new ShaderFilter(shader);
+	/**
+	 * A vertical slider. 
+	 */	
+	public class VSlider extends HScrollBar {
+		public function VSlider() {
+			super();
+			direction = "vertical";
 		}
-		
-		[Animateable]
-		public function get amount():int {
-			return _amount;
-		}
-		public function set amount(value:int):void {
-			if(value != _amount) {
-				_amount = value;
-				invalidate();
-			}
-		}
-
-		override protected function render(val:Number):Array {
-			if(1 + Math.round(amount * val) != 1) {
-				shader.data.dimension.value = [1 + Math.round(amount * val)];
-				return new Array(filter);
-			} else {
-				return new Array();
-			}
-		}	
 	}
 }

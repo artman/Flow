@@ -45,6 +45,7 @@ package com.flow.effects {
 			filter = new ShaderFilter(shader);
 		}
 		
+		[Animateable]
 		public function get height():int {
 			return _height;
 		}
@@ -55,6 +56,7 @@ package com.flow.effects {
 			}
 		}
 		
+		[Animateable]
 		public function get stemScale():Number {
 			return _stemScale;
 		}
@@ -65,6 +67,7 @@ package com.flow.effects {
 			}
 		}
 
+		[Animateable]
 		public function get squiggleScale():Number {
 			return _squiggleScale;
 		}
@@ -74,8 +77,6 @@ package com.flow.effects {
 				invalidate();
 			}
 		}
-
-		
 
 		override protected function render(val:Number):Array {
 			if(val) {

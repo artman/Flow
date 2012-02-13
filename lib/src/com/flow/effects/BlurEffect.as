@@ -68,7 +68,8 @@ package com.flow.effects {
 
 		/**
 		 * The amount of horizontal blur. 
-		 */		
+		 */	
+		[Animateable]
 		public function get blurX():Number {
 			return _blurX;
 		}
@@ -82,6 +83,7 @@ package com.flow.effects {
 		/**
 		 * The amount of vertical blur. 
 		 */		
+		[Animateable]
 		public function get blurY():Number {
 			return _blurY;
 		}

@@ -102,6 +102,7 @@ package com.flow.components {
 		}
 		
 		/** The text to display. */		
+		[Bindable]
 		public function get text():String {
 			return _text;
 		}

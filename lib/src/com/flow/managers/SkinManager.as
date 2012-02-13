@@ -34,7 +34,7 @@ package com.flow.managers {
 		 * Initializes the manager and registers all default skins for Flow's components. This is called automatically by Flow.
 		 */		
 		public static function init():void {
-			var components:Array = ["Button", "Checkbox", "HScrollBar", "VScrollBar", "TextInput", "TextArea", "Alert", "VideoPlayer"]
+			var components:Array = ["Button", "Checkbox", "HScrollBar", "VScrollBar", "TextInput", "TextArea", "Alert", "VideoPlayer", "HSlider", "VSlider"]
 			defaultSkins = {};
 			for each(var component:String in components) {
 				defaultSkins["com.flow.components." + component] = "com.flow.skins." + component + "Skin";

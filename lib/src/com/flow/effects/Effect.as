@@ -23,6 +23,7 @@
 package com.flow.effects {
 	
 	import com.flow.managers.LayoutManager;
+	import com.flow.motion.IAnimateable;
 	import com.flow.motion.Tween;
 	
 	import flash.display.DisplayObject;
@@ -39,7 +40,7 @@ package com.flow.effects {
 	 * fully show the DisplayObject and a value of 0.5 should mask half of the DisplayObject.
 	 */	
 	[DefaultProperty("children")]
-	public class Effect extends EventDispatcher{
+	public class Effect extends EventDispatcher implements IAnimateable {
 		
 		private var _value:Number;
 		protected var _target:DisplayObject;
@@ -97,6 +98,7 @@ package com.flow.effects {
 		 * The childrens target will be assigned to all it's children. 
 		 */		
 		[ArrayElementType("com.flow.effects.Effect")]
+		[AnimateableChild]
 		public function get children():Vector.<Effect> {
 			return _children;
 		}
@@ -154,6 +156,7 @@ package com.flow.effects {
 		/**
 		 * The value of the effect. 1 means that the effect is applied fully and 0 means that it's not applied at all.
 		 */		
+		[Animateable]
 		public function get value():Number{
 			return _value;
 		}

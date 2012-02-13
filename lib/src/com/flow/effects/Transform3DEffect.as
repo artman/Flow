@@ -22,6 +22,9 @@
 
 package com.flow.effects {
 	
+	import com.flow.components.Component;
+	import com.flow.utils.callLater;
+	
 	import flash.display.DisplayObject;
 	import flash.geom.Matrix;
 	
@@ -30,15 +33,22 @@ package com.flow.effects {
 		private var _rotationX:Number;
 		private var _rotationY:Number;
 		private var _rotationZ:Number;
+		private var _z:Number;
+		
+		private var resetX:Number;
+		private var resetY:Number;
+		
+		private var isSet:Boolean = false;
 		
 		
-		public function Transform3DEffect(target:DisplayObject = null, rotationX:Number = 90, rotationY:Number = 0, rotationZ:Number = 0) {
+		public function Transform3DEffect(target:DisplayObject = null, rotationX:Number = 0, rotationY:Number = 0, rotationZ:Number = 0) {
 			super(target);
 			_rotationX = rotationX;
 			_rotationY = rotationY;
 			_rotationZ = rotationZ;
 		}	
 		
+		[Animateable]
 		public function get rotationX():Number {
 			return _rotationX;
 		}
@@ -49,6 +59,7 @@ package com.flow.effects {
 			}
 		}
 
+		[Animateable]
 		public function get rotationY():Number {
 			return _rotationY;
 		}
@@ -59,6 +70,7 @@ package com.flow.effects {
 			}
 		}
 
+		[Animateable]
 		public function get rotationZ():Number {
 			return _rotationZ;
 		}
@@ -68,19 +80,39 @@ package com.flow.effects {
 				invalidate();
 			}
 		}
+		
+		[Animateable]
+		public function get z():Number {
+			return _z;
+		}
+		public function set z(value:Number):void {
+			if(value != _z) {
+				_z = value;
+				invalidate();
+			}
+		}
 
 		override protected function render(val:Number):Array{
-			if(val) {
+			if(val && (_rotationX != 0 || _rotationY != 0 || rotationY != 0 || _z != 0)) {
+				isSet = true;
 				_target.rotationX = _rotationX * val;
 				_target.rotationY = _rotationY * val;
-				_target.rotationY = _rotationZ * val;
+				_target.rotationZ = _rotationZ * val;
+				_target.z = _z * val;
 			} else {
-				var x:Number = _target.x;
-				var y:Number = _target.y;
-				var trans:Matrix = _target.transform.matrix;
-				_target.transform.matrix3D = null;
-				_target.x = x;
-				_target.y = y;
+				if(isSet) {
+					resetX = _target.x;
+					resetY = _target.y;
+					var trans:Matrix = _target.transform.matrix;
+					//_target.transform.matrix3D = null;
+					
+					if(_target is Component) {
+						(_target as Component).invalidateLayout();
+					}
+					_target.x = resetX;
+					_target.y = resetY;
+					isSet = false;
+				}
 			}
 			return [];
 		}

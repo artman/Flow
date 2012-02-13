@@ -86,11 +86,13 @@ package com.flow.motion {
 					}
 				}
 			}
-			properties = animateablePropsLookup[name].concat();
-			
-			for(i = 0; i<properties.length; i++) {
-				var prop:AnimationProperty = properties[i];
-				properties[i] = new AnimationProperty(prop.name, object[prop.name], prop.type);
+			if(animateablePropsLookup[name]) {
+				properties = animateablePropsLookup[name].concat();
+				
+				for(i = 0; i<properties.length; i++) {
+					var prop:AnimationProperty = properties[i];
+					properties[i] = new AnimationProperty(prop.name, object[prop.name], prop.type);
+				}
 			}
 		}		
 	}

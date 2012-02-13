@@ -49,6 +49,7 @@ package com.flow.effects {
 			filter = new GlowFilter(_color, alpha, _blurX, _blurY, _strength, _quality);
 		}
 		
+		[Animateable(type="color")]
 		public function get color():Number {
 			return _color;
 		}
@@ -59,6 +60,7 @@ package com.flow.effects {
 			}
 		}
 
+		[Animateable]
 		public function get alpha():Number {
 			return _alpha;
 		}
@@ -79,6 +81,7 @@ package com.flow.effects {
 			}
 		}
 
+		[Animateable]
 		public function get blurX():Number {
 			return _blurX;
 		}
@@ -88,7 +91,8 @@ package com.flow.effects {
 				invalidateProperties();
 			}
 		}
-
+		
+		[Animateable]
 		public function get blurY():Number {
 			return _blurY;
 		}
@@ -99,6 +103,7 @@ package com.flow.effects {
 			}
 		}
 
+		[Animateable]
 		public function get strength():Number {
 			return _strength;
 		}

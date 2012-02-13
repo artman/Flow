@@ -59,6 +59,7 @@ package com.flow.effects {
 			filter = new DropShadowFilter(_distance, _angle, _color, _alpha, _blurX, _blurY, _strength, _quality, _inner, _knockout, _hideObject);
 		}
 		
+		[Animateable]
 		public function get distance():Number {
 			return _distance;
 		}
@@ -68,7 +69,8 @@ package com.flow.effects {
 				invalidateProperties();
 			}
 		}
-
+		
+		[Animateable]
 		public function get angle():Number {
 			return _angle;
 		}
@@ -79,6 +81,7 @@ package com.flow.effects {
 			}
 		}
 
+		[Animateable(type="color")]
 		public function get color():Number {
 			return _color;
 		}
@@ -89,6 +92,7 @@ package com.flow.effects {
 			}
 		}
 
+		[Animateable]
 		public function get alpha():Number {
 			return _alpha;
 		}
@@ -99,6 +103,7 @@ package com.flow.effects {
 			}
 		}
 
+		[Animateable]
 		public function get blurX():Number {
 			return _blurX;
 		}
@@ -109,6 +114,7 @@ package com.flow.effects {
 			}	
 		}
 
+		[Animateable]
 		public function get blurY():Number {
 			return _blurY;
 		}

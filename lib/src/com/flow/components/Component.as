@@ -1247,6 +1247,7 @@ package com.flow.components {
 			return this;
 		}
 		
+		[AnimateableChild]
 		public function get effect():Effect {
 			return _effect;
 		}
