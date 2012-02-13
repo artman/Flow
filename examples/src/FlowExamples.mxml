@@ -36,6 +36,8 @@
 			import flash.filters.DropShadowFilter;
 			
 			override protected function preInitialize():void {
+				
+				
 				new InitApplicationCommand();
 				var contextMenu:ContextMenu = new ContextMenu();
 				
