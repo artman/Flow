@@ -44,9 +44,9 @@ package com.flow.graphics {
 		private var orgHeight:Number;
 		private var _flipHorizontal:Boolean = false;
 		private var _flipVertical:Boolean = false;
-		
 		private var _fadeInSpeed:Number;
 		private var _fadeInEffect:Effect;
+		private var _smoothing:Boolean = true;
 		
 		private var _loader:DisplayObjectLoader;
 		
@@ -89,7 +89,7 @@ package com.flow.graphics {
 					if(_source is Class) {
 						var img:* = new value();
 						if(img is BitmapData) {
-							img = new Bitmap(img);
+							img = new Bitmap(img, "auto", _smoothing);
 						}
 						image = img;
 					} else if(_source is String || _source is URLRequest) {
@@ -98,8 +98,10 @@ package com.flow.graphics {
 						_loader.addHandlers(loadingComplete);
 						_loader.fadeInSpeed = _fadeInSpeed;
 						_loader.fadeInEffect = _fadeInEffect;
+					} else if(_source is BitmapData) {
+						image = new Bitmap(_source, "auto", _smoothing);
 					} else if(_source is Bitmap) {
-						image = _source;
+						image = new Bitmap((_source as Bitmap).bitmapData, "auto", _smoothing)
 					}
 				} else {
 					image = null;
@@ -112,6 +114,21 @@ package com.flow.graphics {
 			if(image is Bitmap) {
 				(image as Bitmap).smoothing = true;
 				(image as Bitmap).pixelSnapping = PixelSnapping.NEVER;
+			}
+		}
+		
+		/**
+		 * Whether to turn on smoothing if the source has been set to a a Bitmap image.
+		 */		
+		public function get smoothing():Boolean {
+			return _smoothing;
+		}
+		public function set smoothing(value:Boolean):void {
+			if(value != _smoothing) {
+				_smoothing = value;
+				if(image && image is Bitmap) {
+					(image as Bitmap).smoothing = _smoothing;
+				}
 			}
 		}
 		
