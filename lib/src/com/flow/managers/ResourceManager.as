@@ -37,6 +37,12 @@ package com.flow.managers {
 			localeChain = locales;
 		}
 	
+		/**
+		 * 
+		 * @param locales
+		 * @param bundleNames
+		 * 
+		 */
 		private function parseResourceBundles(locales:Array, bundleNames:Array):void {
 			var applicationDomain:ApplicationDomain = ApplicationDomain.currentDomain;
 			
@@ -65,9 +71,10 @@ package com.flow.managers {
 					
 					if (!bundleClass) {
 						//throw new Error("Could not find compiled resource bundle '" + bundleName + "' for locale '" + locale + "'.");
+					} else {
+						var bndl:Object = new bundleClass();	
+						bundles[locale][bundleName.toLowerCase()] = bndl.content;
 					}
-					var bndl:Object = new bundleClass();	
-					bundles[locale][bundleName.toLowerCase()] = bndl.content;
 				}
 			}
 			if(locales.length) {
