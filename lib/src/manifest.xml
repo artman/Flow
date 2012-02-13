@@ -113,6 +113,7 @@
 	<component id="MaskFilterEffect" class="com.flow.effects.MaskFilterEffect"/>
 	<component id="MeasureUnit" class="com.flow.components.measuring.MeasureUnit"/>
 	<component id="MeasureUnits" class="com.flow.components.measuring.MeasureUnits"/>
+	<component id="MediaURL" class="com.flow.media.MediaURL"/>
 	<component id="MultiChangeWatcher" class="com.flow.utils.MultiChangeWatcher"/>
 	<component id="OuterBevelEffect" class="com.flow.effects.OuterBevelEffect"/>
 	<component id="OverrideBase" class="mx.states.OverrideBase"/>
@@ -162,6 +163,11 @@
 	<component id="VBoxLayout" class="com.flow.containers.layout.VBoxLayout"/>
 	<component id="VScrollBar" class="com.flow.components.VScrollBar"/>
 	<component id="VScrollBarSkin" class="com.flow.skins.VScrollBarSkin"/>
+	<component id="VideoPlayer" class="com.flow.components.VideoPlayer"/>
+	<component id="VideoPlayerSkin" class="com.flow.skins.VideoPlayerSkin"/>
+	<component id="VideoStream" class="com.flow.media.VideoStream"/>
+	<component id="VideoStreamEvent" class="com.flow.events.VideoStreamEvent"/>
+	<component id="VideoStreamState" class="com.flow.media.VideoStreamState"/>
 	<component id="ViewStack" class="com.flow.containers.ViewStack"/>
 	<component id="ViewSwapper" class="com.flow.containers.ViewSwapper"/>
 	<component id="WebCam" class="com.flow.components.WebCam"/>

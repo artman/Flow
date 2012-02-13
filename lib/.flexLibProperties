@@ -25,6 +25,7 @@
     <classEntry path="com.flow.components.TextArea"/>
     <classEntry path="com.flow.components.TextInput"/>
     <classEntry path="com.flow.components.VScrollBar"/>
+    <classEntry path="com.flow.components.VideoPlayer"/>
     <classEntry path="com.flow.components.WebCam"/>
     <classEntry path="com.flow.components.measuring.MeasureUnit"/>
     <classEntry path="com.flow.components.measuring.MeasureUnits"/>
@@ -87,6 +88,7 @@
     <classEntry path="com.flow.events.ListEvent"/>
     <classEntry path="com.flow.events.SorterEvent"/>
     <classEntry path="com.flow.events.StateEvent"/>
+    <classEntry path="com.flow.events.VideoStreamEvent"/>
     <classEntry path="com.flow.events.WebCamEvent"/>
     <classEntry path="com.flow.graphics.Geometry"/>
     <classEntry path="com.flow.graphics.GradientData"/>
@@ -112,6 +114,9 @@
     <classEntry path="com.flow.managers.SkinManager"/>
     <classEntry path="com.flow.managers.TextFormatManager"/>
     <classEntry path="com.flow.managers.TooltipManager"/>
+    <classEntry path="com.flow.media.MediaURL"/>
+    <classEntry path="com.flow.media.VideoStream"/>
+    <classEntry path="com.flow.media.VideoStreamState"/>
     <classEntry path="com.flow.motion.AnimationProperties"/>
     <classEntry path="com.flow.motion.AnimationProperty"/>
     <classEntry path="com.flow.motion.IAnimateable"/>
@@ -147,6 +152,7 @@
     <classEntry path="com.flow.skins.TextAreaSkin"/>
     <classEntry path="com.flow.skins.TextInputSkin"/>
     <classEntry path="com.flow.skins.VScrollBarSkin"/>
+    <classEntry path="com.flow.skins.VideoPlayerSkin"/>
     <classEntry path="com.flow.utils.GraphicUtils"/>
     <classEntry path="com.flow.utils.MultiChangeWatcher"/>
     <classEntry path="com.flow.utils.callLater"/>

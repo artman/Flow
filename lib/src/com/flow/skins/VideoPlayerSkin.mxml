@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!---
+Copyright (c) 2011 Tuomas Artman, http://artman.fi
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in
+all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+THE SOFTWARE.
+-->
+
+<fw:Skin xmlns:fx="http://ns.adobe.com/mxml/2009"
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:fw="http://artman.fi/flow" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx">	
+	
+	<fx:Metadata>
+		[HostComponent("com.flow.components.VideoPlayer")]
+	</fx:Metadata>
+	
+	<fw:states>
+		<s:State name="inactive" />
+		<s:State name="connecting" />
+		<s:State name="buffering" />
+		<s:State name="playing" />
+		<s:State name="paused" />
+		<s:State name="stopped" />
+		<s:State name="error" />
+	</fw:states>
+	
+	<fw:Container width="100%" height="100%">
+		<fw:stroke>
+			<fw:SolidStroke color="0xDDDDDD" />
+		</fw:stroke>
+		<fw:fill>
+			<fw:SolidFill color="0x000000" />
+		</fw:fill>
+		<fw:Container id="videoContainer" width="100%" height="100%" active="false" active.buffering="true" active.playing="true" active.paused="true" active.stopped="true">
+			<fw:transition>
+				<fw:FadeTransition speed="0.5" />
+			</fw:transition>
+		</fw:Container>
+	</fw:Container>
+	
+	<fw:Button id="playPauseToggleButton" label="Stop" label.paused="Play" label.stopped="Play again" left="10" bottom="10" active="false"
+			   active.buffering="true" active.paused="true" active.playing="true" active.stopped="true" />
+	
+</fw:Skin>
+
+
+

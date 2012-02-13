@@ -37,7 +37,7 @@ package com.flow.containers {
 		/** Constructor */		
 		public function ConfirmCancelHBox() {
 			super();
-			horizontalAlign = "left";
+			horizontalAlign = "right";
 			inverted = Capabilities.os.indexOf("Mac") != -1 || Capabilities.os.indexOf("iPhone") != -1;
 		}
 	}

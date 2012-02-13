@@ -57,12 +57,12 @@ package com.flow.components {
 		 * A label skin part to display the label-property of the Button.
 		 */		
 		[SkinPart(required="false")]
+		public function get labelDisplay():Label {
+			return _labelDisplay;
+		}
 		public function set labelDisplay(value:Label):void {
 			_labelDisplay = value;
 			BindingUtils.bindProperty(_labelDisplay, "text", this, "label", false, true);
-		}
-		public function get labelDisplay():Label {
-			return _labelDisplay;
 		}
 		
 		/**  The label of the button  */		

@@ -1178,6 +1178,7 @@ package com.flow.components {
 				if(evt.fromState != "") {
 					dispatchEvent(evt);
 				}
+				invalidate();
 			}
 		}
 		

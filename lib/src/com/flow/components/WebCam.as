@@ -25,6 +25,7 @@ package com.flow.components {
 	import com.flow.effects.Effect;
 	import com.flow.effects.PixelateEffect;
 	import com.flow.events.WebCamEvent;
+	import com.flow.log.Log;
 	import com.flow.utils.GraphicUtils;
 	
 	import flash.display.BitmapData;
@@ -32,8 +33,11 @@ package com.flow.components {
 	import flash.events.Event;
 	import flash.events.StatusEvent;
 	import flash.events.TimerEvent;
+	import flash.external.ExternalInterface;
 	import flash.geom.Rectangle;
 	import flash.media.Camera;
+	import flash.media.Microphone;
+	import flash.media.SoundCodec;
 	import flash.media.Video;
 	import flash.utils.Timer;
 
@@ -54,11 +58,21 @@ package com.flow.components {
 	public class WebCam extends Component {
 		
 		private var video:Video;
+		
+		[Bindable]
 		public var camera:Camera;
+		
+		[Bindable]
+		public var microphone:Microphone;
+		
 		private var holder:Sprite;
 		private var detectTimer:Timer;
 		private var pixelateEffect:Effect;
 		private var _mirror:Boolean = true;
+		
+		private var _cameraWidth:int = 800;
+		private var _cameraHeight:int = 600;
+		private var _frameRate:int = 45;
 		
 		[Bindable]
 		public var muted:Boolean = false;
@@ -68,7 +82,7 @@ package com.flow.components {
 			holder = new Sprite();
 			addChild(holder);
 			
-			video = new Video(800,600);
+			video = new Video(400,400);
 			video.smoothing = true;
 			video.visible = false;
 			
@@ -80,6 +94,40 @@ package com.flow.components {
 			addEventListener(Event.REMOVED_FROM_STAGE, removed);
 			detectTimer = new Timer(100);
 			detectTimer.addEventListener(TimerEvent.TIMER, checkCamera);
+		}
+		
+		[Bindable]
+		public function get cameraWidth():int {
+			return _cameraWidth;
+		}
+		public function set cameraWidth(value:int):void {
+			_cameraWidth = value;
+			setCameraMode();
+		}
+
+		[Bindable]
+		public function get cameraHeight():int {
+			return _cameraHeight;
+		}
+		public function set cameraHeight(value:int):void {
+			_cameraHeight = value;
+			setCameraMode();
+		}
+		
+		[Bindable]
+		public function get frameRate():int {
+			return _frameRate;
+		}
+		public function set frameRate(value:int):void {
+			_frameRate = value;
+			setCameraMode();
+		}
+
+		private function setCameraMode():void {
+			if(camera) {
+				camera.setMode(cameraWidth, cameraHeight, frameRate, true);
+				invalidate();
+			}
 		}
 		
 		public function get mirror():Boolean {
@@ -94,9 +142,18 @@ package com.flow.components {
 		
 		private function added(e:Event):void {
 			camera = Camera.getCamera();
+			microphone = Microphone.getMicrophone();
+			microphone.rate = 24;
+			microphone.setSilenceLevel(0);
+			microphone.codec = SoundCodec.SPEEX;
+			microphone.encodeQuality = 5;
+			microphone.framesPerPacket = 2
+			
+			
+			camera.setMotionLevel( 100 );
 			if(camera) {
 				camera.addEventListener(StatusEvent.STATUS, cameraStatus);
-				camera.setMode(800,600,45,true);
+				setCameraMode();
 				video.clear();
 				video.attachCamera(camera);
 				video.visible = false;
@@ -111,6 +168,7 @@ package com.flow.components {
 			video.attachCamera(null);
 			video.visible = false;
 			camera = null;
+			microphone = null;
 		}
 		
 		override public function draw(width:Number, height:Number):void {
@@ -127,7 +185,7 @@ package com.flow.components {
 					video.width = Math.round(height * aspect);
 				} else {
 					video.width = width;
-					video.height = Math.round(width/aspect)
+					video.height = Math.round(width / aspect)
 				}
 				
 				var offsetX:int = (video.width - width) / 2;
@@ -141,6 +199,9 @@ package com.flow.components {
 					video.x += video.width;
 					video.scaleX = -video.scaleX;
 				}
+				
+				Log.log("Scale " + video.scaleX + " " + video.scaleY);
+				
 			}
 		}
 		

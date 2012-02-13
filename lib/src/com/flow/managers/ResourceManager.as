@@ -22,10 +22,8 @@ package com.flow.managers {
 		private var _locale:String;
 		
 		public function ResourceManager() {
-			
 			bundles = new Dictionary();
-			var applicationDomain:ApplicationDomain = ApplicationDomain.currentDomain;
-						
+			var applicationDomain:ApplicationDomain = ApplicationDomain.currentDomain;			
 			if (!applicationDomain.hasDefinition("_CompiledResourceBundleInfo")) {
 				return;
 			}
