@@ -50,6 +50,8 @@ package com.flow.graphics {
 		
 		private var _loader:DisplayObjectLoader;
 		
+		private var _keepAspectRatio:Boolean = false;
+		
 		/**
 		 * Constructor 
 		 */		
@@ -131,6 +133,21 @@ package com.flow.graphics {
 				}
 			}
 		}
+		
+		/**
+		 * Whether to keep the aspect ratio of the image. This will turn clipping on and crop the image.
+		 */		
+		public function get keepAspectRatio():Boolean {
+			return _keepAspectRatio;
+		}
+		public function set keepAspectRatio(value:Boolean):void {
+			if(value != _keepAspectRatio) {
+				_keepAspectRatio = value;
+				clip = true;
+				invalidate();
+			}
+		}
+		
 		
 		/**
 		 * Whether to flip the image vertically (default false) 
@@ -215,7 +232,15 @@ package com.flow.graphics {
 					_image.scaleX = w/orgWidth;
 					_image.scaleY = h/orgHeight;
 				}
+				
+				if(_keepAspectRatio) {
+					_image.scaleX = _image.scaleY = Math.max(_image.scaleX, _image.scaleY);
+					_image.x = Math.round((w - _image.width) / 2);
+					_image.y = Math.round((h - _image.height) / 2);
+				}
+				
 				if(flipHorizontal) {
+					// TODO: Fix with aspect ratio
 					_image.x = _image.width;
 					_image.scaleX = -_image.scaleX;
 				}

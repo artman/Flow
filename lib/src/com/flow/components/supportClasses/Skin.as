@@ -43,16 +43,15 @@ package com.flow.components.supportClasses {
 		 * The host component of the skin. You set this via metadata, e.g.:
 		 * <code>[HostComponent("com.flow.components.Button")]</code>
 		 */		
+		[Bindable]
 		public function get hostComponent():Container {
 			return _hostComponent;
 		}
 		public function set hostComponent(value:Container):void {
-			if(value != _hostComponent) {
-				_hostComponent = value;
-				if(_hostComponent && layout) {
-					_hostComponent.layout = _layout;
-				} 
-			}
+			_hostComponent = value;
+			if(_hostComponent && layout) {
+				_hostComponent.layout = _layout;
+			} 
 		}
 		
 		/** @inheritDoc */

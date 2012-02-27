@@ -15,6 +15,7 @@ package mx.states {
 		}
 		
 		public function apply(parent:Object):void {
+			if(name) {
 			if(parent == null) { 
 				return; 
 			}
@@ -31,6 +32,7 @@ package mx.states {
 				oldValue = item[name];
 			}
 			item[name] = value;
+			}
 		}
 		
 		public function remove(parent:Object):void {

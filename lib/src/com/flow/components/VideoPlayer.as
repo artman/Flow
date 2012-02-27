@@ -32,7 +32,10 @@ package com.flow.components {
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.events.TimerEvent;
+	import flash.geom.Rectangle;
 	import flash.media.Video;
+	import flash.utils.Timer;
 	
 	import mx.states.State;
 	
@@ -45,6 +48,7 @@ package com.flow.components {
 	[SkinState("error")]
 	
 	public class VideoPlayer extends SkinnableComponent {
+		public static const DEFAULT_VOLUME:Number = 0.75
 		
 		private var video:Video;
 		private var holder:Sprite;
@@ -55,6 +59,15 @@ package com.flow.components {
 		private var _keepAspectRatio:Boolean = true;
 		private var _smoothing:Boolean = true;
 		private var videoStream:VideoStream;
+		private var _progressSlider:HSlider;
+		private var _volumeSlider:HSlider;
+		
+		[Bindable]
+		public var showControls:Boolean = true;
+		
+		private var ignoreSliderChange:Boolean = false;
+		private var hideTimer:Timer;
+		private var _crop:Boolean = false;
 
 		public function VideoPlayer() {
 			super();
@@ -68,6 +81,41 @@ package com.flow.components {
 			];
 			video = new Video(400,300);
 			video.smoothing = _smoothing;
+			addEventListener(MouseEvent.ROLL_OVER, mouseOver);
+			addEventListener(MouseEvent.ROLL_OUT, mouseOut);
+			addEventListener(MouseEvent.MOUSE_MOVE, mouseMove);
+			hideTimer = new Timer(2000, 1);
+			hideTimer.addEventListener(TimerEvent.TIMER, hideTimerTick);
+		}
+		
+		public function get playbackTime():Number {
+			if(videoStream) {
+				return videoStream.time;
+			}
+			return 0;
+		}
+		
+		protected function hideTimerTick(event:TimerEvent):void {
+			showControls = false;
+		}
+		
+		private function mouseOver(e:MouseEvent):void {
+			hideTimer.start();
+		}
+		
+		private function mouseOut(e:MouseEvent):void {
+			showControls = false;
+		}
+		
+		private function mouseMove(e:MouseEvent):void {
+			if(new Rectangle(0,0,width, height).contains(e.localX, e.localY)) {
+				showControls = true;
+				hideTimer.reset();
+				hideTimer.start();
+			} else {
+				showControls = false;
+				hideTimer.stop();
+			}
 		}
 		
 		/**
@@ -87,7 +135,7 @@ package com.flow.components {
 		/**
 		 * Play pause toggle button. The button should toggle itself to play/pause depending on the component's state.
 		 */		
-		[SkinPart(required="true")]
+		[SkinPart(required="false")]
 		public function get playPauseToggleButton():Button {
 			return _playPauseToggleButton;
 		}
@@ -99,12 +147,63 @@ package com.flow.components {
 			if(_playPauseToggleButton) {
 				_playPauseToggleButton.addEventListener(MouseEvent.CLICK, togglePlayPause);
 			}
-			
+		}
+		
+		/**
+		 * Play pause toggle button. The button should toggle itself to play/pause depending on the component's state.
+		 */		
+		[SkinPart(required="false")]
+		public function get progressSlider():HSlider {
+			return _progressSlider;
+		}
+		public function set progressSlider(value:HSlider):void {
+			if(value != _progressSlider) {
+				if(_progressSlider) {
+					_progressSlider.removeEventListener(Event.CHANGE, progressSliderChanged);
+				}
+				_progressSlider = value;
+				_progressSlider.minimum = 0;
+				_progressSlider.maximum = 1;
+				_progressSlider.addEventListener(Event.CHANGE, progressSliderChanged);
+				updatePlaybackHead();
+			}
+		}
+		
+		protected function progressSliderChanged(event:Event):void {
+			if(!ignoreSliderChange) {
+				videoStream.seekToPercent(_progressSlider.value);
+			}
+		}
+		
+		/**
+		 * Play pause toggle button. The button should toggle itself to play/pause depending on the component's state.
+		 */		
+		[SkinPart(required="false")]
+		public function get volumeSlider():HSlider {
+			return _volumeSlider;
+		}
+		public function set volumeSlider(value:HSlider):void {
+			if(value != _volumeSlider) {
+				if(_volumeSlider) {
+					_volumeSlider.removeEventListener(Event.CHANGE, changeVolume);
+				}
+				_volumeSlider = value;
+				_volumeSlider.minimum = 0;
+				_volumeSlider.maximum = 1;
+				_volumeSlider.value = videoStream ? videoStream.volume : DEFAULT_VOLUME;
+				_volumeSlider.addEventListener(Event.CHANGE, changeVolume);
+			}
+		}
+		
+		protected function changeVolume(event:Event = null):void {
+			if(video) {				
+				videoStream.volume = _volumeSlider ? _volumeSlider.value : 1;
+			}
 		}
 		
 		protected function togglePlayPause(event:MouseEvent):void {
 			if(videoStream) {
-				if(videoStream.state == VideoStreamState.STATE_PAUSED) {
+				if(videoStream.state == VideoStreamState.STATE_PAUSED || videoStream.state == VideoStreamState.STATE_STOPPED) {
 					videoStream.play();
 				} else if(videoStream.state == VideoStreamState.STATE_PLAYING || videoStream.state == VideoStreamState.STATE_BUFFERING) {
 					videoStream.pause();
@@ -122,12 +221,13 @@ package com.flow.components {
 		public function set source(value:String):void {
 			_source = value;
 			if(_source) {
-				currentState = "loading";
+				currentState = "connecting";
 				var url:MediaURL = new MediaURL(_source);
 				if(url.isRTMP) {
 					videoStream = new VideoStream(_source);
 					videoStream.addEventListener(VideoStreamEvent.STATE_CHANGE, streamStateChange);
 					videoStream.addEventListener(VideoStreamEvent.STREAM_CREATED, streamCreated);
+					//videoStream.addEventListener(VideoStreamEvent.STREAM_CREATED, streamCreated);
 				} else {
 					throw new Error("VideoPlayer currently supports only RTMP streams.");
 				}
@@ -141,6 +241,7 @@ package com.flow.components {
 		}
 		
 		protected function streamStateChange(event:VideoStreamEvent):void {
+			removeEventListener(Event.ENTER_FRAME, updatePlaybackHead);
 			switch(event.state) {
 				case VideoStreamState.STATE_INACTIVE:
 					currentState = "inactive"; 
@@ -153,6 +254,7 @@ package com.flow.components {
 					break;
 				case VideoStreamState.STATE_PLAYING: 
 					currentState = "playing"; 
+					addEventListener(Event.ENTER_FRAME, updatePlaybackHead);
 					break;
 				case VideoStreamState.STATE_PAUSED:
 					currentState = "paused"; 
@@ -162,7 +264,18 @@ package com.flow.components {
 					break;
 				case VideoStreamState.STATE_STOPPED:
 					currentState = "stopped"; 
+					updatePlaybackHead();
 					break;
+			}
+			invalidate();
+		}
+		
+		protected function updatePlaybackHead(e:Event = null):void {
+			if(_progressSlider && videoStream && videoStream.duration) {
+				ignoreSliderChange = true
+				_progressSlider.value = videoStream.time / videoStream.duration;
+				ignoreSliderChange = false;
+				invalidate();
 			}
 		}
 		
@@ -178,6 +291,20 @@ package com.flow.components {
 				invalidate();
 			}
 		}
+		
+		/**
+		 * Whether to crop the overflowing video or show everything
+		 */
+		public function get crop():Boolean {
+			return _crop;
+		}
+		public function set crop(value:Boolean):void {
+			if(value != _crop) {
+				_crop = value;
+				invalidate();
+			}
+		}
+		
 		
 		/**
 		 * Whether to enable smoothing on the video.
@@ -197,13 +324,15 @@ package com.flow.components {
 			if(video.videoWidth && video.videoHeight && _keepAspectRatio) {
 				var aspect:Number = video.videoWidth / video.videoHeight;
 				var viewAspect:Number = videoContainer.width / videoContainer.height;
-				if(viewAspect < aspect) {
+				
+				
+				if((viewAspect < aspect && crop) || (viewAspect > aspect && !crop)) {
 					video.height = height;
 					video.width = Math.round(height * aspect);
 				} else {
 					video.width = width;
 					video.height = Math.round(width / aspect)
-				}
+				}				
 				var offsetX:int = (video.width - videoContainer.width) / 2;
 				var offsetY:int = (video.height - videoContainer.height) / 2;
 				video.x = -offsetX;

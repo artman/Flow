@@ -29,12 +29,18 @@
 	<component id="Back" class="com.flow.motion.easing.Back"/>
 	<component id="BevelEffect" class="com.flow.effects.BevelEffect"/>
 	<component id="BinaryLoader" class="com.flow.net.loaders.BinaryLoader"/>
+	<component id="BindabilityInfo" class="mx.binding.BindabilityInfo"/>
+	<component id="Binding" class="mx.binding.Binding"/>
+	<component id="BindingManager" class="mx.binding.BindingManager"/>
+	<component id="BindingUtils" class="mx.binding.utils.BindingUtils"/>
 	<component id="BitmapFill" class="com.flow.graphics.fills.BitmapFill"/>
 	<component id="BlurEffect" class="com.flow.effects.BlurEffect"/>
 	<component id="Bounce" class="com.flow.motion.easing.Bounce"/>
 	<component id="Button" class="com.flow.components.Button"/>
 	<component id="ButtonSkin" class="com.flow.skins.ButtonSkin"/>
+	<component id="ByteArrayAsset" class="mx.core.ByteArrayAsset"/>
 	<component id="CSBEffect" class="com.flow.effects.CSBEffect"/>
+	<component id="ChangeWatcher" class="mx.binding.utils.ChangeWatcher"/>
 	<component id="Checkbox" class="com.flow.components.Checkbox"/>
 	<component id="CheckboxSkin" class="com.flow.skins.CheckboxSkin"/>
 	<component id="ChihulyEffect" class="com.flow.effects.ChihulyEffect"/>
@@ -56,6 +62,10 @@
 	<component id="CopyEffect" class="com.flow.effects.utils.CopyEffect"/>
 	<component id="Cubic" class="com.flow.motion.easing.Cubic"/>
 	<component id="DefaultTooltip" class="com.flow.components.supportClasses.DefaultTooltip"/>
+	<component id="DeferredInstanceFromClass" class="mx.core.DeferredInstanceFromClass"/>
+	<component id="DeferredInstanceFromFunction" class="mx.core.DeferredInstanceFromFunction"/>
+	<component id="DescribeTypeCache" class="mx.utils.DescribeTypeCache"/>
+	<component id="DescribeTypeCacheRecord" class="mx.utils.DescribeTypeCacheRecord"/>
 	<component id="DisplayObjectCollection" class="com.flow.collections.DisplayObjectCollection"/>
 	<component id="DisplayObjectLoader" class="com.flow.net.loaders.DisplayObjectLoader"/>
 	<component id="DropShadowEffect" class="com.flow.effects.DropShadowEffect"/>
@@ -78,15 +88,22 @@
 	<component id="HBoxLayout" class="com.flow.containers.layout.HBoxLayout"/>
 	<component id="HScrollBar" class="com.flow.components.HScrollBar"/>
 	<component id="HScrollBarSkin" class="com.flow.skins.HScrollBarSkin"/>
+	<component id="HSlider" class="com.flow.components.HSlider"/>
+	<component id="HSliderSkin" class="com.flow.skins.HSliderSkin"/>
 	<component id="IAnimateable" class="com.flow.motion.IAnimateable"/>
+	<component id="IBindingClient" class="mx.binding.IBindingClient"/>
+	<component id="IDeferredInstance" class="mx.core.IDeferredInstance"/>
 	<component id="IFactory" class="mx.core.IFactory"/>
 	<component id="IFill" class="com.flow.graphics.fills.IFill"/>
+	<component id="IFlexModuleFactory" class="mx.core.IFlexModuleFactory"/>
 	<component id="IList" class="com.flow.collections.IList"/>
 	<component id="IOverride" class="mx.states.IOverride"/>
+	<component id="IPropertyChangeNotifier" class="mx.core.IPropertyChangeNotifier"/>
 	<component id="IStateClient" class="mx.core.IStateClient"/>
 	<component id="IStateClient2" class="mx.core.IStateClient2"/>
 	<component id="IStroke" class="com.flow.graphics.strokes.IStroke"/>
 	<component id="ITooltip" class="com.flow.components.supportClasses.ITooltip"/>
+	<component id="IWatcherSetupUtil2" class="mx.binding.IWatcherSetupUtil2"/>
 	<component id="Image" class="com.flow.graphics.Image"/>
 	<component id="InnerGlowEffect" class="com.flow.effects.InnerGlowEffect"/>
 	<component id="IntrospectionManager" class="com.flow.managers.IntrospectionManager"/>
@@ -122,6 +139,7 @@
 	<component id="PixelateEffect" class="com.flow.effects.PixelateEffect"/>
 	<component id="PopupManager" class="com.flow.managers.PopupManager"/>
 	<component id="Preloader" class="com.flow.components.supportClasses.Preloader"/>
+	<component id="PropertyChangeEvent" class="mx.events.PropertyChangeEvent"/>
 	<component id="Quadratic" class="com.flow.motion.easing.Quadratic"/>
 	<component id="Quartic" class="com.flow.motion.easing.Quartic"/>
 	<component id="Quintic" class="com.flow.motion.easing.Quintic"/>
@@ -163,6 +181,8 @@
 	<component id="VBoxLayout" class="com.flow.containers.layout.VBoxLayout"/>
 	<component id="VScrollBar" class="com.flow.components.VScrollBar"/>
 	<component id="VScrollBarSkin" class="com.flow.skins.VScrollBarSkin"/>
+	<component id="VSlider" class="com.flow.components.VSlider"/>
+	<component id="VSliderSkin" class="com.flow.skins.VSliderSkin"/>
 	<component id="VideoPlayer" class="com.flow.components.VideoPlayer"/>
 	<component id="VideoPlayerSkin" class="com.flow.skins.VideoPlayerSkin"/>
 	<component id="VideoStream" class="com.flow.media.VideoStream"/>

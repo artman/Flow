@@ -57,7 +57,7 @@ package com.flow.components {
 	[Event(name="cameraReady", type="com.flow.events.WebCamEvent")]
 	public class WebCam extends Component {
 		
-		private var video:Video;
+		private var _video:Video;
 		
 		[Bindable]
 		public var camera:Camera;
@@ -72,7 +72,9 @@ package com.flow.components {
 		
 		private var _cameraWidth:int = 800;
 		private var _cameraHeight:int = 600;
-		private var _frameRate:int = 45;
+		private var _frameRate:int = 25;
+		
+		private var _activeOffStage:Boolean = false;
 		
 		[Bindable]
 		public var muted:Boolean = false;
@@ -82,18 +84,51 @@ package com.flow.components {
 			holder = new Sprite();
 			addChild(holder);
 			
-			video = new Video(400,400);
-			video.smoothing = true;
+			video = new Video(800,600);
 			video.visible = false;
-			
-			pixelateEffect = new PixelateEffect(video, 20);
-			pixelateEffect.value = 0;
-			
-			holder.addChild(video);
 			addEventListener(Event.ADDED_TO_STAGE, added);
 			addEventListener(Event.REMOVED_FROM_STAGE, removed);
 			detectTimer = new Timer(100);
 			detectTimer.addEventListener(TimerEvent.TIMER, checkCamera);
+		}
+		
+		public function get activeOffStage():Boolean {
+			return _activeOffStage;
+		}
+		public function set activeOffStage(value:Boolean):void {
+			if(value != _activeOffStage) {
+				_activeOffStage = value;
+				if(_activeOffStage) {
+					removeEventListener(Event.ADDED_TO_STAGE, added);
+					removeEventListener(Event.REMOVED_FROM_STAGE, removed);
+					if(!camera) {
+						added();
+					}
+				} else {
+					addEventListener(Event.ADDED_TO_STAGE, added);
+					addEventListener(Event.REMOVED_FROM_STAGE, removed);
+					if(camera) {
+						removed();
+					}
+				}
+			}
+		}
+		
+		private function get video():Video {
+			return _video;
+		}
+		private function set video(value:Video):void {
+			if(_video != value) {
+				var vis:Boolean = false;
+				if(_video) {
+					vis = _video.visible;
+					holder.removeChild(_video)
+				}
+				_video = value;
+				_video.smoothing = true;
+				_video.visible = vis;
+				holder.addChild(video);
+			}
 		}
 		
 		[Bindable]
@@ -125,7 +160,10 @@ package com.flow.components {
 
 		private function setCameraMode():void {
 			if(camera) {
-				camera.setMode(cameraWidth, cameraHeight, frameRate, true);
+				camera.setMode(cameraWidth, cameraHeight, frameRate, false);
+				video = new Video(cameraWidth, cameraHeight);
+				video.clear();
+				video.attachCamera(camera);
 				invalidate();
 			}
 		}
@@ -140,22 +178,23 @@ package com.flow.components {
 			}
 		}
 		
-		private function added(e:Event):void {
+		private function added(e:Event = null):void {
 			camera = Camera.getCamera();
 			microphone = Microphone.getMicrophone();
-			microphone.rate = 24;
+			
+			/*microphone.rate = 44;
 			microphone.setSilenceLevel(0);
 			microphone.codec = SoundCodec.SPEEX;
 			microphone.encodeQuality = 5;
 			microphone.framesPerPacket = 2
-			
-			
+			*/
 			camera.setMotionLevel( 100 );
+			camera.setQuality(50000, 0);
+			camera.setKeyFrameInterval(25);
 			if(camera) {
 				camera.addEventListener(StatusEvent.STATUS, cameraStatus);
 				setCameraMode();
-				video.clear();
-				video.attachCamera(camera);
+				
 				video.visible = false;
 				if(!camera.muted) {
 					detectTimer.start();
@@ -164,7 +203,7 @@ package com.flow.components {
 			invalidate();
 		}
 		
-		private function removed(e:Event):void {
+		private function removed(e:Event = null):void {
 			video.attachCamera(null);
 			video.visible = false;
 			camera = null;
@@ -199,9 +238,6 @@ package com.flow.components {
 					video.x += video.width;
 					video.scaleX = -video.scaleX;
 				}
-				
-				Log.log("Scale " + video.scaleX + " " + video.scaleY);
-				
 			}
 		}
 		
@@ -248,8 +284,6 @@ package com.flow.components {
 		
 		private function cameraAvailable():void {
 			video.visible = true;
-			pixelateEffect.targetAlpha = 0;
-			pixelateEffect.fadeTargetIn(0.6);
 			dispatchEvent(new WebCamEvent(WebCamEvent.CAMERA_READY));
 		}
 		

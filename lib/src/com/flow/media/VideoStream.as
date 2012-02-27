@@ -1,5 +1,6 @@
 package com.flow.media {
 	
+	import com.flow.components.VideoPlayer;
 	import com.flow.events.VideoStreamEvent;
 	
 	import flash.events.Event;
@@ -7,6 +8,7 @@ package com.flow.media {
 	import flash.events.IOErrorEvent;
 	import flash.events.NetStatusEvent;
 	import flash.events.SecurityErrorEvent;
+	import flash.media.SoundTransform;
 	import flash.net.NetConnection;
 	import flash.net.NetStream;
 	
@@ -29,6 +31,7 @@ package com.flow.media {
 		private var _stream:NetStream;
 		private var _source:String;
 		private var _state:String;
+		private var _volume:Number = VideoPlayer.DEFAULT_VOLUME;
 		
 		private var mediaURL:MediaURL;
 		
@@ -46,7 +49,11 @@ package com.flow.media {
 				mediaURL = new MediaURL(_source);
 				if(mediaURL.isRTMP) {
 					netConnection = new NetConnection();
-					netConnection.connect(mediaURL.protocol + "://" + mediaURL.host + "/" + mediaURL.application);
+					if(mediaURL.application) {
+						netConnection.connect(mediaURL.protocol + "://" + mediaURL.host + "/" + mediaURL.application);
+					} else {
+						netConnection.connect(mediaURL.protocol + "://" + mediaURL.host);
+					}
 				} else {
 					throw new Error("Currently only RTMP streams are supported");
 				}
@@ -67,6 +74,16 @@ package com.flow.media {
 			dispatchEvent(evt);
 		}
 		
+		[Bindable]
+		public function get volume():Number {
+			return _volume;
+		}
+		public function set volume(value:Number):void {
+			_volume = value;
+			if(_stream) {
+				_stream.soundTransform = new SoundTransform(_volume);
+			}
+		}
 		
 		[Bindable]
 		public function get netConnection():NetConnection {
@@ -81,8 +98,12 @@ package com.flow.media {
 			if(_netConnection) {
 				_netConnection.addEventListener(SecurityErrorEvent.SECURITY_ERROR, netError);
 				_netConnection.addEventListener(NetStatusEvent.NET_STATUS, netStatus);
+				_netConnection.client = this;
 				state = VideoStreamState.STATE_CONNECTING;
 			}
+		}
+		
+		public function onBWDone():void {
 		}
 		
 		private function netError(e:SecurityErrorEvent):void {
@@ -93,6 +114,7 @@ package com.flow.media {
 		}
 		
 		private function netStatus(e:NetStatusEvent):void {
+			trace(e.info.code);
 			if (e.info.code == "NetConnection.Connect.Success") {
 				var event:VideoStreamEvent = new VideoStreamEvent(VideoStreamEvent.CONNECTED);
 				dispatchEvent(event);
@@ -173,6 +195,7 @@ package com.flow.media {
 		private function startStream():void {
 			netStream = new NetStream(netConnection);
 			netStream.play(mediaURL.stream);
+			
 		}
 		
 		[Bindable]
@@ -195,6 +218,7 @@ package com.flow.media {
 				
 				_stream.addEventListener(IOErrorEvent.IO_ERROR, streamError);
 				_stream.addEventListener(IOErrorEvent.NETWORK_ERROR, streamError);
+				_stream.soundTransform = new SoundTransform(_volume);
 				var evt:VideoStreamEvent = new VideoStreamEvent(VideoStreamEvent.STREAM_CREATED);
 				evt.netStream = _stream;
 				dispatchEvent(evt);

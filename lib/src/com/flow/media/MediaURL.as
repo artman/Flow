@@ -67,7 +67,16 @@ package com.flow.media {
 				if(isRTMP && split.length) {
 					_application = split.shift();
 					if(split.length) {
-						_stream = split.join("/");
+						if(split.length > 1) {
+							_stream = split.pop();
+							_application = _application + "/" + split.join("/");
+						} else {
+							_stream = split[0]
+						}
+					} else {
+						_stream = _application;
+						_application = null;
+						
 					}
 				} else {
 					_application = null;

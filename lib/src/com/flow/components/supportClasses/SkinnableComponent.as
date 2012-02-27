@@ -41,7 +41,12 @@ package com.flow.components.supportClasses {
 		
 		private var _skinClass:IFactory;
 		private var skinChanged:Boolean = true;
-		protected var skin:Skin;
+		
+		/**
+		 * The skin that has been assigned to the component. You can use it if you need to pass in additional values to the skin that are not
+		 * directly supported by the host component. 
+		 */		
+		public var skin:Skin;
 		
 		public function SkinnableComponent() {
 			super();

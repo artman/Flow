@@ -25,10 +25,16 @@ THE SOFTWARE.
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
 		 xmlns:fw="http://artman.fi/flow" 
 		 xmlns:mx="library://ns.adobe.com/flex/mx">	
-	
+
 	<fx:Metadata>
 		[HostComponent("com.flow.components.VideoPlayer")]
 	</fx:Metadata>
+	
+	<fx:Script>
+		<![CDATA[
+			
+		]]>
+	</fx:Script>
 	
 	<fw:states>
 		<s:State name="inactive" />

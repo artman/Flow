@@ -19,12 +19,14 @@
     <classEntry path="com.flow.components.Checkbox"/>
     <classEntry path="com.flow.components.Component"/>
     <classEntry path="com.flow.components.HScrollBar"/>
+    <classEntry path="com.flow.components.HSlider"/>
     <classEntry path="com.flow.components.Label"/>
     <classEntry path="com.flow.components.LabelButton"/>
     <classEntry path="com.flow.components.Spacing"/>
     <classEntry path="com.flow.components.TextArea"/>
     <classEntry path="com.flow.components.TextInput"/>
     <classEntry path="com.flow.components.VScrollBar"/>
+    <classEntry path="com.flow.components.VSlider"/>
     <classEntry path="com.flow.components.VideoPlayer"/>
     <classEntry path="com.flow.components.WebCam"/>
     <classEntry path="com.flow.components.measuring.MeasureUnit"/>
@@ -149,9 +151,11 @@
     <classEntry path="com.flow.skins.ButtonSkin"/>
     <classEntry path="com.flow.skins.CheckboxSkin"/>
     <classEntry path="com.flow.skins.HScrollBarSkin"/>
+    <classEntry path="com.flow.skins.HSliderSkin"/>
     <classEntry path="com.flow.skins.TextAreaSkin"/>
     <classEntry path="com.flow.skins.TextInputSkin"/>
     <classEntry path="com.flow.skins.VScrollBarSkin"/>
+    <classEntry path="com.flow.skins.VSliderSkin"/>
     <classEntry path="com.flow.skins.VideoPlayerSkin"/>
     <classEntry path="com.flow.utils.GraphicUtils"/>
     <classEntry path="com.flow.utils.MultiChangeWatcher"/>
@@ -159,20 +163,32 @@
     <classEntry path="com.flow.utils.callLaterTimed"/>
     <classEntry path="com.flow.utils.cloneObject"/>
     <classEntry path="com.flow.utils.hasPlayerVersion"/>
+    <classEntry path="mx.binding.BindabilityInfo"/>
+    <classEntry path="mx.binding.Binding"/>
+    <classEntry path="mx.binding.BindingManager"/>
+    <classEntry path="mx.binding.IBindingClient"/>
+    <classEntry path="mx.binding.IWatcherSetupUtil2"/>
+    <classEntry path="mx.binding.utils.BindingUtils"/>
+    <classEntry path="mx.binding.utils.ChangeWatcher"/>
+    <classEntry path="mx.core.ByteArrayAsset"/>
     <classEntry path="mx.core.ClassFactory"/>
+    <classEntry path="mx.core.DeferredInstanceFromClass"/>
+    <classEntry path="mx.core.DeferredInstanceFromFunction"/>
+    <classEntry path="mx.core.IDeferredInstance"/>
     <classEntry path="mx.core.IFactory"/>
+    <classEntry path="mx.core.IFlexModuleFactory"/>
+    <classEntry path="mx.core.IPropertyChangeNotifier"/>
     <classEntry path="mx.core.IStateClient"/>
     <classEntry path="mx.core.IStateClient2"/>
+    <classEntry path="mx.events.PropertyChangeEvent"/>
     <classEntry path="mx.states.AddItems"/>
     <classEntry path="mx.states.IOverride"/>
     <classEntry path="mx.states.OverrideBase"/>
     <classEntry path="mx.states.SetProperty"/>
     <classEntry path="mx.states.State"/>
     <classEntry path="mx.states.Transition"/>
-    <classEntry path="com.flow.components.HSlider"/>
-    <classEntry path="com.flow.components.VSlider"/>
-    <classEntry path="com.flow.skins.VSliderSkin"/>
-    <classEntry path="com.flow.skins.HSliderSkin"/>
+    <classEntry path="mx.utils.DescribeTypeCache"/>
+    <classEntry path="mx.utils.DescribeTypeCacheRecord"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests>

@@ -93,7 +93,19 @@ package com.flow.components {
 			return _track;
 		}
 		public function set track(value:DisplayObject):void {
-			_track = value;
+			if(value != _track) {
+				if(_track) {
+					_track.removeEventListener(MouseEvent.MOUSE_DOWN, trackClicked);
+				}
+				_track = value;
+				_track.addEventListener(MouseEvent.MOUSE_DOWN, trackClicked);
+			}
+		}
+		
+		protected function trackClicked(e:MouseEvent):void {
+			var percent:Number = direction == "horizontal" ? track.mouseX / track.width : track.mouseY / track.height;
+			percent = Math.min(Math.max(0, percent), 1);
+			value = minimum  + percent * (maximum - minimum);
 		}
 		
 		[Bindable]		

@@ -29,9 +29,11 @@ package com.flow.containers {
 	
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
+	import flash.display.StageDisplayState;
 	import flash.display.StageQuality;
 	import flash.display.StageScaleMode;
 	import flash.events.Event;
+	import flash.events.FullScreenEvent;
 	import flash.net.SharedObject;
 	import flash.text.TextField;
 	
@@ -46,6 +48,8 @@ package com.flow.containers {
 		public var preloader:Preloader;
 		/** @private */
 		public var tooltipRoot:Sprite;
+		[Bindable]
+		public var isFullscren:Boolean;
 		private var debugLog:TextField;
 		private var applicationStoredParams:SharedObject;
 		
@@ -71,12 +75,17 @@ package com.flow.containers {
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
 			stage.quality = StageQuality.BEST;
+			stage.addEventListener(FullScreenEvent.FULL_SCREEN, fullscreenChange);
 			percentWidth = 100;
 			percentHeight = 100;
 			tooltipRoot = new Sprite();
 			addChild(tooltipRoot);
 			Component.manager.initialize(stage);
 			TooltipManager.instance.setRoot(tooltipRoot);
+		}
+		
+		protected function fullscreenChange(event:FullScreenEvent):void {
+			isFullscren = stage.displayState == StageDisplayState.FULL_SCREEN;
 		}
 		
 		/** The frame-rate of the application. */		
@@ -159,6 +168,10 @@ package com.flow.containers {
 		override public function validateChildren():void {
 			super.validateChildren();
 			rawAddChild(tooltipRoot);
+		}
+		
+		public function toggleFullscreen():void {
+			stage.displayState = stage.displayState == StageDisplayState.NORMAL ? StageDisplayState.FULL_SCREEN : StageDisplayState.NORMAL;
 		}
 	}
 }
