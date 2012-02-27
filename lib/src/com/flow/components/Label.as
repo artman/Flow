@@ -293,7 +293,12 @@ package com.flow.components {
 			}
 			
 			if(TextFormatManager.hasEmbeddedFont(def.font)) {
-				_textField.embedFonts = true;
+				if(TextFormatManager.canRenderText(def, transformedText)) {
+					_textField.embedFonts = true;
+				} else {
+					def.font = "Arial";
+					_textField.setTextFormat(def);
+				}
 			} else {
 				_textField.embedFonts = false;
 			}

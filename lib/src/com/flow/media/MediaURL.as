@@ -68,8 +68,8 @@ package com.flow.media {
 					_application = split.shift();
 					if(split.length) {
 						if(split.length > 1) {
-							_stream = split.pop();
-							_application = _application + "/" + split.join("/");
+							_application = _application + "/" + split.shift();
+							_stream = split.join("/");
 						} else {
 							_stream = split[0]
 						}

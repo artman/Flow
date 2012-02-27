@@ -110,5 +110,11 @@ package com.flow.managers {
 			} 
 			return fonts[fontName][fontStyle] ? true : false;
 		}
+		
+		public static function canRenderText(textFormat:TextFormat, text:String):Boolean {
+			return true;
+			//var font:Font = fonts[textFormat.font];
+			//return font ? font.hasGlyphs(text) : false;
+		}
 	}
 }

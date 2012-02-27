@@ -183,6 +183,9 @@ package com.flow.media {
 			if(_stream){
 				time=Math.max(0, Math.min(time,duration));
 				_stream.seek(time);
+				if(state == VideoStreamState.STATE_STOPPED) {
+					play();
+				}
 			}
 		}
 		
@@ -192,6 +195,10 @@ package com.flow.media {
 			}
 		}
 		
+		/**
+		 * 
+		 * 
+		 */
 		private function startStream():void {
 			netStream = new NetStream(netConnection);
 			netStream.play(mediaURL.stream);

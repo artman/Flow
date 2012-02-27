@@ -64,6 +64,10 @@ package com.flow.components.supportClasses {
 		private function resize(e:Event):void {
 			draw(stage.stageWidth, stage.stageHeight);
 		}
+		
+		public function redraw(e:* = null):void {
+			draw(stage.stageWidth, stage.stageHeight);
+		}
 		 
 		private function progress(e:ProgressEvent):void {
 			loadingProgress = Math.floor(100 * e.bytesLoaded / e.bytesTotal);

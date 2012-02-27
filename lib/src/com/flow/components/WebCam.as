@@ -182,14 +182,14 @@ package com.flow.components {
 			camera = Camera.getCamera();
 			microphone = Microphone.getMicrophone();
 			
-			/*microphone.rate = 44;
+			microphone.rate = 44;
 			microphone.setSilenceLevel(0);
 			microphone.codec = SoundCodec.SPEEX;
 			microphone.encodeQuality = 5;
 			microphone.framesPerPacket = 2
-			*/
+			
 			camera.setMotionLevel( 100 );
-			camera.setQuality(50000, 0);
+			camera.setQuality(90000, 0);
 			camera.setKeyFrameInterval(25);
 			if(camera) {
 				camera.addEventListener(StatusEvent.STATUS, cameraStatus);
