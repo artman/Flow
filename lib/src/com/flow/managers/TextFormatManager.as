@@ -31,7 +31,10 @@ package com.flow.managers {
 		
 		private static var fontDictionary:Object;
 		private static var textFormatDictionary:Object;
+		private static var fontLookup:Object;
 		private static var fonts:Object;
+		
+		public static var nonEmbeddedFont:String = "Arial";
 		
 		/**
 		 * Registers a font. This can be used to name the fonts used in your application. 
@@ -40,12 +43,14 @@ package com.flow.managers {
 		 * 
 		 */		
 		public static function registerFont(fontName:String, fontClass:Class):void {
+			fonts = {};
 			if(!fontDictionary) {
 				fontDictionary = {};
 			}
 			var font:Font = new fontClass();
 			Font.registerFont(fontClass);
 			fontDictionary[fontName] = font.fontName;
+			fonts[fontName] = fontClass;
 		}
 		
 		/**
@@ -95,26 +100,37 @@ package com.flow.managers {
 		 * @return True, if the font has been embedded, false otherwise.
 		 */		
 		public static function hasEmbeddedFont(fontName:String, fontStyle:String = null):Boolean {
-			if(!fonts) {
-				fonts = {};
+			var font:Font = getEmbeddedFont(fontName, fontStyle);
+			return font ? true: false;
+		}
+		
+		/**
+		 * Retreives a embedded font with an optional style.
+		 * @param The name of the font.
+		 * @param An optional style of the font.
+		 * @return The found font object.
+		 */		
+		public static function getEmbeddedFont(fontName:String, fontStyle:String = null):Font {
+			if(!fontLookup) {
+				fontLookup = {};
 				var fontArray:Array = Font.enumerateFonts(false);
 				for(var i:int; i<fontArray.length; i++) {
-					if(!fonts[fontArray[i].fontName]) {
-						fonts[fontArray[i].fontName] = {}
+					if(!fontLookup[fontArray[i].fontName]) {
+						fontLookup[fontArray[i].fontName] = {}
 					}
-					fonts[fontArray[i].fontName][fontArray[i].fontStyle] = true;
+					fontLookup[fontArray[i].fontName]["defstyle"] = fontArray[i];
+					fontLookup[fontArray[i].fontName][fontArray[i].fontStyle] = fontArray[i];
 				}
 			}
 			if(!fontStyle) {
-				return fonts[fontName] ? true : false;
+				return fontLookup[fontName]["defstyle"];
 			} 
-			return fonts[fontName][fontStyle] ? true : false;
+			return fontLookup[fontName][fontStyle];
 		}
 		
 		public static function canRenderText(textFormat:TextFormat, text:String):Boolean {
-			return true;
-			//var font:Font = fonts[textFormat.font];
-			//return font ? font.hasGlyphs(text) : false;
+			var font:Font = getEmbeddedFont(textFormat.font);
+			return font ? font.hasGlyphs(text) : false;
 		}
 	}
 }

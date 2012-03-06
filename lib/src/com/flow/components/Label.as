@@ -277,12 +277,21 @@ package com.flow.components {
 			super.validateProperties();
 			var def:TextFormat = TextFormatManager.getTextFormat(_textFormat);
 			if(!def) {
-				_textField.embedFonts = false;
 				def = new TextFormat();
-			} else {
-				_textField.embedFonts = true;
 			}
 			decorateTextFormat(def);
+			
+			if(TextFormatManager.hasEmbeddedFont(def.font)) {
+				if(TextFormatManager.canRenderText(def, transformedText)) {
+					_textField.embedFonts = true;
+				} else {
+					def.font = TextFormatManager.nonEmbeddedFont;
+					_textField.embedFonts = false;
+				}
+			} else {
+				_textField.embedFonts = false;
+			}
+		
 			_textField.defaultTextFormat = def;
 			_textField.multiline = _multiline;
 			_textField.wordWrap = _multiline;
@@ -290,17 +299,6 @@ package com.flow.components {
 				_textField.htmlText = transformedText;
 			} else {
 				_textField.text = transformedText;
-			}
-			
-			if(TextFormatManager.hasEmbeddedFont(def.font)) {
-				if(TextFormatManager.canRenderText(def, transformedText)) {
-					_textField.embedFonts = true;
-				} else {
-					def.font = "Arial";
-					_textField.setTextFormat(def);
-				}
-			} else {
-				_textField.embedFonts = false;
 			}
 		}
 		
