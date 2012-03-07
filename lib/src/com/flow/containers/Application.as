@@ -71,6 +71,9 @@ package com.flow.containers {
 		}
 		
 		private function initApplication():void {
+			if(getParameter("locale", null)) {
+				resources.locale = getParameter("locale", null);
+			}
 			Tween.staticInit(this);
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;

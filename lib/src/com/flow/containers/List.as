@@ -16,6 +16,7 @@ package com.flow.containers {
 	[DefaultProperty("itemRenderer")]
 	[Event(name="rendererCreated", type="com.flow.events.ListEvent")]
 	[Event(name="selectionChanged", type="com.flow.events.ListEvent")]
+	[Event(name="itemClicked", type="com.flow.events.ListEvent")]
 	[Event(name="itemsCreated", type="com.flow.events.ListEvent")]
 	/**
 	 * A class that renders a set of data.
@@ -144,6 +145,7 @@ package com.flow.containers {
 		/** @private */
 		protected function rendererClicked(event:MouseEvent):void {
 			selectedIndex = children.getItemIndex(event.currentTarget);
+			dispatchEvent(new ListEvent(ListEvent.ITEM_CLICKED));
 		}
 		
 		/**

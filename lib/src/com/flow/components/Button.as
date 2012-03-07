@@ -26,7 +26,6 @@ package com.flow.components {
 	
 	import flash.display.DisplayObject;
 	import flash.events.MouseEvent;
-	
 	import mx.binding.utils.BindingUtils;
 	
 	[SkinState("up")]
@@ -43,6 +42,7 @@ package com.flow.components {
 		private var _color:int;
 		private var _labelDisplay:Label;
 		private var _icon:DisplayObject;
+		private var _textFormat:String;
 		
 		/** Constructor */
 		public function Button() {
@@ -62,6 +62,9 @@ package com.flow.components {
 		}
 		public function set labelDisplay(value:Label):void {
 			_labelDisplay = value;
+			if(_textFormat) {
+				_labelDisplay.textFormat = _textFormat;
+			}
 			BindingUtils.bindProperty(_labelDisplay, "text", this, "label", false, true);
 		}
 		
@@ -73,6 +76,21 @@ package com.flow.components {
 		public function set label(value:String):void {
 			_label = value;
 			invalidateProperties(true);
+		}
+		
+		/**
+		 * Defines the text formatting to use in for the label 
+		 */		
+		public function get textFormat():String {
+			return _textFormat;
+		}
+		public function set textFormat(value:String):void {
+			if(_textFormat != value) {
+				_textFormat = value;
+				if(_labelDisplay) {
+					_labelDisplay.textFormat = _textFormat;
+				}
+			}
 		}
 		
 		/**

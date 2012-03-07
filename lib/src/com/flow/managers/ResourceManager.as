@@ -31,18 +31,10 @@ package com.flow.managers {
 			var c:Class = Class(applicationDomain.getDefinition("_CompiledResourceBundleInfo"));
 			var locales:Array = c.compiledLocales;
 			var bundleNames:Array = c.compiledResourceBundleNames;
-			
 			parseResourceBundles(locales, bundleNames);
-			
 			localeChain = locales;
 		}
 	
-		/**
-		 * 
-		 * @param locales
-		 * @param bundleNames
-		 * 
-		 */
 		private function parseResourceBundles(locales:Array, bundleNames:Array):void {
 			var applicationDomain:ApplicationDomain = ApplicationDomain.currentDomain;
 			

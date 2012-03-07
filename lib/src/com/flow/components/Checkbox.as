@@ -49,6 +49,7 @@ package com.flow.components {
 			hitArea = hitSprite;
 			hitSprite.visible = false;
 			addEventListener(MouseEvent.CLICK, click);
+			textFormat = "checkbox";
 		}
 		
 		/**
@@ -56,7 +57,7 @@ package com.flow.components {
 		 */	
 		[SkinPart(required="false")]
 		override public function set labelDisplay(value:Label):void {
-			super.labelDisplay = value;
+			super.labelDisplay = value
 		}
 		
 		/**
