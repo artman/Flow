@@ -90,6 +90,7 @@ package com.flow.components {
 			_labelDisplay.textField.displayAsPassword = _password;
 			_labelDisplay.textField.restrict = _restrict;
 			_labelDisplay.textField.maxChars = _maxChars;
+			textFormat = "input"
 			focusElement = _labelDisplay.textField;
 			BindingUtils.bindProperty(_labelDisplay, "text", this, "value", false, true);
 		}

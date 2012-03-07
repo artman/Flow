@@ -109,6 +109,7 @@ package com.flow.components.supportClasses {
 				app.preloader = this;
 			}
 		}
+		
 		/**
 		 * Override this method and draw your preloader view according to the width and height. This will be called
 		 * whenever the stage size changes or the loading progress changes. 

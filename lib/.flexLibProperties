@@ -191,6 +191,7 @@
     <classEntry path="mx.utils.DescribeTypeCache"/>
     <classEntry path="mx.utils.DescribeTypeCacheRecord"/>
     <classEntry path="com.flow.managers.TextFormatEntry"/>
+    <classEntry path="com.flow.graphics.Ellipse"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests>

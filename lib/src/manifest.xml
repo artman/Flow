@@ -73,6 +73,7 @@
 	<component id="EffectComposition" class="com.flow.effects.EffectComposition"/>
 	<component id="EffectTransition" class="com.flow.effects.transitions.EffectTransition"/>
 	<component id="Elastic" class="com.flow.motion.easing.Elastic"/>
+	<component id="Ellipse" class="com.flow.graphics.Ellipse"/>
 	<component id="Exponential" class="com.flow.motion.easing.Exponential"/>
 	<component id="FadeTransition" class="com.flow.effects.transitions.FadeTransition"/>
 	<component id="FlipEffect" class="com.flow.effects.FlipEffect"/>
@@ -169,6 +170,7 @@
 	<component id="StrokeBase" class="com.flow.graphics.strokes.StrokeBase"/>
 	<component id="TextArea" class="com.flow.components.TextArea"/>
 	<component id="TextAreaSkin" class="com.flow.skins.TextAreaSkin"/>
+	<component id="TextFormatEntry" class="com.flow.managers.TextFormatEntry"/>
 	<component id="TextFormatManager" class="com.flow.managers.TextFormatManager"/>
 	<component id="TextInput" class="com.flow.components.TextInput"/>
 	<component id="TextInputSkin" class="com.flow.skins.TextInputSkin"/>
