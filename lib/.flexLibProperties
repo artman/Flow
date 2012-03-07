@@ -22,6 +22,7 @@
     <classEntry path="com.flow.components.HSlider"/>
     <classEntry path="com.flow.components.Label"/>
     <classEntry path="com.flow.components.LabelButton"/>
+    <classEntry path="com.flow.components.PushButton"/>
     <classEntry path="com.flow.components.Spacing"/>
     <classEntry path="com.flow.components.TextArea"/>
     <classEntry path="com.flow.components.TextInput"/>
@@ -189,6 +190,7 @@
     <classEntry path="mx.states.Transition"/>
     <classEntry path="mx.utils.DescribeTypeCache"/>
     <classEntry path="mx.utils.DescribeTypeCacheRecord"/>
+    <classEntry path="com.flow.managers.TextFormatEntry"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests>

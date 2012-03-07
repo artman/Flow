@@ -140,6 +140,7 @@
 	<component id="PopupManager" class="com.flow.managers.PopupManager"/>
 	<component id="Preloader" class="com.flow.components.supportClasses.Preloader"/>
 	<component id="PropertyChangeEvent" class="mx.events.PropertyChangeEvent"/>
+	<component id="PushButton" class="com.flow.components.PushButton"/>
 	<component id="Quadratic" class="com.flow.motion.easing.Quadratic"/>
 	<component id="Quartic" class="com.flow.motion.easing.Quartic"/>
 	<component id="Quintic" class="com.flow.motion.easing.Quintic"/>

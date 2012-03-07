@@ -23,6 +23,7 @@
 package com.flow.components.supportClasses {
 	 
 	import com.flow.containers.Application;
+	import com.flow.log.Log;
 	
 	import flash.display.MovieClip;
 	import flash.display.StageAlign;
@@ -53,6 +54,7 @@ package com.flow.components.supportClasses {
 		 * Constructor 
 		 */		
 		public function Preloader() {
+			Log.log("New preloader");
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
 			stage.quality = StageQuality.BEST;
@@ -62,7 +64,9 @@ package com.flow.components.supportClasses {
 		}
 		
 		private function resize(e:Event):void {
-			draw(stage.stageWidth, stage.stageHeight);
+			if(stage) {
+				draw(stage.stageWidth, stage.stageHeight);
+			}
 		}
 		
 		public function redraw(e:* = null):void {
@@ -75,6 +79,7 @@ package com.flow.components.supportClasses {
 		}
 		 
 		private function checkProgress(e:Event):void {
+			Log.log("Check prog");
 			if(firstDraw) {
 				draw(stage.stageWidth, stage.stageHeight);
 				firstDraw = false;
@@ -87,6 +92,7 @@ package com.flow.components.supportClasses {
 		}
 		 
 		private function preloadingDone():void {
+			Log.log("Prload done");
 			loaderInfo.removeEventListener(ProgressEvent.PROGRESS, progress);
 			if (!mainClassName) {
 				var url:String = loaderInfo.loaderURL.split("?")[0];
@@ -130,7 +136,7 @@ package com.flow.components.supportClasses {
 			_mainClassName = value;
 		}
 
-		/** The progress of the load (0-1). User this property to draw a progress bar on every draw-call. */
+		/** The progress of the load (0-1). Use this property to draw a progress bar on every draw-call. */
 		public function get loadingProgress():int {
 			return _loadingProgress;
 		}

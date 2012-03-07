@@ -60,7 +60,7 @@ package com.flow.managers {
 		 * using the registerFont method.
 		 * @see #registerFont
 		 */		
-		public static function registerTextFormat(name:String, textFormat:TextFormat):void {
+		public static function registerTextFormat(name:String, textFormat:TextFormat, filters:Array = null):void {
 			if(!textFormatDictionary) {
 				textFormatDictionary = {};
 			}
@@ -69,7 +69,7 @@ package com.flow.managers {
 					textFormat.font = fontDictionary[textFormat.font];
 				}
 			}
-			textFormatDictionary[name] = textFormat;
+			textFormatDictionary[name] = new TextFormatEntry(textFormat, filters);
 		}
 		
 		/**
@@ -77,20 +77,22 @@ package com.flow.managers {
 		 * @param The name of the text format to retreive
 		 * @return The found text format or a default text format if no registered text format with the given name was found.
 		 */		
-		public static function getTextFormat(name:String):TextFormat {
+		public static function getTextFormat(name:String):TextFormatEntry {
 			if(textFormatDictionary) {
-				var ret:TextFormat = textFormatDictionary[name];
+				var ret:TextFormatEntry = textFormatDictionary[name];
 				if(!ret) {
 					for each(var tf:Object in textFormatDictionary) {
-						ret = tf as TextFormat;
+						ret = tf as TextFormatEntry;
 						break;
 					}
 				}
 			}
 			if(ret) {
-				return new TextFormat(ret.font, ret.size, ret.color, ret.bold, ret.italic, ret.underline, ret.url, ret.target, ret.align, ret.leftMargin, ret.rightMargin, ret.indent, ret.leading);
+				var format:TextFormat = ret.textFormat;
+				return new TextFormatEntry(new TextFormat(format.font, format.size, format.color, format.bold, format.italic, format.underline, 
+					format.url, format.target, format.align, format.leftMargin, format.rightMargin, format.indent, format.leading), ret.filters);
 			}
-			return new TextFormat("Arial", 11);
+			return new TextFormatEntry(new TextFormat("Arial", 11));
 		}
 		
 		/**

@@ -23,6 +23,7 @@
 package com.flow.components {
 	
 	import com.flow.components.supportClasses.PaddableComponent;
+	import com.flow.managers.TextFormatEntry;
 	import com.flow.managers.TextFormatManager;
 	
 	import flash.display.DisplayObject;
@@ -70,8 +71,9 @@ package com.flow.components {
 		protected var _iconPlacement:String = "left";
 		/** @private */
 		protected var isHTML:Boolean = false;
-		/** @private */
+		
 		private var ellipsisText:String;
+		private var filtersApplied:Boolean = false;
 		
 		/**
 		 * Constructor.
@@ -275,7 +277,8 @@ package com.flow.components {
 		/** @private */
 		override public function validateProperties():void {
 			super.validateProperties();
-			var def:TextFormat = TextFormatManager.getTextFormat(_textFormat);
+			var entry:TextFormatEntry = TextFormatManager.getTextFormat(_textFormat);
+			var def:TextFormat = entry.textFormat;
 			if(!def) {
 				def = new TextFormat();
 			}
@@ -300,6 +303,17 @@ package com.flow.components {
 			} else {
 				_textField.text = transformedText;
 			}
+			if(entry.filters && !filtersApplied) {
+				super.filters = entry.filters;
+			}
+		}
+		
+		override public function get filters():Array {
+			return super.filters;
+		}
+		override public function set filters(value:Array):void {
+			filtersApplied = true;
+			super.filters = value;
 		}
 		
 		/** @private */
