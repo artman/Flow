@@ -50,7 +50,6 @@ package com.flow.components {
 			interactive = true;
 			mouseChildren = false;
 			buttonMode = useHandCursor = true;
-			
 		}
 		
 		/**
