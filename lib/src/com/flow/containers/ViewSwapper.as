@@ -22,13 +22,16 @@
 
 package com.flow.containers {
 	
+	import com.flow.components.Component;
+	
 	import flash.display.DisplayObject;
+	import flash.display.Sprite;
 	
 	[DefaultProperty("view")]
 	/**
 	 * A simple container that will show one view at a time.
 	 */	
-	public class ViewSwapper extends Container {
+	public class ViewSwapper extends ViewStack {
 				
 		private var _view:DisplayObject;
 		
@@ -37,6 +40,7 @@ package com.flow.containers {
 		 */		
 		public function ViewSwapper() {
 			super();
+			addChild(new Sprite());
 		}
 	
 		/** @private */
@@ -48,13 +52,26 @@ package com.flow.containers {
 		 * The view to show. Setting this will throw out the old view. 
 		 */		
 		public function set view(value:DisplayObject):void {
-			if(_view) {
+			if(!_view) {
 				removeChild(_view);
+				addChildAt(value, 0);
+			} else {
+				if(value is Component) {
+					(value as Component).active = false;
+				} else {
+					value.alpha = 0;
+				}
+				if(selectedIndex == 1) {
+					removeChildAt(0);
+					addChildAt(value, 0);
+					selectedIndex = 0;
+				} else {
+					removeChildAt(1);
+					addChildAt(value, 1);
+					selectedIndex = 1;
+				}
 			}
 			_view = value;
-			if(_view) {
-				addChild(value);
-			}
 		}
 		public function get view():DisplayObject {
 			return _view;
