@@ -237,7 +237,7 @@ package com.flow.components {
 				}
 				_icon = value;
 				if(_icon) {
-					_icon.visible = false; // Fixme: For some reason layout is deffered by one frame when setting this in a state change.
+					_icon.visible = false; // Fixme: For some reason layout is deferred by one frame when setting this in a state change.
 					addChild(_icon);
 				}	
 				invalidateLayout();
@@ -283,21 +283,12 @@ package com.flow.components {
 				def = new TextFormat();
 			}
 			decorateTextFormat(def);
-			
-			if(TextFormatManager.hasEmbeddedFont(def.font)) {
-				if(TextFormatManager.canRenderText(def, transformedText)) {
-					_textField.embedFonts = true;
-				} else {
-					def.font = TextFormatManager.nonEmbeddedFont;
-					_textField.embedFonts = false;
-				}
-			} else {
-				_textField.embedFonts = false;
-			}
-		
 			_textField.defaultTextFormat = def;
 			_textField.multiline = _multiline;
 			_textField.wordWrap = _multiline;
+			
+			checkRenderer(transformedText);
+			
 			if(isHTML) {
 				_textField.htmlText = transformedText;
 			} else {
@@ -305,6 +296,20 @@ package com.flow.components {
 			}
 			if(entry.filters && !filtersApplied) {
 				super.filters = entry.filters;
+			}
+		}
+		
+		public function checkRenderer(text:String):void {
+			var def:TextFormat = _textField.defaultTextFormat;
+			if(TextFormatManager.hasEmbeddedFont(def.font, def.bold ? 'bold' : 'regular')) {
+				if(TextFormatManager.canRenderText(def, text)) {
+					_textField.embedFonts = true;
+				} else {
+					def.font = TextFormatManager.getTextFormat(_textFormat).getFallback();
+					_textField.embedFonts = false;
+				}
+			} else {
+				_textField.embedFonts = false;
 			}
 		}
 		
@@ -333,13 +338,10 @@ package com.flow.components {
 		private function get transformedText():String {
 			if(_textTransform == "uppercase") {
 				return (_ellipsis && ellipsisText && !isHTML) ? ellipsisText.toUpperCase() : _text.toUpperCase();
-				//return _text.toUpperCase();
 			} else if(_textTransform == "lowercase") {
 				return (_ellipsis && ellipsisText && !isHTML) ? ellipsisText.toLowerCase() : _text.toLowerCase();
-				//return _text.toLowerCase();
 			}
 			return (_ellipsis && ellipsisText && !isHTML) ? ellipsisText : _text;
-			//return _text;
 		}
 		
 		/** @private */

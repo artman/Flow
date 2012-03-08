@@ -27,6 +27,7 @@ package com.flow.components {
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
 	import flash.events.MouseEvent;
+	import flash.events.TextEvent;
 	import flash.ui.Keyboard;
 	
 	import mx.binding.utils.BindingUtils;
@@ -87,6 +88,7 @@ package com.flow.components {
 			_labelDisplay.editable = true;
 			_labelDisplay.textField.addEventListener(Event.CHANGE, textChanged);
 			_labelDisplay.textField.addEventListener(KeyboardEvent.KEY_DOWN, keyDown);
+			_labelDisplay.textField.addEventListener(TextEvent.TEXT_INPUT, textInput);
 			_labelDisplay.textField.displayAsPassword = _password;
 			_labelDisplay.textField.restrict = _restrict;
 			_labelDisplay.textField.maxChars = _maxChars;
@@ -221,6 +223,11 @@ package com.flow.components {
 			if(e.charCode == Keyboard.ENTER) {
 				dispatchEvent(new Event(Event.COMPLETE));
 			}
+		}
+		
+		private function textInput(e:TextEvent):void {
+			_labelDisplay.checkRenderer(e.text);
+			trace(e.text);
 		}
 		
 		/**
