@@ -88,7 +88,7 @@ package com.flow.managers {
 					textFormat.font = fontDictionary[textFormat.font];
 				}
 			}
-			textFormatDictionary[name] = new TextFormatEntry(textFormat, filters);
+			textFormatDictionary[name] = new TextFormatEntry(textFormat, fallback, filters);
 		}
 		
 		/**

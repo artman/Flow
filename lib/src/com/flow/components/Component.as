@@ -175,7 +175,7 @@ package com.flow.components {
 		 * and that has horizontally centered content. */
 		public var snapToEventWidth:Boolean = false;
 		/** If set to true, forces the component to snap to an even height. You might want to set this to true on containers who's heights are
-		 * changing and who have vertically centered content. */
+		 *  changing and who have vertically centered content. */
 		public var snapToEventHeight:Boolean = false;
 		
 		/** The data that is assigned to the component if it's used as a item renderer. */

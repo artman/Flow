@@ -93,6 +93,7 @@
     <classEntry path="com.flow.events.StateEvent"/>
     <classEntry path="com.flow.events.VideoStreamEvent"/>
     <classEntry path="com.flow.events.WebCamEvent"/>
+    <classEntry path="com.flow.graphics.Ellipse"/>
     <classEntry path="com.flow.graphics.Geometry"/>
     <classEntry path="com.flow.graphics.GradientData"/>
     <classEntry path="com.flow.graphics.Image"/>
@@ -115,6 +116,7 @@
     <classEntry path="com.flow.managers.PopupManager"/>
     <classEntry path="com.flow.managers.ResourceManager"/>
     <classEntry path="com.flow.managers.SkinManager"/>
+    <classEntry path="com.flow.managers.TextFormatEntry"/>
     <classEntry path="com.flow.managers.TextFormatManager"/>
     <classEntry path="com.flow.managers.TooltipManager"/>
     <classEntry path="com.flow.media.MediaURL"/>
@@ -190,8 +192,6 @@
     <classEntry path="mx.states.Transition"/>
     <classEntry path="mx.utils.DescribeTypeCache"/>
     <classEntry path="mx.utils.DescribeTypeCacheRecord"/>
-    <classEntry path="com.flow.managers.TextFormatEntry"/>
-    <classEntry path="com.flow.graphics.Ellipse"/>
   </includeClasses>
   <includeResources/>
   <namespaceManifests>
