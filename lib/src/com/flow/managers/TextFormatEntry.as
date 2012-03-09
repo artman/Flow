@@ -8,14 +8,14 @@ package com.flow.managers {
 		public var fallback:String;
 		public var filters:Array;
 		
-		public function TextFormatEntry(textFormat:TextFormat, fallback:Array = null, filters:Array = null) {
+		public function TextFormatEntry(textFormat:TextFormat, fallbackFonts:Array = null, filters:Array = null) {
 			this.textFormat = textFormat;
 			this.filters = filters;
-			if(fallback) {
-				for(var i:int = 0; i<fallback.length; i++) {
-					var font:Font = TextFormatManager.getDeviceFont(fallback[i]);
+			if(fallbackFonts) {
+				for(var i:int = 0; i<fallbackFonts.length; i++) {
+					var font:Font = TextFormatManager.getDeviceFont(fallbackFonts[i]);
 					if(font) {
-						this.fallback = fallback[i];
+						this.fallback = fallbackFonts[i];
 						break;
 					}
 				}

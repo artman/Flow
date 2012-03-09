@@ -306,6 +306,8 @@ package com.flow.components {
 					_textField.embedFonts = true;
 				} else {
 					def.font = TextFormatManager.getTextFormat(_textFormat).getFallback();
+					_textField.defaultTextFormat = def;
+					
 					_textField.embedFonts = false;
 				}
 			} else {
