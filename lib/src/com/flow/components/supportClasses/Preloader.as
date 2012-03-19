@@ -44,7 +44,8 @@ package com.flow.components.supportClasses {
 	 * <code>[Frame(factoryClass="com.myapp.MyPreloader")]</code>
 	 */	
 	public class Preloader extends MovieClip {
-		 
+		
+		public static var instance:Preloader;
 		private var _mainClassName:String;
 		private var _loadingProgress:int;
 		private var _removeAfterLoadingDone:Boolean = true;
@@ -54,7 +55,7 @@ package com.flow.components.supportClasses {
 		 * Constructor 
 		 */		
 		public function Preloader() {
-			Log.log("New preloader");
+			instance = this;
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;
 			stage.quality = StageQuality.BEST;
@@ -79,7 +80,6 @@ package com.flow.components.supportClasses {
 		}
 		 
 		private function checkProgress(e:Event):void {
-			Log.log("Check prog");
 			if(firstDraw) {
 				draw(stage.stageWidth, stage.stageHeight);
 				firstDraw = false;
@@ -92,7 +92,6 @@ package com.flow.components.supportClasses {
 		}
 		 
 		private function preloadingDone():void {
-			Log.log("Prload done");
 			loaderInfo.removeEventListener(ProgressEvent.PROGRESS, progress);
 			if (!mainClassName) {
 				var url:String = loaderInfo.loaderURL.split("?")[0];

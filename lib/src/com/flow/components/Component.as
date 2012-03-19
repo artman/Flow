@@ -71,13 +71,14 @@ package com.flow.components {
 		public static const STATE_DOWN:String = "down";
 		public static const STATE_FOCUS:String = "focus";
 		public static const STATE_DISABLED:String = "disabled";
-		
+	
 		/** A static reference to the LayoutManager. */
 		public static var manager:LayoutManager;
 		
 		/** A static reference to the ResourceManager. */
 		[Bindable]
 		public static var resources:ResourceManager = ResourceManager.instance;
+		
 		
 		/** @private */ 
 		protected var _x:Number = 0;

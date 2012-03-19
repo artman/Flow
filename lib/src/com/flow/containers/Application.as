@@ -24,10 +24,12 @@ package com.flow.containers {
 	
 	import com.flow.components.Component;
 	import com.flow.components.supportClasses.Preloader;
+	import com.flow.managers.ResourceManager;
 	import com.flow.managers.TooltipManager;
 	import com.flow.motion.Tween;
 	
 	import flash.display.Sprite;
+	import flash.display.Stage;
 	import flash.display.StageAlign;
 	import flash.display.StageDisplayState;
 	import flash.display.StageQuality;
@@ -65,15 +67,20 @@ package com.flow.containers {
 			}
 		}
 		
+		public static function initLocale(stage:Stage):void {
+			var val:* = stage.loaderInfo.parameters["locale"];
+			if(val) {
+				ResourceManager.instance.locale = val;
+			}
+		}
+		
 		private function added(e:Event):void {
 			initApplication();
 			removeEventListener(Event.ADDED_TO_STAGE, added);
 		}
 		
 		private function initApplication():void {
-			if(getParameter("locale", null)) {
-				resources.locale = getParameter("locale", null);
-			}
+			initLocale(stage);
 			Tween.staticInit(this);
 			stage.scaleMode = StageScaleMode.NO_SCALE;
 			stage.align = StageAlign.TOP_LEFT;

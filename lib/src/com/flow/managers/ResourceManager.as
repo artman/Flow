@@ -1,4 +1,10 @@
 package com.flow.managers {
+	import com.flow.components.supportClasses.Preloader;
+	import com.flow.containers.Application;
+	
+	import flash.display.Stage;
+	import flash.events.Event;
+	import flash.events.EventDispatcher;
 	import flash.system.ApplicationDomain;
 	import flash.utils.Dictionary;
 
@@ -11,8 +17,11 @@ package com.flow.managers {
 	 * 
 	 * From anywhere in you'll be able to use <code>ResourceManager.instance.getString("name")</code> to retreive a string from a resource bundle
 	 * Components also include a shortcut - the static property <code>resources</code> - to the resource manager.
+	 * 
+	 * You can compile multiple locales into one SWF. To select one of these embedded locales, pass the <code>locale</code>-property as a FlashVar in the
+	 * SWF embedd script.
 	 */	
-	public class ResourceManager {
+	public class ResourceManager extends EventDispatcher {
 		
 		[Bindable]
 		public static var instance:ResourceManager = new ResourceManager();
@@ -33,6 +42,14 @@ package com.flow.managers {
 			var bundleNames:Array = c.compiledResourceBundleNames;
 			parseResourceBundles(locales, bundleNames);
 			localeChain = locales;
+			
+			var stage:Stage = Preloader.instance ? Preloader.instance.stage : Application.application.stage;
+			if(stage) {
+				var localeProp:String = stage.loaderInfo.parameters["locale"];
+				if(localeProp) {
+					locale = localeProp;
+				}
+			}
 		}
 	
 		private function parseResourceBundles(locales:Array, bundleNames:Array):void {
@@ -95,7 +112,7 @@ package com.flow.managers {
 		 * @param Any variables you want to replace in the fetched resource. You may define one or more variables in the resource string using the syntax
 		 * <code>{1}, {2}, {n}</code>. These are replaced by the optional parameters given.
 		 * @return The string resource.
-		 */		
+		 */	
 		public function getString(name:String, resourceBundle:String = "general", ...rest):String {
 			if(activeBundles) {
 				var bundle:Object = activeBundles[resourceBundle ? resourceBundle.toLowerCase() : "general"];
