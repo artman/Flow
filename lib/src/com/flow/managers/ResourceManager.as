@@ -76,7 +76,8 @@ package com.flow.managers {
 		
 		/**
 		 * The current locale.
-		 */		
+		 */	
+		[Bindable]
 		public function get locale():String {
 			return _locale;
 		}

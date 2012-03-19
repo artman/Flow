@@ -48,6 +48,8 @@ package com.flow.components.supportClasses {
 		 */		
 		public var skin:Skin;
 		
+		private var _skinData:Object;
+		
 		public function SkinnableComponent() {
 			super();
 		}
@@ -63,6 +65,20 @@ package com.flow.components.supportClasses {
 				_skinClass = value;
 				skinChanged = true;
 				invalidateProperties();
+			}
+		}
+		
+		/**
+		 * Additional data that can be passed to the skin in order to instruct it in rendering. 
+		 */	
+		[Bindable]
+		public function get skinData():Object {
+			return _skinData;
+		}
+		public function set skinData(value:Object):void {
+			_skinData = value;
+			if(skin) {
+				skin.skinData = _skinData;
 			}
 		}
 		
@@ -87,6 +103,7 @@ package com.flow.components.supportClasses {
 				if(_skinClass) {
 					skin = _skinClass.newInstance();
 					skin.hostComponent = this;
+					skin.skinData = skinData;
 
 					states = skin.states;
 					children = skin.children;

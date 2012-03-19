@@ -30,7 +30,8 @@ package com.flow.components.supportClasses {
 	 */	
 	public class Skin extends Container {
 		
-		private var _hostComponent:Container;
+		private var _hostComponent:SkinnableComponent;
+		private var _skinData:Object;
 		
 		/**
 		 * Constructor.
@@ -40,14 +41,25 @@ package com.flow.components.supportClasses {
 		}
 		
 		/**
+		 * The skinData of the host component. The skinData property can be used to pass additional data for the skins to use. 
+		 */	
+		[Bindable]
+		public function get skinData():Object {
+			return _skinData;
+		}
+		public function set skinData(value:Object):void {
+			_skinData = value;
+		}
+		
+		/**
 		 * The host component of the skin. You set this via metadata, e.g.:
 		 * <code>[HostComponent("com.flow.components.Button")]</code>
 		 */		
 		[Bindable]
-		public function get hostComponent():Container {
+		public function get hostComponent():SkinnableComponent {
 			return _hostComponent;
 		}
-		public function set hostComponent(value:Container):void {
+		public function set hostComponent(value:SkinnableComponent):void {
 			_hostComponent = value;
 			if(_hostComponent && layout) {
 				_hostComponent.layout = _layout;
