@@ -54,8 +54,12 @@ package com.flow.managers {
 		private static function init():void {
 			popups = new Vector.<Component>();
 			popupRoot = new Container();
-			popupRoot.percentWidth = 100;
-			popupRoot.percentHeight = 100;
+			//popupRoot.percentWidth = 100;
+			//popupRoot.percentHeight = 100;
+			
+			popupRoot.top = popupRoot.left = popupRoot.right = popupRoot.bottom = 0;
+			popupRoot.top = -10; // FIXME: Shouln't need to put this here
+			
 		}
 		init();
 		

@@ -174,6 +174,9 @@ package com.flow.containers {
 				(children.getItemAt(_selectedIndex) as Component).removeState("selected");
 			}
 			_selectedIndex = value;
+			if(sortedDataProvider && sortedDataProvider.length < _selectedIndex) {
+				_selectedIndex = -1;
+			}
 			if(_selectedIndex != -1 && sortedDataProvider) {
 				selectedItem = sortedDataProvider.getItemAt(_selectedIndex);
 				if(!propertiesInvalidated) {

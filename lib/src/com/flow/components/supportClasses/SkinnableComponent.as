@@ -118,14 +118,23 @@ package com.flow.components.supportClasses {
 					
 					if(!hasExplicitWidth) {
 						ChangeWatcher.watch(skin, "width", skinWidthChange);
+						ChangeWatcher.watch(skin, "percentWidth", skinPercentWidthChange);
 						if(skin.hasExplicitWidth) {
 							skinWidthChange();
 						}
+						if(skin.measureUnits.w.isPercentage) {
+							skinPercentWidthChange();
+						}
+			
 					}
 					if(!hasExplicitHeight) {
 						ChangeWatcher.watch(skin, "height", skinHeightChange);
+						ChangeWatcher.watch(skin, "percentHeight", skinPercentHeightChange);
 						if(skin.hasExplicitHeight) {
 							skinHeightChange();
+						}
+						if(skin.measureUnits.h.isPercentage) {
+							skinPercentHeightChange();
 						}
 					}
 					skin.currentState = currentState;
@@ -143,6 +152,14 @@ package com.flow.components.supportClasses {
 		
 		private function skinHeightChange(e:Event = null):void {
 			height = skin.height;
+		}
+		
+		private function skinPercentWidthChange(e:Event = null):void {
+			percentWidth = skin.percentWidth;
+		}
+		
+		private function skinPercentHeightChange(e:Event = null):void {
+			percentHeight = skin.percentHeight;
 		}
 		
 		/** @private */
