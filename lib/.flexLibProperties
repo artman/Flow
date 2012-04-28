@@ -53,6 +53,7 @@
     <classEntry path="com.flow.containers.layout.AlignType"/>
     <classEntry path="com.flow.containers.layout.HBoxLayout"/>
     <classEntry path="com.flow.containers.layout.LayoutBase"/>
+    <classEntry path="com.flow.containers.layout.TileLayout"/>
     <classEntry path="com.flow.containers.layout.VBoxLayout"/>
     <classEntry path="com.flow.effects.BevelEffect"/>
     <classEntry path="com.flow.effects.BlurEffect"/>

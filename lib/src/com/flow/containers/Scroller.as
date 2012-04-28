@@ -42,6 +42,9 @@ package com.flow.containers {
 		private var hScrollBar:HScrollBar;
 		private var vScrollBar:VScrollBar;
 		
+		private var _showHScrollBar:Boolean = true;
+		private var _showVScrollBar:Boolean = true;
+		
 		/**
 		 * Constructor 
 		 */		
@@ -72,7 +75,6 @@ package com.flow.containers {
 				case 40: lineDown(); break;
 				case 33: pageUp(); break;
 				case 34: pageDown(); break;
-				
 			}
 		}
 		
@@ -90,6 +92,27 @@ package com.flow.containers {
 		private function pageDown():void {
 			scrollY += contentHeight;
 		}
+		
+		public function get showHScrollBar():Boolean {
+			return _showHScrollBar;
+		}
+		public function set showHScrollBar(value:Boolean):void {
+			if(_showHScrollBar != value) {
+				_showHScrollBar = value;
+				invalidateLayout();
+			}
+		}
+		
+		public function get showVScrollBar():Boolean {
+			return _showVScrollBar;
+		}
+		public function set showVScrollBar(value:Boolean):void {
+			if(_showVScrollBar != value) {
+				_showVScrollBar = value;
+				invalidateLayout();
+			}
+		}
+		
 		
 		/** @private */
 		protected function checkScroll(event:Event = null):void {
@@ -145,17 +168,21 @@ package com.flow.containers {
 				vScrollBar.validateNow();
 				hScrollBar.validateNow();
 			
-				hScrollBar.visible = measuredWidth > width;
-				vScrollBar.visible = measuredHeight > height;
+				hScrollBar.visible = measuredWidth > width && showHScrollBar;
+				vScrollBar.visible = measuredHeight > height && showVScrollBar;
 			
-				hScrollBar.visible = measuredWidth > contentWidth;
-				vScrollBar.visible = measuredHeight > contentHeight;
+				hScrollBar.visible = measuredWidth > contentWidth && showHScrollBar;
+				vScrollBar.visible = measuredHeight > contentHeight && showVScrollBar;
 
 				hScrollBar.y = height - hScrollBar.height;
 				hScrollBar.width = contentWidth;
 			
 				vScrollBar.x = width - vScrollBar.width;
 				vScrollBar.height = contentHeight;
+				
+				paddingRight = vScrollBar.visible ? vScrollBar.width : 0;
+				paddingBottom = hScrollBar.visible ? hScrollBar.height : 0;
+				
 				checkScroll();
 			}
 		}

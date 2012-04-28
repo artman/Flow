@@ -60,7 +60,7 @@ package com.flow.containers.layout {
 		/**
 		 * Defines how children are aligned vertically. Possible values are top, middle, bottom and none. Of these "none" does not try to change
 		 * the vertical position of each child. Instead, the vertical position is computed according to the position parameters of each child.
-		 * @default AlignType.MIDDLE
+		 * @default AlignType.TOP
 		 * @see com.flow.containers.layout.AlignType
 		 */		
 		[Inspectable(enumeration="top,middle,bottom,none", defaultValue="middle")]

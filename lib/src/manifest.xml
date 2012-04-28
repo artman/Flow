@@ -175,6 +175,7 @@
 	<component id="TextInput" class="com.flow.components.TextInput"/>
 	<component id="TextInputSkin" class="com.flow.skins.TextInputSkin"/>
 	<component id="TextLoader" class="com.flow.net.loaders.TextLoader"/>
+	<component id="TileLayout" class="com.flow.containers.layout.TileLayout"/>
 	<component id="TintEffect" class="com.flow.effects.TintEffect"/>
 	<component id="TooltipManager" class="com.flow.managers.TooltipManager"/>
 	<component id="Transform3DEffect" class="com.flow.effects.Transform3DEffect"/>

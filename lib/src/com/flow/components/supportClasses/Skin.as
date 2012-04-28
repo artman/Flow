@@ -37,6 +37,8 @@ package com.flow.components.supportClasses {
 		 * Constructor.
 		 */		
 		public function Skin() {
+			tabEnabled = false;
+			tabChildren = false;
 			super();
 		}
 		

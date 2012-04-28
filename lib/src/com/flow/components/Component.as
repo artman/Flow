@@ -207,6 +207,7 @@ package com.flow.components {
 			focusRect = null;
 			preInitialize();
 			tabEnabled = false;
+			focusRect = false;
 		}
 
 		/** @private */		

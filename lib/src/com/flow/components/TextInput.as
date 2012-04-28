@@ -227,7 +227,6 @@ package com.flow.components {
 		
 		private function textInput(e:TextEvent):void {
 			_labelDisplay.checkRenderer(e.text);
-			trace(e.text);
 		}
 		
 		/**
