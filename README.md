@@ -1,8 +1,6 @@
 Flow - A Flash Framework
 ========================
 
-### Note! Flow is still under heavy development. Proceed with caution! ###
-
 Flow is designed to fill the void between Flash and the Flex Framework. It takes best practices from Flex (such as MXML and Data Binding), but is designed to very lightweight, so it can (and should) be used in virtually any project that targets the Flash Player, where the Flex Framework is considered too heavy or too slow.
 
 The Flow Framework implements best practices that I've gathered from my 10+ years creating Flash and Flex applications.
